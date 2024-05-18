@@ -1,0 +1,43 @@
+.badge {
+    width: 120px;
+    height: 120px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+
+    .curved_text {
+        width: 120px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        animation: rotate 10s linear infinite;
+    }
+
+    .circle {
+        width: 75px;
+        height: 75px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 100%;
+    
+        &.circle_yellow {
+            background-color: var(--yellow);
+        }
+    
+        .icon {
+            width: 50px;
+            height: 50px;
+        }
+    }
+}
+
+@keyframes rotate {
+    from {
+      transform: translate(-50%, -50%) rotate(0deg);
+    }
+    to {
+      transform: translate(-50%, -50%) rotate(360deg);
+    }
+}
