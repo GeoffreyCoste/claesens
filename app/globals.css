@@ -7,6 +7,9 @@
   --gray: #bdbdbd;
   --gray-light: #e4e4e4;
   --bg-gray: #f1f1f1;
+  /* --mix-black: #f8f9f9;
+  --mix-gray: #0e0e0e;
+  --mix-yellow: #031cff; */
   --border-radius: 10px;
   --border: 1px solid var(--gray-dark);
 }
@@ -22,6 +25,13 @@ html,
 body {
   max-width: 1920px;
   overflow-x: hidden;
+  background-color: var(--white);
+}
+
+main {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 a {
