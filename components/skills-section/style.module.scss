@@ -1,0 +1,53 @@
+.skills_section {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-flow: row wrap;
+    position: relative;
+    background-color: var(--white);
+
+    &_content {
+        flex-basis: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        row-gap: 2rem;
+        padding: 6rem 1rem;
+
+        &_title {
+            font-family: var(--font-bricolage-grotesque);
+            font-size: 3rem;
+            font-weight: 900;
+            
+            &::first-letter {
+                text-transform: uppercase;
+            }
+        }
+    }
+
+    &_diagram {
+        flex-basis: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 6rem 1rem;
+    }
+
+}
+
+@media screen and (min-width: 1024px) {
+    .skills_section {
+        min-height: 100vh;
+        flex-flow: row nowrap;
+
+        &_content {
+            flex-basis: 50%;
+            padding: 0 6rem;
+        }
+    
+        &_diagram {
+            flex-basis: 50%;
+        }
+    }
+}

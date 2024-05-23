@@ -1,0 +1,31 @@
+.release_list {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+
+    &_item {
+        width: 100%;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .release_list {
+        width: 80%;
+
+        &_item {
+            height: 170px;
+
+            &:not(:first-of-type) {
+                border-top: 1px solid var(--gray-dark);
+            }
+
+            &:hover {
+                border: none;
+                
+                & + .release_list_item {
+                    border-top: none;
+                }
+            }
+        }
+    }
+}

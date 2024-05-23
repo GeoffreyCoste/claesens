@@ -1,4 +1,4 @@
-const ArrowDownRight = () => {
+const Bubbles = () => {
   return (
     <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
       <g id="ArrowDownRight_bgCarrier" strokeWidth="0"></g>
@@ -18,4 +18,4 @@ const ArrowDownRight = () => {
   );
 };
 
-export default ArrowDownRight;
+export default Bubbles;

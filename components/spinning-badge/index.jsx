@@ -1,15 +1,15 @@
 import styles from './style.module.scss';
 import clsx from 'clsx';
-import ArrowDownRight from '../icons/arrow-down-right';
 import CurvedText from './curved-text';
+import ArrowRight from '../icons/arrow-right';
 
 const SpinningBadge = () => {
   return (
-    <div className={styles.badge}>
+    <div className={styles.spinning_badge}>
       <CurvedText />
       <div className={clsx(styles.circle, styles.circle_yellow)}>
         <div className={styles.icon}>
-          <ArrowDownRight />
+          <ArrowRight color={'#1e1e1e'} />
         </div>
       </div>
     </div>

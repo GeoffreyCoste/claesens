@@ -7,6 +7,11 @@ import Header from '@/components/header';
 import StickyCursor from '@/components/stickyCursor';
 import Preloader from '@/components/preloader';
 import HeroSection from '@/components/hero-section';
+import WhoSection from '@/components/who-section';
+import SkillsSection from '@/components/skills-section';
+import ProcessSection from '@/components/process-section';
+import InfiniteText from '@/components/infinite-text';
+import ReleaseSection from '@/components/release-section';
 
 export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
@@ -34,6 +39,11 @@ export default function Home() {
       <Header ref={stickyElement}></Header>
       <main /* className={styles.main} */>
         <HeroSection />
+        <InfiniteText />
+        <WhoSection />
+        <SkillsSection />
+        <ProcessSection />
+        <ReleaseSection />
         <StickyCursor stickyElement={stickyElement}></StickyCursor>
       </main>
     </>

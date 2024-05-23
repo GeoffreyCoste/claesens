@@ -1,0 +1,99 @@
+import styles from './style.module.scss';
+import clsx from 'clsx';
+import {Bricolage_Grotesque} from 'next/font/google';
+import Badge from '../badge';
+import ArrowRight from '../icons/arrow-right';
+
+const bricolage_grotesque = Bricolage_Grotesque({
+  variable: '--font-bricolage-grotesque',
+  subsets: ['latin']
+});
+
+const FlipCard = ({index, name, badges, image}) => {
+  return (
+    <div className={styles.card}>
+      <div className={styles.card_inner}>
+        <div className={styles.card_front}>
+          <div className={styles.card_content}>
+            <div className={styles.card_header}>
+              <div className={styles.card_header_item}>
+                <p>{`projet #${index + 1}`}</p>
+              </div>
+              <div
+                className={clsx(
+                  bricolage_grotesque.variable,
+                  styles.card_header_title
+                )}
+              >
+                {name}
+              </div>
+            </div>
+            <div className={styles.card_menu}>
+              <ul className={styles.card_menu_list}>
+                {badges?.map((badge, i) => (
+                  <li key={i} className={styles.menu_list_item}>
+                    <Badge text={badge} />
+                  </li>
+                ))}
+              </ul>
+              <div className={styles.card_menu_item}>
+                <ArrowRight color={'#fce300'} />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className={styles.card_back}>
+          <div className={styles.card_content}>
+            <div className={styles.card_header}>
+              <div className={styles.card_header_item}>
+                <p>{`projet #${index + 1}`}</p>
+              </div>
+              <div
+                className={clsx(
+                  bricolage_grotesque.variable,
+                  styles.card_header_title
+                )}
+              >
+                {name}
+              </div>
+            </div>
+            <div className={styles.card_menu}>
+              <ul className={styles.card_menu_list}>
+                {badges?.map((badge, i) => (
+                  <li key={i} className={styles.menu_list_item}>
+                    <Badge text={badge} />
+                  </li>
+                ))}
+              </ul>
+              <div className={styles.card_menu_item}>
+                <ArrowRight color={'#fce300'} />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default FlipCard;
+
+{
+  /* <div className={styles.container}>
+  <div className={styles.button}>
+    <div className={styles.qube}>
+      <div className={styles.front}>now click!</div>
+      <div className={styles.back}>mouse over me!</div>
+    </div>
+  </div>
+</div> */
+}
+
+{
+  /* <div className={styles.container}>
+  <div className={styles.card}>
+    <div className={styles.card_front}>Face front</div>
+    <div className={styles.card_back}>Face back</div>
+  </div>
+</div> */
+}
