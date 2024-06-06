@@ -4,6 +4,7 @@
     flex-flow: column;
     justify-content: space-between;
     align-items: center;
+    row-gap: 3rem;
 
     &_item {
         display: flex;
@@ -47,7 +48,7 @@
             justify-content: center;
             align-items: center;
             position: relative;
-            padding: 1.25rem;
+            padding: 1.6rem;
             background-color: var(--bg-gray);
             border: 1px solid var(--black);
             border-radius: 50px;
@@ -69,5 +70,6 @@
 @media screen and (min-width: 1024px) {
     .steps_list {
         flex-flow: row nowrap;
+        row-gap: initial;
     }
 }

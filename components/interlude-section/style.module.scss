@@ -1,0 +1,15 @@
+.interlude_section {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 4rem 0;
+    background-color: var(--yellow);
+
+    &_container {
+        width: 100%;
+        height: 100%;
+    }
+}

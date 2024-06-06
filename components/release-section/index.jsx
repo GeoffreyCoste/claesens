@@ -23,7 +23,7 @@ const ReleaseSection = () => {
           Réalisations.
         </h2>
         <ReleaseList items={releases} />
-        <Button pathname={'/'} title={'tout voir'} />
+        <Button pathname={'/'} title={'tout voir'} outline />
       </div>
     </section>
   );

@@ -1,11 +1,11 @@
 .header {
+    width: 100%;
     position: fixed;
     display: flex;
-    width: 100%;
     justify-content: space-between;
     padding: 10px;
     box-sizing: border-box;
-    cursor: pointer;
+    // cursor: pointer;
     mix-blend-mode: difference;
     z-index: 3;
     .burger{

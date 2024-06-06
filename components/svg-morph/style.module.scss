@@ -1,0 +1,18 @@
+.svg_container {
+    width: 90%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .svg_item {
+        width: 100%;
+        height: auto;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .svg_container {
+        width: 50%;
+    }
+}

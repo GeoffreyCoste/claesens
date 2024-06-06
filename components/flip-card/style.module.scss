@@ -7,15 +7,6 @@ $height: 150px;
 
 // helper classes:
 
-.centered {
-   position: absolute;
-   top: 0;
-   bottom: 0;
-   left: 0;
-   right: 0;
-   margin: auto;
-}
-
 .full {
    width: 100%;
    height: 100%;
@@ -26,194 +17,159 @@ $height: 150px;
 // styles
 
 .card {
-   @extend .centered;
-   width: $width + 20px;
-   height: $height + 20px;
-   position: relative;
-   perspective: 1800px;
-   overflow: hidden;
-   display: flex;
-   justify-content: center;
-   align-items: center;
+    width: 100%;
+    height: 320px;
+    display: flex;
+    border-radius: var(--border-radius);
+    overflow: hidden;
 
-   &:first-of-type {
-      .card_front {
-         background-color: blue;
-      }
-   }
-
-   &_inner {
-      position: relative;
-      height: $height;
-      width: $width;
-      perspective: 1800px;
-   }
-
-   &_front, &_back {
-      @extend .full;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      position: absolute;
-      backface-visibility: hidden;
-      transform-style: preserve-3d;
-      transform: rotateX(-90deg);
-      transition: transform 0.3s ease;
-   }
-
-   &_back {
-      background-color: var(--black);
-      transform: rotateX(0deg) translateZ($height / 2);
-   }
-
-   &:hover {
-
-      .card_front {
-         transform: rotateX(0deg) translateZ( $height / 2 );
-      }
-
-      .card_back {
-         transform: rotateX(90deg) translateZ( $height / 2 );
-      }
-   }
-
-   &_content {
-      height: 100%;
-      display: flex;
-      flex-flow: column;
-   }
-
-   &_header {
-      display: flex;
-      flex-direction: column;
-
-      &_item {
-          color: var(--gray-dark);
-          font-size: 0.85em;
-          text-transform: capitalize;
-      }
-
-      &_title {
-          color: var(--white);
-          font-family: var(--font-bricolage-grotesque);
-          font-size: 2rem;
-          font-weight: 700;
-          text-transform: capitalize;
-      }
-  }
-
-  &_menu {
-   width: 100%;
-   display: flex;
-   flex-flow: row nowrap;
-   justify-content: space-between;
-   align-items: center;
-
-   &_list {
-       display: flex;
-       flex-flow: row nowrap;
-       justify-content: flex-start;
-       align-items: center;
-       column-gap: 0.5rem;
-   }
-   
-   &_item {
-       width: 30px;
-       height: 30px;
-   }
-}
-}
-
-
-@media screen and (min-width: 1024px) {
-    .card {
-        &_content {
-            width: 800px;
-            flex-flow: row nowrap;
-        }
-        
-        &_header {
-            flex-basis: 75%;
-            flex-flow: row nowrap;
-            align-items: center;
-            column-gap: 2rem;
-        }
-        
-        &_menu {
-            flex-basis: 25%;
-            flex-flow: row nowrap;
-            align-items: center;
-            column-gap: 2rem;
+    &:first-of-type {
+        .card_front {
+           background-color: blue;
         }
     }
-}
 
-
-
-
-
-/* .card {
-    width: 100%;
-    height: 150px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-    perspective: 1800px;
-
-    &_front,
-    &_back {
+    &_inner {
         width: 100%;
         height: 100%;
-        color: var(--white);
-        position: absolute;
-        top: 0;
-        left: 0;
-        backface-visibility: hidden;
-        -webkit-backface-visibility: hidden;
-        transform-style: preserve-3d;
-        transform: rotateX(-90deg);
-        transition: transform .3s ease;
-        background-color: purple;
-        border: 1px solid white;
-        perspective: 1800px;
+    }
+
+    &_front, &_back {
+        width: 100%;
+        height: 100%;
+    }
+
+    &_front {
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 
     &_back {
-        transform: rotateX(0deg);
-        background-color: transparent;
-        border: 1px solid purple;
+        display: none;
     }
 
-    &:hover {
-        .card_front {
-            transform: rotateX(0deg) translateZ(calc(150px / 2));
-        }
+    &_content {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-flow: column;
+        justify-content: space-between;
+        padding: 1.5rem 1rem;
+    }
 
-        .card_back {
-            transform: rotateX(90deg) translateZ(calc(150px / 2));
+    &_header {
+        display: flex;
+        flex-basis: 100%;
+        flex-flow: column;
+        align-items: flex-start;
+  
+        &_item {
+            color: var(--gray-dark);
+            font-size: 0.85em;
+            text-transform: capitalize;
+        }
+  
+        &_title {
+            color: var(--white);
+            font-family: var(--font-bricolage-grotesque);
+            font-size: 2rem;
+            font-weight: 700;
+            text-transform: capitalize;
         }
     }
-} */
 
-/* @media screen and (min-width: 1024px) {
+    &_menu {
+        width: 100%;
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: space-between;
+        align-items: flex-end;
+        flex-basis: 100%;
+
+        &_list {
+            display: flex;
+            flex-flow: row nowrap;
+            justify-content: flex-start;
+            align-items: center;
+            column-gap: 0.5rem;
+        }
+        &_item {
+            width: 30px;
+            height: 30px;
+        }
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    // helper classes:
+    .centered {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        margin: auto;
+    }
+
     .card {
+        @extend .centered;
+        width: $width + 20px;
+        height: $height + 20px;
+        position: relative;
+        perspective: 1800px;
+        border-radius: 0;
+
+        &_inner {
+            width: $width;
+            height: $height;
+            position: relative;
+            perspective: 1800px;
+        }
+
+        &_front, &_back {
+           position: absolute;
+           backface-visibility: hidden;
+           transform-style: preserve-3d;
+           transform: rotateX(-90deg);
+           transition: transform 0.3s ease;
+        }
+     
+        &_back {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: var(--black);
+            transform: rotateX(0deg) translateZ($height / 2);
+        }
+
+        &:hover {
+           .card_front {
+              transform: rotateX(0deg) translateZ( $height / 2 );
+           }
+     
+           .card_back {
+              transform: rotateX(90deg) translateZ( $height / 2 );
+           }
+        }
+     
         &_content {
-            flex-flow: row nowrap;
+           width: 800px;
+           flex-flow: row nowrap;
+           padding: 0;
         }
-        
+     
         &_header {
-            flex-basis: 75%;
-            flex-flow: row nowrap;
-            align-items: center;
-            column-gap: 2rem;
-        }
-        
-        &_menu {
-            flex-basis: 25%;
-            flex-flow: row nowrap;
-            align-items: center;
-            column-gap: 2rem;
+           flex-basis: 75%;
+           flex-flow: row nowrap;
+           align-items: center;
+           column-gap: 2rem;
+       }
+     
+       &_menu {
+        align-items: center;
+        flex-basis: 25%;
+        column-gap: 2rem;
         }
     }
-} */
+}

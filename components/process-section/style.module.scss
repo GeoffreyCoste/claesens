@@ -4,23 +4,25 @@
     display: flex;
     flex-flow: row wrap;
     position: relative;
-    padding: 6rem 1rem;
+    // padding: 6rem 1rem;
     background-color: var(--bg-gray);
 
     &_content {
         flex-basis: 100%;
+        max-width: 1920px;
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
         row-gap: 2rem;
+        margin: 0 auto;
         padding: 6rem 1rem;
 
         &_title {
             font-family: var(--font-bricolage-grotesque);
             font-size: 2.25rem;
             font-weight: 900;
-            text-align: center;
+            // text-align: center;
 
             &::first-letter {
                 text-transform: uppercase;
@@ -28,10 +30,10 @@
         }
 
         &_text {
-            width: 50%;
+            width: 100%;
             font-size: 1rem;
             font-weight: 400;
-            text-align: center;
+            // text-align: center;
             margin: 1rem 0 2rem;
 
             &:not(:last-of-type) {
@@ -56,10 +58,16 @@
         flex-flow: row nowrap;
 
         &_content {
-            padding: 0 6rem;
+            // padding: 0 6rem;
 
             &_title {
                 font-size: 3rem;
+                text-align: center;
+            }
+
+            &_text {
+                width: 50%;
+                text-align: center;
             }
         }
 

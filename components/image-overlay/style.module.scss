@@ -1,0 +1,23 @@
+.container {
+    position: relative;
+    width: 100%;
+    max-width: 580px;
+    height: auto;
+    margin: auto;
+}
+
+.background_image {
+    position: relative;
+    width: 100%;
+    padding-top: calc(725 / 580 * 100%); /* Maintain 4:5 ratio */
+    background-color: var(--white);
+}
+
+.overlay_image {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 75%;
+    max-width: 435px;
+    transform: translate(-50%, -50%);
+}

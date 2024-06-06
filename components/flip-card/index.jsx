@@ -77,23 +77,3 @@ const FlipCard = ({index, name, badges, image}) => {
 };
 
 export default FlipCard;
-
-{
-  /* <div className={styles.container}>
-  <div className={styles.button}>
-    <div className={styles.qube}>
-      <div className={styles.front}>now click!</div>
-      <div className={styles.back}>mouse over me!</div>
-    </div>
-  </div>
-</div> */
-}
-
-{
-  /* <div className={styles.container}>
-  <div className={styles.card}>
-    <div className={styles.card_front}>Face front</div>
-    <div className={styles.card_back}>Face back</div>
-  </div>
-</div> */
-}

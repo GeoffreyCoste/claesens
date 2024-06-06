@@ -12,6 +12,8 @@ import SkillsSection from '@/components/skills-section';
 import ProcessSection from '@/components/process-section';
 import InfiniteText from '@/components/infinite-text';
 import ReleaseSection from '@/components/release-section';
+import Footer from '@/components/footer';
+import InterludeSection from '@/components/interlude-section';
 
 export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
@@ -37,15 +39,17 @@ export default function Home() {
         {isLoading && <Preloader />}
       </AnimatePresence>
       <Header ref={stickyElement}></Header>
-      <main /* className={styles.main} */>
+      <main>
         <HeroSection />
-        <InfiniteText />
         <WhoSection />
+        <InfiniteText />
         <SkillsSection />
         <ProcessSection />
+        <InterludeSection />
         <ReleaseSection />
         <StickyCursor stickyElement={stickyElement}></StickyCursor>
       </main>
+      <Footer />
     </>
   );
 }

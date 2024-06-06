@@ -18,16 +18,16 @@ const InfiniteText = () => {
     gsap.registerPlugin(ScrollTrigger);
     gsap.to(slider.current, {
       scrollTrigger: {
-        trigger: document.documentElement,
+        trigger: slider.current,
         scrub: 0.25,
-        start: 0,
-        end: window.innerHeight,
+        start: 'top bottom',
+        end: 'bottom top',
         onUpdate: (e) => (direction = e.direction * -1)
       },
       x: '-500px'
     });
     requestAnimationFrame(animate);
-  }, []);
+  }, [direction]);
 
   const animate = () => {
     if (xPercent < -100) {

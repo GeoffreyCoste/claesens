@@ -1,0 +1,15 @@
+.puzzle {
+    position: relative;
+    z-index: 9;
+}
+
+.board {
+    position: relative;
+    list-style: none;
+}
+
+.tile {
+    display: grid;
+    position: absolute;
+    place-items: center;
+}

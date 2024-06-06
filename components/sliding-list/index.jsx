@@ -38,28 +38,6 @@ const SlidingList = () => {
           </div>
         </div>
       </li>
-      {/* <li className={styles.sliding_item}>
-          <div className={styles.sliding_item_content}>
-            <div className={styles.outer}>
-              <div className={styles.inner}>
-                <div className={styles.background}>
-                  <div className={styles.title}>Saint James</div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </li>
-        <li className={styles.sliding_item}>
-          <div className={styles.sliding_item_content}>
-            <div className={styles.outer}>
-              <div className={styles.inner}>
-                <div className={styles.background}>
-                  <div className={styles.title}>Daddy</div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </li> */}
     </ul>
   );
 };

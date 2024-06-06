@@ -75,38 +75,6 @@ export default function StickyCursor({stickyElement}) {
     [isHovered, stickyElement, mouse.x, mouse.y, scale.x, scale.y, cursorSize]
   );
 
-  /* const manageMouseMove = (e) => {
-    const {clientX, clientY} = e;
-    const {left, top, height, width} =
-      stickyElement.current.getBoundingClientRect();
-
-    //center position of the stickyElement
-    const center = {x: left + width / 2, y: top + height / 2};
-
-    if (isHovered) {
-      //distance between the mouse pointer and the center of the custom cursor and
-      const distance = {x: clientX - center.x, y: clientY - center.y};
-
-      //rotate
-      rotate(distance);
-
-      //stretch based on the distance
-      const absDistance = Math.max(Math.abs(distance.x), Math.abs(distance.y));
-      const newScaleX = transform(absDistance, [0, height / 2], [1, 1.3]);
-      const newScaleY = transform(absDistance, [0, width / 2], [1, 0.8]);
-      scale.x.set(newScaleX);
-      scale.y.set(newScaleY);
-
-      //move mouse to center of stickyElement + slightly move it towards the mouse pointer
-      mouse.x.set(center.x - cursorSize / 2 + distance.x * 0.1);
-      mouse.y.set(center.y - cursorSize / 2 + distance.y * 0.1);
-    } else {
-      //move custom cursor to center of stickyElement
-      mouse.x.set(clientX - cursorSize / 2);
-      mouse.y.set(clientY - cursorSize / 2);
-    }
-  }; */
-
   const manageMouseOver = (e) => {
     setIsHovered(true);
   };
@@ -120,17 +88,6 @@ export default function StickyCursor({stickyElement}) {
       {type: 'spring'}
     );
   };
-
-  /* useEffect(() => {
-    stickyElement.current.addEventListener('mouseenter', manageMouseOver);
-    stickyElement.current.addEventListener('mouseleave', manageMouseLeave);
-    window.addEventListener('mousemove', manageMouseMove);
-    return () => {
-      stickyElement.current.removeEventListener('mouseenter', manageMouseOver);
-      stickyElement.current.removeEventListener('mouseleave', manageMouseLeave);
-      window.removeEventListener('mousemove', manageMouseMove);
-    };
-  }, [isHovered]); */
 
   useEffect(() => {
     const currentStickyElement = stickyElement.current; // Copy ref value to a variable

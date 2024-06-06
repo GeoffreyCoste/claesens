@@ -2,6 +2,7 @@
     width: 100%;
     display: flex;
     flex-direction: column;
+    row-gap: 1rem;
 
     &_item {
         width: 100%;
@@ -11,6 +12,7 @@
 @media screen and (min-width: 1024px) {
     .release_list {
         width: 80%;
+        row-gap: initial;
 
         &_item {
             height: 170px;
