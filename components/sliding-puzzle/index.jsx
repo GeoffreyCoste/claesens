@@ -1,7 +1,6 @@
 'use client';
 
 import styles from './style.module.scss';
-import {useEffect} from 'react';
 import Board from './board';
 
 /**
@@ -10,10 +9,6 @@ import Board from './board';
  * @param {function} onWin Function to be executed on win.
  */
 const SlidingPuzzle = ({sizeBasis, onWin}) => {
-  useEffect(() => {
-    console.log('Size basis: ', sizeBasis);
-  }, [sizeBasis]);
-
   // sizeBasis validation
   if (typeof sizeBasis !== 'number' || sizeBasis < 0) {
     console.error('sizeBasis prop should be a positive number.');

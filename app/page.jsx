@@ -3,22 +3,30 @@
 import styles from './page.module.scss';
 import {useState, useEffect, useRef} from 'react';
 import {AnimatePresence} from 'framer-motion';
+import useMediaQueries from '@/hooks/useMediaQueries';
 import Header from '@/components/header';
-import StickyCursor from '@/components/stickyCursor';
 import Preloader from '@/components/preloader';
-import HeroSection from '@/components/hero-section';
-import WhoSection from '@/components/who-section';
-import SkillsSection from '@/components/skills-section';
-import ProcessSection from '@/components/process-section';
+import SectionHero from '@/components/section-hero';
+import SectionWho from '@/components/section-who';
+import SectionSkills from '@/components/section-skills';
+import SectionProcess from '@/components/section-process';
 import InfiniteText from '@/components/infinite-text';
-import ReleaseSection from '@/components/release-section';
+import SectionInterlude from '@/components/section-interlude';
+import SectionRelease from '@/components/section-release';
 import Footer from '@/components/footer';
-import InterludeSection from '@/components/interlude-section';
+import CursorSticky from '@/components/cursor-sticky';
+import FooterSticky from '@/components/footer-sticky';
+import Gallery from '@/components/gallery';
+import ImageParallax from '@/components/image-parallax';
+import DynamicCircle from '@/components/dynamic-circle';
 
 export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
 
   const stickyElement = useRef(null);
+  const releaseSectionRef = useRef(null);
+
+  const {desktop} = useMediaQueries();
 
   useEffect(() => {
     (async () => {
@@ -40,16 +48,19 @@ export default function Home() {
       </AnimatePresence>
       <Header ref={stickyElement}></Header>
       <main>
-        <HeroSection />
-        <WhoSection />
+        <SectionHero />
+        <SectionWho />
         <InfiniteText />
-        <SkillsSection />
-        <ProcessSection />
-        <InterludeSection />
-        <ReleaseSection />
-        <StickyCursor stickyElement={stickyElement}></StickyCursor>
+        <Gallery />
+        <SectionSkills />
+        <ImageParallax />
+        <SectionProcess />
+        {/* <SectionInterlude /> */}
+        <SectionRelease ref={releaseSectionRef} />
+        {!desktop && <DynamicCircle sectionRef={releaseSectionRef} />}
+        <CursorSticky stickyElement={stickyElement} />
       </main>
-      <Footer />
+      <FooterSticky />
     </>
   );
 }

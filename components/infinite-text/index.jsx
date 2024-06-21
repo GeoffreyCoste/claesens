@@ -45,10 +45,12 @@ const InfiniteText = () => {
     <div className={styles.infinite_text}>
       <div ref={slider} className={styles.infinite_text_slider}>
         <p ref={firstParagraph}>
-          Branding o Digital o Print o Illustration o Motion design o &nbsp;{' '}
+          Branding &bull; Digital &bull; Print &bull; Illustration &bull; Motion
+          design &bull; &nbsp;{' '}
         </p>
         <p ref={secondParagraph}>
-          Branding o Digital o Print o Illustration o Motion design o &nbsp;{' '}
+          Branding &bull; Digital &bull; Print &bull; Illustration &bull; Motion
+          design &bull; &nbsp;{' '}
         </p>
       </div>
     </div>

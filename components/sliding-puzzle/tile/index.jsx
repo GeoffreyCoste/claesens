@@ -1,4 +1,5 @@
 import styles from '../style.module.scss';
+import clsx from 'clsx';
 import {motion} from 'framer-motion';
 import {getMatrixPosition, getVisualPosition} from '../helpers';
 import {TILE_COUNT, GRID_SIZE} from '../constants';
@@ -27,13 +28,17 @@ const Tile = ({
     y: visualPos.y
   };
 
+  const tileClasses = clsx(styles.tile, {
+    [styles.not_visible]: tile === TILE_COUNT - 1 // Add 'not_visible' class to tile with opacity set to 0
+  });
+
   return (
     <motion.li
       style={{
         ...tileStyle,
         opacity: tile === TILE_COUNT - 1 ? 0 : 1
       }}
-      className={styles.tile}
+      className={tileClasses}
       onClick={() => handleTileClick(index)}
       animate={{x: visualPos.x, y: visualPos.y}}
       transition={{type: 'spring', stiffness: 300, damping: 30}}

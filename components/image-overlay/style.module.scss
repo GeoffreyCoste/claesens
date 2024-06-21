@@ -11,6 +11,11 @@
     width: 100%;
     padding-top: calc(725 / 580 * 100%); /* Maintain 4:5 ratio */
     background-color: var(--white);
+    border-radius: var(--border-radius);
+
+    img {
+        border-radius: var(--border-radius);
+    }
 }
 
 .overlay_image {
@@ -20,4 +25,11 @@
     width: 75%;
     max-width: 435px;
     transform: translate(-50%, -50%);
+}
+
+
+@media screen and (min-width: 1024px) {
+    .container {
+        max-width: 380px;
+    }
 }

@@ -9,7 +9,7 @@ export default function Magnetism({ children }) {
 
   const handleMouse = (e) => {
     const { clientX, clientY } = e;
-    const { height, width, left, top } = ref.current.getBoundingClientRect();
+    const {width, height, top, left} = ref.current.getBoundingClientRect();
     const middleX = clientX - (left + width / 2);
     const middleY = clientY - (top + height / 2);
     setPosition({ x: middleX * 0.1, y: middleY * 0.1 });

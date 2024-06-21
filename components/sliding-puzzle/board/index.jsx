@@ -73,7 +73,6 @@ const Board = ({imgUrl, sizeBasis, onWin}) => {
   };
 
   useEffect(() => {
-    console.log('hasWon: ', hasWon);
     if (isStarted && isSolved(tiles)) {
       setHasWon(true);
       onWin(true);

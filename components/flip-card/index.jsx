@@ -1,13 +1,8 @@
 import styles from './style.module.scss';
 import clsx from 'clsx';
-import {Bricolage_Grotesque} from 'next/font/google';
+import {bricolage_grotesque} from '@/app/font';
 import Badge from '../badge';
 import ArrowRight from '../icons/arrow-right';
-
-const bricolage_grotesque = Bricolage_Grotesque({
-  variable: '--font-bricolage-grotesque',
-  subsets: ['latin']
-});
 
 const FlipCard = ({index, name, badges, image}) => {
   return (
@@ -21,7 +16,7 @@ const FlipCard = ({index, name, badges, image}) => {
               </div>
               <div
                 className={clsx(
-                  bricolage_grotesque.variable,
+                  bricolage_grotesque.className,
                   styles.card_header_title
                 )}
               >
@@ -50,7 +45,7 @@ const FlipCard = ({index, name, badges, image}) => {
               </div>
               <div
                 className={clsx(
-                  bricolage_grotesque.variable,
+                  bricolage_grotesque.className,
                   styles.card_header_title
                 )}
               >

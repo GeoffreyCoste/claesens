@@ -1,13 +1,8 @@
 import styles from './style.module.scss';
 import {useState} from 'react';
 import clsx from 'clsx';
-import {Bricolage_Grotesque} from 'next/font/google';
+import {bricolage_grotesque} from '@/app/font';
 import {motion, AnimatePresence} from 'framer-motion';
-
-const bricolage_grotesque = Bricolage_Grotesque({
-  variable: '--font-bricolage-grotesque',
-  subsets: ['latin']
-});
 
 const SlidingList = () => {
   const [isHovered, setIsHovered] = useState(false);
@@ -30,7 +25,7 @@ const SlidingList = () => {
         <div className={styles.sliding_item_content}>
           <div
             className={clsx(
-              bricolage_grotesque.variable,
+              bricolage_grotesque.className,
               styles.sliding_item_title
             )}
           >

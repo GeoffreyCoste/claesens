@@ -12,4 +12,10 @@
     display: grid;
     position: absolute;
     place-items: center;
+    border-radius: calc(var(--border-radius) / 2);
+    cursor: pointer;
+}
+
+.not_visible {
+    cursor: default;
 }

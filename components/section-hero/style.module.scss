@@ -1,0 +1,228 @@
+.section_hero {
+    width: 100%;
+    height: auto;
+    position: fixed;
+    padding-top: 6rem;
+    background-color: var(--bg-gray);
+
+    &_canvas {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+
+    &_content {
+        height: calc(100vh - 6rem);
+        display: flex;
+        flex-direction: column;
+        margin: 0 1rem;
+    }
+
+    &_main {
+        flex: 1 1 100%;
+        display: flex;
+        flex-flow: column;
+        // align-items: flex-start;
+    }
+
+    &_item {
+        width: 100%;
+
+        &_align_center {
+            height: 100%;
+            display: flex;
+            align-items: center;
+        }
+        
+        &_text {
+            font-variant-caps: all-small-caps;
+            font-size: 1.125rem;
+            line-height: 1.075rem;
+            position: relative;
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        .text_align_right {
+            text-align: right;
+        }
+
+        &_title {
+            font-size: 4rem;
+            font-weight: 700;
+            line-height: 3.5rem;
+            letter-spacing: -2px;
+            color: var(--black);
+            text-align: center;
+            position: relative;
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        &_badge {
+            width: auto;
+        }
+
+        &_location {
+            font-size: 2rem;
+            font-weight: 900;
+            line-height: 1.5rem;
+            font-variant-caps: initial;
+            -webkit-text-stroke-width: 1px;
+            -webkit-text-stroke-color: var(--black);
+            color: transparent;
+        }
+
+        &_list {
+            width: 300px;
+            display: none;
+        }
+    }
+
+    &_secondary {
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 1rem;
+
+        &_container {
+            width: auto;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-end;
+            row-gap: 1rem;
+        }
+
+        .section_hero_item_text {
+            text-align: end;
+        }
+    }
+
+    .text_outline {
+        font-size: 4rem;
+        -webkit-text-stroke-width: 1px;
+        -webkit-text-stroke-color: var(--black);
+        color: transparent;
+    }
+
+    .container {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 1;
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .section_hero {
+
+        &_content {
+            margin: 0 2rem;
+        }
+
+        &_main {
+            flex-flow: row nowrap;
+
+            .section_hero_item {
+                pointer-events: none;
+                
+                &:first-child .section_hero_item_text {
+                    left: 0;
+                }
+                &:last-child .section_hero_item_text {
+                    right: 0;
+                }
+            }
+
+            .section_hero_item_text {
+                width: 320px;
+                position: absolute;
+                top: 0;
+            }
+        }
+
+        &_item {
+            position: relative;
+
+            &_title {
+                font-size: 6rem;
+                line-height: 7rem;
+            }
+
+            &_location {
+                font-size: 2.5rem;
+                line-height: 2.5rem;
+            }
+
+            &_list {
+                width: 300px;
+                display: block;
+            }
+        }
+
+        .text_outline {
+            font-size: 6rem;
+        }
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .section_hero {
+        height: 100vh;
+
+        &_content {
+            height: 100%;
+            margin: 0 4rem;
+        }
+
+        &_item {
+
+            &_title {
+                font-size: 8rem;
+                line-height: 7rem;
+            }
+
+            &_location {
+                font-size: 4rem;
+                line-height: 4rem;
+            }
+        }
+
+        &_secondary {
+            margin-bottom: 2rem;
+        }
+
+        .text_outline {
+            font-size: 8rem;
+        }
+    }
+}
+
+@media screen and (min-width: 1440px) {
+    .section_hero {
+
+        &_main {
+            .section_hero_item_text {
+                width: initial;
+                position: initial;
+            }
+        }
+
+        &_item {
+            position: initial;
+
+            &_text {
+                width: initial;
+                position: initial;
+                z-index: initial;
+            }
+        }
+    }
+}

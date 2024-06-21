@@ -29,10 +29,6 @@ const ImageOverlay = () => {
     };
   }, []);
 
-  useEffect(() => {
-    console.log('No opacity: ', noOpacity);
-  }, [noOpacity]);
-
   return (
     <div className={styles.container}>
       <div ref={backgroundRef} className={styles.background_image}>
