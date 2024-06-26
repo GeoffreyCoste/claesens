@@ -51,7 +51,7 @@ const Gallery = () => {
     };
   }, []);
 
-  useEffect(() => {
+  /* useEffect(() => {
     // Select 6, 9 or all images subject to screen size
     let images;
     if (mobile) {
@@ -76,7 +76,15 @@ const Gallery = () => {
     }
 
     setColumns(columns);
-  }, [mobile, tablet]);
+  }, [mobile, tablet]); */
+
+  useEffect(() => {
+    let columns = [];
+    for (let i = 0; i < IMAGES.length; i += 3) {
+      columns.push(IMAGES.slice(i, i + 3));
+    }
+    setColumns(columns);
+  }, []);
 
   return (
     <div ref={galleryRef} className={styles.gallery}>
