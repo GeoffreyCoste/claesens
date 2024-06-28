@@ -3,6 +3,7 @@
 import styles from './page.module.scss';
 import {useState, useEffect, useRef} from 'react';
 import {AnimatePresence} from 'framer-motion';
+import {useSideMenu} from '@/hooks/useSideMenu';
 import useMediaQueries from '@/hooks/useMediaQueries';
 import Header from '@/components/header';
 import Preloader from '@/components/preloader';
@@ -19,6 +20,7 @@ import FooterSticky from '@/components/footer-sticky';
 import Gallery from '@/components/gallery';
 import ImageParallax from '@/components/image-parallax';
 import DynamicCircle from '@/components/dynamic-circle';
+import SideMenu from '@/components/side-menu';
 
 export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
@@ -27,6 +29,8 @@ export default function Home() {
   const releaseSectionRef = useRef(null);
 
   const {desktop} = useMediaQueries();
+
+  const {isOpen} = useSideMenu();
 
   useEffect(() => {
     (async () => {
@@ -45,6 +49,9 @@ export default function Home() {
     <>
       <AnimatePresence mode="wait">
         {isLoading && <Preloader />}
+      </AnimatePresence>
+      <AnimatePresence mode="wait">
+        {isOpen && <SideMenu isOpen={isOpen} />}
       </AnimatePresence>
       <Header ref={stickyElement}></Header>
       <main>

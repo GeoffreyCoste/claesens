@@ -3,9 +3,19 @@
     position: fixed;
     width: 15px;
     height: 15px;
-    background-color: black;
+    // background-color: black;
     border-radius: 50%;
     pointer-events: none;
+    z-index: 5;
+
+    &_white {
+        background: var(--white);
+        mix-blend-mode: difference;
+    }
+
+    &_black {
+        background-color: var(--black);
+    }
 }
 
 @media screen and (min-width: 1024px) {

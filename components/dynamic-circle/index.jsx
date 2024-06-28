@@ -38,8 +38,7 @@ const DynamicCircle = ({sectionRef}) => {
           trigger: section,
           start: '10% bottom',
           end: '20% 50%',
-          scrub: true,
-          markers: true
+          scrub: true
         }
       }
     );
@@ -55,8 +54,7 @@ const DynamicCircle = ({sectionRef}) => {
           trigger: section,
           start: '10% bottom',
           end: '20% 50%',
-          scrub: true,
-          markers: true
+          scrub: true
         }
       }
     );
