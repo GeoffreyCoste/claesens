@@ -52,8 +52,7 @@ const AnimateCirclePath = ({
           trigger: container,
           start: '35% bottom',
           end: 'bottom 80%',
-          scrub: true,
-          markers: true
+          scrub: true
         }
       }
     );

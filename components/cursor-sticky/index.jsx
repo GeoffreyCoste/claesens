@@ -1,11 +1,14 @@
 import styles from './style.module.scss';
 import {useState, useEffect, useRef, useCallback} from 'react';
 import {motion, animate, transform, useMotionValue} from 'framer-motion';
+import {useSideMenu} from '@/hooks/useSideMenu';
 
 const CursorSticky = ({stickyElement}) => {
   const [isHovered, setIsHovered] = useState(false);
   const cursorRef = useRef(null);
   const cursorSize = isHovered ? 60 : 15;
+
+  const {isOpen} = useSideMenu();
 
   const mouse = {
     x: useMotionValue(0),
@@ -90,7 +93,7 @@ const CursorSticky = ({stickyElement}) => {
   return (
     <motion.div
       ref={cursorRef}
-      className={styles.cursor}
+      className={`${styles.cursor} ${isOpen ? styles.cursor_white : styles.cursor_black}`}
       style={{
         translateX: mouse.x,
         translateY: mouse.y,

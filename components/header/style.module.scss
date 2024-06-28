@@ -5,24 +5,51 @@
     justify-content: space-between;
     padding: 1rem 0;
     box-sizing: border-box;
-    // cursor: pointer;
     mix-blend-mode: difference;
-    z-index: 4;
+    // cursor: pointer;
+    z-index: 10;
 
     .burger{
-        position: relative;
         display: flex;
-        gap: 8px;
         flex-direction: column;
+        gap: 8px;
+        position: relative;
+        // z-index: 10;
         padding: 30px;
         pointer-events: none;
+        cursor: pointer;
+
         &::before, &::after{
-            display: block;
             content: "";
             width: 30px;
             height: 2px;
+            display: block;
+            position: relative;
             mix-blend-mode: difference;
             background-color: var(--white);
+            transition: transform .3s ease-in-out, background-color .3s ease-in-out;
+        }
+
+        &::before {
+            top: 0;
+        }
+
+        &::after {
+            top: -2px;
+        }
+    }
+
+    .open {
+        &::before{
+            transform: rotate(45deg);
+            top: 5px;
+            // background-color: var(--black);
+        }
+
+        &::after {
+            transform: rotate(-45deg);
+            top: -5px;
+            // background-color: var(--black);
         }
     }
 
