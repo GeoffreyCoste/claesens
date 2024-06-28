@@ -2,7 +2,6 @@ const Geometry = ({scale}) => {
   return (
     <mesh scale={scale} castShadow receiveShadow>
       <sphereGeometry args={[1, 28, 28]} />
-      {/* <meshLambertMaterial color={'#d4ca6c'} emissive={'#fce300'} /> */}
       <meshPhongMaterial
         color={'#a6a6a6'}
         emissive={'#fce300'}

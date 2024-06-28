@@ -2,8 +2,11 @@
     height: 3rem;
     display: flex;
     flex-flow: row nowrap;
+    margin-left: 1rem;
+    cursor: pointer;
+    z-index: 5;
 
-    &__name {
+    &_name {
         display: flex;
         flex-direction: column;
         color: var(--white);
@@ -19,5 +22,11 @@
         margin-left: 0.125rem;
         background-color: var(--white);
         border-radius: 100%;
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .brand {
+        margin-left: 2rem;
     }
 }
