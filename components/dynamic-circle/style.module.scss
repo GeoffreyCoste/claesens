@@ -1,0 +1,11 @@
+.dynamic_circle {
+    width: 70rem;
+    height: 70rem;
+    position: fixed;
+    top: calc(50% - 35rem);
+    left: calc(50% - 35rem);
+    border-radius: 50%;
+    pointer-events: none;
+    background-color: var(--black);
+    visibility: hidden;
+}

@@ -1,0 +1,21 @@
+.puzzle {
+    position: relative;
+    z-index: 9;
+}
+
+.board {
+    position: relative;
+    list-style: none;
+}
+
+.tile {
+    display: grid;
+    position: absolute;
+    place-items: center;
+    border-radius: calc(var(--border-radius) / 2);
+    cursor: pointer;
+}
+
+.not_visible {
+    cursor: default;
+}
