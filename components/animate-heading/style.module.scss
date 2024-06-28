@@ -1,0 +1,14 @@
+.heading_container {
+    white-space: nowrap;
+
+    .heading_character_white {
+        color: var(--white);
+    }
+
+    .heading_dot {
+        color: var(--yellow);
+        font-size: 3.5rem;
+        line-height: 0;
+        margin-left: 2px;
+    }
+}
