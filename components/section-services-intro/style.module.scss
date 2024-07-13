@@ -1,0 +1,145 @@
+.section_services_intro {
+    width: 100%;
+    height: auto;
+    display: flex;
+    padding-top: 6rem;
+    background-color: var(--gray-light);
+
+    &_content {
+        height: auto;
+        display: flex;
+        flex-flow: column;
+        margin: 0 1rem;
+    }
+
+    &_wrapper {
+        width: 100%;
+        display: flex;
+        padding-top: 2rem;
+        align-items: center;
+
+        &:nth-child(1) {
+            justify-content: center;
+        }
+    }
+
+    h1 {
+        color: var(--black);
+        font-size: 2.75rem;
+        font-weight: 900;
+        line-height: 2.75rem;
+    }
+
+    &_item {
+        display: flex;
+        flex-direction: column;
+    }
+
+    &_text {
+        font-size: 1rem;
+        font-weight: 400;
+        margin: 1rem 0 2rem;
+
+        &:not(:last-of-type) {
+            margin: 1rem 0 1rem;
+        }
+    }
+
+    &_neumorphism {
+        width: 250px;
+        height: 250px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 50%;
+        background-color: var(--bg-gray);
+        box-shadow: inset 8px 8px 17px 0 rgba(0, 0, 0, 0.05), inset -13px -13px 12px 0 hsla(0, 0%, 100%, 0.65), -11px -11px 40px 3px #fff, 8px 14px 40px -20px rgba(0, 0, 0, 0.19);
+        overflow: hidden;
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .section_services_intro {
+
+        &_content {
+            width: 540px;
+            margin: 0 auto;
+        }
+
+        &_wrapper:nth-child(2) {
+            display: flex;
+            justify-content: center;
+        }
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .section_services_intro {
+
+        &_content {
+            width: 100%;
+            flex-flow: row nowrap;
+        }
+    
+        &_wrapper {
+            flex-basis: 50%;
+            display: flex;
+            max-width: 600px;
+            // margin-left: auto;
+
+            &:nth-child(1) {
+                order: 2;
+                padding-right: 4rem;
+            }
+
+            &:nth-child(2) {
+                order: 1;
+                margin-left: 6rem;
+            }
+        }
+
+        h1 {
+            font-size: 4rem;
+            line-height: 4rem;
+            letter-spacing: -2px;
+        }
+
+        &_text {
+            max-width: 45ch;
+        }
+
+        &_neumorphism {
+            width: 400px;
+            height: 400px;
+        }
+    }
+}
+
+@media screen and (min-width: 1440px) {
+   .section_services {
+
+        &_content {
+            width: 1024px;
+            margin: 0 auto;
+            padding: 0;
+            justify-content: space-evenly;
+        }
+
+        &_wrapper {
+            flex-basis: 50%;
+            display: flex;
+
+            &:nth-child(1) {
+                max-width: 510px;
+                margin: 0 4rem 0 0;
+            }
+
+            &:nth-child(2) {
+                flex-basis: auto;
+                width: auto;
+                justify-content: flex-start;
+                margin-left: 4rem;
+            }
+        }
+   }
+}

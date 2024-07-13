@@ -1,0 +1,18 @@
+.section_services_details {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-flow: column;
+    margin-top: -18rem;
+    background-color: var(--black);
+    z-index: 9;
+}
+
+@media screen and (min-width: 768px) {
+    .section_services_details {
+
+        &_content {
+            padding: 50vh 0;
+        }
+    }
+}

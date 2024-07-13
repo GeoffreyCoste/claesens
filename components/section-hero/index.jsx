@@ -1,6 +1,6 @@
 import styles from './style.module.scss';
 import clsx from 'clsx';
-import {bricolage_grotesque} from '@/app/font';
+import {bricolage_grotesque} from '@/app/fonts';
 import Sphere3D from '../sphere3D';
 import SpinningBadge from '../spinning-badge';
 import SocialsList from '../socials-list';

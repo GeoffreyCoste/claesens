@@ -1,16 +1,6 @@
-/* import {DM_Sans, Bricolage_Grotesque} from 'next/font/google'; */
 import {SideMenuProvider} from '@/context/sideMenuContext';
-import {dm_sans} from './font';
+import {dm_sans} from './fonts';
 import './globals.css';
-
-/* export const dm_sans = DM_Sans({
-  variable: '--font-dm-sans',
-  subsets: ['latin']
-});
-export const bricolage_grotesque = Bricolage_Grotesque({
-  variable: '--font-bricolage-grotesque',
-  subsets: ['latin']
-}); */
 
 export const metadata = {
   title: 'claesens',
@@ -19,8 +9,8 @@ export const metadata = {
 
 export default function RootLayout({children}) {
   return (
-    <html lang="en">
-      <body className={dm_sans.className}>
+    <html lang="en" className={dm_sans.className}>
+      <body>
         <SideMenuProvider>{children}</SideMenuProvider>
       </body>
     </html>

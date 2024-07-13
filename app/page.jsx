@@ -50,9 +50,7 @@ export default function Home() {
       <AnimatePresence mode="wait">
         {isLoading && <Preloader />}
       </AnimatePresence>
-      <AnimatePresence mode="wait">
-        {isOpen && <SideMenu isOpen={isOpen} />}
-      </AnimatePresence>
+      <AnimatePresence mode="wait">{isOpen && <SideMenu />}</AnimatePresence>
       <Header ref={stickyElement}></Header>
       <main>
         <SectionHero />

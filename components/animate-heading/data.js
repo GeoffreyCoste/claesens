@@ -13,7 +13,13 @@ export const h2SectionRelease = [{
     text: "Un échantillon."
 }];
 
+export const h1SectionServices = [{
+    type: "heading1",
+    text: "Un écosystème dédié à votre image."
+}]
+
 export const tags = {
+    heading1: "h1",
     heading2: "h2",
 }
 
