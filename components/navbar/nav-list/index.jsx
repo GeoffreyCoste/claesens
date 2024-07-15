@@ -4,7 +4,7 @@ import NavItem from './nav-item';
 const navItems = [
   {
     title: 'à propos',
-    href: '/apropos'
+    href: '/a_propos'
   },
   {
     title: 'services',

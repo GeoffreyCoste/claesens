@@ -1,0 +1,114 @@
+.counters_aside {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10rem 1rem;
+    background-color: var(--black);
+
+    .counters_list {
+        width: 100%;
+        display: flex;
+        flex-flow: column;
+        justify-content: space-between;
+        align-items: center;
+        row-gap: 3rem;
+
+        .counters_item {
+            display: flex;
+            flex-flow: column;
+            justify-content: center;
+            align-items: center;
+            row-gap: 0.25rem;
+
+            .counters_label {
+                width: 100px;
+                display: flex;
+                flex-flow: row wrap;
+                color: var(--white);
+                font-size: 0.75rem;
+                text-align: center;
+                text-transform: uppercase;
+            }
+
+        }
+
+        .counters_dot {
+            width: 10px;
+            height: 10px;
+            margin: 0 2rem;
+            background-color: var(--yellow);
+            border-radius: 50%;
+        }
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .counters_aside {
+        padding: 6rem 2rem;
+
+        .counters_list {
+            width: 100%;
+            display: flex;
+            flex-flow: row nowrap;
+            justify-content: space-between;
+            row-gap: 4rem;
+
+            .counters_item {
+                display: flex;
+                flex-flow: column;
+                justify-content: center;
+                align-items: center;
+                row-gap: 0.25rem;
+                position: relative;
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .counters_aside {
+        padding: 6rem 0;
+
+        .counters_list {
+            justify-content: center;
+
+            .counters_item {
+                flex-flow: row nowrap;
+                column-gap: 1rem;
+
+                &:nth-child(1) span:nth-child(1) {
+                    width: 44px;
+                }
+
+                &:nth-child(3) {
+                    & span:nth-child(1) {
+                        width: 25px;
+                    }
+                    .counters_label {
+                        width: 70px;
+                    }
+                } 
+
+                &:nth-child(5) {
+
+                    & span:nth-child(1) {
+                        width: 25px;
+                    }
+
+                    .counters_label {
+                        width: 70px;
+                    }
+                }
+
+                &:nth-child(7) span:nth-child(1) {
+                    width: 115px;
+                }
+
+                .counters_label {
+                    text-align: start;
+                }
+            }
+        }
+    }
+}
