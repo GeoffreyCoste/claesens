@@ -62,13 +62,19 @@
     .section_services_intro {
 
         &_content {
-            width: 540px;
+            width: 65%;
+            max-width: 500px;
+            row-gap: 4rem;
             margin: 0 auto;
         }
 
         &_wrapper:nth-child(2) {
             display: flex;
             justify-content: center;
+        }
+
+        &_text {
+            max-width: 45ch;
         }
     }
 }
@@ -78,7 +84,9 @@
 
         &_content {
             width: 100%;
+            max-width: initial;
             flex-flow: row nowrap;
+            row-gap: 0;
         }
     
         &_wrapper {
@@ -89,23 +97,25 @@
 
             &:nth-child(1) {
                 order: 2;
-                padding-right: 4rem;
+                justify-content: flex-end;
+                margin-right: 4rem;
             }
 
             &:nth-child(2) {
                 order: 1;
-                margin-left: 6rem;
+                flex-basis: 100%;
+                margin-left: 4rem;
             }
         }
 
         h1 {
-            font-size: 4rem;
+            font-size: 3.75rem;
             line-height: 4rem;
-            letter-spacing: -2px;
+            letter-spacing: -1px;
         }
 
         &_text {
-            max-width: 45ch;
+            max-width: 40ch;
         }
 
         &_neumorphism {
@@ -115,7 +125,34 @@
     }
 }
 
-@media screen and (min-width: 1440px) {
+@media screen and (min-width: 1200px) {
+    .section_services_intro {
+    
+        &_wrapper {
+
+            &:nth-child(1) {
+                flex-basis: 100%;
+                margin-right: 6rem;
+            }
+
+            &:nth-child(2) {
+                margin-left: 6rem;
+            }
+        }
+
+        h1 {
+            font-size: 4rem;
+            line-height: 4.25rem;
+            letter-spacing: -1px;
+        }
+
+        &_text {
+            max-width: 45ch;
+        }
+    }
+}
+
+@media screen and (min-width: 1400px) {
    .section_services {
 
         &_content {

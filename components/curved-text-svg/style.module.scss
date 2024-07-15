@@ -22,9 +22,10 @@
 
 @media screen and (min-width: 768px) {
     .svg_container {
+        padding-top: 25vh;
 
         .svg_curved_text {
-            width: 50%;
+            width: 65%;
         }
     }
 }
@@ -32,6 +33,7 @@
 @media screen and (min-width: 1024px) {
     .svg_container {
         padding-top: 75vh;
+
         .svg_curved_text {
             width: 50%;
         }

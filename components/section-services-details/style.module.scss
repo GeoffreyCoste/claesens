@@ -3,13 +3,24 @@
     height: auto;
     display: flex;
     flex-flow: column;
-    margin-top: -18rem;
+    margin-top: -8rem;
     background-color: var(--black);
     z-index: 9;
+
+    &_content {
+        padding: 25vh 0;
+    }
 }
 
 @media screen and (min-width: 768px) {
     .section_services_details {
+        margin-top: -12rem;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .section_services_details {
+        margin-top: -12rem;
 
         &_content {
             padding: 50vh 0;

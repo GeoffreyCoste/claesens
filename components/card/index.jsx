@@ -4,7 +4,7 @@ import styles from './style.module.scss';
 import {useEffect, useRef} from 'react';
 import Image from 'next/image';
 import clsx from 'clsx';
-import {useTransform, motion, useScroll} from 'framer-motion';
+import {useTransform, motion, useScroll, useMotionValue} from 'framer-motion';
 import {bricolage_grotesque} from '@/app/fonts';
 import useMediaQueries from '@/hooks/useMediaQueries';
 
@@ -29,7 +29,11 @@ const Card = ({
   // Set image scale property subject to scroll progress (i.e. when scroll progress goes from 0 to 1, image scales from 1.2 to 1 )
   const imageScale = useTransform(scrollYProgress, [0, 1], [1.2, 1]);
 
-  const contentScale = useTransform(progress, range, [1, targetScale]);
+  // Ensure progress is always a MotionValue and setting default
+  const defaultContentScale = useMotionValue(1);
+  // If progress is null, replace it by the default value
+  const safeProgress = progress || defaultContentScale;
+  const contentScale = useTransform(safeProgress, range, [1, targetScale]);
 
   const {desktop, md} = useMediaQueries();
 

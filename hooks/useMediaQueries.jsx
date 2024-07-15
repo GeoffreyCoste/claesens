@@ -9,9 +9,9 @@ const MEDIA_QUERIES = {
   sm: '(min-width: 576px) and (max-width: 767px)',
   md: '(min-width: 768px) and (max-width: 992px)',
   lg: '(min-width: 992px) and (max-width: 1023px)',
-  xl: '(min-width: 1024px) and (max-width: 1200px)',
-  xxl: '(min-width: 1201px) and (max-width: 1400px)',
-  xxxl: '(min-width: 1401px)'
+  xl: '(min-width: 1024px) and (max-width: 1199px)',
+  xxl: '(min-width: 1200px) and (max-width: 1399px)',
+  xxxl: '(min-width: 1400px)'
 };
 
 const useMediaQueries = () => {
