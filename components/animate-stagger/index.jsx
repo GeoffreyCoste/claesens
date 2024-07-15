@@ -4,7 +4,6 @@ import styles from './style.module.scss';
 import {useRef} from 'react';
 import {motion, useInView} from 'framer-motion';
 import clsx from 'clsx';
-import {bricolage_grotesque} from '@/app/font';
 
 const AnimateStagger = ({children, isTextCentered = false}) => {
   const containerRef = useRef(null);
@@ -23,7 +22,6 @@ const AnimateStagger = ({children, isTextCentered = false}) => {
       ref={containerRef}
       className={clsx(
         isTextCentered && styles.stagger_text_center,
-        bricolage_grotesque.className,
         styles.stagger_container
       )}
       initial="hidden"
