@@ -23,6 +23,11 @@ export const h1SectionServices = [{
     text: "Un écosystème dédié à votre image."
 }];
 
+export const h1SectionMethod = [{
+    type: "heading1",
+    text: "Un cercle vertueux."
+}];
+
 export const tags = {
     heading1: "h1",
     heading2: "h2",
