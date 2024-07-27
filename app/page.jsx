@@ -21,6 +21,8 @@ import Gallery from '@/components/gallery';
 import ImageParallax from '@/components/image-parallax';
 import DynamicCircle from '@/components/dynamic-circle';
 import SideMenu from '@/components/side-menu';
+import PageLayout from '@/components/page-layout';
+import PageSection from '@/components/page-section';
 
 export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
@@ -32,7 +34,7 @@ export default function Home() {
 
   const {isOpen} = useSideMenu();
 
-  useEffect(() => {
+  /* useEffect(() => {
     (async () => {
       const LocomotiveScroll = (await import('locomotive-scroll')).default;
       const locomotiveScroll = new LocomotiveScroll();
@@ -43,6 +45,14 @@ export default function Home() {
         window.scrollTo(0, 0);
       }, 2000);
     })();
+  }, []); */
+
+  useEffect(() => {
+    setTimeout(() => {
+      setIsLoading(false);
+      document.body.style.cursor = 'default';
+      window.scrollTo(0, 0);
+    }, 2000);
   }, []);
 
   return (
@@ -50,7 +60,11 @@ export default function Home() {
       <AnimatePresence mode="wait">
         {isLoading && <Preloader />}
       </AnimatePresence>
-      <AnimatePresence mode="wait">
+      <PageLayout>
+        <PageSection></PageSection>
+        <PageSection></PageSection>
+      </PageLayout>
+      {/* <AnimatePresence mode="wait">
         {isOpen && <SideMenu isOpen={isOpen} />}
       </AnimatePresence>
       <Header ref={stickyElement}></Header>
@@ -62,12 +76,12 @@ export default function Home() {
         <SectionSkills />
         <ImageParallax />
         <SectionProcess />
-        {/* <SectionInterlude /> */}
+        {/* <SectionInterlude /> *}
         <SectionRelease ref={releaseSectionRef} />
         {!desktop && <DynamicCircle sectionRef={releaseSectionRef} />}
         <CursorSticky stickyElement={stickyElement} />
       </main>
-      <FooterSticky />
+      <FooterSticky /> */}
     </>
   );
 }

@@ -10,7 +10,7 @@ import Lenis from '@studio-freight/lenis';
 const Header = forwardRef(function Header(props, ref) {
   const {isOpen, toggleIsOpen} = useSideMenu();
 
-  useEffect(() => {
+  /* useEffect(() => {
     const lenis = new Lenis();
 
     const raf = (time) => {
@@ -29,7 +29,7 @@ const Header = forwardRef(function Header(props, ref) {
     return () => {
       lenis.destroy();
     };
-  }, [isOpen]);
+  }, [isOpen]); */
 
   return (
     <header className={styles.header}>

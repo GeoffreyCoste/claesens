@@ -8,9 +8,9 @@ import SocialsList from '../socials-list';
 export default function SectionHero() {
   return (
     <section className={styles.section_hero}>
-      <div className={styles.section_hero_canvas}>
+      {/* <div className={styles.section_hero_canvas}>
         <Sphere3D />
-      </div>
+      </div> */}
       <div className={styles.section_hero_content}>
         <div className={styles.section_hero_main}>
           <div className={styles.section_hero_item}>
