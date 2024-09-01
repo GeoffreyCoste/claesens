@@ -2,6 +2,8 @@
   --font-size: 16px;
   --yellow: #fce300;
   --black: #1e1e1e;
+  --black-medium: #212121;
+  --black-light: #292929;
   --white: #ffffff;
   --gray-dark: #6b6a6a;
   --gray: #bdbdbd;
@@ -36,6 +38,10 @@ main {
   width: 100%;
   display: flex;
   flex-direction: column;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-bricolage-grotesque);
 }
 
 h2 {

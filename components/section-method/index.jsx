@@ -3,13 +3,12 @@ import {h1SectionMethod} from '../animate-heading/data';
 import AnimateStagger from '../animate-stagger';
 import AnimateHeading from '../animate-heading';
 import AnimateFade from '../animate-fade';
-import SphereAnimation from '../3d_method_test_2';
-/* import Carousel3d from '../3d-carousel';
-import CardsCarousel3d from '../3d-cards-carousel';
-import Portal3d from '../3d-portal';
-import Method3d from '../3d_method_test_1'; */
+import CanvasMethod from '../canvas-method';
+import CircularList from '../circular-list';
+import ScrollTriggerWrapper from './scroll-trigger-wrapper';
+
 /* import SVGVideoClip from '../svg-video-clip'; */
-/* import PinContainer from './pin-container'; */
+import PinContainer from './pin-container';
 
 export default function SectionMethod() {
   return (
@@ -32,17 +31,17 @@ export default function SectionMethod() {
           </AnimateStagger>
         </div>
         <div className={styles.section_method_wrapper}>
-          {/* <PinContainer /> */}
+          <PinContainer />
           {/* <SVGVideoClip
             videoSource={'/videos/5384976-uhd_4096_2160_30fps.mp4'}
           /> */}
-          {/* <Carousel3d /> */}
-          {/* <CardsCarousel3d /> */}
-          {/* <Portal3d /> */}
-          {/* <Method3d /> */}
-          <div style={{width: '100%', height: 'auto'}}>
-            <SphereAnimation />
-          </div>
+
+          <ScrollTriggerWrapper />
+
+          {/* <div style={{width: '100%', height: 'auto', position: 'relative'}}>
+            <CanvasMethod />
+            {/* <CircularList /> *}
+          </div> */}
         </div>
       </div>
     </section>

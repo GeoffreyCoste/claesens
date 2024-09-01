@@ -21,9 +21,9 @@ const SVGVideoClip = ({videoSource}) => {
         start: 'top center',
         end: '+=500',
         scrub: true,
-        pin: true,
+        pin: true
         // pinSpacing: false,
-        markers: true
+        // markers: true
       }
     });
 

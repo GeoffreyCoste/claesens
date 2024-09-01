@@ -1,0 +1,32 @@
+.number_display {
+    width: 30px;
+    height: 42px;
+    display: flex;
+    flex-direction: column;
+
+    &_row {
+        display: flex;
+    }
+
+    &_point {
+        width: 4px;
+        height: 4px;
+        margin: 1px;
+        background-color: var(--yellow);
+        border-radius: 50%;
+        opacity: 0;
+        transition: opacity 0.5s;
+
+        &.visible {
+            opacity: 1;
+        }
+
+        &.fadeIn {
+            opacity: 1;
+        }
+
+        &.fadeOut {
+            opacity: 0;
+        }
+    }
+}

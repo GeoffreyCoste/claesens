@@ -16,9 +16,11 @@
     &_wrapper {
         width: 100%;
         display: flex;
+        flex-flow: column;
         align-items: center;
         justify-content: center;
         text-align: center;
+        // position: relative;
 
         /* &:nth-child(2) {
             position: relative;
