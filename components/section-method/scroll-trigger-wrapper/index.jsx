@@ -5,8 +5,6 @@ import {useRef, useLayoutEffect} from 'react';
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger';
 import CircularMotion from './circular-motion';
-/* import CanvasMethod from '@/components/canvas-method'; */
-import CanvasMethod from './canvas-method';
 
 const ScrollTriggerWrapper = () => {
   const containerRef = useRef(null);

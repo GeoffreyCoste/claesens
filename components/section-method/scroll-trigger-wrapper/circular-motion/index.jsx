@@ -78,163 +78,17 @@ const Scene = forwardRef(function Scene(props, ref) {
 
     gsap.registerPlugin(ScrollTrigger);
 
-    /* const ctx = gsap.context(() => {
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: parentContainer,
-          start: 'top+=300vh top',
-          end: '+=800vh',
-          scrub: true
-        }
-      });
-
-      // Animate Circle at center
-      tl.fromTo(
-        circle.scale,
-        {x: 0, y: 0, z: 0},
-        {
-          x: 1,
-          y: 1,
-          z: 1,
-          duration: 1,
-          ease: 'slow(0.2,0.9,false)',
-          scrollTrigger: {
-            trigger: parentContainer,
-            start: 'top top',
-            end: '+=100vh',
-            scrub: true
-          }
-        }
-      )
-        .fromTo(
-          circle.material,
-          {opacity: 0},
-          {
-            opacity: 0.7,
-            duration: 1,
-            ease: 'slow(0.2,0.9,false)',
-            scrollTrigger: {
-              trigger: parentContainer,
-              start: 'top top',
-              end: '+=100vh',
-              scrub: true
-            }
-          },
-          '-=1'
-        )
-
-        // Animate Ring1
-        .fromTo(
-          ring1.scale,
-          {x: 0, y: 0, z: 0},
-          {
-            x: 1,
-            y: 1,
-            z: 1,
-            duration: 0.7,
-            ease: 'slow(0.2,0.9,false)',
-            scrollTrigger: {
-              trigger: parentContainer,
-              start: 'top top',
-              end: '+=100vh',
-              scrub: true
-            }
-          }
-        )
-        .fromTo(
-          ring1.material,
-          {opacity: 0},
-          {
-            opacity: 0.7,
-            duration: 0.1,
-            ease: 'slow(0.2,0.9,false)',
-            scrollTrigger: {
-              trigger: parentContainer,
-              start: 'top top',
-              end: '+=100vh',
-              scrub: true
-            }
-          },
-          '-=0.5'
-        )
-
-        // Animate Ring2
-        .fromTo(
-          ring2.scale,
-          {x: 0, y: 0, z: 0},
-          {
-            x: 1,
-            y: 1,
-            z: 1,
-            duration: 0.7,
-            ease: 'slow(0.2,0.9,false)',
-            scrollTrigger: {
-              trigger: parentContainer,
-              start: 'top top',
-              end: '+=100vh',
-              scrub: true
-            }
-          }
-        )
-        .fromTo(
-          ring2.material,
-          {opacity: 0},
-          {
-            opacity: 0.7,
-            duration: 0.1,
-            ease: 'slow(0.2,0.9,false)',
-            scrollTrigger: {
-              trigger: parentContainer,
-              start: 'top top',
-              end: '+=100vh',
-              scrub: true
-            }
-          },
-          '-=0.5'
-        )
-        // Animate circle scale
-        .fromTo(
-          circle.scale,
-          {x: 1, y: 1, z: 1},
-          {
-            x: 0.45,
-            y: 0.45,
-            z: 0.45,
-            // duration: 1,
-            ease: 'slow(0.2,0.9,false)',
-            scrollTrigger: {
-              trigger: parentContainer,
-              start: 'top+=100vh top',
-              end: '+=100vh',
-              scrub: true
-            }
-          }
-        )
-        // Animate circle to right with bouncing effect
-        .to(circle.position, {
-          x: '+=1.19', // Move circle to right
-          duration: 1,
-          ease: 'bounce.out',
-          scrollTrigger: {
-            trigger: parentContainer,
-            start: 'top+=200vh top',
-            end: '+=100vh',
-            scrub: true
-          }
-        });
-    }); */
-
     const ctx = gsap.context(() => {
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: parentContainer,
           start: 'top top',
-          end: '+=300vh', // Augmentez cette valeur si nécessaire
+          end: '+=300vh',
           scrub: true
         }
       });
 
-      // Animation de l'échelle du cercle de 0 à 1
+      // Animate circle scale from 0 to 1
       tl.fromTo(
         circle.scale,
         {x: 0, y: 0, z: 0},
@@ -247,7 +101,7 @@ const Scene = forwardRef(function Scene(props, ref) {
         }
       )
 
-        // Animation d'opacité
+        // Animate opacity
         .fromTo(
           circle.material,
           {opacity: 0},
@@ -259,7 +113,7 @@ const Scene = forwardRef(function Scene(props, ref) {
           '-=1'
         )
 
-        // Animation de l'échelle du premier anneau de 0 à 1
+        // Animate first ring scale from 0 to 1
         .fromTo(
           ring1.scale,
           {x: 0, y: 0, z: 0},
@@ -283,7 +137,7 @@ const Scene = forwardRef(function Scene(props, ref) {
           '-=0.5'
         )
 
-        // Animation de l'échelle du second anneau de 0 à 1
+        // Animate second ring scale from 0 to 1
         .fromTo(
           ring2.scale,
           {x: 0, y: 0, z: 0},
@@ -307,7 +161,7 @@ const Scene = forwardRef(function Scene(props, ref) {
           '-=0.5'
         )
 
-        // Réduire l'échelle du cercle après son déplacement
+        // Reduce scale circle after moving it
         .to(circle.scale, {
           x: 0.45,
           y: 0.45,
@@ -316,7 +170,7 @@ const Scene = forwardRef(function Scene(props, ref) {
           duration: 1
         })
 
-        // Déplacer le cercle vers la droite avec un effet de rebond
+        // Move circle to right with rebound effect
         .to(circle.position, {
           x: '+=1.19',
           duration: 1,

@@ -1,9 +1,7 @@
 'use client';
 
 import styles from './style.module.scss';
-import {useEffect, useRef} from 'react';
-import {bricolage_grotesque} from '@/app/fonts';
-import clsx from 'clsx';
+import {useLayoutEffect, useRef, useEffect} from 'react';
 import gsap from 'gsap';
 import {ScrollTrigger} from 'gsap/ScrollTrigger';
 
@@ -23,25 +21,62 @@ const PinContainer = () => {
 
   const tags = ['immersion', 'exploration', 'itération', 'réalisation'];
 
-  useEffect(() => {
+  useLayoutEffect(() => {
+    const container = containerRef.current;
+    const svg = svgRef.current;
+
+    if (!container || !svg) return;
+
+    const mm = gsap.matchMedia();
+
+    // Apply animation only when window size is between 768 and 1023px
+    mm.add('(min-width: 768px) and (max-width: 1023px)', () => {
+      gsap.fromTo(
+        svg,
+        {height: '50%'},
+        {
+          height: '100%',
+          duration: 1,
+          scrollTrigger: {
+            trigger: container,
+            start: 'top top',
+            toggleActions: 'play none play reverse'
+          }
+        }
+      );
+    });
+
+    return () => {
+      mm.revert(); // Cleanup when component unmounts
+    };
+  }, [svgRef, containerRef]);
+
+  useLayoutEffect(() => {
+    const container = containerRef.current;
+    const svgContainer = svgContainerRef.current;
+    const circles = circlesRef.current;
+    const blackCircle = blackCircleRef.current;
+
+    if (!container || !svgContainer || !circles || !blackCircle) return;
+
     const ctx = gsap.context(() => {
       const tl = gsap.timeline({
         scrollTrigger: {
-          trigger: containerRef.current,
+          trigger: container,
           start: 'top top',
           end: 'bottom top',
           scrub: true,
-          pin: svgContainerRef.current,
-          pinSpacing: false
-          // markers: true
+          pin: svgContainer,
+          pinSpacing: false,
+          markers: true
         }
       });
 
       // Animate circles overlay
-      tl.to(circlesRef.current, {
+      tl.to(circles, {
         cx: 300,
         scrollTrigger: {
-          trigger: containerRef.current,
+          trigger: container,
           start: 'top top',
           end: '+=50%',
           scrub: true
@@ -51,7 +86,7 @@ const PinContainer = () => {
 
       // Animate black circle appearance
       tl.fromTo(
-        blackCircleRef.current,
+        blackCircle,
         {
           scale: 0,
           opacity: 0.8,
@@ -61,7 +96,7 @@ const PinContainer = () => {
           scale: 10,
           opacity: 1,
           scrollTrigger: {
-            trigger: containerRef.current,
+            trigger: container,
             start: '+=8%',
             end: '+=60%',
             scrub: true
@@ -70,10 +105,10 @@ const PinContainer = () => {
       );
 
       // Animate circles opacity
-      tl.to(circlesRef.current, {
+      tl.to(circles, {
         opacity: 0,
         scrollTrigger: {
-          trigger: containerRef.current,
+          trigger: container,
           start: '+=10%',
           end: '+=25%',
           scrub: true
@@ -86,7 +121,7 @@ const PinContainer = () => {
     };
   }, []);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const path = pathRef.current;
 
     if (!path) return;
@@ -100,100 +135,113 @@ const PinContainer = () => {
         strokeDashoffset: pathLength
       });
 
+      const startValue =
+        window.innerWidth >= 768 && window.innerWidth <= 1023
+          ? 'top 75%' // Value for tablets
+          : 'top 50%'; // Value for other screens
+
       // Create path animation with GSAP and ScrollTrigger
       gsap.to(path, {
-        strokeDashoffset: 0, // Anime de la longueur totale à 0
-        duration: 3, // Durée de l'animation
+        strokeDashoffset: 0, // Animate from total length to 0
+        duration: 3, // Animation duration
         scrollTrigger: {
-          trigger: path, // Élément qui déclenche l'animation
-          start: 'top 50%', // Déclenche à 80% de la hauteur de la fenêtre
-          end: 'top top', // Fin du déclencheur à 30%
-          toggleActions: 'play none none none' // Joue à l'entrée, ne fait rien aux autres moments
-          // markers: true // Marqueurs pour le développement (à supprimer en production)
+          trigger: path, // Element triggering animation
+          start: startValue, // Triggers at the specified window height percentage
+          end: 'top top', // Triggers end at top
+          toggleActions: 'play none none none' // Plays at the entrance, does nothing at other times
         }
       });
     }, pathRef);
 
-    // Nettoyer l'effet lorsque le composant est démonté
+    // Cleanup when component unmounts
     return () => {
       ctx.revert();
     };
   }, []);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const asterisk = asteriskRef.current;
 
     if (!asterisk) return;
 
     const ctx = gsap.context(() => {
-      // Création de l'animation pour le SVG avec la classe 'svg_asterisk'
       const tl = gsap.timeline({
-        repeat: -1, // Répéter indéfiniment
-        repeatDelay: 1 // Délai entre chaque répétition (1s)
+        repeat: -1, // Repeat indefinitely
+        repeatDelay: 1 // Delay between each repetition (1s)
       });
 
-      // Réinitialise la rotation à 0 avant de commencer
+      // Resets rotation to 0 before starting
       tl.set(asterisk, {rotation: 0});
 
-      // Rotation initiale avec décélération
+      // Initial rotation with deceleration
       tl.to(asterisk, {
         rotation: 360,
-        duration: 1.5, // Durée de l'animation de rotation
-        ease: 'power4.out' // Démarre rapidement et ralentit
+        duration: 1.5, // Duration of rotation animation
+        ease: 'power4.out' // Starts fast and slows down
       });
 
-      // Pause avant la prochaine animation
+      // Pause before next animation
       tl.to(
         asterisk,
         {
-          rotation: 720, // Effectuer une deuxième rotation de 360 degrés (cumulé avec la première)
-          duration: 1.5, // Durée de l'animation de rotation
-          ease: 'power4.out', // Même easing
-          delay: 0.2 // Petite pause entre les deux rotations
+          rotation: 720, // Perform a second 360 degree rotation (cumulative with the first)
+          duration: 1.5, // Duration of the rotation animation
+          ease: 'power4.out', // Same easing
+          delay: 0.2 // Small break between the two rotations
         },
-        '+=0.2' // Cette ligne assure un délai après la première rotation
+        '+=0.2' // Ensure delay after the first rotation
       );
 
-      // Grossissement avec rebond
+      // Magnification with rebound
       tl.to(asterisk, {
-        scale: 1.5, // Agrandir jusqu'à 1.5 fois sa taille initiale
-        duration: 0.8, // Durée du grossissement
-        ease: 'bounce.out' // Effet de rebond
+        scale: 1.5, // Enlarge up to 1.5 times its original size
+        duration: 0.8, // Magnification duration
+        ease: 'bounce.out' // Rebound effect
       });
 
-      // Rétrécissement vers sa taille initiale
+      // Shrink to original size
       tl.to(asterisk, {
-        scale: 1, // Retour à la taille initiale
-        duration: 0.6, // Durée du rétrécissement
-        ease: 'power2.inOut' // Easing doux
+        scale: 1, // Return to initial size
+        duration: 0.6, // Shrking duration
+        ease: 'power2.inOut' // Soft easing
       });
     });
 
-    // Nettoyer l'effet lorsque le composant est démonté
     return () => {
-      ctx.revert();
+      ctx.revert(); // Cleanup when component unmounts
     };
   }, []);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
+    const path = pathRef.current;
+    const tags = tagsRef.current;
+
+    if (!path || !tags) return;
+
     const ctx = gsap.context(() => {
+      const startValue =
+        window.innerWidth >= 768 && window.innerWidth <= 1023
+          ? 'top 75%' // Value for tablets
+          : 'top 50%'; // Value for other screens
+
       gsap.fromTo(
-        tagsRef.current,
+        tags,
         {
           opacity: 0,
           y: 20
+          // filter: 'blur(5px)'
         },
         {
           opacity: 1,
           y: 0,
+          // filter: 'blur(0px)',
           duration: 1,
-          stagger: 0.3, // Décale l'animation de chaque élément de 0.3s
+          stagger: 0.3, // Shifts the animation of each element by 0.3s
           ease: 'back.in',
           scrollTrigger: {
-            trigger: pathRef.current,
-            start: 'top 50%', // Déclenche l'animation quand le container est au centre de la vue
-            end: 'topm top' // Se termine quand le bas du container touche le haut de la vue
-            // scrub: true // Anime en fonction du défilement
+            trigger: path,
+            start: startValue, // Triggers the animation when the container reaches view specified percentage
+            end: 'top top' // Ends when the bottom of the container touches the top of the view
           }
         }
       );
@@ -308,13 +356,6 @@ const PinContainer = () => {
             fill="#1e1e1e"
             style={{opacity: 0}}
           />
-
-          {/* Optional: Circles for visual feedback */}
-          {/* <circle cx="190" cy="200" r="150" fill="blue" clipPath="url(#clip1)" />
-        <circle cx="220" cy="200" r="150" fill="red" clipPath="url(#clip2)" />
-        <circle cx="275" cy="200" r="150" fill="yellow" clipPath="url(#clip3)" />
-        <circle cx="350" cy="200" r="150" fill="green" clipPath="url(#clip4)" />
-        <circle cx="450" cy="200" r="150" fill="orange" clipPath="url(#clip5)" /> */}
         </svg>
       </div>
       <section className={styles.section_interlude}>
@@ -329,9 +370,6 @@ const PinContainer = () => {
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 550 550"
-          width="50%"
-          height="50%"
-          /* viewBox="0 0 538.9853595 454.4853707" */
           className={styles.svg_arrow}
         >
           <path
@@ -344,8 +382,6 @@ const PinContainer = () => {
         </svg>
 
         <svg
-          width="80"
-          height="80"
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
           viewBox="0 0 124 124"
@@ -369,9 +405,6 @@ const PinContainer = () => {
             </li>
           ))}
         </ul>
-      </section>
-      <section className={styles.section_process}>
-        <h2>Créons le mouvement ...</h2>
       </section>
     </div>
   );

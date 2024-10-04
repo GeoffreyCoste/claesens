@@ -1,6 +1,7 @@
 .pin_container {
     width: 100%;
     height: 200vh;
+    overflow: hidden;
 
     .svg_container {
         width: 100%;
@@ -14,7 +15,7 @@
         flex-direction: column;
         justify-content: flex-start;
         align-items: flex-start;
-        padding: 0 6rem;
+        margin: 0 1rem;
         position: relative;
         bottom: 0;
         left: 0;
@@ -22,8 +23,8 @@
 
         h2 {
             // width: 60%;
-            font-size: 3.5rem;
-            line-height: 3.5rem;
+            font-size: 2.25rem;
+            line-height: 2.25rem;
             color: var(--white);
         }
 
@@ -34,16 +35,20 @@
         }
 
         & .svg_arrow {
+            width: 65%;
+            height: 65%;
             position: absolute;
-            top: 70%;
-            left: 65%;
+            top: 75%;
+            left: 30%;
             transform: translate(-50%, -50%);
         }
 
         & .svg_asterisk {
+            width: 60px;
+            height: 60px;
             position: absolute;
-            top: 63%;
-            left: 62%;
+            top: 70%;
+            left: 20%;
             transform: translate(-50%, -50%);
         }
 
@@ -58,10 +63,10 @@
                 justify-content: center;
                 align-items: center;
                 position: absolute;
-                margin-top: 1.5rem;
-                padding: 1rem 1.5rem;
+                // margin-top: 1.5rem;
+                padding: 0.75rem 0.5rem;
                 color: var(--white);
-                font-size: 1rem;
+                font-size: 0.85rem;
                 font-weight: 400;
                 font-style: italic;
                 border-radius: 60%;
@@ -73,33 +78,33 @@
                 }
 
                 &:nth-of-type(1) {
-                    top: -17rem;
-                    right: 14rem;
+                    top: -7.5rem;
+                    right: 3rem;
                     transform: rotate(-15deg);
                 }
 
                 &:nth-of-type(2) {
-                    top: -14rem;
-                    right: 5rem;
+                    top: -4rem;
+                    right: 0;
                     transform: rotate(12deg);
                 }
 
                 &:nth-of-type(3) {
-                    top: -7rem;
-                    right: -1rem;
+                    top: 0;
+                    right: 0.5rem;
                     transform: rotate(-20deg);
                 }
 
                 &:nth-of-type(4) {
-                    top: 1rem;
-                    right: -1rem;
+                    top: 4rem;
+                    right: 2rem;
                     transform: rotate(30deg);
                 }
             }
         }
     }
 
-    .section_process {
+    /* .section_process {
         width: 100%;
         height: auto;
         display: flex;
@@ -109,9 +114,132 @@
         z-index: 10;
 
         h2 {
-            font-size: 3.5rem;
-            line-height: 3.5rem;
+            font-size: 2.25rem;
+            line-height: 2.25rem;
             color: var(--white);
         }
+    } */
+}
+
+@media screen and (min-width: 768px) {
+    .pin_container {
+        height: auto;
+
+        .section_interlude {
+            padding: 0 2rem;
+            height: 70vh;
+
+            & .svg_arrow {
+                width: 45%;
+                height: 45%;
+                top: 65%;
+                left: 50%;
+            }
+
+            & .svg_asterisk {
+                width: 80px;
+                height: 80px;
+                position: absolute;
+                top: 60%;
+                left: 45%;
+                transform: translate(-50%, -50%);
+            }
+
+            & .tags_list {
+                top: 75%;
+                left: 90%;
+                
+                & .tag_item {
+                    padding: 1rem 1.5rem;
+                    font-size: 1rem;
+    
+                    &:nth-of-type(1) {
+                        top: -22rem;
+                        right: 14rem;
+                    }
+    
+                    &:nth-of-type(2) {
+                        top: -17rem;
+                        right: 5rem;
+                    }
+    
+                    &:nth-of-type(3) {
+                        top: -7rem;
+                        right: 3rem;
+                    }
+    
+                    &:nth-of-type(4) {
+                        top: 0.5rem;
+                        right: 6rem;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .pin_container {
+        height: 200vh;
+
+        .section_interlude {
+            height: 100vh;
+            margin: 0 6rem;
+
+            h2 {
+                font-size: 3.5rem;
+                line-height: 3.5rem;
+            }
+
+            & .svg_arrow {
+                width: 50%;
+                height: 50%;
+                top: 70%;
+                left: 65%;
+            }
+
+            & .svg_asterisk {
+                top: 63%;
+                left: 62%;
+            }
+
+            & .tags_list {
+                top: 70%;
+                left: 85%;
+                
+                & .tag_item {
+                    padding: 1rem 1.5rem;
+                    font-size: 1rem;
+    
+                    &:nth-of-type(1) {
+                        top: -17rem;
+                        right: 14rem;
+                    }
+    
+                    &:nth-of-type(2) {
+                        top: -14rem;
+                        right: 5rem;
+                    }
+    
+                    &:nth-of-type(3) {
+                        top: -7rem;
+                        right: -1rem;
+                    }
+    
+                    &:nth-of-type(4) {
+                        top: 1rem;
+                        right: -1rem;
+                    }
+                }
+            }
+        }
+
+        /* .section_process {
+
+            h2 {
+                font-size: 3.5rem;
+                line-height: 3.5rem;
+            }
+        } */
     }
 }
