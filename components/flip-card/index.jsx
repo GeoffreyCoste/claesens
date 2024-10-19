@@ -1,14 +1,26 @@
 import styles from './style.module.scss';
+import Image from 'next/image';
+import useMediaQueries from '@/hooks/useMediaQueries';
 import clsx from 'clsx';
-import {bricolage_grotesque} from '@/app/font';
+import {bricolage_grotesque} from '@/app/fonts';
 import Badge from '../badge';
 import ArrowRight from '../icons/arrow-right';
 
-const FlipCard = ({index, name, badges, image}) => {
+const FlipCard = ({index, name, badges, images, alt}) => {
+  const {desktop} = useMediaQueries();
+
   return (
     <div className={styles.card}>
       <div className={styles.card_inner}>
         <div className={styles.card_front}>
+          <Image
+            src={desktop ? images[1] : images[0]}
+            alt={alt}
+            fill
+            style={{objectFit: 'cover'}}
+            loading="lazy"
+            quality={100}
+          />
           <div className={styles.card_content}>
             <div className={styles.card_header}>
               <div className={styles.card_header_item}>

@@ -1,0 +1,109 @@
+.section_method {
+    width: 100%;
+    height: auto;
+    display: flex;
+    padding-top: 8rem;
+    background-color: var(--bg-gray);
+
+    &_content {
+        width: 100%;
+        height: auto;
+        display: flex;
+        flex-flow: column;
+        // margin: 0 1rem;
+    }
+
+    &_wrapper {
+        width: 100%;
+        display: flex;
+        flex-flow: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        // position: relative;
+
+        /* &:nth-child(2) {
+            position: relative;
+        } */
+    }
+
+    h1 {
+        color: var(--black);
+        font-size: 2.75rem;
+        font-weight: 900;
+        line-height: 2.75rem;
+    }
+
+    &_item {
+        display: flex;
+        flex-direction: column;
+    }
+
+    &_text {
+        font-size: 1rem;
+        font-weight: 400;
+        margin: 1rem auto 2rem;
+
+        &:not(:last-of-type) {
+            margin: 1rem 0 1rem;
+        }
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .section_method {
+        padding-top: 12rem;
+
+        &_text {
+            max-width: 47ch;
+        }
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .section_method {
+
+        /* &_content {
+            width: 100%;
+            max-width: initial;
+            // flex-flow: row nowrap;
+            row-gap: 0;
+        }
+    
+        &_wrapper {
+            flex-basis: 50%;
+            display: flex;
+            max-width: 600px;
+            // margin-left: auto;
+
+            &:nth-child(1) {
+                order: 2;
+                justify-content: flex-end;
+                margin-right: 4rem;
+            }
+
+            &:nth-child(2) {
+                order: 1;
+                flex-basis: 100%;
+                margin-left: 4rem;
+            }
+        } */
+
+        h1 {
+            font-size: 3.75rem;
+            line-height: 3.25rem;
+            letter-spacing: -1px;
+        }
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    .section_method {
+
+        h1 {
+            font-size: 4rem;
+            line-height: 3.5rem;
+            letter-spacing: -1px;
+        }
+    }
+}

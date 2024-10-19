@@ -1,17 +1,23 @@
 'use client';
 
 import styles from './style.module.scss';
+import {useRouter} from 'next/navigation';
 import clsx from 'clsx';
-import Link from 'next/link';
 
 const Button = ({pathname, title, outline = false}) => {
+  const router = useRouter();
+
+  const handleClick = () => {
+    router.replace(`/${pathname}`);
+  };
+
   return (
-    <Link
+    <button
       className={clsx(
         styles.button,
         `${!outline ? styles.button_yellow : styles.button_outline_yellow}`
       )}
-      href={`/${pathname}`}
+      onClick={handleClick}
     >
       <div className={styles.button_round}></div>
       <p className={styles.button_title}>{title}</p>
@@ -23,7 +29,7 @@ const Button = ({pathname, title, outline = false}) => {
           ></path>
         </svg>
       </div>
-    </Link>
+    </button>
   );
 };
 

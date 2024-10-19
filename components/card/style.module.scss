@@ -1,0 +1,177 @@
+.card_container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 1rem 1rem;
+
+    .card_content {
+        width: 100%;
+        display: flex;
+        flex-flow: column;
+        justify-content: space-between;
+        row-gap: 2rem;
+        position: relative;
+        top: -80px;
+        padding: 1rem;
+        color: var(--white);
+        background: rgba(31, 31, 31, 0.6);
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(5px);
+        border: 1px solid rgba(255, 255, 255, 0.6);
+        border-radius: var(--border-radius);
+        transform-origin: top;
+
+        &_item {
+            width: 100%;
+
+            &:nth-child(1) {
+                max-width: 360px;
+            }
+
+            &:nth-child(2) {
+                flex-basis: 100%;
+            }
+
+            &_wrapper {
+                width: 100%;
+                display: flex;
+                flex-flow: column;
+
+                &.wrapper_text > h2 {
+                    font-size: 2rem;
+                    font-weight: 900;
+                    margin-top: -0.25rem;
+                    margin-bottom: -0.5rem;
+
+                    &::first-letter {
+                        text-transform: uppercase;
+                    }
+                }
+
+                &.wrapper_text p {
+                    color: var(--gray-light);
+                    font-size: 0.85rem;
+                    font-weight: 400;
+                    margin: 1rem 0;
+
+                    &:not(:last-of-type) {
+                        margin: 1rem 0 0;
+                    }
+                }
+
+                &.wrapper_image {
+                    background-color: var(--gray-light);
+                    border-radius: var(--border-radius);
+                    overflow: hidden;
+
+                    img {
+                        width: 100%;
+                        height: auto;
+                        object-fit: cover;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .card_container {
+        width: 100%;
+        max-width: 960px;
+        margin: 0 auto 1rem;
+        padding: 0 1rem;
+
+        .card_content {
+            width: 100%;
+            height: 360px;
+            flex-flow: row-reverse;
+            row-gap: 0;
+            column-gap: 2rem;
+            padding: 2rem;
+
+            &_item {
+                width: auto;
+
+                &_wrapper {
+                    height: 100%;
+
+                    &.wrapper_text {
+                        max-width: 35ch;
+                    }
+
+                    &.wrapper_text > h2 {
+                        margin-bottom: 0;
+                    }
+
+                    &.wrapper_image {
+
+                        img {
+                            width: auto;
+                            height: 100%;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 992px) {
+    .card_container {
+
+        .card_content {
+            height: auto;
+
+            &_item {
+                width: 100%;
+
+                &_wrapper {
+                    height: auto;
+
+                    &.wrapper_image {
+
+                        img {
+                            width: 100%;
+                            height: auto;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .card_container {
+        max-width: 990px;
+        position: sticky;
+        top: 110px;
+
+        .card_content {
+            height: 420px;
+            column-gap: 3rem;
+            padding: 3rem;
+
+            &_item {
+
+                &:nth-child(1) {
+                    max-width: 430px;
+                }
+
+                &:nth-child(2) {
+                    width: auto;
+                    flex-basis: initial;
+                }
+
+                &_wrapper {
+
+                    &.wrapper_text > p {
+                        font-size: 0.9375rem;
+                    }
+                }
+            }
+        }
+    }
+}

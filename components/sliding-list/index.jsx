@@ -1,7 +1,7 @@
 import styles from './style.module.scss';
 import {useState} from 'react';
 import clsx from 'clsx';
-import {bricolage_grotesque} from '@/app/font';
+import {bricolage_grotesque} from '@/app/fonts';
 import {motion, AnimatePresence} from 'framer-motion';
 
 const SlidingList = () => {

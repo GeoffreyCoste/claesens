@@ -5,7 +5,7 @@
     flex-flow: row wrap;
     position: relative;
     margin-top: 100vh;
-    background-color: var(--white);
+    background-color: var(--bg-gray);
 
     &_content {
         // flex-basis: 100%;
@@ -57,7 +57,7 @@
         position: relative;
         // margin: 0 1rem;
         padding: 6rem 1rem;
-        background-color: var(--yellow);
+        // background-color: var(--yellow);
     }
 
     &_image {

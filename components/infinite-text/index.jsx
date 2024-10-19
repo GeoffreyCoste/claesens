@@ -15,18 +15,20 @@ const InfiniteText = () => {
   let speed = 0.02;
 
   useEffect(() => {
-    gsap.registerPlugin(ScrollTrigger);
-    gsap.to(slider.current, {
-      scrollTrigger: {
-        trigger: slider.current,
-        scrub: 0.25,
-        start: 'top bottom',
-        end: 'bottom top',
-        onUpdate: (e) => (direction = e.direction * -1)
-      },
-      x: '-500px'
-    });
-    requestAnimationFrame(animate);
+    if (slider.current && firstParagraph.current && secondParagraph.current) {
+      gsap.registerPlugin(ScrollTrigger);
+      gsap.to(slider.current, {
+        scrollTrigger: {
+          trigger: slider.current,
+          scrub: 0.25,
+          start: 'top bottom',
+          end: 'bottom top',
+          onUpdate: (e) => (direction = e.direction * -1)
+        },
+        x: '-500px'
+      });
+      requestAnimationFrame(animate);
+    }
   }, [direction]);
 
   const animate = () => {
@@ -35,8 +37,10 @@ const InfiniteText = () => {
     } else if (xPercent > 0) {
       xPercent = -100;
     }
-    gsap.set(firstParagraph.current, {xPercent: xPercent});
-    gsap.set(secondParagraph.current, {xPercent: xPercent});
+    if (firstParagraph.current && secondParagraph.current) {
+      gsap.set(firstParagraph.current, {xPercent: xPercent});
+      gsap.set(secondParagraph.current, {xPercent: xPercent});
+    }
     requestAnimationFrame(animate);
     xPercent += speed * direction;
   };

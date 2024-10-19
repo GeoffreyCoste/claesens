@@ -2,7 +2,7 @@ import styles from './style.module.scss';
 import {useEffect, useRef} from 'react';
 import {motion, useAnimation, useInView} from 'framer-motion';
 import clsx from 'clsx';
-import {dm_sans, bricolage_grotesque} from '@/app/font';
+import {dm_sans, bricolage_grotesque} from '@/app/fonts';
 import {labels, circlePositions, blobPositions} from './data';
 
 const GooeyCircles = () => {

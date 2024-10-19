@@ -13,7 +13,23 @@ export const h2SectionRelease = [{
     text: "Un échantillon."
 }];
 
+export const h1SectionAbout = [{
+    type: "heading1",
+    text: "Découvrez-moi sous toutes mes facettes."
+}];
+
+export const h1SectionServices = [{
+    type: "heading1",
+    text: "Un écosystème dédié à votre image."
+}];
+
+export const h1SectionMethod = [{
+    type: "heading1",
+    text: "Un cercle vertueux."
+}];
+
 export const tags = {
+    heading1: "h1",
     heading2: "h2",
 }
 

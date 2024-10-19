@@ -2,7 +2,7 @@
 
 import styles from './style.module.scss';
 import clsx from 'clsx';
-import {dm_sans, bricolage_grotesque} from '@/app/font';
+import {dm_sans, bricolage_grotesque} from '@/app/fonts';
 import {useRef} from 'react';
 import {motion} from 'framer-motion';
 import HeadingContainer from './heading-container';

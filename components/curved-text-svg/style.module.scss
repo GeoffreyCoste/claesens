@@ -1,0 +1,41 @@
+.svg_container {
+    width: 100%;
+    height: auto;
+    position: relative;
+    padding-top: 2rem;
+    background-color: var(--gray-light);
+
+    .svg_curved_text {
+        width: 100%;
+        height: auto;
+        display: block;
+        margin: 0 auto;
+
+        text {
+            font-size: 3.5rem;
+            font-weight: 400;
+            text-transform: uppercase;
+            fill: var(--black);
+        }
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .svg_container {
+        padding-top: 25vh;
+
+        .svg_curved_text {
+            width: 65%;
+        }
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .svg_container {
+        padding-top: 75vh;
+
+        .svg_curved_text {
+            width: 50%;
+        }
+    }
+}
