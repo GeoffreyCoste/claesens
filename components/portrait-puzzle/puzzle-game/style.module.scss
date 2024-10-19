@@ -1,0 +1,21 @@
+.puzzle_game_container {
+    position: relative;
+    z-index: 9;
+}
+
+.puzzle_game_board {
+    position: relative;
+    list-style: none;
+}
+
+.puzzle_game_tile {
+    display: grid;
+    position: absolute;
+    place-items: center;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.not_visible {
+    cursor: default;
+}

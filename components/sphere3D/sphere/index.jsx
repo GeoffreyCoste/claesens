@@ -12,17 +12,19 @@ const Sphere = ({
   const sphere = useRef();
 
   useFrame((state, delta) => {
-    delta = Math.min(0.1, delta);
-    sphere.current.applyImpulse(
-      vec
-        .copy(sphere.current.translation())
-        .normalize()
-        .multiply({
-          x: -50 * delta * scale,
-          y: -150 * delta * scale,
-          z: -50 * delta * scale
-        })
-    );
+    if (sphere.current) {
+      delta = Math.min(0.1, delta);
+      sphere.current.applyImpulse(
+        vec
+          .copy(sphere.current.translation())
+          .normalize()
+          .multiply({
+            x: -50 * delta * scale,
+            y: -150 * delta * scale,
+            z: -50 * delta * scale
+          })
+      );
+    }
   });
 
   return (

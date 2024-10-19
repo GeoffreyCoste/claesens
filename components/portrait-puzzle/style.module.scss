@@ -1,0 +1,126 @@
+.puzzle_container {
+    width: 100%;
+    aspect-ratio: 1/1;
+
+    .puzzle_background {
+        width: 100%;
+        height: 100%;
+        position: relative;
+
+        svg {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+
+            .stroke_circle {
+                stroke-dasharray: 565; /* Total length of circle outline (2 * π * r) */
+                stroke-dashoffset: 565; /* Hides the outline of the circle by offsetting the entire path */
+                transition: stroke-dashoffset 2s ease; /* Smooth path animationé */
+                stroke-linecap: round; /* Rounds the edges of the path for a cleaner effect */
+                opacity: 0;
+
+                &.animate {
+                    opacity: 1;
+                    stroke-dashoffset: 0; /* Gradually reveals the outline of the circle */
+                }
+            }
+        }
+
+        &_circle {
+            width: 85%;
+            aspect-ratio: 1/1;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: var(--yellow);
+            border-radius: 50%;
+
+            &.hidden {
+                visibility: hidden;
+                transition: visibility 0s 1s;
+            }
+        }
+
+        &_image {
+            width: 85%;
+            height: 85%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            overflow: hidden;
+            clip-path: circle(10%);
+            opacity: 0;
+            animation: none;
+
+            &.full_size {
+                animation: expandAnimation .5s ease-in-out forwards;
+            }
+
+            @keyframes expandAnimation {
+                0% {
+                    clip-path: circle(10%);
+                    opacity: 0;
+                }
+                100% {
+                    clip-path: circle(50%);
+                    opacity: 1;
+                }
+            }
+        }
+
+        &_overlay {
+            width: 75%;
+            height: 75%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .puzzle_container {
+
+        .puzzle_background_circle {
+            width: 70%;
+        }
+
+        .puzzle_background_image {
+            width: 70%;
+            height: 70%;
+        }
+
+        .puzzle_background_overlay {
+            width: 50%;
+            height: 50%;
+        }
+    }
+}
+
+@media screen and (min-width: 1440px) {
+    .puzzle_container {
+
+        .puzzle_background_circle {
+            width: 50%;
+        }
+
+        .puzzle_background_image {
+            width: 50%;
+            height: 50%;
+        }
+
+        .puzzle_background_overlay {
+            width: 30%;
+            height: 30%;
+        }
+    }
+}
