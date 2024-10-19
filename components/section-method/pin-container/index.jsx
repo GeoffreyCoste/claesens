@@ -17,7 +17,7 @@ const PinContainer = () => {
   const asteriskRef = useRef(null);
   const tagsRef = useRef([]);
 
-  const videoSource = '/videos/5384976-uhd_4096_2160_30fps.mp4';
+  const videoSource = '/videos/work_in_progress.mp4';
 
   const tags = ['immersion', 'exploration', 'itération', 'réalisation'];
 

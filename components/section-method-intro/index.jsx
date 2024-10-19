@@ -10,9 +10,7 @@ export default function SectionMethodIntro() {
     <section className={styles.section_method_intro}>
       <div className={styles.section_method_intro_content}>
         <div className={styles.section_method_intro_wrapper}>
-          <SVGVideoClip
-            videoSource={'/videos/5384976-uhd_4096_2160_30fps.mp4'}
-          />
+          <SVGVideoClip videoSource={'/videos/work_in_progress.mp4'} />
         </div>
         <div className={styles.section_method_intro_wrapper}>
           <AnimateStagger>

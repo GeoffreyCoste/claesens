@@ -1,10 +1,10 @@
 import styles from './style.module.scss';
 import Button from '../button';
-import ImageOverlay from '../image-overlay';
 import AnimateStagger from '../animate-stagger';
 import AnimateHeading from '../animate-heading';
 import {h2SectionWho} from '../animate-heading/data';
 import AnimateFade from '../animate-fade';
+import PortraitPuzzle from '../portrait-puzzle';
 
 const SectionWho = () => {
   return (
@@ -31,7 +31,7 @@ const SectionWho = () => {
         </div>
       </div>
       <div className={styles.section_who_portrait}>
-        <ImageOverlay />
+        <PortraitPuzzle />
       </div>
     </section>
   );

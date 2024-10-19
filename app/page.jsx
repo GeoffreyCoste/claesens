@@ -12,9 +12,7 @@ import SectionWho from '@/components/section-who';
 import SectionSkills from '@/components/section-skills';
 import SectionProcess from '@/components/section-process';
 import InfiniteText from '@/components/infinite-text';
-import SectionInterlude from '@/components/section-interlude';
 import SectionRelease from '@/components/section-release';
-import Footer from '@/components/footer';
 import CursorSticky from '@/components/cursor-sticky';
 import FooterSticky from '@/components/footer-sticky';
 import Gallery from '@/components/gallery';
@@ -60,7 +58,6 @@ export default function Home() {
         <SectionSkills />
         <ImageParallax />
         <SectionProcess />
-        {/* <SectionInterlude /> */}
         <SectionRelease ref={releaseSectionRef} />
         {!desktop && <DynamicCircle sectionRef={releaseSectionRef} />}
         <CursorSticky stickyElement={stickyElement} />
