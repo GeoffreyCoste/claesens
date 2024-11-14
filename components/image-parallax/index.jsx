@@ -119,6 +119,7 @@ const ImageParallax = () => {
             fill
             alt="Motif de texture marbrée"
             style={{objectFit: 'cover'}}
+            loading="lazy"
           />
         </motion.div>
       </div>

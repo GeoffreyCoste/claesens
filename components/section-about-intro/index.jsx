@@ -1,70 +1,105 @@
-import styles from './style.module.scss';
-import {h1SectionAbout} from '../animate-heading/data';
-import AnimateStagger from '../animate-stagger';
-import AnimateHeading from '../animate-heading';
-import AnimateFade from '../animate-fade';
+'use client';
 
-export default function SectionAboutIntro() {
+import styles from './style.module.scss';
+import {bricolage_grotesque} from '@/app/fonts';
+import clsx from 'clsx';
+import useMediaQueries from '@/hooks/useMediaQueries';
+import SvgBackground from './svg-background';
+import {imgClipData} from './data';
+import SvgImgClip from '../svg-img-clip';
+import AnimateFade from '../animate-fade';
+import AnimateStagger from '../animate-stagger';
+import SvgEllipticSphere from './elliptic-sphere';
+
+const SectionAboutIntro = () => {
+  const {mobile} = useMediaQueries();
+
+  const [img1, img2] = imgClipData;
+
   return (
     <section className={styles.section_about_intro}>
       <div className={styles.section_about_intro_content}>
-        <div className={styles.section_about_intro_wrapper}>
-          Ooops! Content needed
-        </div>
-        <div className={styles.section_about_intro_wrapper}>
-          <AnimateStagger>
-            {h1SectionAbout.map((text, index) => (
-              <AnimateHeading key={index} {...text} />
-            ))}
-            <AnimateFade>
-              <div className={styles.section_about_intro_item}>
-                <p className={styles.section_about_intro_text}>
-                  Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ea
-                  nihil a deleniti est impedit veritatis quasi! Deserunt dolorum
-                  quos aliquid nam maxime quo, accusantium laborum dolore atque
-                  vel voluptatem cupiditate! Dolorem esse, recusandae ipsam
-                  laborum totam molestiae mollitia velit inventore dolores ab ut
-                  reprehenderit aspernatur reiciendis nam illum itaque ad? Ea
-                  laudantium enim corporis error dignissimos vitae commodi
-                  assumenda aspernatur? Culpa necessitatibus beatae ipsa non,
-                  velit obcaecati exercitationem commodi, magni omnis
-                  consectetur, laborum dolores. Cum aliquid, ut alias, enim rem
-                  fugit labore nesciunt earum repellat ducimus harum qui
-                  reprehenderit similique.
-                </p>
-                <p className={styles.section_about_intro_text}>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Error
-                  impedit ex nisi, suscipit mollitia incidunt! Consectetur sed
-                  velit, sapiente quasi blanditiis recusandae, officia possimus
-                  sit ipsa cupiditate veniam! Vel, officiis. Ipsum tempore quod
-                  qui eaque similique iste eius doloribus laudantium quasi
-                  accusamus. Officia explicabo in, dolore, cupiditate,
-                  perspiciatis nisi vel aperiam voluptas ipsa odio accusantium
-                  aliquid quasi hic? Saepe, dolorum? Vero sed molestiae cumque
-                  ad illum, perferendis nemo sequi tempore quia adipisci iste
-                  quibusdam. Pariatur nisi laborum neque, aut veniam modi soluta
-                  totam consequuntur cupiditate consectetur facere in voluptas
-                  eligendi.
-                </p>
-                <p className={styles.section_about_intro_text}>
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                  Omnis corporis perspiciatis error? Magnam, voluptate illum?
-                  Enim nam modi corrupti laboriosam? Voluptate molestiae sit
-                  eius unde ad explicabo atque, autem laudantium. Laboriosam
-                  nemo, perferendis, nesciunt necessitatibus, rerum tempora
-                  praesentium corrupti voluptate consectetur provident sint hic
-                  molestias odio? Illo minus quae sequi amet, ipsam dicta
-                  accusamus perferendis? Ab obcaecati sequi sint eveniet. Neque
-                  deserunt excepturi cumque, reiciendis eligendi dolores dolore
-                  quisquam quasi quidem, ratione placeat architecto pariatur
-                  explicabo veritatis adipisci vitae a ipsum alias accusamus
-                  ducimus itaque aliquid! Nesciunt optio quidem mollitia.
-                </p>
+        <div className={styles.section_about_intro_content_heading}>
+          <div className={styles.heading}>
+            <div className={styles.heading_background}>
+              <SvgBackground />
+            </div>
+            <h2
+              className={clsx(
+                bricolage_grotesque.className,
+                styles.heading_title
+              )}
+              aria-label="Créativité belge & savoir-faire français"
+            >
+              <div className={styles.title_container}>
+                <div className={styles.title_item}>
+                  <span className={styles.item_text}>Créativité belge</span>
+                </div>
+                <div className={styles.title_item}>
+                  <div className={styles.item_img}>
+                    <SvgImgClip
+                      imgSrc={mobile ? img1.imgSrc[0] : img1.imgSrc[1]}
+                      filter={img1.filter}
+                      clipPathId={img1.clipPathId}
+                      clipPathData={img1.clipPathData}
+                    />
+                  </div>
+                </div>
+                <div className={styles.title_item}>
+                  {mobile && <span className={styles.item_text}>&</span>}
+                  <span className={styles.item_text}>
+                    {mobile ? (
+                      <>
+                        savoir-faire français
+                        <span className={styles.dot}>.</span>
+                      </>
+                    ) : (
+                      <>
+                        & savoir-faire français
+                        <span className={styles.dot}>.</span>
+                      </>
+                    )}
+                  </span>
+                </div>
+                <div className={styles.title_item}>
+                  <div className={styles.item_img}>
+                    <SvgImgClip
+                      imgSrc={mobile ? img2.imgSrc[0] : img2.imgSrc[1]}
+                      filter={img2.filter}
+                      clipPathId={img2.clipPathId}
+                      clipPathData={img2.clipPathData}
+                    />
+                  </div>
+                </div>
               </div>
-            </AnimateFade>
-          </AnimateStagger>
+            </h2>
+          </div>
+        </div>
+        <div className={styles.section_about_intro_content_body}>
+          <div className={styles.body}>
+            <AnimateStagger>
+              <AnimateFade>
+                <p>
+                  Avec plus de <strong>10 ans d&apos;expérience</strong>,
+                  notamment dans le e-commerce, je transforme des idées en
+                  solutions visuelles innovantes.
+                </p>
+              </AnimateFade>
+            </AnimateStagger>
+            <p
+              className={styles.text}
+              aria-label="Bienvenue dans ma sphère créative !"
+            >
+              Bienvenue dans ma <strong>sphère créative</strong> !
+            </p>
+          </div>
+          <div className={styles.sphere}>
+            <SvgEllipticSphere />
+          </div>
         </div>
       </div>
     </section>
   );
-}
+};
+
+export default SectionAboutIntro;

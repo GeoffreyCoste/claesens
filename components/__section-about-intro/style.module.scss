@@ -1,0 +1,222 @@
+.section_about_intro {
+    width: 100%;
+    height: auto;
+    display: flex;
+    padding-top: 6rem;
+    background-color: var(--bg-gray);
+
+    &_content {
+        height: auto;
+        display: flex;
+        flex-flow: column;
+        margin: 0 1rem;
+    }
+
+    &_wrapper {
+        width: 100%;
+        display: flex;
+        padding-top: 2rem;
+        align-items: center;
+        position: relative;
+
+        &:nth-child(2) {
+            justify-content: center;
+        }
+
+        .yellow_circle {
+            width: 300px;
+            height: 300px;
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            border: 4rem solid var(--yellow);
+            border-radius: 50%;
+        }
+    }
+
+    h1 {
+        color: var(--black);
+        font-size: 2.75rem;
+        font-weight: 900;
+        line-height: 2.75rem;
+    }
+
+    &_item {
+        display: flex;
+        flex-direction: column;
+    }
+
+    &_text {
+        font-size: 1rem;
+        font-weight: 400;
+        margin: 1rem 0 2rem;
+
+        &:not(:last-of-type) {
+            margin: 1rem 0 1rem;
+        }
+    }
+
+    &_img {
+        width: 100%;
+        height: 300px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        margin-right: 2rem;
+        // filter: saturate(50%) url(#anaglyph3d);
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .section_about_intro {
+
+        &_content {
+            width: 65%;
+            max-width: 500px;
+            row-gap: 4rem;
+            margin: 0 auto;
+        }
+
+        &_wrapper {
+
+            &:nth-child(1) {
+                display: flex;
+                justify-content: center;
+            }
+
+            .yellow_circle {
+                width: 450px;
+                height: 450px;
+                position: absolute;
+                bottom: 60px;
+                left: 50%;
+                transform: translateX(-50%);
+                border: 5.5rem solid var(--yellow);
+                border-radius: 50%;
+            }
+        }
+
+        &_text {
+            max-width: 45ch;
+        }
+
+        &_img {
+            height: 470px;
+        }
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .section_about_intro {
+
+        &_content {
+            width: 100%;
+            max-width: initial;
+            flex-flow: row nowrap;
+            row-gap: 0;
+        }
+    
+        &_wrapper {
+            flex-basis: 50%;
+            display: flex;
+            max-width: 600px;
+            // margin-left: auto;
+
+            &:nth-child(1) {
+                order: 2;
+                justify-content: flex-end;
+                margin-right: 4rem;
+            }
+
+            &:nth-child(2) {
+                order: 1;
+                flex-basis: 100%;
+                margin-left: 4rem;
+            }
+
+            .yellow_circle {
+                width: 490px;
+                height: 490px;
+                border: 7rem solid var(--yellow);
+            }
+        }
+
+        h1 {
+            font-size: 3.75rem;
+            line-height: 4rem;
+            letter-spacing: -1px;
+        }
+
+        &_text {
+            max-width: 40ch;
+        }
+
+        &_img {
+            height: 500px;
+            margin-right: 8rem;
+        }
+
+        &_neumorphism {
+            width: 400px;
+            height: 400px;
+        }
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    .section_about_intro {
+    
+        &_wrapper {
+
+            &:nth-child(1) {
+                flex-basis: 100%;
+                margin-right: 6rem;
+            }
+
+            &:nth-child(2) {
+                margin-left: 6rem;
+            }
+        }
+
+        h1 {
+            font-size: 4rem;
+            line-height: 4.25rem;
+            letter-spacing: -1px;
+        }
+
+        &_text {
+            max-width: 45ch;
+        }
+    }
+}
+
+@media screen and (min-width: 1400px) {
+   .section_about_intro {
+
+        &_content {
+            width: 1024px;
+            margin: 0 auto;
+            padding: 0;
+            justify-content: space-evenly;
+        }
+
+        &_wrapper {
+            flex-basis: 50%;
+            display: flex;
+
+            &:nth-child(1) {
+                max-width: 510px;
+                margin: 0 4rem 0 0;
+            }
+
+            &:nth-child(2) {
+                flex-basis: auto;
+                width: auto;
+                justify-content: flex-start;
+                margin-left: 4rem;
+            }
+        }
+   }
+}

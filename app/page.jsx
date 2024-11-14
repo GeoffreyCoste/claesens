@@ -1,6 +1,6 @@
 'use client';
 
-import styles from './page.module.scss';
+/* import styles from './page.module.scss'; */
 import {useState, useEffect, useRef} from 'react';
 import {AnimatePresence} from 'framer-motion';
 import {useSideMenu} from '@/hooks/useSideMenu';

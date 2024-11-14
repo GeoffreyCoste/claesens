@@ -1,8 +1,20 @@
 .badge {
+    display: inline-flex;
+    flex-flow: row nowrap;
     color: var(--gray);
     font-size: 0.75rem;
     font-weight: 700;
     padding: 0.125em 0.65em 0.25em;
     border: 1px solid var(--gray);
-    border-radius: calc(var(--border-radius) / 2);
+    // border-radius: calc(var(--border-radius) / 2);
+    border-radius: 50px;
+    white-space: nowrap; /* Prevent text from splitting into several lines */
+    // align-self: start; /* Prevent vertical extension if used inside flex container */
+    z-index: 8;
+
+    &.black {
+        color: var(--black);
+        background-color: var(--bg-gray);
+        border: 1px solid var(--black);
+    }
 }

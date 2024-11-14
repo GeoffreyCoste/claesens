@@ -2,8 +2,8 @@ import {useState, useEffect} from 'react';
 
 // Définir les media queries pour les différents types d'appareils
 const MEDIA_QUERIES = {
-  mobile: '(max-width: 767px)',
-  tablet: '(min-width: 768px) and (max-width: 1023px)',
+  mobile: '(max-width: 768px)',
+  tablet: '(min-width: 768px) and (max-width: 1024px)',
   desktop: '(min-width: 1024px)',
   xs: '(min-width: 320px) and (max-width: 575px)',
   sm: '(min-width: 576px) and (max-width: 767px)',

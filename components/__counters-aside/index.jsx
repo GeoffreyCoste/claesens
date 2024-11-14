@@ -1,4 +1,5 @@
 import styles from './style.module.scss';
+import {Fragment} from 'react';
 import {counters} from './data';
 import Counter from '../counter';
 
@@ -7,7 +8,7 @@ const CountersAside = () => {
     <aside className={styles.counters_aside}>
       <ul className={styles.counters_list}>
         {counters.map((counter, index) => (
-          <>
+          <Fragment key={`fragment-counter-${index}`}>
             <li key={`counter-${index}`} className={styles.counters_item}>
               <Counter value={counter.value} direction="up" />
               <span className={styles.counters_label}>{counter.label}</span>
@@ -15,7 +16,7 @@ const CountersAside = () => {
             {index !== counters.length - 1 && (
               <span className={styles.counters_dot}></span>
             )}
-          </>
+          </Fragment>
         ))}
       </ul>
     </aside>

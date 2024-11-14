@@ -17,12 +17,19 @@ const SectionWho = () => {
             ))}
             <AnimateFade>
               <p className={styles.section_who_content_text}>
-                Je suis Emilie Claesens, graphiste passionnée issue des
-                Beaux-Arts.
+                Je suis Emilie Claesens, Creative Designer passionnée par
+                l&apos;art du design visuel et toujours à la recherche
+                d&apos;innovations.
               </p>
               <p className={styles.section_who_content_text}>
-                Je développe des solutions graphiques uniques et percutantes,
-                adaptées à vos besoins.
+                Mon parcours artistique, débuté aux Beaux-Arts en Belgique et
+                enrichi par une spécialisation en graphisme en France, m&apos;a
+                doté d&apos;un regard unique.
+              </p>
+              <p className={styles.section_who_content_text}>
+                Avec plus de 10 ans dans le domaine du e-commerce, je me
+                consacre aujourd&apos;hui à la création de solutions visuelles
+                percutantes.
               </p>
             </AnimateFade>
           </AnimateStagger>

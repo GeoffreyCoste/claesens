@@ -15,7 +15,22 @@ export const h2SectionRelease = [{
 
 export const h1SectionAbout = [{
     type: "heading1",
-    text: "Découvrez-moi sous toutes mes facettes."
+    text: "Emilie Claesens."
+    }];
+
+    export const h2SectionAboutOrigin = [{
+        type: "heading2",
+        text: "Point de départ."
+    }];
+
+    export const h2SectionAboutPanorama = [{
+        type: "heading2",
+        text: "Mise en perspective."
+    }];
+
+    export const h2SectionAboutOverview = [{
+                type: "heading2",
+                text: "Tour d'horizon."
 }];
 
 export const h1SectionServices = [{

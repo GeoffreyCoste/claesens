@@ -1,0 +1,277 @@
+.section_about_hero {
+    width: 100%;
+    height: 100vh;
+    position: relative;
+
+    &_background {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+    }
+
+    &_content {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        pointer-events: none;
+
+        .content_img {
+            width: 65vw;
+            height: 65vw;
+            max-width: 210px;
+            max-height: 210px;
+            aspect-ratio: 1/1;
+            position: relative;
+            border-radius: 50%;
+            overflow: hidden;
+        }
+
+        .content_title {
+             width: 100%;
+             position: absolute;
+             // bottom: 10%;
+             bottom: 0;
+             left: 0;
+             right: 0;
+
+             .title {
+                display: flex;
+                flex-direction: column; /* Empile "Nom" et "Prénom" l’un au-dessus de l’autre */
+                margin: 0;
+                font-size: 4rem;
+                line-height: 3.5rem;
+                font-weight: 900; /* Taille maximale sur mobile */
+                text-align: center; /* Centre le texte pour mobile */
+            }
+        }
+
+        .content_lists {
+            width: 100%;
+            height: 340px;
+            display: flex;
+            flex-flow: row wrap;
+            // justify-content: space-evenly;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+
+            .list {
+                flex-basis: 100%;
+                display: flex;
+                justify-content: space-evenly;
+
+                &_item {
+                    animation: float 3s ease-in-out infinite;
+                    animation-delay: calc(var(--i) * 0.2s);
+
+                @keyframes float {
+                    0%, 100% {
+                      transform: translateY(0); /* Initial position */
+                    }
+                    50% {
+                      transform: translateY(-5px); /* Slight elevation */
+                    }
+                }
+                }
+
+                &:first-of-type {
+                    align-items: flex-start;
+
+                    .list_item {
+
+                        &:nth-of-type(1) {
+                            margin-top: 2rem;
+                        }
+
+                        &:nth-of-type(3) {
+                            margin-top: 3rem;
+                        }
+                    }
+                }
+
+                &:last-of-type {
+                    align-items: flex-end;
+
+                    .list_item {
+
+                        &:nth-of-type(1) {
+                            margin-bottom: 3rem;
+                        }
+
+                        &:nth-of-type(3) {
+                            margin-bottom: 2rem;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 375px) {
+    .section_about_hero {
+
+        &_content {
+
+            .content_img {
+                max-width: 240px;
+                max-height: 240px;
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 600px) {
+    .section_about_hero_content .content_title .title {
+        font-size: clamp(4rem, 10vw + 1rem, 16rem);
+        line-height: 1.2;
+        flex-direction: row;
+        white-space: nowrap;
+        justify-content: center;
+        gap: 1rem;
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .section_about_hero {
+
+        &_content {
+            // align-items: flex-end;
+            // padding-top: 10vh;
+            // padding-bottom: 10vh;
+
+            .content_img {
+                max-width: 384px;
+                max-height: 384px;
+                // max-width: 50vw;
+                // max-height: 50vw;
+            }
+
+            /* .content_title {
+                bottom: 5%;
+            } */
+
+            .content_lists {
+                // width: 100%;
+                // height: 400px;
+                max-width: 1000px;
+                margin: 0 auto;
+
+                .list {
+                    flex-basis: 50%;
+                    flex-direction: column;
+
+                    &:first-of-type {
+                        align-items: flex-start;
+    
+                        .list_item {
+                            
+                            &:nth-of-type(1) {
+                                margin-top: 0;
+                                margin-left: 6vw;
+                            }
+    
+                            &:nth-of-type(2) {
+                                margin-left: 2vw;
+                            }
+    
+                            &:nth-of-type(3) {
+                                margin-top: 0;
+                                margin-left: 12vw;
+                            }
+                        }
+                    }
+    
+                    &:last-of-type {
+                        align-items: flex-end;
+    
+                        .list_item {
+    
+                            &:nth-of-type(1) {
+                                margin-bottom: 0;
+                                margin-right: 6vw;
+                            }
+    
+                            &:nth-of-type(2) {
+                                margin-bottom: 0;
+                                margin-right: 2vw;
+                            }
+    
+                            &:nth-of-type(3) {
+                                margin-bottom: 0;
+                                margin-right: 12vw;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .section_about_hero {
+
+        &_content {
+
+            .content_img {
+                max-width: 420px;
+                max-height: 420px;
+                margin-bottom: 5rem;
+            }
+
+            .content_title {
+                bottom: -1rem;
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 1440px) {
+    .section_about_hero {
+
+        &_content {
+
+            .content_img {
+                max-width: 500px;
+                max-height: 500px;
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 1600px) {
+    .section_about_hero {
+
+        &_content {
+
+            .content_lists {
+                max-width: 1200px;
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 1920px) {
+    .section_about_hero {
+
+        &_content {
+
+            .content_lists {
+                max-width: 1400px;
+            }
+
+            .content_img {
+                max-width: 650px;
+                max-height: 650px;
+            }
+        }
+    }
+}

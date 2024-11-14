@@ -1,0 +1,120 @@
+.aside_logos {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 6rem 2rem;
+    // padding: 10rem 1rem;
+    background-color: var(--black);
+
+    .logos_container {
+        width: 100%;
+        max-width: 350px;
+        /* display: flex;
+        white-space: nowrap;
+        position: relative;
+        padding: 0 1rem; */
+        position: relative;
+        padding: 16px;
+        border-width: 1px 1px 0;
+        border-color: var(--black-light);
+        border-style: solid;
+        //border: 2px solid var(--black-light);
+        border-radius: 50px;
+        overflow: hidden;
+
+        &::before {
+            content: '';
+            z-index: 0;
+            background-color: var(--black);
+            filter: blur(5px);
+            border-radius: 50%;
+            width: 10%;
+            height: 100%;
+            position: absolute;
+            inset: auto 0% -12% -1%;
+        }
+
+        &::after {
+            content: '';
+            z-index: -1;
+            background-color: var(--black);
+            filter: blur(5px);
+            border-radius: 50%;
+            width: 10%;
+            height: 100%;
+            position: absolute;
+            inset: 12% -1% auto auto;
+        }
+
+        .logos_slider {
+            width: 100%;
+            display: flex;
+            white-space: nowrap;
+            position: relative;
+            padding: 0 1rem;
+
+            .logos_list {
+                // width: 100%;
+                display: flex;
+                flex-flow: row nowrap;
+                justify-content: space-between;
+                align-items: center;
+
+                .logos_item {
+                    width: 100px;
+                    height: 40px;
+                    position: relative;
+                }
+
+                .logos_separator {
+                    width: 5px;
+                    height: 5px;
+                    margin: 0 1rem;
+                    background-color: var(--yellow);
+                    border-radius: 50%;
+                }
+            }
+        }
+    }
+
+}
+
+/* @media screen and (min-width: 768px) {
+    .aside_logos {
+
+    }
+
+    .logos_aside {
+        padding: 6rem 2rem;
+
+        .logos_list {
+            width: 100%;
+            display: flex;
+            // flex-flow: row nowrap;
+            justify-content: space-between;
+            row-gap: 4rem;
+        }
+    }
+} */
+
+@media screen and (min-width: 1024px) {
+    .aside_logos {
+
+        .logos_container {
+            max-width: 430px;
+            padding: 16px 24px;
+
+            .logos_slider {
+
+                .logos_list {
+
+                    .logos_item {
+                        width: 120px;
+                        height: 60px;
+                    }
+                }
+            }
+        }
+    }
+}
