@@ -1,12 +1,66 @@
 .footer {
     width: 100%;
-    height: 110vh;
+    height: 400vh;
     position: relative;
     background-color: var(--bg-gray);
 
+    &_aside {
+        width: 100%;
+        height: 280vh;
+        display: flex;
+        align-items: center;
+        position: relative;
+        padding: 1rem;
+        background-color: var(--white);
+        z-index: 4;
+
+        &_wrapper {
+            width: 100%;
+            height: 180vh;
+            display: flex;
+            padding: 1rem;
+            position: relative;
+            background-color: var(--black);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+        }
+
+        &_item {
+            width: 100%;
+            max-width: 500px;
+            flex: 0 0 100%;
+            display: flex;
+            flex-flow: column;
+            justify-content: flex-end;
+            margin: 0 auto;
+            text-align: center;
+            border: 1px solid white;
+            z-index: 9;
+
+            h2 {
+                color: var(--white);
+            }
+
+            .item_text {
+                width: 80%;
+                color: var(--gray-light);
+                margin: 0 auto 2rem auto;
+
+                &:first-of-type {
+                    margin-top: 2rem;
+                }
+
+                &:last-of-type {
+                    color: var(--white);
+                    font-weight: 800;
+                }
+            }
+        }
+    }
+
     &_content {
         width: 100%;
-        height: 110vh;
+        height: 100vh;
         display: flex;
         flex-flow: column;
         justify-content: space-between;
@@ -44,9 +98,47 @@
     }
 }
 
+@media screen and (min-width: 768px) {
+    .footer {
+
+        &_aside {
+
+            &_item {
+                max-width: revert;
+            }
+        }
+    }
+}
+
 @media screen and (min-width: 1024px) {
     .footer {
-        height: 85vh;
+        height: 110vh;
+
+        &_aside {
+            height: auto;
+            position: absolute;
+            top: calc(50% + 3vh);
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: transparent;
+
+            &_wrapper {
+                height: 500px;
+                padding: 2rem;
+            }
+
+            &_item {
+                max-width: revert;
+                justify-content: flex-start;
+                align-items: flex-start;
+                text-align: left;
+
+                .item_text {
+                    width: 100%;
+                    margin: 0 0 2rem 0;
+                }
+            }
+        }
 
         &_content {
             height: 85vh;
@@ -58,8 +150,13 @@
         &_item {
             flex-basis: 30%;
 
-            &:first-of-type > div {
+            /* &:first-of-type > div {
                 display: flex;
+            } */
+
+            &:first-of-type > a {
+                display: flex;
+                margin-right: auto;
             }
 
             &:nth-of-type(2) {

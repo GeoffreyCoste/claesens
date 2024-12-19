@@ -30,7 +30,8 @@
 
         &_text {
             width: 100%;
-            font-size: 1rem;
+            max-width: 500px;
+            font-size: 1.25rem;
             font-weight: 400;
             // text-align: center;
             margin: 1rem 0 2rem;
@@ -82,12 +83,13 @@
 
             &_text {
                 width: 100%;
+                max-width: none;
                 text-align: center;
             }
         }
 
         &_item {
-            width: 50%;
+            width: 55%;
         }
     }
 }

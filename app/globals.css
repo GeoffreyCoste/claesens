@@ -65,3 +65,17 @@ a {
 ul {
   list-style: none;
 }
+
+@media screen and (min-width: 768px) {
+  h2 {
+    font-size: 3rem;
+    line-height: 3rem;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  h2 {
+    font-size: 4rem;
+    line-height: 3.5rem;
+  }
+}

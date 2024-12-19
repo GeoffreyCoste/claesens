@@ -1,7 +1,7 @@
 'use client';
 
 import styles from './style.module.scss';
-import {useEffect, useRef} from 'react';
+import {useRef} from 'react';
 import Image from 'next/image';
 import clsx from 'clsx';
 import {useTransform, motion, useScroll, useMotionValue} from 'framer-motion';

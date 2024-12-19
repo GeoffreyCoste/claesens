@@ -3,6 +3,9 @@ import clsx from 'clsx';
 import {bricolage_grotesque} from '@/app/fonts';
 import Button from '../button';
 import GooeyCircles from '../gooey-circles';
+import AnimateStagger from '../animate-stagger';
+import AnimateHeading from '../animate-heading';
+import {h2SectionSkills} from '../animate-heading/data';
 
 const SectionSkills = () => {
   return (
@@ -12,14 +15,11 @@ const SectionSkills = () => {
       </div>
       <div className={styles.section_skills_content}>
         <div className={styles.section_skills_content_wrapper}>
-          <h2
-            className={clsx(
-              bricolage_grotesque.className,
-              styles.section_skills_content_title
-            )}
-          >
-            un service sur-mesure
-          </h2>
+          <AnimateStagger>
+            {h2SectionSkills.map((text, index) => (
+              <AnimateHeading key={index} {...text} />
+            ))}
+          </AnimateStagger>
           <Button pathname={'/'} title={'en savoir plus'} />
         </div>
       </div>

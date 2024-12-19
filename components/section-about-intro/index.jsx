@@ -84,14 +84,14 @@ const SectionAboutIntro = () => {
                   notamment dans le e-commerce, je transforme des idées en
                   solutions visuelles innovantes.
                 </p>
+                <p
+                  className={styles.text}
+                  aria-label="Bienvenue dans ma sphère créative !"
+                >
+                  Bienvenue dans ma <strong>sphère créative</strong> !
+                </p>
               </AnimateFade>
             </AnimateStagger>
-            <p
-              className={styles.text}
-              aria-label="Bienvenue dans ma sphère créative !"
-            >
-              Bienvenue dans ma <strong>sphère créative</strong> !
-            </p>
           </div>
           <div className={styles.sphere}>
             <SvgEllipticSphere />

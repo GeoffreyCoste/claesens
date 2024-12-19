@@ -1,6 +1,12 @@
 import styles from './style.module.scss';
 import Brand from '../brand';
 import SocialsList from '../socials-list';
+import AnimateStagger from '../animate-stagger';
+import AnimateHeading from '../animate-heading';
+import AnimateFade from '../animate-fade';
+import {h2FooterAside} from '../animate-heading/data';
+import Collapsible from '../collapsible';
+import Canvas3d from './canvas-3d';
 
 const FooterSticky = () => {
   return (
@@ -10,7 +16,7 @@ const FooterSticky = () => {
     >
       <div className={styles.footer_content}>
         <div className={styles.footer_item}>
-          <Brand></Brand>
+          <Brand />
         </div>
         <div className={styles.footer_item}>
           <div className={styles.footer_item_socials}>

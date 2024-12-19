@@ -15,7 +15,7 @@ const SvgBackground = () => {
       <circle
         cx="0"
         cy="0"
-        r={mobile ? '90' : tablet ? '60' : '80'}
+        r={mobile ? '100' : tablet ? '60' : '80'}
         stroke="white"
         strokeWidth={mobile ? '1.5' : '1'}
         fill="none"
@@ -23,16 +23,16 @@ const SvgBackground = () => {
 
       <circle
         cx={mobile ? '0' : tablet ? '-60' : '-80'}
-        cy={mobile ? '-100' : '0'}
-        r={mobile ? '90' : tablet ? '60' : '80'}
+        cy={mobile ? '-160' : '0'}
+        r={mobile ? '100' : tablet ? '60' : '80'}
         stroke="white"
         strokeWidth={mobile ? '1.5' : '1'}
         fill="none"
       />
       <circle
         cx={mobile ? '0' : '-30'}
-        cy={mobile ? '-50' : '0'}
-        r={mobile ? '90' : tablet ? '60' : '80'}
+        cy={mobile ? '-80' : '0'}
+        r={mobile ? '100' : tablet ? '60' : '80'}
         stroke="white"
         strokeWidth={mobile ? '1.5' : '1'}
         fill="none"
@@ -40,16 +40,16 @@ const SvgBackground = () => {
 
       <circle
         cx={mobile ? '0' : tablet ? '60' : '80'}
-        cy={mobile ? '100' : '0'}
-        r={mobile ? '90' : tablet ? '60' : '80'}
+        cy={mobile ? '160' : '0'}
+        r={mobile ? '100' : tablet ? '60' : '80'}
         stroke="white"
         strokeWidth={mobile ? '1.5' : '1'}
         fill="none"
       />
       <circle
         cx={mobile ? '0' : '30'}
-        cy={mobile ? '50' : '0'}
-        r={mobile ? '90' : tablet ? '60' : '80'}
+        cy={mobile ? '80' : '0'}
+        r={mobile ? '100' : tablet ? '60' : '80'}
         stroke="white"
         strokeWidth={mobile ? '1.5' : '1'}
         fill="none"

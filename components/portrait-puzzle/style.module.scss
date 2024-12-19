@@ -87,7 +87,46 @@
     }
 }
 
+@media screen and (min-width: 480px) {
+    .puzzle_container {
+        .puzzle_background_circle {
+          width: 65%;
+          // height: 65%;
+        }
+      
+        .puzzle_background_image {
+          width: 65%;
+          height: 65%;
+        }
+      
+        .puzzle_background_overlay {
+          width: 55%;
+          height: 55%;
+        }
+    }
+}
+
 @media screen and (min-width: 768px) {
+    .puzzle_container {
+
+        .puzzle_background_circle {
+            width: 80%;
+        }
+
+        .puzzle_background_image {
+            width: 80%;
+            height: 80%;
+        }
+
+        .puzzle_background_overlay {
+            width: 60%;
+            height: 60%;
+        }
+    }
+}
+
+
+@media screen and (min-width: 1024px) {
     .puzzle_container {
 
         .puzzle_background_circle {

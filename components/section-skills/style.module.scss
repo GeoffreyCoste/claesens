@@ -13,22 +13,13 @@
         // justify-content: center;
         // align-items: flex-start;
         // row-gap: 2rem;
+        max-width: 500px;
+        margin: 0 auto;
         padding: 6rem 1rem;
 
         &_wrapper {
             display: flex;
             flex-flow: column;
-        }
-
-        &_title {
-            font-size: 3rem;
-            font-weight: 900;
-            line-height: initial;
-            margin-bottom: 2rem;
-            
-            &::first-letter {
-                text-transform: uppercase;
-            }
         }
     }
 
@@ -39,7 +30,18 @@
         align-items: center;
         padding: 6rem 1rem;
     }
+}
 
+@media screen and (min-width: 640px) {
+    .section_skills {
+
+        &_content {
+
+            &_wrapper {
+                align-items: center;
+            }
+        }
+    }
 }
 
 @media screen and (min-width: 768px) {
@@ -58,11 +60,6 @@
                 align-items: flex-start;
                 flex-basis: 80%;
             }
-
-            &_title {
-                max-width: 280px;
-                word-break: break-all;
-            }
         }
     
         &_diagram {
@@ -80,12 +77,5 @@
                 flex-basis: 60%;
             }
         }
-    }
-}
-
-@media screen and (min-width: 1920px) {
-    .section_skills_content_title {
-        max-width: initial;
-        word-break: initial;
     }
 }

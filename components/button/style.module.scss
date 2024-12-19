@@ -1,5 +1,6 @@
 .button {
     width: 100%;
+    max-width: 290px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -13,7 +14,6 @@
 
     &:hover {
         .button_round {
-
             transform: scale(50);
         }
 
@@ -100,5 +100,6 @@
 @media screen and (min-width: 768px) {
     .button {
         width: auto;
+        max-width: revert;
     }
 }

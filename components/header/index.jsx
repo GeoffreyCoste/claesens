@@ -33,7 +33,7 @@ const Header = forwardRef(function Header(props, ref) {
 
   return (
     <header className={styles.header}>
-      <Brand></Brand>
+      <Brand />
       <Magnetism>
         <div
           className={`${styles.burger} ${isOpen ? styles.open : ''}`}

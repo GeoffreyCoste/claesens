@@ -185,6 +185,7 @@ const HorizontalMotion = () => {
                     src={`/images/sphere_${index}.png`}
                     alt={step.mobileImgAlt}
                     fill
+                    sizes="150px"
                     loading="lazy"
                     style={{objectFit: 'cover'}}
                   />

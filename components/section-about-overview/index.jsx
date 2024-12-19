@@ -79,7 +79,8 @@ const SectionAboutOverview = () => {
           <AnimateFade>
             <div className={styles.section_about_overview_intro_item}>
               <p className={styles.section_about_overview_intro_text}>
-                Ma trajectoire en quelques chiffres.
+                Illustration d&apos;une trajectoire créative en quelques
+                chiffres.
               </p>
             </div>
           </AnimateFade>

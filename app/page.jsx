@@ -19,6 +19,7 @@ import Gallery from '@/components/gallery';
 import ImageParallax from '@/components/image-parallax';
 import DynamicCircle from '@/components/dynamic-circle';
 import SideMenu from '@/components/side-menu';
+import FooterNew from '@/components/footer-new';
 
 export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
@@ -62,7 +63,8 @@ export default function Home() {
         {!desktop && <DynamicCircle sectionRef={releaseSectionRef} />}
         <CursorSticky stickyElement={stickyElement} />
       </main>
-      <FooterSticky />
+      <FooterNew />
+      {/* <FooterSticky /> */}
     </>
   );
 }

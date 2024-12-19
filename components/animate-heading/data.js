@@ -1,6 +1,12 @@
+/* Homepage */
 export const h2SectionWho = [{
     type: "heading2",
     text: "En bref."
+}];
+
+export const h2SectionSkills = [{
+    type: "heading2",
+    text: "Un service sur-mesure."
 }];
 
 export const h2SectionProcess = [{
@@ -13,31 +19,38 @@ export const h2SectionRelease = [{
     text: "Un échantillon."
 }];
 
+export const h2FooterAside = [{
+    type: "heading2",
+    text: "Prêt.e.s à redessiner vos contours ?"
+}];
+
+/* About page */
 export const h1SectionAbout = [{
     type: "heading1",
     text: "Emilie Claesens."
-    }];
-
-    export const h2SectionAboutOrigin = [{
-        type: "heading2",
-        text: "Point de départ."
-    }];
-
-    export const h2SectionAboutPanorama = [{
-        type: "heading2",
-        text: "Mise en perspective."
-    }];
-
-    export const h2SectionAboutOverview = [{
-                type: "heading2",
-                text: "Tour d'horizon."
 }];
 
+export const h2SectionAboutOrigin = [{
+    type: "heading2",
+    text: "Point de départ."
+}];
+export const h2SectionAboutPanorama = [{
+    type: "heading2",
+    text: "Mise en perspective."
+}];
+
+export const h2SectionAboutOverview = [{
+            type: "heading2",
+            text: "Tour d'horizon."
+}];
+
+/* Services page */
 export const h1SectionServices = [{
     type: "heading1",
     text: "Un écosystème dédié à votre image."
 }];
 
+/* Method page */
 export const h1SectionMethod = [{
     type: "heading1",
     text: "Un cercle vertueux."

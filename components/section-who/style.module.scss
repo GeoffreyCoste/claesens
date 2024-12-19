@@ -13,7 +13,9 @@
         // flex-direction: column;
         // justify-content: center;
         // align-items: flex-start;
-        padding: 6rem 1rem;
+        max-width: 500px;
+        margin: 0 auto;
+        padding: 6rem 1rem 0 1rem;
 
         &_wrapper {
             display: flex;
@@ -72,6 +74,19 @@
 
         & img {
             object-fit: cover;
+        }
+    }
+}
+
+@media screen and (min-width: 640px) {
+    .section_who {
+    
+        &_content {
+            padding: 6rem 1rem;
+            
+            &_wrapper {
+                align-items: center;
+            }
         }
     }
 }

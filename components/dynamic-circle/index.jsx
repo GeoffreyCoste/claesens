@@ -1,13 +1,13 @@
 'use client';
 
 import styles from './style.module.scss';
-import {useState, useEffect, useRef} from 'react';
+import {useEffect, useRef} from 'react';
 import gsap from 'gsap';
 import {ScrollTrigger} from 'gsap/all';
 import useMediaQueries from '@/hooks/useMediaQueries';
 
 const DynamicCircle = ({sectionRef}) => {
-  const {desktop} = useMediaQueries();
+  const {tablet, desktop} = useMediaQueries();
 
   const circleRef = useRef(null);
 
@@ -19,20 +19,26 @@ const DynamicCircle = ({sectionRef}) => {
     const circle = circleRef.current;
     const section = sectionRef.current;
 
+    const radius = tablet ? '10rem' : '7rem';
+
+    // Extract numeric value and unit from radius
+    const radiusValue = parseFloat(radius);
+    const unit = radius.replace(/[0-9.]/g, ''); // i.e.: 'rem'
+
     const animateCircle = gsap.fromTo(
       circle,
       {
-        width: '7rem',
-        height: '7rem',
-        top: 'calc(100% - 3.5rem)',
-        left: 'calc(50% - 3.5rem)',
+        width: radius,
+        height: radius,
+        top: `calc(100% - ${radiusValue / 2}${unit})`,
+        left: `calc(50% - ${radiusValue / 2}${unit})`,
         visibility: 'hidden'
       },
       {
-        width: '70rem',
-        height: '70rem',
-        top: 'calc(50% - 35rem)',
-        left: 'calc(50% - 35rem)',
+        width: `calc(${radiusValue * 10}${unit})`,
+        height: `calc(${radiusValue * 10}${unit})`,
+        top: `calc(50% - ${radiusValue * 5}${unit})`,
+        left: `calc(50% - ${radiusValue * 5}${unit})`,
         visibility: 'visible',
         scrollTrigger: {
           trigger: section,
@@ -66,7 +72,7 @@ const DynamicCircle = ({sectionRef}) => {
       if (animateSection.scrollTrigger) animateSection.scrollTrigger.kill();
       animateSection.kill();
     };
-  }, [desktop, sectionRef]);
+  }, [tablet, desktop, sectionRef]);
 
   return (
     <div

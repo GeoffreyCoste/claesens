@@ -5,6 +5,7 @@ import {AnimatePresence} from 'framer-motion';
 import {useSideMenu} from '@/hooks/useSideMenu';
 import Header from '@/components/header';
 import CursorSticky from '@/components/cursor-sticky';
+import FooterNew from '@/components/footer-new';
 import FooterSticky from '@/components/footer-sticky';
 import SideMenu from '@/components/side-menu';
 import SectionServicesIntro from '@/components/section-services-intro';
@@ -31,7 +32,8 @@ export default function Services() {
         <SectionServicesDetails />
         <CursorSticky stickyElement={stickyElement} />
       </main>
-      <FooterSticky />
+      <FooterNew />
+      {/* <FooterSticky /> */}
     </>
   );
 }
