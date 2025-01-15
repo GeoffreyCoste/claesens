@@ -9,7 +9,7 @@ import CursorSticky from '@/components/cursor-sticky';
 /* import FooterSticky from '@/components/footer-sticky'; */
 import SideMenu from '@/components/side-menu';
 import FooterCustom from '@/components/footer-custom';
-import SectionContactNew from '@/components/section-contact-new';
+import SectionContact from '@/components/section-contact';
 
 export default function Contact() {
   const stickyElement = useRef(null);
@@ -23,7 +23,7 @@ export default function Contact() {
       </AnimatePresence>
       <Header ref={stickyElement}></Header>
       <main className={styles.main}>
-        <SectionContactNew />
+        <SectionContact />
         <CursorSticky stickyElement={stickyElement} />
       </main>
       {/* <FooterSticky /> */}

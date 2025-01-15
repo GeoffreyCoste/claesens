@@ -20,7 +20,7 @@ const words = [
 
 gsap.registerPlugin(TextPlugin);
 
-const SectionContactNew = () => {
+const SectionContact = () => {
   const [currentWordIndex, setCurrentWordIndex] = useState(0);
   const textRef = useRef(null);
   const dotsRef = useRef([]);
@@ -113,4 +113,4 @@ const SectionContactNew = () => {
   );
 };
 
-export default SectionContactNew;
+export default SectionContact;
