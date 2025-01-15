@@ -44,7 +44,7 @@
             transition: all .3s ease-out;
             z-index: 2;
         }
-    
+
         &_arrow {
             position: absolute;
             top: 25px;
@@ -105,6 +105,51 @@
 
             &_title {
                 font-size: 1.5rem;
+            }
+        }
+
+        .button_large {
+            // padding-left: 45px;
+            padding-right: 45px;
+
+            &:hover {
+                .button_round {
+                    transform: scale(200);
+                }
+
+                .button_arrow {
+                    transform: translateX(-55px);
+                }
+            }
+
+            .button_round {
+                width: 12px;
+                height: 12px;
+            }
+
+            .button_title {
+                font-size: 2.5rem;
+            }
+
+            .button_arrow {
+                top: 40px;
+
+                > svg {
+                    width: 32px;
+                    height: 32px;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .button_wrapper {
+
+        .button_large {
+
+            .button_title {
+                font-size: 3.5rem;
             }
         }
     }

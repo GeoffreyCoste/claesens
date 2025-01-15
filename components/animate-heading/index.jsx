@@ -12,11 +12,12 @@ const AnimateHeading = ({type, text, isWhite = false}) => {
   const lastSpanRef = useRef(null);
 
   // Get tag name from tags object key 'type'
-  const Tag = tags[type];
+  const Tag = tags[type] || 'div';
   // Storage array
   const words = [];
   // Split each word from 'text' props string into an array
   const splitWords = text.split(' ');
+
   // Push each word into words array
   for (const [, item] of splitWords.entries()) {
     words.push(item.split(''));

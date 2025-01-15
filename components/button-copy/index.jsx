@@ -6,7 +6,8 @@ import clsx from 'clsx';
 
 const ButtonCopy = ({
   copy = 'hello@claesens.fr',
-  title = 'hello@claesens.fr'
+  title = 'hello@claesens.fr',
+  btnLarge = false
 }) => {
   const [copied, setCopied] = useState(false);
 
@@ -26,7 +27,9 @@ const ButtonCopy = ({
   return (
     <div className={styles.button_wrapper}>
       <button
-        className={clsx(styles.button, styles.button_yellow)}
+        className={clsx(styles.button, styles.button_yellow, {
+          [styles.button_large]: btnLarge
+        })}
         onClick={(e) => handleClick(e)}
       >
         <div className={styles.button_round}></div>

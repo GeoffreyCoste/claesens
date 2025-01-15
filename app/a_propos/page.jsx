@@ -5,7 +5,7 @@ import {AnimatePresence} from 'framer-motion';
 import {useSideMenu} from '@/hooks/useSideMenu';
 import Header from '@/components/header';
 import CursorSticky from '@/components/cursor-sticky';
-import FooterSticky from '@/components/footer-sticky';
+/* import FooterSticky from '@/components/footer-sticky'; */
 import SideMenu from '@/components/side-menu';
 import SectionAboutHero from '@/components/section-about-hero';
 import SectionAboutIntro from '@/components/section-about-intro';
@@ -13,6 +13,7 @@ import SectionAboutOrigin from '@/components/section-about-origin';
 import SectionAboutPanorama from '@/components/section-about-panorama';
 import SectionAboutOverview from '@/components/section-about-overview';
 import AsideLogos from '@/components/aside-logos';
+import FooterCustom from '@/components/footer-custom';
 
 export default function About() {
   const stickyElement = useRef(null);
@@ -34,7 +35,8 @@ export default function About() {
         <SectionAboutOverview />
         <CursorSticky stickyElement={stickyElement} />
       </main>
-      <FooterSticky />
+      {/* <FooterSticky /> */}
+      <FooterCustom />
     </>
   );
 }

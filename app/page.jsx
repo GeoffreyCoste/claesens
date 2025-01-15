@@ -14,12 +14,13 @@ import SectionProcess from '@/components/section-process';
 import InfiniteText from '@/components/infinite-text';
 import SectionRelease from '@/components/section-release';
 import CursorSticky from '@/components/cursor-sticky';
-import FooterSticky from '@/components/footer-sticky';
+/* import FooterSticky from '@/components/footer-sticky'; */
 import Gallery from '@/components/gallery';
 import ImageParallax from '@/components/image-parallax';
 import DynamicCircle from '@/components/dynamic-circle';
 import SideMenu from '@/components/side-menu';
-import FooterNew from '@/components/footer-new';
+/* import FooterNew from '@/components/footer-new'; */
+import FooterCustom from '@/components/footer-custom';
 
 export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
@@ -63,8 +64,9 @@ export default function Home() {
         {!desktop && <DynamicCircle sectionRef={releaseSectionRef} />}
         <CursorSticky stickyElement={stickyElement} />
       </main>
-      <FooterNew />
+      {/* <FooterNew /> */}
       {/* <FooterSticky /> */}
+      <FooterCustom />
     </>
   );
 }
