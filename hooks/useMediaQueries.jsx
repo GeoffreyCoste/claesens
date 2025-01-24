@@ -17,7 +17,7 @@ const MEDIA_QUERIES = {
 const useMediaQueries = () => {
   const getMatches = () => {
     // Prevents SSR issues
-    if (typeof window !== undefined) {
+    if (typeof window !== undefined || !window.matchMedia) {
       return {
         mobile: window.matchMedia(MEDIA_QUERIES.mobile).matches,
         tablet: window.matchMedia(MEDIA_QUERIES.tablet).matches,
@@ -63,7 +63,6 @@ const useMediaQueries = () => {
       );
     };
   }, []);
-
   return matches;
 };
 

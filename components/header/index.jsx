@@ -5,13 +5,14 @@ import {useEffect, forwardRef} from 'react';
 import {useSideMenu} from '@/hooks/useSideMenu';
 import Brand from '../brand';
 import Magnetism from '../magnetism';
-import Lenis from '@studio-freight/lenis';
+import {getLenisInstance} from '@/utils/lenisInstance';
 
 const Header = forwardRef(function Header(props, ref) {
   const {isOpen, toggleIsOpen} = useSideMenu();
 
   useEffect(() => {
-    const lenis = new Lenis();
+    // const lenis = new Lenis();
+    const lenis = getLenisInstance();
 
     const raf = (time) => {
       lenis.raf(time);
