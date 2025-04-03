@@ -11,7 +11,11 @@
         position: absolute;
         top: 50%;
         left: 50%;
-        animation: rotate 10s linear infinite;
+        transform: translate(-50%, -50%);
+        
+        &.rotate {
+            animation: rotate 10s linear infinite;
+        }
     }
 
     .circle {
@@ -26,11 +30,15 @@
             background-color: var(--yellow);
         }
     
-        .icon {
+        .icon_arrow {
             width: 50px;
             height: 50px;
             transform: rotate(45deg);
         }
+
+        /* .icon_scroller {
+            
+        } */
     }
 }
 

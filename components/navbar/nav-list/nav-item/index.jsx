@@ -6,14 +6,14 @@ import {useRouter} from 'next/navigation';
 import {useSideMenu} from '@/hooks/useSideMenu';
 
 const NavItem = ({title, href}) => {
-  const {toggleIsOpen} = useSideMenu();
+  const {toggleIsSideMenuOpen} = useSideMenu();
 
   const router = useRouter();
 
   const handleClick = (e) => {
     e.preventDefault();
     const path = e.target.href;
-    toggleIsOpen();
+    toggleIsSideMenuOpen();
     router.replace(path);
   };
 

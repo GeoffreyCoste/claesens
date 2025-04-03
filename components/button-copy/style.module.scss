@@ -1,5 +1,7 @@
 .button_wrapper {
-    width: fit-content;
+    width: 100%;
+    display: flex;
+    justify-content: center;
     position: relative;
 
     .button {
@@ -92,7 +94,8 @@
 
 @media screen and (min-width: 768px) {
     .button_wrapper {
-
+        width: fit-content;
+        
         .button {
             width: auto;
             max-width: revert;

@@ -1,0 +1,67 @@
+.parallax_grid {
+    width: 100%;
+    height: 85dvh;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    padding: 16px;
+    position: relative;
+    background: var(--black);
+    overflow: hidden;
+}
+
+.parallax_col {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  position: relative;
+  will-change: transform;
+
+  // &:nth-of-type(1) { top: -45%; }
+  // &:nth-of-type(2) { top: -95%; }
+  // &:nth-of-type(3) { top: -45%; }
+  // &:nth-of-type(4) { top: -75%; }
+
+  // &:nth-of-type(1) { top: -45%; }
+  // &:nth-of-type(2) { top: -20%; }
+  // &:nth-of-type(3) { top: -45%; }
+  // &:nth-of-type(4) { top: -20%; }
+
+  &:nth-of-type(1) { top: -45%; }
+  &:nth-of-type(2) { top: -5%; }
+  &:nth-of-type(3) { top: -45%; }
+  &:nth-of-type(4) { top: -5%; }
+}
+
+.parallax_card {
+    // background: linear-gradient(to right, #ff7e5f, #feb47b);
+    // padding: 16px;
+    border-radius: var(--border-radius);
+    // box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    aspect-ratio: 3/4;
+}
+
+@media (min-width: 768px) {
+    .parallax_grid {
+        height: 85vh;
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .parallax_col { 
+
+      &:nth-of-type(1) { top: -60%; }
+      &:nth-of-type(2) { top: -35%; }
+      &:nth-of-type(3) { top: -60%; }
+      &:nth-of-type(4) { top: -35%; }
+    }
+    // .parallax_col:nth-of-type(2) { top: -30%; }
+}
+
+@media (min-width: 1024px) {
+  .parallax_grid {
+        height: 150vh;
+        grid-template-columns: repeat(4, 1fr);
+  }
+
+  .parallax_col:nth-of-type(2) { top: -20%; }
+}

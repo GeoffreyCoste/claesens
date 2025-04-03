@@ -6,14 +6,14 @@ import {useRouter} from 'next/navigation';
 import {useSideMenu} from '@/hooks/useSideMenu';
 
 export default function Brand() {
-  const {isOpen, toggleIsOpen} = useSideMenu();
+  const {isSideMenuOpen, toggleIsSideMenuOpen} = useSideMenu();
 
   const router = useRouter();
 
   const handleClick = (e) => {
     e.preventDefault();
-    if (isOpen) {
-      toggleIsOpen();
+    if (isSideMenuOpen) {
+      toggleIsSideMenuOpen();
     }
     router.replace('/');
   };

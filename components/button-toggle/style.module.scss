@@ -6,13 +6,15 @@
     align-items: center;
     gap: 15px;
     position: relative;
+    margin: 0 auto;
     padding: 20px 35px;
     background-color: transparent;
     border-radius: 50px;
     cursor: pointer;
     overflow: hidden;
+    pointer-events: all;
 
-    &:hover {
+    /* &:hover {
         .button_round {
             transform: scale(50);
         }
@@ -24,7 +26,7 @@
         .button_arrow {
             transform: translateX(-50px);
         }
-    }
+    } */
 
     .button_round {
         width: 8px;
@@ -54,7 +56,7 @@
 .button_yellow {
     background-color: var(--yellow);
 
-    &:hover {
+    /* &:hover {
         .button_round {
             background-color: var(--black);
         }
@@ -62,7 +64,7 @@
         .button_text {
             color: var(--yellow);
         }
-    }
+    } */
 
     .button_round {
         background-color: var(--black);
@@ -75,7 +77,38 @@
 
 @media screen and (min-width: 768px) {
     .button_toggle {
-        width: auto;
-        max-width: revert;
+        width: 100%;
+    }
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .button_toggle {
+    
+        &:hover {
+            .button_round {
+                transform: scale(50);
+            }
+    
+            .button_text {
+                transform: translateX(-25px);
+            }
+    
+            .button_arrow {
+                transform: translateX(-50px);
+            }
+        }
+    }
+    
+    .button_yellow {
+    
+        &:hover {
+            .button_round {
+                background-color: var(--black);
+            }
+    
+            .button_text {
+                color: var(--yellow);
+            }
+        }
     }
 }

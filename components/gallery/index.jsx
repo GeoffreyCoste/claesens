@@ -3,7 +3,8 @@
 import styles from './style.module.scss';
 import {useState, useEffect, useRef} from 'react';
 import {useTransform, useScroll} from 'framer-motion';
-import Lenis from '@studio-freight/lenis';
+/* import Lenis from '@studio-freight/lenis'; */
+/* import {getLenisInstance} from '@/utils/lenisInstance'; */
 import Column from './column';
 import {IMAGES} from './data';
 
@@ -26,9 +27,10 @@ const Gallery = () => {
   const yTransform = [y0, y1, y2, y3];
 
   useEffect(() => {
-    /* const lenis = new Lenis();
+    /* const lenis = new Lenis(); */
+    /* const lenis = getLenisInstance(); */
 
-    const raf = (time) => {
+    /* const raf = (time) => {
       lenis.raf(time);
       requestAnimationFrame(raf);
     }; */
@@ -38,7 +40,7 @@ const Gallery = () => {
     };
 
     window.addEventListener('resize', resize);
-    // requestAnimationFrame(raf);
+    requestAnimationFrame(raf);
     resize();
 
     return () => {

@@ -10,16 +10,17 @@ import CursorSticky from '@/components/cursor-sticky';
 import SideMenu from '@/components/side-menu';
 import SectionMethod from '@/components/section-method';
 import FooterCustom from '@/components/footer-custom';
+import AsideFooterMethod from '@/components/aside-footer-method';
 
 export default function Method() {
   const stickyElement = useRef(null);
 
-  const {isOpen} = useSideMenu();
+  const {isSideMenuOpen} = useSideMenu();
 
   return (
     <>
       <AnimatePresence mode="wait">
-        {isOpen && <SideMenu isOpen={isOpen} />}
+        {isSideMenuOpen && <SideMenu isOpen={isSideMenuOpen} />}
       </AnimatePresence>
       <Header ref={stickyElement}></Header>
       <main className={styles.main}>
@@ -27,7 +28,9 @@ export default function Method() {
         <CursorSticky stickyElement={stickyElement} />
       </main>
       {/* <FooterSticky /> */}
-      <FooterCustom />
+      <FooterCustom defaultAside={false} variants={['zIndex_9']} bgBlack>
+        <AsideFooterMethod />
+      </FooterCustom>
     </>
   );
 }

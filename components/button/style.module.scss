@@ -12,20 +12,6 @@
     cursor: pointer;
     overflow: hidden;
 
-    &:hover {
-        .button_round {
-            transform: scale(50);
-        }
-
-        .button_title {
-            transform: translateX(-25px);
-        }
-
-        .button_arrow {
-            transform: translateX(-50px);
-        }
-    }
-
     &_round {
         width: 8px;
         height: 8px;
@@ -54,16 +40,6 @@
 .button_yellow {
     background-color: var(--yellow);
 
-    &:hover {
-        .button_round {
-            background-color: var(--black);
-        }
-
-        .button_title {
-            color: var(--yellow);
-        }
-    }
-
     .button_round {
         background-color: var(--black);
     }
@@ -78,16 +54,6 @@
     background-color: var(--black);
     border: 1px solid var(--yellow);
 
-    &:hover {
-        .button_round {
-            background-color: var(--yellow);
-        }
-
-        .button_title {
-            color: var(--black);
-        }
-    }
-
     .button_round {
         background-color: var(--yellow);
     }
@@ -101,5 +67,50 @@
     .button {
         width: auto;
         max-width: revert;
+    }
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .button {
+    
+        &:hover {
+            .button_round {
+                transform: scale(50);
+            }
+    
+            .button_title {
+                transform: translateX(-25px);
+            }
+    
+            .button_arrow {
+                transform: translateX(-50px);
+            }
+        }
+    }
+
+    .button_yellow {
+    
+        &:hover {
+            .button_round {
+                background-color: var(--black);
+            }
+    
+            .button_title {
+                color: var(--yellow);
+            }
+        }
+    }
+
+    .button_outline_yellow {
+
+        &:hover {
+            .button_round {
+                background-color: var(--yellow);
+            }
+
+            .button_title {
+                color: var(--black);
+            }
+        }
     }
 }

@@ -1,15 +1,20 @@
 .header {
     width: 100%;
-    position: fixed;
+    max-width: 1920px;
     display: flex;
     justify-content: space-between;
-    padding: 1rem 0;
+    align-items: center;
+    position: fixed;
+    left: 50%;
+    transform: translateX(-50%);
+    // margin: 0 auto;
+    padding: 1rem calc(clamp(1rem, 5vw, 3rem) - 30px) 1rem clamp(1rem, 5vw, 3rem);
     box-sizing: border-box;
     mix-blend-mode: difference;
     // cursor: pointer;
     z-index: 10;
 
-    .burger{
+    .burger {
         display: flex;
         flex-direction: column;
         gap: 8px;

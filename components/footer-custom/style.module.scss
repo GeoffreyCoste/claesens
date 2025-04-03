@@ -3,6 +3,7 @@
     height: 100vh;
     position: relative;
     background-color: transparent;
+    overflow-x: hidden;
 
     &_bg_gray {
         background-color: var(--bg-gray);
@@ -24,7 +25,11 @@
         height: auto !important;
     }
 
-    &_aside {
+    &.zIndex_9 {
+        z-index: 9;
+    }
+
+    &_default_aside {
         width: 100%;
         height: auto;
         display: flex;
@@ -34,6 +39,27 @@
         padding: 6rem 1rem;
         background-color: var(--white);
         z-index: 4;
+
+        .aside_content {
+            width: fit-content;
+
+            h2 {
+                font-size: 2.5rem !important;
+                line-height: 2.5rem !important;
+            }
+
+            .drag_container {
+                width: 100%;
+                max-width: 380px;
+                position: absolute;
+                top: 4rem;
+                left: 50%;
+                transform: translateX(-50%);
+                height: calc(2rem + 6 * 2.5rem + 2rem); // 2rem (aside padding-top : 6rem - top position : 4rem) + 6 (h2 number of lines + 1) * 2.5rem (h2 line-height) + 2rem (h2.stacked margin-bottom : 4rem - 2rem)
+                // padding: 2rem 0;
+            }
+        }
+
 
         &_overlay {
             width: 100%;
@@ -69,6 +95,17 @@
         position: fixed;
         bottom: 0;
         z-index: 3;
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+        transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out, transform 0.5s ease-in-out;
+        will-change: opacity, transform;
+
+        &.hidden {
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(20px);
+        }
     }
 
     &_item {
@@ -100,13 +137,30 @@
         height: 110vh;
         background-color: transparent;
 
-        &_aside {
+        &_default_aside {
             height: 100vh;
+            justify-content: center;
             position: fixed;
             bottom: 0;
             left: 0;
             padding: 0;
             background-color: var(--bg-gray);
+
+            .aside_content {
+                position: relative;
+    
+                h2 {
+                    font-size: 3rem !important;
+                    line-height: 3rem !important;
+                }
+    
+                .drag_container {
+                    width: 50vw;
+                    height: 21rem;
+                    max-width: 400px;
+                    top: -2rem;
+                }
+            }
 
             &_overlay {
                 width: 100%;

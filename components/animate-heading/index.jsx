@@ -8,7 +8,13 @@ import {motion} from 'framer-motion';
 import HeadingContainer from './heading-container';
 import {tags, charVariants, dotVariants} from './data';
 
-const AnimateHeading = ({type, text, isWhite = false}) => {
+const AnimateHeading = ({
+  type,
+  text,
+  isDotLastChar = true,
+  isWhite = false,
+  isStacked = false
+}) => {
   const lastSpanRef = useRef(null);
 
   // Get tag name from tags object key 'type'
@@ -34,7 +40,12 @@ const AnimateHeading = ({type, text, isWhite = false}) => {
 
   return (
     <>
-      <Tag className={bricolage_grotesque.className} aria-label={text}>
+      <Tag
+        className={clsx(bricolage_grotesque.className, {
+          [styles.stacked]: isStacked
+        })}
+        aria-label={text}
+      >
         {words.map((word, wordIndex) => {
           return (
             <HeadingContainer key={wordIndex}>
@@ -49,15 +60,28 @@ const AnimateHeading = ({type, text, isWhite = false}) => {
                   >
                     <motion.span
                       ref={isLastSpan ? lastSpanRef : null}
-                      className={clsx(
+                      className={clsx({
+                        [styles.heading_character_white]: isWhite,
+                        [styles.heading_dot]: isLastSpan && isDotLastChar,
+                        [dm_sans.className]: isLastSpan && isDotLastChar,
+                        [bricolage_grotesque.className]: !isLastSpan,
+                        [styles.add_question_mark]: isLastSpan && !isDotLastChar
+                      })}
+                      /*  className={clsx(
                         isWhite && styles.heading_character_white,
-                        isLastSpan && styles.heading_dot,
+                        isLastSpan  && styles.heading_dot,
                         isLastSpan
                           ? dm_sans.className
                           : bricolage_grotesque.className
-                      )}
+                      )} */
                       style={{display: 'inline-block'}}
-                      variants={!isLastSpan ? charVariants : dotVariants}
+                      variants={
+                        !isLastSpan
+                          ? charVariants
+                          : isDotLastChar
+                            ? dotVariants
+                            : charVariants
+                      }
                     >
                       {character}
                     </motion.span>

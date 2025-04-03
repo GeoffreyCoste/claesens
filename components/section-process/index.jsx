@@ -24,7 +24,7 @@ const SectionProcess = () => {
         <div className={styles.section_process_item}>
           <StepsList />
         </div>
-        <Button pathname={'/'} title={'en savoir plus'} />
+        <Button pathname={'methode'} title={'en savoir plus'} />
       </div>
     </section>
   );

@@ -1,0 +1,60 @@
+.swipe_indicator {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+
+    .indication {
+        color: var(--bg-gray);
+        font-size: 1rem;
+        font-weight: 900;
+    }
+
+    .swipe {
+        width: 24px;
+        height: 24px;
+        position: absolute;
+        left: 0;
+        transform: translateX(-50%);
+        transform-origin: center;
+        border-radius: 50px;
+        background-color: var(--black);
+        opacity: 0;
+        z-index: -1;
+        animation: swipe 2s ease-in-out 4s infinite;
+    }
+
+    @keyframes swipe {
+        0% {
+            opacity: 0;
+            left: 0;
+            width: 24px;
+        }
+        10% {
+            opacity: 0.5;
+            left: 0;
+            width: 24px;
+        }
+        45% {
+            opacity: 1;
+            left: 50%;
+            width: 90px;
+        }
+        55% {
+            opacity: 1;
+            left: 50%;
+            width: 90px;
+        }
+        90% {
+            opacity: 0.5;
+            left: 100%;
+            width: 24px;
+        }
+        100% {
+            opacity: 0;
+            left: 100%;
+            width: 24px;
+        }
+    }
+}

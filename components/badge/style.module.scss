@@ -1,11 +1,12 @@
 .badge {
     display: inline-flex;
     flex-flow: row nowrap;
-    color: var(--gray);
+    color: var(--gray-light);
     font-size: 0.75rem;
     font-weight: 700;
-    padding: 0.125em 0.65em 0.25em;
-    border: 1px solid var(--gray);
+    // padding: 0.125em 0.65em 0.25em;
+    padding: 0.125rem 0.65rem;
+    border: 1px solid var(--gray-light);
     // border-radius: calc(var(--border-radius) / 2);
     border-radius: 50px;
     white-space: nowrap; /* Prevent text from splitting into several lines */

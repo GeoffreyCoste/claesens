@@ -32,25 +32,9 @@ export default function SectionHero() {
               )}
               aria-label="Belgian & creative"
             >
-              Be
-              <span
-                className={clsx(
-                  bricolage_grotesque.className,
-                  styles.text_outline
-                )}
-              >
-                lgian
-              </span>
+              <strong>Be</strong>lgian
               <br />
-              <span
-                className={clsx(
-                  bricolage_grotesque.className,
-                  styles.text_outline
-                )}
-              >
-                &&nbsp;
-              </span>
-              creative
+              <strong>creative</strong>
             </h1>
           </div>
           <div className={styles.section_hero_item}>
@@ -71,14 +55,14 @@ export default function SectionHero() {
           </div>
           <div className={styles.section_hero_secondary_container}>
             <div className={styles.section_hero_item_text}>
-              <p
+              <span
                 className={clsx(
                   bricolage_grotesque.className,
                   styles.section_hero_item_location
                 )}
               >
-                Paris, France
-              </p>
+                <strong>Paris,</strong> France
+              </span>
             </div>
             <div className={styles.section_hero_item_list}>
               <SocialsList />

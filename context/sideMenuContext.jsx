@@ -3,28 +3,35 @@
 import {useState, createContext} from 'react';
 
 export const SideMenuContext = createContext({
-  isOpen: false,
-  open: () => undefined,
-  close: () => undefined
+  isSideMenuOpen: false,
+  openSideMenu: () => undefined,
+  closeSideMenu: () => undefined
 });
 
 export const SideMenuProvider = ({children}) => {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isSideMenuOpen, setIsSideMenuOpen] = useState(false);
 
-  const open = () => {
-    setIsOpen(true);
+  const openSideMenu = () => {
+    setIsSideMenuOpen(true);
   };
 
-  const close = () => {
-    setIsOpen(false);
+  const closeSideMenu = () => {
+    setIsSideMenuOpen(false);
   };
 
-  const toggleIsOpen = () => {
-    setIsOpen(!isOpen);
+  const toggleIsSideMenuOpen = () => {
+    setIsSideMenuOpen(!isSideMenuOpen);
   };
 
   return (
-    <SideMenuContext.Provider value={{isOpen, toggleIsOpen, open, close}}>
+    <SideMenuContext.Provider
+      value={{
+        isSideMenuOpen,
+        toggleIsSideMenuOpen,
+        openSideMenu,
+        closeSideMenu
+      }}
+    >
       {children}
     </SideMenuContext.Provider>
   );

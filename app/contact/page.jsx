@@ -14,12 +14,12 @@ import SectionContact from '@/components/section-contact';
 export default function Contact() {
   const stickyElement = useRef(null);
 
-  const {isOpen} = useSideMenu();
+  const {isSideMenuOpen} = useSideMenu();
 
   return (
     <>
       <AnimatePresence mode="wait">
-        {isOpen && <SideMenu isOpen={isOpen} />}
+        {isSideMenuOpen && <SideMenu isOpen={isSideMenuOpen} />}
       </AnimatePresence>
       <Header ref={stickyElement}></Header>
       <main className={styles.main}>

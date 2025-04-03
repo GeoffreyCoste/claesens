@@ -1,10 +1,9 @@
 'use client';
 
-/* import styles from './page.module.scss'; */
+import styles from './page.module.scss';
 import {useState, useEffect, useRef} from 'react';
 import {AnimatePresence} from 'framer-motion';
 import {useSideMenu} from '@/hooks/useSideMenu';
-import useMediaQueries from '@/hooks/useMediaQueries';
 import Header from '@/components/header';
 import Preloader from '@/components/preloader';
 import SectionHero from '@/components/section-hero';
@@ -14,23 +13,19 @@ import SectionProcess from '@/components/section-process';
 import InfiniteText from '@/components/infinite-text';
 import SectionRelease from '@/components/section-release';
 import CursorSticky from '@/components/cursor-sticky';
-/* import FooterSticky from '@/components/footer-sticky'; */
 import Gallery from '@/components/gallery';
 import ImageParallax from '@/components/image-parallax';
-import DynamicCircle from '@/components/dynamic-circle';
 import SideMenu from '@/components/side-menu';
-/* import FooterNew from '@/components/footer-new'; */
 import FooterCustom from '@/components/footer-custom';
+import ParallaxGrid from '@/components/parallax-grid';
+import GridParallax from '@/components/grid-parallax';
 
 export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
 
   const stickyElement = useRef(null);
-  const releaseSectionRef = useRef(null);
 
-  const {desktop} = useMediaQueries();
-
-  const {isOpen} = useSideMenu();
+  const {isSideMenuOpen} = useSideMenu();
 
   useEffect(() => {
     (async () => {
@@ -50,22 +45,23 @@ export default function Home() {
       <AnimatePresence mode="wait">
         {isLoading && <Preloader />}
       </AnimatePresence>
-      <AnimatePresence mode="wait">{isOpen && <SideMenu />}</AnimatePresence>
+      <AnimatePresence mode="wait">
+        {isSideMenuOpen && <SideMenu />}
+      </AnimatePresence>
       <Header ref={stickyElement}></Header>
-      <main>
+      <main className={styles.main}>
         <SectionHero />
         <SectionWho />
         <InfiniteText />
-        <Gallery />
+        <GridParallax />
+        {/* <ParallaxGrid /> */}
+        {/* <Gallery /> */}
         <SectionSkills />
         <ImageParallax />
         <SectionProcess />
-        <SectionRelease ref={releaseSectionRef} />
-        {!desktop && <DynamicCircle sectionRef={releaseSectionRef} />}
+        <SectionRelease />
         <CursorSticky stickyElement={stickyElement} />
       </main>
-      {/* <FooterNew /> */}
-      {/* <FooterSticky /> */}
       <FooterCustom />
     </>
   );

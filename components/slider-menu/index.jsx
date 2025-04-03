@@ -3,258 +3,262 @@
 import styles from './style.module.scss';
 import {bricolage_grotesque} from '@/app/fonts';
 import {useState, useRef, useEffect, useCallback} from 'react';
-import {useSliderMenu} from '@/hooks/useSliderMenu';
+import Image from 'next/image';
+import {usePathname, useRouter} from 'next/navigation';
+import useSliderMenu from '@/hooks/useSliderMenu';
 import useMediaQueries from '@/hooks/useMediaQueries';
+import useSliderData from '@/hooks/useSliderData';
+import useSliderNavigation from '@/hooks/useSliderNavigation';
+import useSliderActiveSlideAnimation from '@/hooks/useSliderActiveSlideAnimation';
+import useSliderPositionAnimation from '@/hooks/useSliderPositionAnimation';
+import useTransitionRoutes from '@/hooks/useTransitionRoutes';
 import clsx from 'clsx';
-import gsap from 'gsap';
 import ButtonToggle from '../button-toggle';
-import {slides as defaultSlides} from './data';
+import {slides as defaultSlides, clipPathValues} from './data';
+import SwipeIndicator from '../swipe-indicator';
+import SpinningBadge from '../spinning-badge';
 
 const SliderMenu = ({datas = defaultSlides}) => {
   /*** States and Refs ***/
-  const {desktop} = useMediaQueries();
-  const {isOpen, toggleIsOpen} = useSliderMenu();
-  const [slidesData, setSlidesData] = useState([]);
+  const {mobile, tablet, desktop, xl, xxl, xxxl, ultra} = useMediaQueries();
+  const {
+    isSliderMenuOpen,
+    toggleIsSliderMenuOpen,
+    openSliderMenu,
+    closeSliderMenu
+  } = useSliderMenu();
+  const router = useRouter();
+  const pathname = usePathname();
+  const [slideWidth, setSlideWidth] = useState(
+    ultra || xxxl || xxl ? window.innerWidth / 4.25 : 320
+  );
   const [minSlides, setMinSlides] = useState(5);
-  const [currentIndex, setCurrentIndex] = useState(0);
   const [activeIndex, setActiveIndex] = useState(0);
+  const [activeSnapIndex, setActiveSnapIndex] = useState(null);
+  const [isSnapItemClicked, setIsSnapItemClicked] = useState(false);
   const [isIntroNeeded, setIsIntroNeeded] = useState(true);
   const [isAnimating, setIsAnimating] = useState(false);
 
   const slidesRef = useRef([]); // Reference for slide elements
+  const snapItemsRef = useRef([]); // Reference for snap items
   const headingRef = useRef(null); // Reference for the page title
   const togglerRef = useRef(null); // Reference for toggler button
   const activeLabelRef = useRef(null); // Reference for active slide label
-  const isThrottled = useRef(false); // Prevent rapid event triggers
-  const touchStartX = useRef(null); // Store X position of touch start
-  const touchEndX = useRef(null); // Store X position of touch end
 
-  /*** Constants and Helpers ***/
-  const width = 320;
+  const slug = pathname.startsWith('/realisations/')
+    ? pathname.replace('/realisations/', '')
+    : null;
 
-  // Rotate datas array by n positions
-  const arrayRotate = (arr, n) => {
-    const len = arr.length;
-    const normalized = ((n % len) + len) % len; // Gère les rotations négatives ou trop grandes
+  const clipPath = ultra
+    ? clipPathValues.ultra
+    : xxxl
+      ? clipPathValues.xxxl
+      : xxl
+        ? clipPathValues.xxl
+        : xl
+          ? clipPathValues.xl
+          : tablet
+            ? clipPathValues.tablet
+            : clipPathValues.mobile;
 
-    return [...arr.slice(normalized), ...arr.slice(0, normalized)];
-  };
+  const {
+    currentIndex,
+    setCurrentIndex,
+    handleScroll,
+    handleTouchStart,
+    handleTouchMove,
+    handleTouchEnd,
+    handleKeyDown,
+    hasSwiped,
+    hasScrolled
+  } = useSliderNavigation({
+    isSliderMenuOpen,
+    isIntroNeeded,
+    initialIndex: 0
+  });
 
-  /*** Event Handlers ***/
-  const handleTouchStart = (event) => {
-    touchStartX.current = event.touches[0].clientX; // Capture la position X du toucher initial
-  };
+  const {slidesData, triplets} = useSliderData({
+    datas,
+    minSlides,
+    currentIndex,
+    slug
+  });
 
-  const handleTouchMove = (event) => {
-    touchEndX.current = event.touches[0].clientX; // Capture la position X pendant le mouvement
-  };
+  const {showSlider, showPreview} = useSliderActiveSlideAnimation({
+    slidesRef,
+    activeIndex,
+    clipPath,
+    isAnimating,
+    setIsAnimating,
+    styles
+  });
 
-  const handleTouchEnd = () => {
-    if (touchStartX.current === null || touchEndX.current === null) return;
+  useSliderPositionAnimation({
+    slidesRef,
+    slidesData,
+    slideWidth,
+    isIntroNeeded,
+    mobile,
+    desktop,
+    activeIndex,
+    styles,
+    setIsIntroNeeded, // Si vous gérez l'état d'intro via un setter
+    togglerRef,
+    activeLabelRef,
+    headingRef
+  });
 
-    const deltaX = touchEndX.current - touchStartX.current;
+  const handleSnapItemClick = useCallback(
+    (index) => {
+      if (!slidesData.length) return; // S'assurer que slidesData existe
+      // Récupère l'indice du triplet actif depuis le slide actif
+      const activeTripletIndex = slidesData[activeIndex].tripletIndex;
 
-    if (Math.abs(deltaX) > 50) {
-      // Seuil pour détecter un swipe
-      if (deltaX > 0) {
-        // Swipe vers la droite
-        setCurrentIndex((prev) => prev - 1);
-      } else {
-        // Swipe vers la gauche
-        setCurrentIndex((prev) => prev + 1);
+      // Trouve le triplet correspondant à l'index cliqué en utilisant les triplets fournis par le hook
+      const selectedTriplet = triplets.find((triplet) =>
+        triplet.includes(index)
+      );
+
+      if (!isSliderMenuOpen || isIntroNeeded || !selectedTriplet) return;
+
+      // Calcule la distance entre l'indice actif et chacun des indices du triplet
+      const distances = selectedTriplet.map((tripletIndex) =>
+        Math.abs(tripletIndex - activeTripletIndex)
+      );
+
+      // Sélectionne l'indice le plus proche
+      const closestIndex =
+        selectedTriplet[distances.indexOf(Math.min(...distances))];
+
+      // Trouve l'index dans slidesData qui correspond au closestIndex
+      const newIndex = slidesData.findIndex(
+        (slide) => slide.tripletIndex === closestIndex
+      );
+
+      if (newIndex !== -1) {
+        // Met à jour currentIndex en fonction de la distance entre closestIndex et l'indice actif
+        setCurrentIndex((prev) => prev + (closestIndex - activeTripletIndex));
+        setActiveSnapIndex(index); // Met à jour l'index du snap actif
       }
+
+      if (!isSnapItemClicked) {
+        setIsSnapItemClicked(true);
+      }
+    },
+    [
+      slidesData,
+      setCurrentIndex,
+      activeIndex,
+      isSliderMenuOpen,
+      isIntroNeeded,
+      isSnapItemClicked,
+      triplets
+    ]
+  );
+
+  const handleToggleClick = () => {
+    if (!slidesData[activeIndex]) return;
+
+    const newPath = `/realisations/${slidesData[activeIndex].path}`;
+
+    // console.log("Current path:", pathname);
+    // console.log("New path:", newPath);
+
+    if (pathname === newPath) {
+      // console.log("Navigating to /realisations");
+      router.push('/realisations');
+    } else {
+      // console.log("Navigating to", newPath);
+      router.push(newPath);
     }
-
-    // Réinitialisez les références
-    touchStartX.current = null;
-    touchEndX.current = null;
   };
 
-  // Throttling function to manage scroll events
-  const handleScroll = useCallback(
-    (event) => {
-      if (!isOpen || isIntroNeeded || isThrottled.current) return; // Ignore calls during throttling
-
-      isThrottled.current = true;
-      setTimeout(() => {
-        isThrottled.current = false; // Release after delay
-      }, 300); // Throttle delay: 300ms
-
-      if (event.deltaY > 0) {
-        // Scroll down
-        setCurrentIndex((prev) => prev + 1);
-      } else if (event.deltaY < 0) {
-        // Scroll up
-        setCurrentIndex((prev) => prev - 1);
-      }
+  const slideToIndex = useCallback(
+    (index) => {
+      if (!index) return;
+      setCurrentIndex((prev) => prev + (index - activeIndex));
     },
-    [isOpen, isIntroNeeded]
+    [setCurrentIndex, activeIndex]
   );
 
-  const handleKeyDown = useCallback(
-    (event) => {
-      if (!isOpen || isIntroNeeded) return;
-
-      if (event.key === 'ArrowRight') {
-        // Right arrow: go to next slide
-        setCurrentIndex((prev) => prev + 1);
-      } else if (event.key === 'ArrowLeft') {
-        // Left arrow: aller à la carte précédente
-        setCurrentIndex((prev) => prev - 1);
+  const handleTransition = useCallback(
+    (type, index = null, path) => {
+      /* console.log('Type: ', type); */
+      switch (type) {
+        case 'first_visit_realizations':
+          openSliderMenu();
+          break;
+        case 'back_to_realizations':
+          openSliderMenu();
+          break;
+        case 'enter_realization':
+          closeSliderMenu();
+          break;
+        case 'directly_to_realization':
+          closeSliderMenu();
+          break;
+        case 'switch_realization':
+          slideToIndex(index);
+          closeSliderMenu();
+          break;
+        case 'invalid_path_redirect':
+          router.replace('/realisations');
+          break;
+        case 'navigating_to_realization':
+          // open();
+          // slideToIndex(5);
+          // close();
+          if (path) {
+            router.push(`/realisations/${path}`);
+            closeSliderMenu();
+          }
+          break;
+        default:
+          break;
       }
     },
-    [isOpen, isIntroNeeded]
+    [openSliderMenu, closeSliderMenu, router, slideToIndex]
   );
 
-  const toggleSlider = () => {
-    if (!slidesRef.current[activeIndex] || isIntroNeeded || isAnimating) return;
-
-    isOpen ? showPreview() : showSlider();
-    toggleIsOpen();
-  };
-
-  const showSlider = () => {
-    setIsAnimating(true);
-
-    gsap
-      .timeline({
-        defaults: {
-          duration: 1.2,
-          ease: 'power4.inOut'
-        },
-        onComplete: () => setIsAnimating(false)
-      })
-      .addLabel('start', 0)
-
-      // Current slide
-      .to(
-        slidesRef.current[activeIndex],
-        {
-          clipPath: 'inset(22% 39% round 23vw)'
-        },
-        'start'
-      )
-      .to(
-        slidesRef.current.map((slide) =>
-          slide.querySelector(`.${styles.slide_bg}`)
-        ),
-        {
-          scale: 0.8
-        },
-        'start'
-      )
-
-      // Slide title
-      .to(
-        slidesRef.current.map((slide) =>
-          slide.querySelector(`.${styles.slide_overlay}`)
-        ),
-        {
-          duration: 1,
-          scaleY: 0
-        },
-        'start'
-      );
-  };
-
-  const showPreview = () => {
-    setIsAnimating(true);
-
-    gsap
-      .timeline({
-        defaults: {
-          duration: 1.2,
-          ease: 'expo.inOut'
-        },
-        onComplete: () => setIsAnimating(false)
-      })
-      .addLabel('start', 0)
-
-      // Current slide
-      .fromTo(
-        slidesRef.current[activeIndex],
-        {
-          clipPath: 'inset(22% 39% round 23vw)'
-        },
-        {
-          clipPath: 'inset(0% 0% round 0vw)'
-        } /* , 'clip+=0.1' */
-      )
-      .addLabel('clip', 'start+=0.15')
-
-      // Current slide background
-      .to(
-        slidesRef.current[activeIndex].querySelector(`.${styles.slide_bg}`),
-        {
-          scale: 1
-        },
-        'clip'
-      )
-
-      // filter
-      .fromTo(
-        slidesRef.current[activeIndex].querySelector(`.${styles.slide_bg}`),
-        {
-          filter: 'brightness(100%) saturate(100%)'
-        },
-        {
-          duration: 0.4,
-          ease: 'power1.in',
-          filter: 'brightness(200%) saturate(200%)'
-        },
-        'clip+=0.1'
-      )
-      .to(
-        slidesRef.current[activeIndex].querySelector(`.${styles.slide_bg}`),
-        {
-          duration: 0.8,
-          ease: 'power1',
-          filter: 'brightness(100%) saturate(100%)'
-        },
-        'clip+=0.4'
-      )
-
-      // Current slide title
-      .to(
-        slidesRef.current[activeIndex].querySelector(
-          `.${styles.slide_overlay}`
-        ),
-        {
-          duration: 1,
-          scaleY: 1
-        },
-        'clip'
-      );
-  };
+  useTransitionRoutes({
+    slug,
+    slidesData,
+    activeIndex,
+    onTransition: handleTransition
+  });
 
   useEffect(() => {
-    if (!isOpen || isIntroNeeded) return;
-    // Ajouter un gestionnaire d'événements pour `keydown` lors du montage
-    window.addEventListener('keydown', handleKeyDown);
+    const originalOverflowY = document.body.style.overflowY; // Save initial state
+    document.body.style.overflowY = 'scroll';
 
     return () => {
-      // Nettoyer l'événement lors du démontage
-      window.removeEventListener('keydown', handleKeyDown);
+      document.body.style.overflowY = originalOverflowY; // Restore initial state
     };
-  }, [isOpen, isIntroNeeded, handleKeyDown]);
+  }, []);
+
+  useEffect(() => {
+    const updateWidth = () => {
+      const newWidth = ultra || xxxl || xxl ? window.innerWidth / 4.25 : 320;
+      setSlideWidth(newWidth);
+    };
+
+    updateWidth(); // Appeler initialement pour définir la largeur lors du premier rendu
+    window.addEventListener('resize', updateWidth);
+
+    return () => window.removeEventListener('resize', updateWidth);
+  }, [ultra, xxxl, xxl]);
 
   useEffect(() => {
     setMinSlides(desktop ? 5 : 3);
   }, [desktop]);
 
   useEffect(() => {
-    if (datas && datas.length >= minSlides) {
-      const tripled = [...datas, ...datas, ...datas];
+    isSliderMenuOpen ? showSlider() : showPreview();
+  }, [isSliderMenuOpen, showPreview, showSlider]);
 
-      const isEven = datas.length % 2 === 0;
-      const centerIndex = isEven
-        ? Math.floor(datas.length / 2)
-        : Math.ceil(datas.length / 2) - 1;
-
-      const newSlides = arrayRotate(tripled, currentIndex - centerIndex);
-      setSlidesData(newSlides);
-    }
-  }, [datas, minSlides, currentIndex]);
+  useEffect(() => {
+    console.log('isSliderMenuOpen (inside slider): ', isSliderMenuOpen);
+  }, [isSliderMenuOpen]);
 
   useEffect(() => {
     // Check if slidesRef contains valid references
@@ -276,113 +280,6 @@ const SliderMenu = ({datas = defaultSlides}) => {
     });
   }, [slidesData, activeIndex]);
 
-  useEffect(() => {
-    if (
-      !isIntroNeeded ||
-      !headingRef.current ||
-      !togglerRef.current ||
-      !activeLabelRef.current ||
-      slidesRef.current.length === 0 ||
-      slidesData.length === 0
-    )
-      return;
-
-    const centerIndex = Math.floor(slidesData.length / 2);
-
-    const tl = gsap.timeline({
-      defaults: {duration: 1, ease: 'power2.out'},
-      onComplete: () => setIsIntroNeeded(false)
-    });
-
-    tl.set(slidesRef.current, {
-      opacity: 0,
-      x: 0 // Empilées au centre
-    });
-
-    tl.fromTo(
-      slidesRef.current[centerIndex],
-      {
-        opacity: 0,
-        scale: 0.5
-      },
-      {
-        opacity: 1,
-        scale: 1
-      }
-    );
-
-    tl.fromTo(
-      headingRef.current,
-      {
-        y: -500,
-        scale: 10
-      },
-      {
-        y: 0,
-        scale: 1
-      },
-      '<'
-    );
-
-    tl.to(slidesRef.current, {
-      x: (i) => {
-        const distFromCenter = Math.abs(i - centerIndex);
-        const adjustedOffset =
-          distFromCenter === 1 ? (i < centerIndex ? -30 : 30) : 0;
-        return (i - centerIndex) * width + adjustedOffset;
-      },
-      scale: (i) => 1 - Math.abs(i - centerIndex) * 0.2,
-      opacity: 1
-    });
-
-    tl.fromTo(
-      togglerRef.current,
-      {
-        y: 300
-      },
-      {
-        y: 0
-      }
-    );
-
-    tl.fromTo(
-      activeLabelRef.current,
-      {
-        y: -300,
-        scale: 2
-      },
-      {
-        y: 0,
-        scale: 1
-      },
-      '<'
-    );
-  }, [isIntroNeeded, slidesData]);
-
-  useEffect(() => {
-    if (!isIntroNeeded && slidesRef.current.length && slidesData.length) {
-      const centerIndex = Math.floor(slidesData.length / 2);
-
-      slidesRef.current.forEach((el, index) => {
-        if (!el) return; // Skip if ref is null
-
-        const distFromCenter = Math.abs(index - centerIndex);
-        const adjustedOffset =
-          distFromCenter === 1 ? (index < centerIndex ? -30 : 30) : 0;
-        const offset = (index - centerIndex) * width + adjustedOffset;
-        const scale = 1 - distFromCenter * 0.2;
-
-        // Apply GSAP animation
-        gsap.to(el, {
-          x: offset,
-          scale: scale,
-          duration: 0.5,
-          ease: 'power3.out'
-        });
-      });
-    }
-  }, [isIntroNeeded, slidesData, currentIndex]);
-
   return (
     <div className={`${styles.menu} ${styles.menu_slider}`}>
       <div
@@ -395,21 +292,32 @@ const SliderMenu = ({datas = defaultSlides}) => {
         <div className={styles.slides}>
           {slidesData.map((slide, index) => (
             <div
-              key={`${index + currentIndex}`}
+              // key={`${index + currentIndex}`}
+              key={slide.key}
               ref={(el) => (slidesRef.current[index] = el)}
               className={styles.slide}
             >
               <div
                 className={styles.slide_bg}
-                style={{backgroundImage: `url(${slide.img})`}}
+                style={{
+                  backgroundImage: `url(${mobile ? slide.cover.images[0] : slide.cover.images[1]})`
+                }}
+                /* style={{
+                  backgroundImage: `url(${mobile ? slide.cover.images[0] : slide.cover.images[1]})`
+                }} */
               ></div>
-              <div
-                className={clsx(
-                  bricolage_grotesque.className,
-                  styles.slide_overlay
-                )}
-              >
-                {slide.text}
+              <div className={styles.slide_overlay}>
+                <div
+                  className={clsx(
+                    bricolage_grotesque.className,
+                    styles.slide_title
+                  )}
+                  style={{
+                    textShadow: `5px 5px 10px rgba(${slide.title.rgbShadow}, 0.6)`
+                  }}
+                >
+                  {slide.title.text}
+                </div>
               </div>
             </div>
           ))}
@@ -418,9 +326,9 @@ const SliderMenu = ({datas = defaultSlides}) => {
           ref={activeLabelRef}
           className={clsx(bricolage_grotesque.className, styles.active_label)}
         >
-          {slidesData[activeIndex]?.text}
+          {slidesData[activeIndex]?.title.text}
         </div>
-        <div
+        {/* <div
           onClick={() => {
             setCurrentIndex((prev) => prev - 1);
           }}
@@ -435,11 +343,47 @@ const SliderMenu = ({datas = defaultSlides}) => {
           className={`${styles.button} ${styles.next}`}
         >
           {'⏩'}
-        </div>
+        </div> */}
       </div>
 
+      {isSliderMenuOpen && !hasSwiped && !isSnapItemClicked && !hasScrolled && (
+        <div className={styles.feature_info}>
+          {!desktop && <SwipeIndicator />}
+          {desktop && <SpinningBadge defaultText={false} />}
+        </div>
+      )}
+
+      {mobile && (
+        <div className={clsx(styles.menu_bar, isSliderMenuOpen && styles.show)}>
+          <div className={styles.scroll_snap}>
+            {datas.map((item, index) => (
+              <div
+                key={`snap-item-${index}`}
+                ref={(el) => (snapItemsRef.current[index] = el)}
+                className={clsx(
+                  styles.snap_item,
+                  index === activeSnapIndex && styles.active
+                )}
+                onClick={() => handleSnapItemClick(index)}
+              >
+                <Image
+                  src={item.thumbnail.img}
+                  alt={item.thumbnail.alt}
+                  fill
+                  style={{objectFit: 'cover'}}
+                  loading="lazy"
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
       <div ref={togglerRef} className={styles.toggler}>
-        <ButtonToggle text={'Voir'} toggle={toggleSlider} />
+        <ButtonToggle
+          text={isSliderMenuOpen ? 'Découvrir' : 'Retour'}
+          toggle={handleToggleClick}
+        />
       </div>
 
       <div ref={headingRef} className={styles.heading}>
@@ -452,17 +396,3 @@ const SliderMenu = ({datas = defaultSlides}) => {
 };
 
 export default SliderMenu;
-
-/* const centerIndex = Math.floor(slidesData.length / 2);
-const distFromCenter = Math.abs(index - centerIndex);
-const adjustedOffset =
-  distFromCenter === 1 ? (index < centerIndex ? -30 : 30) : 0;
-const offset = (index - centerIndex) * width + adjustedOffset;
-const scale = 1 - distFromCenter * 0.2;
-const key = index + currentIndex;
-const slideStyle = {
-  transform: `
-        translateX(${offset}px)
-        scale(${scale}, ${scale})
-    `
-}; */

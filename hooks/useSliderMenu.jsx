@@ -3,7 +3,19 @@
 import {useContext} from 'react';
 import {SliderMenuContext} from '@/context/sliderMenuContext';
 
-export const useSliderMenu = () => {
-  const {isOpen, toggleIsOpen, open, close} = useContext(SliderMenuContext);
-  return {isOpen, toggleIsOpen, open, close};
+const useSliderMenu = () => {
+  const {
+    isSliderMenuOpen,
+    toggleIsSliderMenuOpen,
+    openSliderMenu,
+    closeSliderMenu
+  } = useContext(SliderMenuContext);
+  return {
+    isSliderMenuOpen,
+    toggleIsSliderMenuOpen,
+    openSliderMenu,
+    closeSliderMenu
+  };
 };
+
+export default useSliderMenu;

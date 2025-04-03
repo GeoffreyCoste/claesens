@@ -18,12 +18,12 @@ import FooterCustom from '@/components/footer-custom';
 export default function About() {
   const stickyElement = useRef(null);
 
-  const {isOpen} = useSideMenu();
+  const {isSideMenuOpen} = useSideMenu();
 
   return (
     <>
       <AnimatePresence mode="wait">
-        {isOpen && <SideMenu isOpen={isOpen} />}
+        {isSideMenuOpen && <SideMenu isOpen={isSideMenuOpen} />}
       </AnimatePresence>
       <Header ref={stickyElement}></Header>
       <main>

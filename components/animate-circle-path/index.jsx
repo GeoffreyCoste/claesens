@@ -33,7 +33,7 @@ const AnimateCirclePath = ({
     };
   }, []);
 
-  useEffect(() => {
+  /* useEffect(() => {
     if (!desktop) return;
 
     gsap.registerPlugin(ScrollTrigger);
@@ -63,7 +63,39 @@ const AnimateCirclePath = ({
       }
       animation.kill();
     };
-  }, [desktop, dimensions, initialX, initialY, initialR]);
+  }, [desktop, dimensions, initialX, initialY, initialR]); */
+
+  useEffect(() => {
+    gsap.registerPlugin(ScrollTrigger);
+    const mm = gsap.matchMedia();
+
+    const container = containerRef.current;
+    const circle = circleRef.current;
+
+    const {width, height} = dimensions;
+
+    mm.add('(min-width: 1024px)', () => {
+      const animation = gsap.fromTo(
+        circle,
+        {attr: {r: initialR, cx: initialX, cy: initialY}},
+        {
+          attr: {r: Math.max(width, height)},
+          scrollTrigger: {
+            trigger: container,
+            start: '35% bottom',
+            end: 'bottom 80%',
+            scrub: true
+          }
+        }
+      );
+
+      return () => {
+        animation.kill();
+      };
+    });
+
+    return () => mm.revert(); // Nettoyage à la fin du cycle de vie
+  }, [dimensions, initialX, initialY, initialR]);
 
   return (
     <div ref={containerRef} className={styles.animate_container}>

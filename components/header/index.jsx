@@ -8,7 +8,7 @@ import Magnetism from '../magnetism';
 import {getLenisInstance} from '@/utils/lenisInstance';
 
 const Header = forwardRef(function Header(props, ref) {
-  const {isOpen, toggleIsOpen} = useSideMenu();
+  const {isSideMenuOpen, toggleIsSideMenuOpen} = useSideMenu();
 
   useEffect(() => {
     // const lenis = new Lenis();
@@ -19,7 +19,7 @@ const Header = forwardRef(function Header(props, ref) {
       requestAnimationFrame(raf);
     };
 
-    if (isOpen) {
+    if (isSideMenuOpen) {
       lenis.stop();
     } else {
       lenis.start();
@@ -30,15 +30,15 @@ const Header = forwardRef(function Header(props, ref) {
     return () => {
       lenis.destroy();
     };
-  }, [isOpen]);
+  }, [isSideMenuOpen]);
 
   return (
     <header className={styles.header}>
       <Brand />
       <Magnetism>
         <div
-          className={`${styles.burger} ${isOpen ? styles.open : ''}`}
-          onClick={toggleIsOpen}
+          className={`${styles.burger} ${isSideMenuOpen ? styles.open : ''}`}
+          onClick={toggleIsSideMenuOpen}
         >
           <div ref={ref} className={styles.bounds}></div>
         </div>

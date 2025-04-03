@@ -1,0 +1,22 @@
+.draggable_circle {
+
+    .svg_filter {
+        display: none;
+    }
+
+    .circle {
+        width: 120px;
+        height: 120px;
+        display: inline-block;
+        position: absolute;
+        transform-origin: center;
+        margin: 0;
+        padding: 0;
+        background: rgba(21, 21, 21, .05);
+        border: 2px solid var(--black);
+        border-radius: 100px;
+        backdrop-filter: url(#noiseEffect);
+        -webkit-backdrop-filter: url(#noiseEffect);
+        // box-shadow: 10px 10px 30px var(--gray), -10px -10px 30px var(--black);
+    }
+}

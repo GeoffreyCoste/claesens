@@ -1,3 +1,10 @@
+.stacked {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 4rem;
+}
+
 .heading_container {
     white-space: nowrap;
 
@@ -10,5 +17,11 @@
         font-size: 3.5rem;
         line-height: 0;
         margin-left: 2px;
+    }
+
+    .add_question_mark::after {
+        content: " ?";
+        color: var(--yellow);
+        font-size: inherit;
     }
 }

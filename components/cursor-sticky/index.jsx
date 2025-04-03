@@ -8,7 +8,7 @@ const CursorSticky = ({stickyElement}) => {
   const cursorRef = useRef(null);
   const cursorSize = isHovered ? 60 : 15;
 
-  const {isOpen} = useSideMenu();
+  const {isSideMenuOpen} = useSideMenu();
 
   const mouse = {
     x: useMotionValue(0),
@@ -93,7 +93,7 @@ const CursorSticky = ({stickyElement}) => {
   return (
     <motion.div
       ref={cursorRef}
-      className={`${styles.cursor} ${isOpen ? styles.cursor_white : styles.cursor_black}`}
+      className={`${styles.cursor} ${isSideMenuOpen ? styles.cursor_white : styles.cursor_black}`}
       style={{
         translateX: mouse.x,
         translateY: mouse.y,

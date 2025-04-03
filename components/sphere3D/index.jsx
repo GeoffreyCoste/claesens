@@ -3,7 +3,7 @@ import {Suspense} from 'react';
 import {Canvas} from '@react-three/fiber';
 import {OrbitControls, Environment} from '@react-three/drei';
 import {Physics} from '@react-three/rapier';
-import {EffectComposer, N8AO} from '@react-three/postprocessing';
+/* import {EffectComposer, N8AO} from '@react-three/postprocessing'; */
 import Sphere from './sphere';
 import Pointer from './pointer';
 
@@ -24,18 +24,18 @@ const Sphere3D = () => {
     >
       <Suspense fallback={null}>
         <ambientLight intensity={1} />
-        <spotLight
+        {/* <spotLight
           position={[20, 20, 25]}
           penumbra={1}
           angle={0.2}
           color="white"
           castShadow
           shadow-mapSize={[512, 512]}
-        />
-        <directionalLight position={[0, 5, -4]} intensity={4} />
+        /> */}
+        {/* <directionalLight position={[0, 5, -4]} intensity={4} /> */}
         <directionalLight
           position={[0, -15, -0]}
-          intensity={4}
+          intensity={2}
           color="#fce300"
         />
 
@@ -45,10 +45,10 @@ const Sphere3D = () => {
             <Sphere key={i} {...props} />
           ))}
         </Physics>
-        <Environment preset="studio" />
-        <EffectComposer disableNormalPass>
+        <Environment preset="lobby" />
+        {/* <EffectComposer disableNormalPass>
           <N8AO color="red" aoRadius={2} intensity={1} />
-        </EffectComposer>
+        </EffectComposer> */}
       </Suspense>
     </Canvas>
   );

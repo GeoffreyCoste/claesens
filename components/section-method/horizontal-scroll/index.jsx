@@ -58,9 +58,9 @@ const HorizontalScroll = () => {
             setCurrentIndex(newIndex); // Update current index state
 
             // Check if we are at the end or beginning of the scroll
-            if (progress === 0 || progress === 1) {
+            /* if (progress === 0 || progress === 1) {
               self.scroll(self.start + (progress === 1 ? self.end : 0)); // Ensure the scroll matches the end state
-            }
+            } */
           }
         }
       });

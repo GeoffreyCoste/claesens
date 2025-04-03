@@ -7,6 +7,14 @@ export const metadata = {
   description: 'Emilie Claesens, Designer basée à Paris.'
 };
 
+/* export const viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  // maximumScale: 1,
+  // userScalable: false,
+  interactiveWidget: 'overlays-content'
+}; */
+
 const dm_sans = DM_Sans({
   variable: '--font-dm-sans',
   subsets: ['latin'],
@@ -20,6 +28,7 @@ const bricolage_grotesque = Bricolage_Grotesque({
 });
 
 export default function RootLayout({children}) {
+
   return (
     <html
       lang="en"

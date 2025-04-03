@@ -3,28 +3,36 @@
 import {useState, createContext} from 'react';
 
 export const SliderMenuContext = createContext({
-  isOpen: true,
-  open: () => undefined,
-  close: () => undefined
+  isSliderMenuOpen: true,
+  openSliderMenu: () => undefined,
+  closeSliderMenu: () => undefined,
+  toggleIsSliderMenuOpen: () => undefined
 });
 
 export const SliderMenuProvider = ({children}) => {
-  const [isOpen, setIsOpen] = useState(true);
+  const [isSliderMenuOpen, setIsSliderMenuOpen] = useState(true);
 
-  const open = () => {
-    setIsOpen(true);
+  const openSliderMenu = () => {
+    setIsSliderMenuOpen(true);
   };
 
-  const close = () => {
-    setIsOpen(false);
+  const closeSliderMenu = () => {
+    setIsSliderMenuOpen(false);
   };
 
-  const toggleIsOpen = () => {
-    setIsOpen(!isOpen);
+  const toggleIsSliderMenuOpen = () => {
+    setIsSliderMenuOpen((prev) => !prev);
   };
 
   return (
-    <SliderMenuContext.Provider value={{isOpen, toggleIsOpen, open, close}}>
+    <SliderMenuContext.Provider
+      value={{
+        isSliderMenuOpen,
+        toggleIsSliderMenuOpen,
+        openSliderMenu,
+        closeSliderMenu
+      }}
+    >
       {children}
     </SliderMenuContext.Provider>
   );

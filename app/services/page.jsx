@@ -15,16 +15,17 @@ import Scene from '@/components/3d/scene';
 import ScrollOverlap from '@/components/scroll-overlap'; */
 import SectionServicesDetails from '@/components/section-services-details';
 import FooterCustom from '@/components/footer-custom';
+import AsideFooterServices from '@/components/aside-footer-services';
 
 export default function Services() {
   const stickyElement = useRef(null);
 
-  const {isOpen} = useSideMenu();
+  const {isSideMenuOpen} = useSideMenu();
 
   return (
     <>
       <AnimatePresence mode="wait">
-        {isOpen && <SideMenu isOpen={isOpen} />}
+        {isSideMenuOpen && <SideMenu isOpen={isSideMenuOpen} />}
       </AnimatePresence>
       <Header ref={stickyElement}></Header>
       <main>
@@ -35,7 +36,9 @@ export default function Services() {
       </main>
       {/* <FooterNew /> */}
       {/* <FooterSticky /> */}
-      <FooterCustom />
+      <FooterCustom defaultAside={false} variants={['zIndex_9']} bgBlack>
+        <AsideFooterServices />
+      </FooterCustom>
     </>
   );
 }

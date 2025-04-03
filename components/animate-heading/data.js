@@ -16,12 +16,12 @@ export const h2SectionProcess = [{
 
 export const h2SectionRelease = [{
     type: "heading2",
-    text: "Un échantillon."
+    text: "Zoom."
 }];
 
-export const h2FooterAside = [{
+export const h2FooterAsideHome = [{
     type: "heading2",
-    text: "Prêt.e.s à redessiner vos contours ?"
+    text: "Prêt.e.s à redessiner vos contours"
 }];
 
 /* About page */
@@ -50,10 +50,20 @@ export const h1SectionServices = [{
     text: "Un écosystème dédié à votre image."
 }];
 
+export const h2FooterAsideServices = [{
+    type: "heading2",
+    text: "Donnez une nouvelle dimension à votre image."
+}];
+
 /* Method page */
 export const h1SectionMethod = [{
     type: "heading1",
     text: "Un cercle vertueux."
+}];
+
+export const h2FooterAsideMethod = [{
+    type: "heading2",
+    text: "Tout (re)commence ici."
 }];
 
 export const tags = {

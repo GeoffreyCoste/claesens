@@ -23,17 +23,17 @@ const FlipCard = ({index, name, badges, images, alt}) => {
           />
           <div className={styles.card_content}>
             <div className={styles.card_header}>
-              <div className={styles.card_header_item}>
-                <p>{`projet #${index + 1}`}</p>
-              </div>
-              <div
+              <span className={styles.card_header_item}>
+                {`# ${index + 1}.`}
+              </span>
+              <h3
                 className={clsx(
                   bricolage_grotesque.className,
                   styles.card_header_title
                 )}
               >
                 {name}
-              </div>
+              </h3>
             </div>
             <div className={styles.card_menu}>
               <ul className={styles.card_menu_list}>
@@ -52,17 +52,17 @@ const FlipCard = ({index, name, badges, images, alt}) => {
         <div className={styles.card_back}>
           <div className={styles.card_content}>
             <div className={styles.card_header}>
-              <div className={styles.card_header_item}>
-                <p>{`projet #${index + 1}`}</p>
-              </div>
-              <div
+              <span className={styles.card_header_item}>
+                {`# ${index + 1}.`}
+              </span>
+              <h3
                 className={clsx(
                   bricolage_grotesque.className,
                   styles.card_header_title
                 )}
               >
                 {name}
-              </div>
+              </h3>
             </div>
             <div className={styles.card_menu}>
               <ul className={styles.card_menu_list}>
