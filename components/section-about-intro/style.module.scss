@@ -54,8 +54,8 @@
                             }
 
                             .item_text {
-                                font-size: 3rem;
-                                line-height: 2.5rem;
+                                /* font-size: 3rem;
+                                line-height: 2.5rem; */
 
                                 .dot {
                                     color: var(--yellow)
@@ -86,7 +86,7 @@
 
             & .body {
                 max-width: 530px;
-                font-size: 1.25rem;
+                // font-size: 1.25rem;
 
                 .text {
                     margin-top: 2rem;
@@ -155,10 +155,10 @@
                                     }
                                 }
 
-                                .item_text {
+                                /* .item_text {
                                     font-size: 4rem;
                                     line-height: 3.5rem;
-                                }
+                                } */
 
                                 .item_img {
                                     max-height: initial;
@@ -176,7 +176,7 @@
 
             &_body {
                 width: 100%;
-                height: 200vh;
+                height: 100vh;
                 display: flex;
                 justify-content: center;
                 align-items: center;
@@ -208,14 +208,22 @@
 
                             .title_item {
 
+                                &:first-of-type {
+                                    align-items: flex-start;
+                                }
+
+                                &:nth-of-type(3) {
+                                    align-items: flex-end;
+                                }
+
                                 &:nth-of-type(2) .item_img {
                                     height: 360px;
                                 }
 
-                                .item_text {
+                                /* .item_text {
                                     font-size: 4.5rem;
                                     line-height: 4rem;
-                                }
+                                } */
                             }
                         }
                     }
@@ -223,9 +231,11 @@
             }
 
             &_body {
+                height: 200vh;
+
                 & .body {
                     max-width: 650px;
-                    font-size: 1.25rem;
+                    // font-size: 1.25rem;
                 }
 
                 .sphere {
@@ -272,10 +282,10 @@
                                     }
                                 }
 
-                                .item_text {
+                                /* .item_text {
                                     font-size: 5rem;
                                     line-height: 4.5rem;
-                                }
+                                } */
 
                                 .item_img {
 

@@ -135,7 +135,7 @@
 
 @media screen and (min-width: 1024px) {
     .section_who {
-        min-height: 100vh;
+        min-height: 125vh;
         // flex-flow: row nowrap;
         
         &_body {
@@ -143,8 +143,8 @@
         }
 
         &_content {
-            flex-basis: 50%;
-            margin: 0;
+            flex-basis: 60%;
+            margin: 0 auto;
             padding-top: 0;
             // flex-basis: 100%;
             // display: flex;
@@ -157,12 +157,16 @@
                 // flex-basis: 70%;
                 flex-basis: 100%;
             }
+
+            &_text {
+                font-size: var(--font-size-sm);
+            }
         }
     
         &_portrait {
-            flex-basis: 50%;
+            flex-basis: 40%;
             padding: 0;
-            justify-content: flex-end;
+            justify-content: center;
         }
     }
 }
@@ -171,7 +175,18 @@
     .section_who {
         
         &_body {
+            max-width: 67rem;
             justify-content: center;
+        }
+
+        &_content {
+            flex-basis: 50%;
+            margin: 0;
+        }
+
+        &_portrait {
+            flex-basis: 50%;
+            justify-content: flex-end;
         }
     }
 }

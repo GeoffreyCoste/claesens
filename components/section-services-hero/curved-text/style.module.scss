@@ -1,0 +1,25 @@
+.svg_curved_text {
+    width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+
+    text {
+        font-size: 3rem;
+        font-weight: 400;
+        text-transform: uppercase;
+        fill: var(--black);
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .svg_curved_text {
+        width: 65%;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .svg_curved_text {
+        width: 50%;
+    }
+}

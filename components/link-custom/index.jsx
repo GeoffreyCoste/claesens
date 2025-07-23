@@ -7,12 +7,12 @@ import useSliderMenu from '@/hooks/useSliderMenu';
 
 const LinkCustom = ({href, text = '', outline = false, prev = false, next = false, mobile = false}) => {
 
-  const {open, close} = useSliderMenu();
+  const {openSliderMenu} = useSliderMenu();
 
   const router = useRouter();
 
   const handleClick = () => {
-    open();
+    openSliderMenu();
     router.push(`${href}`);
   };
 

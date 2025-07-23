@@ -1,0 +1,134 @@
+.widget {
+    width: 160px;
+    height: 180px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    // top: 110px;
+    // left: 30px;
+    background-color: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 10px;
+    z-index: 4;
+
+    .header {
+        width: 100%;
+        display: flex;
+        flex: 0 0 auto;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.5rem;
+
+        .grip {
+            width: 50px;
+            height: 5px;
+            background-color: var(--yellow);
+            border-radius: var(--border-radius);
+            cursor: grab;
+        }
+
+        .title {
+            color: var(--white);
+            font-size: 1rem;
+            font-weight: 200;
+            line-height: 0.5rem;
+            text-align: center;
+            font-variant-caps: all-small-caps;
+        }
+    }
+
+    .body {
+        width: 100%;
+        flex: 1 1 auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+
+        .index {
+            color: var(--white);
+            font-size: 2rem;
+            font-weight: 900;
+            z-index: 1;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+            z-index: 0;
+        }
+        .background {
+            width: 100%;
+            height: 100%;
+            max-height: 100px;
+
+            svg {
+                width: 100%;
+                height: 100%;
+                display: block;
+            }
+        }
+
+        .controls {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+    }
+
+    .footer {
+        width: 100%;
+        flex: 0 0 auto;
+        padding: 0.5rem;
+
+        .dots {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 6px;
+            padding: 0.35rem;
+            background-color: var(--black);
+            border-radius: 50px;
+
+            .dot {
+                width: 10px;
+                height: 10px;
+                border-radius: 50px;
+                background-color: var(--gray-light);
+                cursor: pointer;
+                transition: all 0.3s ease-in-out;
+                flex-grow: 0;
+
+                &.active {
+                    width: auto;
+                    flex-grow: 1;
+                    background-color: var(--yellow);
+                    transition: width .3s ease-in-out, background-color .3s ease-in-out, border-radius .3s ease-in-out;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .widget {
+        top: 70px;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .widget {
+        top: 110px;
+        left: 30px;
+        transform: translateX(0);
+    }
+}

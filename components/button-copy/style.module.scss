@@ -14,7 +14,7 @@
         position: relative;
         padding: 20px 35px;
         background-color: transparent;
-        border-radius: 50px;
+        border-radius: 60px;
         cursor: pointer;
         overflow: hidden;
     
@@ -49,10 +49,15 @@
 
         &_arrow {
             position: absolute;
-            top: 25px;
+            top: 33px;
             left: 100%;
             transition: transform .3s ease-out;
             z-index: 2;
+
+            svg {
+                width: 20px;
+                height: 20px;
+            }
         }
     
         &_toast {
@@ -95,6 +100,7 @@
 @media screen and (min-width: 768px) {
     .button_wrapper {
         width: fit-content;
+        margin: 0 auto;
         
         .button {
             width: auto;
@@ -135,7 +141,7 @@
             }
 
             .button_arrow {
-                top: 40px;
+                top: 45px;
 
                 > svg {
                     width: 32px;
@@ -148,11 +154,13 @@
 
 @media screen and (min-width: 1024px) {
     .button_wrapper {
+        margin: 0;
 
         .button_large {
-
+            border-radius: 80px;
+            
             .button_title {
-                font-size: 3.5rem;
+                font-size: 2.75rem;
             }
         }
     }
@@ -188,4 +196,4 @@
             }
         }
     }
-  }
+}

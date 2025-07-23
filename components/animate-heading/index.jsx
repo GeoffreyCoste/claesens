@@ -44,7 +44,7 @@ const AnimateHeading = ({
         className={clsx(bricolage_grotesque.className, {
           [styles.stacked]: isStacked
         })}
-        aria-label={text}
+        aria-label={isDotLastChar ? text : text + ' ?'}
       >
         {words.map((word, wordIndex) => {
           return (

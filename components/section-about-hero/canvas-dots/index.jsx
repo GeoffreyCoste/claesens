@@ -57,7 +57,7 @@ const CanvasDots = () => {
 
         ctx.beginPath();
         ctx.arc(x, y, radius, 0, Math.PI * 2);
-        ctx.fillStyle = '#FFFFFF';
+        ctx.fillStyle = '#ffffff';
         ctx.fill();
       }
     }

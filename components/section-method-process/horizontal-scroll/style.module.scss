@@ -1,0 +1,226 @@
+.horizontal_scroll {
+    position: relative;
+    overflow: hidden;
+
+    &_container {
+        display: flex;
+        background-color: var(--black);
+        overflow: hidden;
+
+        .steps_indicator {
+            display: flex;
+            flex-flow: column;
+            justify-content: center;
+            align-items: center;
+            gap: 0.5rem;
+            position: absolute;
+            top: 5.75rem;
+            right: 1rem;
+
+            .steps_indicator_label {
+                color: var(--white);
+                font-size: 0.85rem;
+                font-weight: 200;
+            }
+        }
+    }
+
+    &_content {
+        display: flex;
+        gap: 25vw;
+    }
+
+    &_item {
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+
+        .step_article {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: flex-start;
+            gap: 1rem;
+            padding: 5rem 2rem 0;
+    
+            &_img {
+                width: 100px;
+                height: 100px;
+                position: relative;
+                margin-bottom: 1rem;
+            }
+    
+            &_title {
+                color: var(--white);
+                font-size: 2rem;
+                font-weight: 900;
+                line-height: 2.25rem;
+            }
+    
+            &_description {
+                color: var(--gray-light);
+                font-size: 0.85rem;
+                text-align: start;
+            }
+        }
+    }
+}
+
+/* @media screen and (min-width: 768px) and (max-width: 1023px) {
+
+    .horizontal_scroll_container {
+
+        .steps_indicator {
+            top: 5rem;
+            right: 8rem;
+    
+            .steps_indicator_label {
+                color: var(--white);
+                font-size: 1rem;
+                font-weight: 200;
+            }
+        }
+    }
+
+    .horizontal_scroll_item {
+
+        .step_article {
+            padding: 5rem 10rem;
+
+            &_img {
+                width: 125px;
+                height: 125px;
+            }
+
+            &_description {
+                font-size: 1rem;
+            }
+        }
+    }
+} */
+
+
+
+/* .horizontal_scroll {
+    position: relative;
+
+    &_container {
+        display: flex;
+        flex-wrap: nowrap;
+        background-color: var(--black);
+        overflow-x: hidden;
+    }
+
+    &_wrapper {
+        display: flex;
+        gap: 25vw;
+    }
+
+    &_item {
+        // width: 200vw;
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        // gap: 25vw;
+        // justify-content: flex-start;
+        // flex-shrink: 0;
+
+        &_content {
+            width: 100%;
+            height: 100%;
+        }
+    }
+
+    /* &_item {
+        // width: 200vw;
+        // height: 100vh;
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        // gap: 25vw;
+        // justify-content: flex-start;
+        // flex-shrink: 0;
+
+        &_content {
+            width: 100vw;
+            height: 100vh;
+            // height: 100%;
+        }
+    } *
+
+    .step_article {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        gap: 1rem;
+        padding: 5rem 2rem 0;
+
+        &_img {
+            width: 100px;
+            height: 100px;
+            position: relative;
+            margin-bottom: 1rem;
+        }
+
+        &_title {
+            color: var(--white);
+            font-size: 2rem;
+            font-weight: 900;
+            line-height: 2.25rem;
+        }
+
+        &_description {
+            color: var(--gray-light);
+            font-size: 0.85rem;
+            text-align: start;
+        }
+    }
+
+    .steps_indicator {
+        display: flex;
+        flex-flow: column;
+        justify-content: center;
+        align-items: center;
+        gap: 0.5rem;
+        position: absolute;
+        top: 5.75rem;
+        right: 1rem;
+
+        .steps_indicator_label {
+            color: var(--white);
+            font-size: 0.85rem;
+            font-weight: 200;
+        }
+    }
+
+    .button_prev,
+    .button_next {
+        width: 50px;
+        height: 50px;
+        position: absolute;
+        padding: 0.35rem;
+        color: var(--yellow);
+        border: 2px solid var(--yellow);
+        border-radius: 50%;
+        transition: opacity 0.3s ease-in-out;
+
+        &:disabled {
+            opacity: 0.5;
+            transition: opacity 0.3s ease-in-out;
+        }
+    }
+
+    .button_prev {
+        right: 5rem;
+        transform: rotate(180deg);
+    }
+
+    .button_next {
+        right: 1rem;
+    }
+} */

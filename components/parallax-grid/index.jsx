@@ -7,104 +7,125 @@ import { useTransform, useScroll, motion } from 'framer-motion';
 import useMediaQueries from '@/hooks/useMediaQueries';
 
 import { IMAGES } from './data';
-import { getLenisInstance } from '@/utils/lenisInstance';
+/* import { getLenisInstance } from '@/utils/lenisInstance'; */
 
 const ParallaxGrid = () => {
-    const [dimension, setDimension] = useState({width: 0, height: 0});
-    const [columns, setColumns] = useState(2);  // Par défaut, mobile (2 colonnes)
-    const [imagesPerColumn, setImagesPerColumn] = useState(6); // 6 images par colonne sur mobile
-    const [parallaxSpeeds, setParallaxSpeeds] = useState([1.25, 0.75, 1.25, 0.75]);
+  const [dimension, setDimension] = useState({width: 0, height: 0});
+  const [columns, setColumns] = useState(2); // Par défaut, mobile (2 colonnes)
+  const [imagesPerColumn, setImagesPerColumn] = useState(6); // 6 images par colonne sur mobile
+  const [parallaxSpeeds, setParallaxSpeeds] = useState([
+    1.25, 0.75, 1.25, 0.75
+  ]);
 
-    const gridRef = useRef(null);
+  const gridRef = useRef(null);
 
-    const { scrollYProgress } = useScroll({
-        target: gridRef,
-        offset: ['start end', 'end start'],
-        layoutEffect: false, // Use `useEffect` instead of `useLayoutEffect` to avoid glitches
-    });
+  const {scrollYProgress} = useScroll({
+    target: gridRef,
+    offset: ['start end', 'end start'],
+    layoutEffect: false // Use `useEffect` instead of `useLayoutEffect` to avoid glitches
+  });
 
-    const { height } = dimension;
+  const {height} = dimension;
 
-    const {mobile, tablet} = useMediaQueries();
+  const {mobile, tablet} = useMediaQueries();
 
-    // Toujours créer 4 sets de transformations pour éviter l'erreur de hooks
-    // const parallaxSpeeds = [2, 3, 1.5, 2.5];
-    // const parallaxSpeeds = [1.25, 0.75, 1.25, 0.75];
-    const y1 = useTransform(scrollYProgress, [0, 1], [0, height * parallaxSpeeds[0]]);
-    const y2 = useTransform(scrollYProgress, [0, 1], [0, height * parallaxSpeeds[1]]);
-    const y3 = useTransform(scrollYProgress, [0, 1], [0, height * parallaxSpeeds[2]]);
-    const y4 = useTransform(scrollYProgress, [0, 1], [0, height * parallaxSpeeds[3]]);
-    const yTransforms = [y1, y2, y3, y4]; // Tableau fixe de transformations
+  // Toujours créer 4 sets de transformations pour éviter l'erreur de hooks
+  // const parallaxSpeeds = [2, 3, 1.5, 2.5];
+  // const parallaxSpeeds = [1.25, 0.75, 1.25, 0.75];
+  const y1 = useTransform(
+    scrollYProgress,
+    [0, 1],
+    [0, height * parallaxSpeeds[0]]
+  );
+  const y2 = useTransform(
+    scrollYProgress,
+    [0, 1],
+    [0, height * parallaxSpeeds[1]]
+  );
+  const y3 = useTransform(
+    scrollYProgress,
+    [0, 1],
+    [0, height * parallaxSpeeds[2]]
+  );
+  const y4 = useTransform(
+    scrollYProgress,
+    [0, 1],
+    [0, height * parallaxSpeeds[3]]
+  );
+  const yTransforms = [y1, y2, y3, y4]; // Tableau fixe de transformations
 
-    useEffect(() => {
-        const lenis = getLenisInstance();
+  useEffect(() => {
+    /* const lenis = getLenisInstance();
         
         const raf = (time) => {
           lenis.raf(time);
           requestAnimationFrame(raf);
         };
-        requestAnimationFrame(raf);
-        
-        // Référence au conteneur parent plutôt qu'à window
-        const parentContainer = gridRef.current.parentElement;
-        
-        // Fonction pour obtenir les dimensions du conteneur parent
-        const getParentDimensions = () => {
-          if (parentContainer) {
-            return {
-              width: parentContainer.clientWidth,
-              height: parentContainer.clientHeight
-            };
-          }
-          return { width: 0, height: 0 };
-        };
-        
-        // Mise à jour initiale des dimensions
-        setDimension(getParentDimensions());
-        
-        // Observateur de redimensement pour le conteneur parent
-        const resizeObserver = new ResizeObserver((entries) => {
-          for (let entry of entries) {
-            // Mise à jour des dimensions uniquement lors de changements significatifs
-            const newDimensions = {
-              width: entry.contentRect.width,
-              height: entry.contentRect.height
-            };
-            
-            setDimension(newDimensions);
-            
-            // Mise à jour des configurations en fonction des breakpoints
-            if (newDimensions.width < 768) { // mobile
-              setColumns(2);
-              setImagesPerColumn(6);
-              setParallaxSpeeds([0.6, 0.4, 0.6, 0.4]);
-            } else if (newDimensions.width < 1024) { // tablet
-              setColumns(2);
-              setImagesPerColumn(6);
-              setParallaxSpeeds([2, 1.5, 2, 1.5]);
-            } else { // desktop
-              setColumns(4);
-              setImagesPerColumn(3);
-              setParallaxSpeeds([1.25, -0.75, 1.25, -0.75]);
-            }
-          }
-        });
-        
-        // Observer le conteneur parent
-        if (parentContainer) {
-          resizeObserver.observe(parentContainer);
-        }
-        
-        return () => {
-          if (parentContainer) {
-            resizeObserver.unobserve(parentContainer);
-          }
-          resizeObserver.disconnect();
-          lenis.destroy();
-        };
-      }, []);
+        requestAnimationFrame(raf); */
 
-    /* useEffect(() => {
+    // Référence au conteneur parent plutôt qu'à window
+    const parentContainer = gridRef.current.parentElement;
+
+    // Fonction pour obtenir les dimensions du conteneur parent
+    const getParentDimensions = () => {
+      if (parentContainer) {
+        return {
+          width: parentContainer.clientWidth,
+          height: parentContainer.clientHeight
+        };
+      }
+      return {width: 0, height: 0};
+    };
+
+    // Mise à jour initiale des dimensions
+    setDimension(getParentDimensions());
+
+    // Observateur de redimensement pour le conteneur parent
+    const resizeObserver = new ResizeObserver((entries) => {
+      for (let entry of entries) {
+        // Mise à jour des dimensions uniquement lors de changements significatifs
+        const newDimensions = {
+          width: entry.contentRect.width,
+          height: entry.contentRect.height
+        };
+
+        setDimension(newDimensions);
+
+        // Mise à jour des configurations en fonction des breakpoints
+        if (newDimensions.width < 768) {
+          // mobile
+          setColumns(2);
+          setImagesPerColumn(6);
+          setParallaxSpeeds([0.6, 0.4, 0.6, 0.4]);
+        } else if (newDimensions.width < 1024) {
+          // tablet
+          setColumns(2);
+          setImagesPerColumn(6);
+          setParallaxSpeeds([2, 1.5, 2, 1.5]);
+        } else {
+          // desktop
+          setColumns(4);
+          setImagesPerColumn(3);
+          setParallaxSpeeds([1.25, -0.75, 1.25, -0.75]);
+        }
+      }
+    });
+
+    // Observer le conteneur parent
+    if (parentContainer) {
+      resizeObserver.observe(parentContainer);
+    }
+
+    return () => {
+      if (parentContainer) {
+        resizeObserver.unobserve(parentContainer);
+      }
+      resizeObserver.disconnect();
+      // lenis.destroy();
+    };
+  }, []);
+
+  /* useEffect(() => {
       const lenis = getLenisInstance();
 
       if (!mobile) {
@@ -145,14 +166,23 @@ const ParallaxGrid = () => {
         };
     }, [mobile, tablet]); */
 
-    return (
-        <div ref={gridRef} className={styles.parallax_grid} style={{ gridTemplateColumns: `repeat(${columns}, 1fr)` }}>
-            {Array.from({ length: columns }, (_, colIndex) => {
-                const images = IMAGES.slice(colIndex * imagesPerColumn, colIndex * imagesPerColumn + imagesPerColumn);
-                return <Column key={colIndex} images={images} y={yTransforms[colIndex]} />;
-            })}
-        </div>
-    );
+  return (
+    <div
+      ref={gridRef}
+      className={styles.parallax_grid}
+      style={{gridTemplateColumns: `repeat(${columns}, 1fr)`}}
+    >
+      {Array.from({length: columns}, (_, colIndex) => {
+        const images = IMAGES.slice(
+          colIndex * imagesPerColumn,
+          colIndex * imagesPerColumn + imagesPerColumn
+        );
+        return (
+          <Column key={colIndex} images={images} y={yTransforms[colIndex]} />
+        );
+      })}
+    </div>
+  );
 };
 
 const Column = ({ images, y }) => {

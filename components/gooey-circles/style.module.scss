@@ -28,7 +28,7 @@
         flex-flow: column;
         justify-content: center;
         align-items: center;
-        font-size: 1.75rem;
+        font-size: 1.25rem;
         font-weight: 800;
     }
 
@@ -66,5 +66,12 @@
     &:nth-child(even) {
         width: 13px;
         height: 13px;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .gooey_container {
+        transform: scale(1.15);
+        transform-origin: left;
     }
 }

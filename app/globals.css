@@ -13,12 +13,25 @@
   --font-size: 18px;
 
   /* Titres (adaptatifs) */
-  --font-size-h1: clamp(2.5rem, 6vw, 4rem); /* 45px à 72px */
-  --font-size-h2: clamp(2rem, 4.5vw, 3.5rem); /* 36px à 63px */
-  --font-size-h3: clamp(1.75rem, 4vw, 2.25rem); /* 31.5px à 40.5px */
-  --font-size-h4: clamp(1.5rem, 3.5vw, 2rem); /* 27px à 36px */
-  --font-size-h5: clamp(1.25rem, 3vw, 1.75rem); /* 22.5px à 31.5px */
-  --font-size-h6: clamp(1.125rem, 2.5vw, 1.5rem); /* 20.25px à 27px */
+  --font-size-h1: clamp(3rem, 10vw, 6rem); /* min 54px, max 108px */
+  --font-size-h2: clamp(2.5rem, 8vw, 4rem); /* min 45px, max 72px */
+  --font-size-h3: clamp(2rem, 6vw, 3rem);   /* min 36px, max 54px */
+  --font-size-h4: clamp(1.5rem, 4.5vw, 2.25rem); /* min 27px, max 40.5px */
+  --font-size-h5: clamp(1.25rem, 3.5vw, 1.75rem); /* min 22.5px, max 31.5px */
+  --font-size-h6: clamp(1rem, 2.5vw, 1.5rem); /* min 18px, max 27px */
+
+  --font-size-base: clamp(1rem, 2.5vw, 1.225rem);
+  --font-size-sm: clamp(0.778rem, 2vw, 1rem);
+  --font-size-xs: clamp(0.625rem, 1.5vw, 0.888rem);
+
+
+
+  /* --font-size-h1: clamp(2.5rem, 6vw, 4rem); */ /* 45px à 72px */
+  /* --font-size-h2: clamp(2rem, 4.5vw, 3.5rem); */ /* 36px à 63px */
+  /* --font-size-h3: clamp(1.75rem, 4vw, 2.25rem); */ /* 31.5px à 40.5px */
+  /* --font-size-h4: clamp(1.5rem, 3.5vw, 2rem); */ /* 27px à 36px */
+  /* --font-size-h5: clamp(1.25rem, 3vw, 1.75rem); */ /* 22.5px à 31.5px */
+  /* --font-size-h6: clamp(1.125rem, 2.5vw, 1.5rem); */ /* 20.25px à 27px */
 
   /* Largeur maximale des blocs de texte */
   --text-max-width: 70ch;
@@ -32,7 +45,7 @@
 
   /* Interlignage */
   --line-height-base: 1.5;
-  --line-height-titles: 1.2;
+  --line-height-titles: 1;
   --line-height-loose: 1.7;
 }
 
@@ -52,14 +65,16 @@
   background: var(--yellow);
 }
 
-html,
+html {
+  font-size: var(--font-size); /* 1rem = 18px */
+}
+
 body {
   background-color: var(--bg-gray);
-  font-size: var(--font-size);
-
   font-weight: var(--font-weight-regular);
   line-height: var(--line-height-base);
   position: relative;
+  overflow-x: hidden;
 }
 
 main {
@@ -91,7 +106,8 @@ h5 { font-size: var(--font-size-h5); }
 h6 { font-size: var(--font-size-h6); }
 
 p {
-  font-size: var(--font-size);
+  /* font-size: var(--font-size); */
+  font-size: var(--font-size-base); /* 18px à 20.25px */
   font-weight: var(--font-weight-regular);
   line-height: var(--line-height-loose);
 }

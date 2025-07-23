@@ -1,3 +1,5 @@
+'use client';
+
 import styles from './style.module.scss';
 import clsx from 'clsx';
 import {bricolage_grotesque} from '@/app/fonts';
@@ -14,9 +16,12 @@ export default function SectionHero() {
       <div className={styles.section_hero_content}>
         <div className={styles.section_hero_main}>
           <div className={styles.section_hero_item}>
-            <p className={styles.section_hero_item_text}>
-              emilie claesens <br />
-              creative designer freelance
+            <p
+              className={styles.section_hero_item_text}
+              aria-label="Emilie Claesens, creative designer freelance."
+            >
+              <span>emilie claesens</span>
+              <span>creative designer freelance</span>
             </p>
           </div>
           <div
@@ -43,9 +48,11 @@ export default function SectionHero() {
                 styles.section_hero_item_text,
                 styles.text_align_right
               )}
+              aria-label="Passionnée par la conception numérique, je vous accompagne en développant des projets à votre image."
             >
-              passionnée par la conception numérique, <br />
-              je vous accompagne en développant des projets à votre image
+              <span>passionnée par la conception numérique,</span>
+              <span>je vous accompagne en développant</span>
+              <span>des projets à votre image</span>
             </p>
           </div>
         </div>

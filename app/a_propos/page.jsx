@@ -1,5 +1,6 @@
 'use client';
 
+import styles from './page.module.scss';
 import {useRef} from 'react';
 import {AnimatePresence} from 'framer-motion';
 import {useSideMenu} from '@/hooks/useSideMenu';
@@ -26,7 +27,7 @@ export default function About() {
         {isSideMenuOpen && <SideMenu isOpen={isSideMenuOpen} />}
       </AnimatePresence>
       <Header ref={stickyElement}></Header>
-      <main>
+      <main className={styles.main}>
         <SectionAboutHero />
         <SectionAboutIntro />
         <SectionAboutOrigin />

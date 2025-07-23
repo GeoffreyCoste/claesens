@@ -7,6 +7,7 @@
     background-color: var(--white);
 
     &_body {
+        width: 100%;
         max-width: 107rem;
         display: flex;
         flex-flow: row wrap;
@@ -16,6 +17,7 @@
 
     &_content {
         max-width: 32rem;
+        padding-bottom: 5rem;
         // flex-basis: 100%;
         // display: flex;
         // flex-direction: column;
@@ -23,7 +25,7 @@
         // align-items: flex-start;
         // row-gap: 2rem;
         // max-width: 500px;
-        // margin: 0 auto;
+        margin: 0 auto;
         // padding: 6rem 1rem;
 
         &_wrapper {
@@ -48,11 +50,13 @@
     }
 
     &_diagram {
+        width: 100%;
         flex-basis: 100%;
         display: flex;
         justify-content: center;
         align-items: center;
-        padding: 6rem 1rem;
+        padding: 5rem 0 6rem 0;
+        // padding: 6rem 1rem;
     }
 }
 
@@ -78,7 +82,8 @@
             flex-basis: 100%;
             display: flex;
             justify-content: center;
-            align-items: center;
+            align-items: flex-start;
+            padding: 0;
             // padding: 3rem 1rem 6rem 1rem;
 
             &_wrapper {
@@ -90,22 +95,51 @@
     
         &_diagram {
             flex-basis: 100%;
-            padding: 6rem 1rem 3rem 1rem;
+            padding: 0;
+            // padding: 6rem 1rem 3rem 1rem;
         }
     }
 }
 
 @media screen and (min-width: 1024px) {
     .section_skills {
+        min-height: 125vh;
+
+        &_content {
+            flex-basis: 60%;
+            align-items: center;
+            // max-width: 550px;
+
+            &_text {
+                font-size: var(--font-size-sm);
+            }
+        }
+
+        &_diagram {
+            flex-basis: 40%;
+            justify-content: center;
+            // padding: 0rem 1rem 6rem 1rem;
+        }
+    }
+}
+
+@media screen and (min-width: 1600px) {
+    .section_skills {
+        
+        &_body {
+            max-width: 67rem;
+        }
 
         &_content {
             flex-basis: 50%;
+            //align-items: center;
             // max-width: 550px;
         }
 
         &_diagram {
             flex-basis: 50%;
-            padding: 0rem 1rem 6rem 1rem;
+            justify-content: flex-start;
+            // padding: 0rem 1rem 6rem 1rem;
         }
     }
 }

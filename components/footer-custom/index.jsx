@@ -72,7 +72,9 @@ const FooterCustom = ({
           <SocialsList />
         </div>
         <div className={`${styles.footer_item} ${styles.item_copyright}`}>
-          <span className={styles.footer_item_text}>&copy; 2024 claesens</span>
+          <span className={styles.footer_item_text}>
+            &copy; {new Date().getFullYear().toString()} claesens
+          </span>
           <span className={styles.footer_item_text}>
             Créé avec {bgBlack ? '🤍' : '🖤'} par Emilie Claesens
           </span>

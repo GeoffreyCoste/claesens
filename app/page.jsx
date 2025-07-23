@@ -4,6 +4,7 @@ import styles from './page.module.scss';
 import {useState, useEffect, useRef} from 'react';
 import {AnimatePresence} from 'framer-motion';
 import {useSideMenu} from '@/hooks/useSideMenu';
+import {useLenis} from '@/hooks/useLenis';
 import Header from '@/components/header';
 import Preloader from '@/components/preloader';
 import SectionHero from '@/components/section-hero';
@@ -22,12 +23,24 @@ import GridParallax from '@/components/grid-parallax';
 
 export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
+  const {stop, start} = useLenis();
+  const {isSideMenuOpen} = useSideMenu();
 
   const stickyElement = useRef(null);
 
-  const {isSideMenuOpen} = useSideMenu();
-
   useEffect(() => {
+    stop();
+
+    const timeout = setTimeout(() => {
+      setIsLoading(false);
+      document.body.style.cursor = 'default';
+      start();
+    }, 2000);
+
+    return () => clearTimeout(timeout);
+  }, [stop, start]);
+
+  /* useEffect(() => {
     (async () => {
       const LocomotiveScroll = (await import('locomotive-scroll')).default;
       const locomotiveScroll = new LocomotiveScroll();
@@ -38,7 +51,7 @@ export default function Home() {
         window.scrollTo(0, 0);
       }, 2000);
     })();
-  }, []);
+  }, []); */
 
   return (
     <>

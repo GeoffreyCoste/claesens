@@ -1,21 +1,21 @@
 export const STEPS = [{
         title: "Rencontre & briefing",
-        description: "Nous commençons par une discussion approfondie pour comprendre vos besoins et vos objectifs. Vous partagez vos idées et vos attentes, tandis que je pose des questions pour clarifier le projet. Ensemble, nous établissons les bases du projet, y compris les délais et les prochaines étapes.",
+        description: "Tout commence par un échange afin de bien cerner votre identité et vos besoins. L'objectif est de fixer les bases du projet afin de définir la direction à prendre. Nous récapitulons les points clés, notamment les délais et prochaines étapes.",
             mobileImgAlt: "Sticker noir d'un pictogramme représentant un crayon sur une sphère 3D blanche"
     },
     {
         title: "Réflexion & création",
-        description: "Nous commençons par une discussion approfondie pour comprendre vos besoins et vos objectifs. Vous partagez vos idées et vos attentes, tandis que je pose des questions pour clarifier le projet. Ensemble, nous établissons les bases du projet, y compris les délais et les prochaines étapes.",
+        description: "Je m’imprègne de votre univers et de votre vision pour guider ma réflexion. Des concepts créatifs émergent, porteurs de sens et à votre image. Ces premières pistes prennent vie sous forme d’ébauches visuelles.",
             mobileImgAlt: "Sticker noir d'un pictogramme représentant une baguette magique sur une sphère 3D blanche"
     },
     {
         title: "Proposition & échange",
-        description: "Je vous présente mes propositions créatives, accompagnées d'explications sur les choix et les directions prises. Nous échangeons des idées et des retours pour affiner les concepts et les ajuster selon vos préférences. Cette étape favorise une collaboration active pour garantir que le résultat final correspond parfaitement à vos attentes.",
+        description: "Je vous présente mes concepts créatifs et les idées qui les ont façonnés. Nous échangeons pour valider ensemble un concept fidèle à vos attentes. Nous définissons les ajustements à apporter pour finaliser le projet selon vos préférences.",
             mobileImgAlt: "Sticker noir d'un pictogramme représentant deux bulles de bande-dessinnée sur une sphère 3D blanche"
     },
     {
         title: "Finalisation & livraison",
-        description: "Une fois que nous avons validé les concepts finaux, je procède à la finalisation du projet. Je peaufine les détails, ajuste les éléments graphiques selon vos retours et prépare les fichiers pour la livraison. Vous recevez le travail finalisé dans les délais convenus, prêt à être utilisé selon vos besoins.",
+        description: "Une fois validé, je m’occupe des derniers ajustements pour donner la touche finale au projet. Je peaufine les détails, optimise les éléments graphiques selon vos retours. Vous recevez le travail finalisé dans les délais convenus, prêt à être utilisé selon vos besoins.",
             mobileImgAlt: "Sticker noir d'un pictogramme représentant un document numérique sur une sphère 3D blanche"
     },
 ]

@@ -1,4 +1,5 @@
 import {SideMenuProvider} from '@/context/sideMenuContext';
+import {LenisProvider} from '@/context/lenisContext';
 import {DM_Sans, Bricolage_Grotesque} from 'next/font/google';
 import './globals.css';
 
@@ -6,14 +7,6 @@ export const metadata = {
   title: 'claesens',
   description: 'Emilie Claesens, Designer basée à Paris.'
 };
-
-/* export const viewport = {
-  width: 'device-width',
-  initialScale: 1,
-  // maximumScale: 1,
-  // userScalable: false,
-  interactiveWidget: 'overlays-content'
-}; */
 
 const dm_sans = DM_Sans({
   variable: '--font-dm-sans',
@@ -28,15 +21,24 @@ const bricolage_grotesque = Bricolage_Grotesque({
 });
 
 export default function RootLayout({children}) {
-
   return (
     <html
       lang="en"
       className={`${dm_sans.className} ${bricolage_grotesque.variable}`}
     >
       <body>
-        <SideMenuProvider>{children}</SideMenuProvider>
+        <LenisProvider>
+          <SideMenuProvider>{children}</SideMenuProvider>
+        </LenisProvider>
       </body>
     </html>
   );
 }
+
+/* export const viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  // maximumScale: 1,
+  // userScalable: false,
+  interactiveWidget: 'overlays-content'
+}; */

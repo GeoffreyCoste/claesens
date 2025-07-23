@@ -14,7 +14,8 @@
 
     .heading_dot {
         color: var(--yellow);
-        font-size: 3.5rem;
+        // font-size: 3.5rem;
+        font-size: inherit;
         line-height: 0;
         margin-left: 2px;
     }

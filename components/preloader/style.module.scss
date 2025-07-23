@@ -1,4 +1,4 @@
-.introduction{
+.introduction {
     height: 100vh;
     width: 100vw;
     display: flex;
@@ -7,23 +7,26 @@
     position: fixed;
     z-index: 99;
     background-color: var(--black);
-    svg{
+
+    svg {
         position: absolute;
         top: 0;
         width: 100%;
         height: calc(100% + 300px);
-        path{
+
+        path {
             fill: var(--black);
         }
     }
-    p{
+    p {
         display: flex;
         color: var(--white);
         font-size: 42px;
         align-items: center;
         position: absolute;
         z-index: 1;
-        span{
+
+        span {
             display: block;
             width: 10px;
             height: 10px;

@@ -11,6 +11,7 @@ import SideMenu from '@/components/side-menu';
 import SectionMethod from '@/components/section-method';
 import FooterCustom from '@/components/footer-custom';
 import AsideFooterMethod from '@/components/aside-footer-method';
+import SectionMethodProcess from '@/components/section-method-process';
 
 export default function Method() {
   const stickyElement = useRef(null);
@@ -25,6 +26,7 @@ export default function Method() {
       <Header ref={stickyElement}></Header>
       <main className={styles.main}>
         <SectionMethod />
+        <SectionMethodProcess />
         <CursorSticky stickyElement={stickyElement} />
       </main>
       {/* <FooterSticky /> */}

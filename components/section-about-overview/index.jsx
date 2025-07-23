@@ -2,6 +2,7 @@
 
 import styles from './style.module.scss';
 import {useRef, useLayoutEffect} from 'react';
+import useMediaQueries from '@/hooks/useMediaQueries';
 import clsx from 'clsx';
 import Image from 'next/image';
 import AnimateStagger from '../animate-stagger';
@@ -16,6 +17,8 @@ gsap.registerPlugin(ScrollTrigger);
 
 const SectionAboutOverview = () => {
   const blocksRef = useRef([]);
+
+  const {mobile} = useMediaQueries();
 
   useLayoutEffect(() => {
     const blocks = blocksRef.current;
@@ -72,7 +75,7 @@ const SectionAboutOverview = () => {
   return (
     <section className={styles.section_about_overview}>
       <div className={styles.section_about_overview_intro}>
-        <AnimateStagger>
+        <AnimateStagger isTextCentered={mobile ? false : true}>
           {h2SectionAboutOverview.map((text, index) => (
             <AnimateHeading key={index} {...text} />
           ))}

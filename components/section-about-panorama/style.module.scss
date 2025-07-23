@@ -146,10 +146,10 @@
                         max-width: 480px;
                         max-height: 480px;
 
-                        h2 {
+                        /* h2 {
                             font-size: 4rem;
                             line-height: 3.5rem;
-                        }
+                        } */
                     }
                 }
             }
@@ -159,6 +159,24 @@
 
                 .body {
                     padding: 0;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .section_about_panorama {
+
+        &_content {
+
+            &_heading {
+
+                .heading {
+
+                    &_title {
+                        max-width: 550px;
+                    }
                 }
             }
         }

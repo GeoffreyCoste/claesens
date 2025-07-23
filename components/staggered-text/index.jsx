@@ -7,7 +7,7 @@ import gsap from 'gsap';
 
 const StaggeredText = ({text}) => {
   const refsArray = useRef([]);
-  const {mobile} = useMediaQueries();
+  const {mobile, desktop} = useMediaQueries();
 
   const wordsArray = text
     .split(' ')
@@ -61,14 +61,20 @@ const StaggeredText = ({text}) => {
 
     elements.forEach((item, index) => {
       const characters = gsap.utils.toArray(`.${styles.character}`, item);
-      createTimeline(
+      /* createTimeline(
         characters,
         index,
         mobile ? 1 : 2, // Delay multiplier
         mobile ? 4 : 2.5 // Duration
+      ); */
+      createTimeline(
+        characters,
+        index,
+        !desktop ? 1 : 2, // Delay multiplier
+        !desktop ? 4 : 2.5 // Duration
       );
     });
-  }, [mobile, createTimeline]);
+  }, [mobile, desktop, createTimeline]);
 
   // Line or word render function with empty character(s) management
   const renderWord = (word, shouldAddEmptyCharacters) => (
@@ -93,7 +99,7 @@ const StaggeredText = ({text}) => {
 
   return (
     <div className={styles.staggered_text}>
-      {mobile
+      {!desktop
         ? wordsArray.map((word, index) => {
             const shouldAddEmptyCharacters = word.length === 9; // Mobile specific logic
             return (

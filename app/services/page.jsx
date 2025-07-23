@@ -16,6 +16,8 @@ import ScrollOverlap from '@/components/scroll-overlap'; */
 import SectionServicesDetails from '@/components/section-services-details';
 import FooterCustom from '@/components/footer-custom';
 import AsideFooterServices from '@/components/aside-footer-services';
+import SectionServicesHero from '@/components/section-services-hero';
+import CurvedText from '@/components/section-services-hero/curved-text/__index';
 
 export default function Services() {
   const stickyElement = useRef(null);
@@ -29,8 +31,9 @@ export default function Services() {
       </AnimatePresence>
       <Header ref={stickyElement}></Header>
       <main>
-        <SectionServicesIntro />
-        <CurvedTextSvg />
+        <SectionServicesHero />
+        {/* <SectionServicesIntro /> */}
+        {/* <CurvedTextSvg /> */}
         <SectionServicesDetails />
         <CursorSticky stickyElement={stickyElement} />
       </main>

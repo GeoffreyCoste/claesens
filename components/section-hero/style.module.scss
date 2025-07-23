@@ -45,11 +45,15 @@
         
         &_text {
             font-variant-caps: all-small-caps;
-            font-size: 1.125rem;
+            // font-size: 1.125rem;
             line-height: 1.075rem;
             position: relative;
             pointer-events: none;
             z-index: 2;
+
+            span {
+                display: block;
+            }
         }
 
         .text_align_right {
@@ -58,11 +62,12 @@
 
         &_title {
             color: var(--black);
+            // font-size: var(--font-size-h1-xl);
             font-size: 3.5rem;
             font-weight: 100;
             text-align: left;
             line-height: 3rem;
-            letter-spacing: -0.0125em;
+            letter-spacing: -0.03em; // -0.0125em
             margin-left: 1ch;
             position: relative;
             pointer-events: none;
@@ -95,14 +100,11 @@
             font-weight: 100;
             font-variant-caps: initial;
             line-height: 1.25rem;
+            letter-spacing: -0.03em;
 
-            // font-size: 2rem;
-            // font-weight: 900;
-            // line-height: 1.5rem;
-            // font-variant-caps: initial;
-            // -webkit-text-stroke-width: 1px;
-            // -webkit-text-stroke-color: var(--black);
-            // color: transparent;
+                strong {
+                    letter-spacing: -0.0125em;
+                }
         }
 
         &_list {
@@ -151,6 +153,23 @@
     }
 }
 
+@media screen and (min-width: 414px) {
+    .section_hero {
+
+        &_main {
+            justify-content: flex-end;
+            gap: 2rem;
+        }
+
+        &_item {
+
+            &_align_center {
+                height: auto;
+            }
+        }
+    }
+}
+
 @media screen and (min-width: 768px) {
     .section_hero {
 
@@ -184,7 +203,8 @@
 
             &_title {
                 font-size: 6rem;
-                line-height: 7rem;
+                line-height: 5.5rem;
+                padding-top: calc(100vh / 3 - 15rem); //
 
                 strong {
 
@@ -223,11 +243,19 @@
             // margin: 0 4rem;
         }
 
+        &_main {
+
+            .section_hero_item_text {
+                width: 400px;
+            }
+        }
+
         &_item {
 
             &_title {
                 font-size: 8rem;
                 line-height: 7rem;
+                padding-top: calc(100vh / 3 - 9rem); //
 
                 strong {
 

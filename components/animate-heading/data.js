@@ -50,6 +50,11 @@ export const h1SectionServices = [{
     text: "Un écosystème dédié à votre image."
 }];
 
+export const h2SectionServicesDetails = [{
+    type: "heading2",
+    text: "Stratégie, design, impact."
+}];
+
 export const h2FooterAsideServices = [{
     type: "heading2",
     text: "Donnez une nouvelle dimension à votre image."

@@ -28,6 +28,7 @@ const CursorSticky = ({stickyElement}) => {
   const onMouseMove = useCallback(
     (e) => {
       const {clientX, clientY} = e;
+      if (!stickyElement.current) return;
       const {left, top, width, height} =
         stickyElement.current.getBoundingClientRect();
 

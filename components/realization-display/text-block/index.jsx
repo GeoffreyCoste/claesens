@@ -12,17 +12,22 @@ const TextBlock = ({title, badges, content, keyBasis}) => {
           <Badge
             key={`${keyBasis}-badge-${index}`}
             text={text}
-            black={badges.black}
+            color="black"
+            bg="gray"
+            border="black"
           />
         ))}
       </div>
       <AnimateStagger>
         {title.map((text, index) => (
-              <AnimateHeading key={index} {...text} />
+          <AnimateHeading key={index} {...text} />
         ))}
         <AnimateFade>
           {content.map((item, index) => (
-            <p key={`${keyBasis}-paragraph-${index}`} className={styles.paragraph}>
+            <p
+              key={`${keyBasis}-paragraph-${index}`}
+              className={styles.paragraph}
+            >
               {item}
             </p>
           ))}

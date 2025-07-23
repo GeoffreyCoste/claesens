@@ -17,41 +17,54 @@ const CurvedTextSvg = () => {
   useLayoutEffect(() => {
     const svg = svgRef.current;
 
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: svg,
-        start: 'top bottom',
-        end: '+=70%',
-        scrub: true
+    const mm = gsap.matchMedia();
+
+    mm.add(
+      {
+        isMobile: '(max-width: 767px)'
+      },
+      (context) => {
+        const {isMobile} = context.conditions;
+
+        const tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: svg,
+            start: isMobile ? 'top+=400% bottom' : 'top+=300% bottom',
+            end: '+=70%',
+            scrub: true
+          }
+        });
+
+        const from = {
+          transformOrigin: 'center center',
+          rotation: 0
+        };
+
+        const to = {
+          rotation: 180,
+          ease: 'circ.out'
+        };
+
+        textRefs.forEach((textRef, index) => {
+          const text = textRef.current;
+          const path = pathRefs[index].current;
+
+          const delay = index * 0.2; // Delay each element animation
+
+          tl.fromTo(
+            [text, path],
+            {...from, delay},
+            {
+              ...to,
+              rotation: to.rotation * (index % 2 === 0 ? -1 : 1) // Alternating rotation direction
+            },
+            0
+          );
+        });
       }
-    });
+    );
 
-    const from = {
-      transformOrigin: 'center center',
-      rotation: 0
-    };
-
-    const to = {
-      rotation: 180,
-      ease: 'circ.out'
-    };
-
-    textRefs.forEach((textRef, index) => {
-      const text = textRef.current;
-      const path = pathRefs[index].current;
-
-      const delay = index * 0.2; // Delay each element animation
-
-      tl.fromTo(
-        [text, path],
-        {...from, delay},
-        {
-          ...to,
-          rotation: to.rotation * (index % 2 === 0 ? -1 : 1) // Alternating rotation direction
-        },
-        0
-      );
-    });
+    return () => mm.revert();
   }, []);
 
   return (
@@ -81,17 +94,17 @@ const CurvedTextSvg = () => {
         </defs>
 
         <text className={bricolage_grotesque.className}>
-          <textPath ref={textRefs[0]} href="#circlePath1" startOffset="49%">
+          <textPath ref={textRefs[0]} href="#circlePath1" startOffset="50%">
             boucler en beauté
           </textPath>
         </text>
         <text className={bricolage_grotesque.className}>
-          <textPath ref={textRefs[1]} href="#circlePath2" startOffset="48%">
+          <textPath ref={textRefs[1]} href="#circlePath2" startOffset="50%">
             sans tourner
           </textPath>
         </text>
         <text className={bricolage_grotesque.className}>
-          <textPath ref={textRefs[2]} href="#circlePath3" startOffset="49%">
+          <textPath ref={textRefs[2]} href="#circlePath3" startOffset="50%">
             en rond
           </textPath>
         </text>

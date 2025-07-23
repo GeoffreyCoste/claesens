@@ -1,21 +1,217 @@
 .badge {
     display: inline-flex;
     flex-flow: row nowrap;
-    color: var(--gray-light);
-    font-size: 0.75rem;
-    font-weight: 700;
+    // color: var(--gray-light);
+    // font-size: 0.75rem;
+    // font-weight: 700;
     // padding: 0.125em 0.65em 0.25em;
-    padding: 0.125rem 0.65rem;
-    border: 1px solid var(--gray-light);
+    // padding: 0.125rem 0.65rem;
+    // border: 1px solid var(--gray-light);
     // border-radius: calc(var(--border-radius) / 2);
     border-radius: 50px;
     white-space: nowrap; /* Prevent text from splitting into several lines */
     // align-self: start; /* Prevent vertical extension if used inside flex container */
     z-index: 8;
 
-    &.black {
+    /* Color variations */
+    &.color_gray_light { color: var(--gray-light); }
+    &.color_gray { color: var(--gray); }
+    &.color_black { color: var(--black); }
+
+    /* Font size */
+    &.size_base { font-size: 0.75rem; }
+    &.size_sm { font-size: var(--font-size-xs); line-height: var(--font-size-xs); }
+
+    /* Font weight */
+    &.weight_bold { font-weight: 700; }
+    &.weight_normal { font-weight: 400; }
+
+    /* Padding */
+    &.padding_default { padding: 0.125rem 0.65rem; }
+    &.padding_compact { padding: 0.15rem 0.375rem; }
+
+    /* Backgrounds */
+    &.bg_transparent { background-color: transparent; }
+    &.bg_gray { background-color: var(--bg-gray); }
+    &.bg_gray_light { background-color: var(--gray-light); }
+
+    /* Borders */
+    &.border_gray_light { border: 1px solid var(--gray-light); }
+    &.border_black { border: 1px solid var(--black); }
+
+    &.badge_glass {
+        --border-width: clamp(1px, 0.0625em, 4px);
+        --angle-1: -75deg;
+        --angle-2: -45deg;
+        --shadow-cuttoff-fix: 2em;
+
+        position: relative;
+        pointer-events: none;
+
+        .content {
+            width: 100%;
+            height: 100%;
+            position: relative;
+
+            pointer-events: auto;
+            background: linear-gradient(
+            -75deg,
+            rgba(255, 255, 255, 0.7),
+            rgba(255, 255, 255, 0.8),
+            rgba(255, 255, 255, 0.7)
+            );
+            border-radius: 50px;
+            box-shadow: inset 0 0.125em 0.125em rgba(0, 0, 0, 0.05),
+            inset 0 -0.125em 0.125em rgba(255, 255, 255, 0.5),
+            0 0.25em 0.125em -0.125em rgba(0, 0, 0, 0.2),
+            0 0 0.1em 0.25em inset rgba(255, 255, 255, 0.2),
+            0 0 0 0 rgba(255, 255, 255, 1);
+            backdrop-filter: blur(clamp(1px, 0.125em, 4px));
+            -webkit-backdrop-filter: blur(clamp(1px, 0.125em, 4px));
+            -moz-backdrop-filter: blur(clamp(1px, 0.125em, 4px));
+            -ms-backdrop-filter: blur(clamp(1px, 0.125em, 4px));
+            z-index: 3;
+
+            @media screen and (min-width: 360px) {
+                background: linear-gradient(
+                -75deg,
+                rgba(255, 255, 255, 0.05),
+                rgba(255, 255, 255, 0.2),
+                rgba(255, 255, 255, 0.05)
+                );
+            }
+
+            &::after {
+                content: "";
+                width: calc(100% + var(--border-width));
+                height: calc(100% + var(--border-width));
+                position: absolute;
+                top: calc(0% - var(--border-width) / 2);
+                left: calc(0% - var(--border-width) / 2);
+                padding: var(--border-width);
+                inset: 0;
+                border-radius: 50px;
+                background: conic-gradient(
+                    from var(--angle-1) at 50% 50%,
+                    rgba(0, 0, 0, 0.5),
+                    rgba(0, 0, 0, 0) 5% 40%,
+                    rgba(0, 0, 0, 0.5) 50%,
+                    rgba(0, 0, 0, 0) 60% 95%,
+                    rgba(0, 0, 0, 0.5)
+                    ),
+                    linear-gradient(180deg, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5));
+                mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+                mask-composite: exclude;
+                box-shadow: inset 0 0 0 calc(var(--border-width) / 2) rgba(255, 255, 255, 0.5);
+                z-index: 1;
+            }
+
+            .text {
+                display: block;
+                position: relative;
+                padding: 0.175em 0.875em;
+                // padding-inline: 1.5em;
+                // padding-block: 0.875em;
+                color: rgba(50, 50, 50, 1);
+                font-size: clamp(0.875rem, 4.5vw, 1rem);
+                font-weight: 700;
+                letter-spacing: -0.05em;
+                text-align: center;
+                -webkit-font-smoothing: antialiased;
+                -moz-osx-font-smoothing: grayscale;
+                text-shadow: 0em 0.25em 0.05em rgba(0, 0, 0, 0.1);
+                user-select: none;
+                -webkit-user-select: none;
+                -moz-user-select: none;
+                -ms-user-select: none;
+
+                @media screen and (min-width: 768px) {
+                    padding: 0.875em 1.5em;
+                    font-size: 1.5rem;
+                }
+
+                &::after {
+                    content: "";
+                    width: calc(100% - var(--border-width)); /* Prevent overlapping border */
+                    height: calc(100% - var(--border-width));
+                    display: block;
+                    position: absolute;
+                    top: calc(0% + var(--border-width) / 2);
+                    left: calc(0% + var(--border-width) / 2);
+                    // z-index: 1;
+                    border-radius: 50px;
+                    overflow: clip;
+                    background: linear-gradient(
+                    var(--angle-2),
+                    rgba(255, 255, 255, 0) 0%,
+                    rgba(255, 255, 255, 0.5) 40% 50%,
+                    rgba(255, 255, 255, 0) 55%
+                    );
+                    background-size: 200% 200%;
+                    background-position: 0% 50%;
+                    background-repeat: no-repeat;
+                    mix-blend-mode: screen;
+                    pointer-events: none;
+                    z-index: 3;
+                }
+            }
+        }
+
+        .shadow {
+            width: calc(100% + var(--shadow-cuttoff-fix));
+            height: calc(100% + var(--shadow-cuttoff-fix));
+            position: absolute;
+            // top: calc(0% - var(--shadow-cuttoff-fix) / 2);
+            // left: calc(0% - var(--shadow-cuttoff-fix) / 2);
+            top: 4px;
+            left: 4px;
+            filter: blur(clamp(2px, 0.125em, 12px));
+            -webkit-filter: blur(clamp(2px, 0.125em, 12px));
+            -moz-filter: blur(clamp(2px, 0.125em, 12px));
+            -ms-filter: blur(clamp(2px, 0.125em, 12px));
+            overflow: visible;
+            pointer-events: none;
+
+            &::after {
+                content: "";
+                width: calc(100% - var(--shadow-cuttoff-fix) - 0.25em);
+                height: calc(100% - var(--shadow-cuttoff-fix) - 0.25em);
+                position: absolute;
+                top: calc(var(--shadow-cuttoff-fix) - 0.5em);
+                left: calc(var(--shadow-cuttoff-fix) - 0.875em);
+                padding: 0.125em;
+                border-radius: 50px;
+                background: linear-gradient(180deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.1));
+                inset: 0;
+                mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+                mask-composite: exclude;
+                overflow: visible;
+                opacity: 1;
+                z-index: 0;
+            }
+        }
+    }
+
+
+    /* &.black {
         color: var(--black);
         background-color: var(--bg-gray);
         border: 1px solid var(--black);
     }
+
+    &.font_normal {
+        font-weight: 400;
+    }
+
+    &.small {
+        font-size: 0.625rem;
+        line-height: 0.625rem;
+        padding: 0.15rem 0.375rem;
+    }
+
+    &.gray_light {
+        color: var(--gray);
+        border: 1px solid #161616;
+        background-color: #161616;
+    } */
 }

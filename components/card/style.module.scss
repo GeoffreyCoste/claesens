@@ -2,16 +2,17 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 0 1rem 1rem;
+    // margin: 0 1rem 1rem;
+    margin: 0 1rem;
 
     .card_content {
         width: 100%;
         display: flex;
         flex-flow: column;
         justify-content: space-between;
-        row-gap: 2rem;
+        row-gap: 0.75rem;
         position: relative;
-        top: -80px;
+        // top: -80px;
         padding: 1rem;
         color: var(--white);
         background: rgba(31, 31, 31, 0.6);
@@ -38,25 +39,35 @@
                 display: flex;
                 flex-flow: column;
 
-                &.wrapper_text > h2 {
-                    font-size: 2rem;
+                &.wrapper_text > h3 {
+                    // font-size: 2rem;
                     font-weight: 900;
-                    margin-top: -0.25rem;
-                    margin-bottom: -0.5rem;
+                    // margin-top: -0.25rem;
+                    // margin-bottom: -0.5rem;
+                    white-space: nowrap;
 
                     &::first-letter {
                         text-transform: uppercase;
                     }
                 }
 
+                &.wrapper_text .badges {
+                    width: 100%;
+                    display: flex;
+                    flex-wrap: wrap;
+                    gap: 0.25rem;
+                    margin-top: 0.75rem;
+                }
+
                 &.wrapper_text p {
                     color: var(--gray-light);
-                    font-size: 0.85rem;
+                    // font-size: 0.85rem;
+                    font-size: var(--font-size-sm);
                     font-weight: 400;
-                    margin: 1rem 0;
+                    margin: 0.5rem 0 0;
 
                     &:not(:last-of-type) {
-                        margin: 1rem 0 0;
+                        margin: 0.75rem 0 0;
                     }
                 }
 
@@ -80,10 +91,58 @@
     .card_container {
         width: 100%;
         max-width: 960px;
-        margin: 0 auto 1rem;
+        // margin: 0 auto 1rem;
+        margin: 0 auto;
         padding: 0 1rem;
 
         .card_content {
+            width: 100%;
+            // height: 360px;
+            flex-flow: row-reverse;
+            row-gap: 0;
+            // column-gap: 4rem;
+            padding: 2rem;
+            // top: 0; // IMPORTANT
+
+            &_item {
+                width: auto;
+
+                &_wrapper {
+                    height: 100%;
+
+                    &.wrapper_text {
+                        max-width: 35ch;
+
+                        .badges {
+                            gap: 0.5rem;
+                            margin-top: 1rem;
+                        }
+                    }
+
+                    &.wrapper_text p {
+                        margin: 0.75rem 0 0;
+
+                        &:not(:last-of-type) {
+                            margin: 1rem 0 0;
+                        }
+                    }
+
+                    &.wrapper_text > h3 {
+                        margin-bottom: 0;
+                    }
+
+                    &.wrapper_image {
+
+                        img {
+                            width: auto;
+                            height: 100%;
+                        }
+                    }
+                }
+            }
+        }
+
+        /* .card_content {
             width: 100%;
             height: 360px;
             flex-flow: row-reverse;
@@ -114,7 +173,7 @@
                     }
                 }
             }
-        }
+        } */
     }
 }
 
@@ -122,13 +181,25 @@
     .card_container {
 
         .card_content {
+            width: 100%;
             height: auto;
+            row-gap: 0;
+            column-gap: 2rem;
+            padding: 2rem;
 
             &_item {
                 width: 100%;
 
                 &_wrapper {
                     height: auto;
+
+                    &.wrapper_text {
+                        max-width: 35ch;
+                    }
+
+                    &.wrapper_text > h3 {
+                        margin-bottom: 0;
+                    }
 
                     &.wrapper_image {
 
@@ -165,12 +236,12 @@
                     flex-basis: initial;
                 }
 
-                &_wrapper {
+                /* &_wrapper {
 
                     &.wrapper_text > p {
                         font-size: 0.9375rem;
                     }
-                }
+                } */
             }
         }
     }

@@ -5,32 +5,35 @@ import {useEffect, forwardRef} from 'react';
 import {useSideMenu} from '@/hooks/useSideMenu';
 import Brand from '../brand';
 import Magnetism from '../magnetism';
-import {getLenisInstance} from '@/utils/lenisInstance';
+/* import {getLenisInstance} from '@/utils/lenisInstance'; */
+import {useLenis} from '@/hooks/useLenis';
 
 const Header = forwardRef(function Header(props, ref) {
   const {isSideMenuOpen, toggleIsSideMenuOpen} = useSideMenu();
+  const {start, stop} = useLenis();
 
   useEffect(() => {
+    // if (!lenis) return;
     // const lenis = new Lenis();
-    const lenis = getLenisInstance();
+    /* const lenis = getLenisInstance();
 
     const raf = (time) => {
       lenis.raf(time);
       requestAnimationFrame(raf);
-    };
+    }; */
 
     if (isSideMenuOpen) {
-      lenis.stop();
+      stop();
     } else {
-      lenis.start();
+      start();
     }
 
-    requestAnimationFrame(raf);
+    /* requestAnimationFrame(raf);
 
     return () => {
       lenis.destroy();
-    };
-  }, [isSideMenuOpen]);
+    }; */
+  }, [start, stop, isSideMenuOpen]);
 
   return (
     <header className={styles.header}>

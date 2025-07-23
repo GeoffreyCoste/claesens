@@ -86,10 +86,12 @@
         .aside {
 
             .content {
-                max-width: 80vw;
+                // max-width: 80vw;
+                max-width: 107rem;
                 flex-direction: row;
                 gap: 4rem;
                 margin: 0 auto;
+                padding: clamp(1rem, 5vw, 3rem);
 
                 .anim {
                     order: 2;
@@ -116,10 +118,10 @@
         .aside {
 
             .content {
-                max-width: 80vw;
-                flex-direction: row;
+                // max-width: 80vw;
+                // flex-direction: row;
                 gap: 0;
-                margin: 0 auto;
+                // margin: 0 auto;
 
                 .anim {
                     order: 2;

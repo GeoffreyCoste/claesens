@@ -11,13 +11,13 @@ const SectionMethodProcess = () => {
 
   return (
     <section className={styles.section_method_process}>
-      <h2 className={styles.section_method_process_title}>
+      <h3 className={styles.section_method_process_title}>
         Créons le mouvement ...
-      </h2>
+      </h3>
 
       {mobile && <HorizontalScroll />}
       {tablet && <HorizontalMotion />}
-      {desktop && <ScrollTriggerWrapper />}
+      {/* {desktop && <ScrollTriggerWrapper />} */}
     </section>
   );
 };

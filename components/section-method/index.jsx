@@ -32,7 +32,7 @@ export default function SectionMethod() {
           </div>
         </div>
       </section>
-      <SectionMethodProcess />
+      {/* <SectionMethodProcess /> */}
     </>
   );
 }

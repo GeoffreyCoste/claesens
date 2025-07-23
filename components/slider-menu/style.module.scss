@@ -192,9 +192,10 @@
                 width: 100%;
                 display: block;
                 color: var(--white);
-                font-size: clamp(1rem, 15vw, 20rem); // To be changed
+                // font-size: clamp(1rem, 15vw, 20rem); // To be changed
+                font-size: clamp(3rem, 15vw, 20rem);
                 font-weight: 900;
-                line-height: 8vw; // To be changed
+                // line-height: 8vw; // To be changed
                 text-align: center;
                 white-space: nowrap;
             }
@@ -308,10 +309,10 @@
                 bottom: 0;
                 left: 0;
 
-                .title {
+                /* .title {
                     font-size: clamp(1rem, 15vw, 20rem);
                     line-height: 8vw;
-                }
+                } */
             }
         }
     }

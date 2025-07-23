@@ -7,10 +7,12 @@ import clsx from 'clsx';
 import {useTransform, motion, useScroll, useMotionValue} from 'framer-motion';
 import {bricolage_grotesque} from '@/app/fonts';
 import useMediaQueries from '@/hooks/useMediaQueries';
+import Badge from '../badge';
 
 const Card = ({
   index,
   title,
+  badges,
   description,
   image,
   progress = null,
@@ -29,13 +31,38 @@ const Card = ({
   // Set image scale property subject to scroll progress (i.e. when scroll progress goes from 0 to 1, image scales from 1.2 to 1 )
   const imageScale = useTransform(scrollYProgress, [0, 1], [1.2, 1]);
 
+  // Apparaître/disparaître au centre de l'écran uniquement pour tablette
+  const cardCenterProgress = useScroll({
+    target: articleRef,
+    offset: ['start 85%', 'end 15%']
+    // offset: ['start 75%', 'end 25%']
+    // offset: ['start center', 'start start']
+    // offset: ['center center', 'center center']
+  });
+
+  const tabletOpacity = useTransform(
+    cardCenterProgress.scrollYProgress,
+    [0, 0.35, 0.65, 1],
+    [0, 1, 1, 0]
+  );
+  /* const tabletOpacity = useTransform(
+    cardCenterProgress.scrollYProgress,
+    [0, 0.5, 1],
+    [0, 1, 0]
+  ); */
+  const tabletScale = useTransform(
+    cardCenterProgress.scrollYProgress,
+    [0, 0.5, 1],
+    [0.9, 1, 0.9]
+  );
+
   // Ensure progress is always a MotionValue and setting default
   const defaultContentScale = useMotionValue(1);
   // If progress is null, replace it by the default value
   const safeProgress = progress || defaultContentScale;
   const contentScale = useTransform(safeProgress, range, [1, targetScale]);
 
-  const {desktop, md} = useMediaQueries();
+  const {tablet, desktop, md} = useMediaQueries();
 
   return (
     <article ref={articleRef} className={styles.card_container}>
@@ -43,9 +70,29 @@ const Card = ({
         className={styles.card_content}
         style={
           desktop
+            ? {
+                scale: contentScale,
+                top: `calc(-5vh + ${index * 25}px)`,
+                position: 'relative'
+              }
+            : tablet
+              ? {
+                  scale: tabletScale,
+                  opacity: tabletOpacity,
+                  // position: 'absolute',
+                  // top: 0,
+                  // left: 0,
+                  // right: 0,
+                  // zIndex: 100 - index,
+                  pointerEvents: 'none' // évite les conflits de clics
+                }
+              : {}
+        }
+        /* style={
+          desktop
             ? {scale: contentScale, top: `calc(-5vh + ${index * 25}px)`}
             : {}
-        }
+        } */
       >
         <div className={styles.card_content_item}>
           <div
@@ -78,7 +125,23 @@ const Card = ({
               styles.wrapper_text
             )}
           >
-            <h2 className={bricolage_grotesque.className}>{title}</h2>
+            <h3 className={bricolage_grotesque.className}>{title}</h3>
+
+            <div className={styles.badges}>
+              {badges.map((text, index) => (
+                <Badge
+                  key={`$badge-${text.split(' ').join('')}-${index}`}
+                  text={text}
+                  color="black"
+                  fontSize="sm"
+                  fontWeight="normal"
+                  padding="compact"
+                  bg="gray_light"
+                  border="gray_light"
+                />
+              ))}
+            </div>
+
             {description.map((item, index) => (
               <p key={index}>{item}</p>
             ))}

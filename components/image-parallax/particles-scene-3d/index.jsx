@@ -91,12 +91,18 @@ const ZoomOnScroll = forwardRef(function ZoomOnScroll(
 });
 
 const Scene = () => {
-  const {mobile} = useMediaQueries();
+  const {mobile, tablet} = useMediaQueries();
 
   const sphereRef = useRef(null);
   const pointsRef = useRef(null);
 
   const numberOfPoints = mobile ? 1000 : 3000;
+
+  const scale = mobile
+    ? [0.95, 0.95, 0.95]
+    : tablet
+      ? [0.75, 0.75, 0.75]
+      : [1, 1, 1];
 
   const points = useMemo(() => {
     const positions = new Float32Array(numberOfPoints * 3);
@@ -154,7 +160,7 @@ const Scene = () => {
   }, [numberOfPoints]);
 
   return (
-    <group ref={sphereRef} position={[0, 0, 0]}>
+    <group ref={sphereRef} position={[0, 0.5, 0]} scale={scale}>
       <Points
         ref={pointsRef}
         positions={points}

@@ -38,25 +38,25 @@ export const realizations = {
                     mobile: {
                         viewBox: "0 0 320 580",
                         path: "M0,116.12c218.59,0,118.86,347.76,320,347.76",
-                        textPathIterations: 4,
+                        // textPathIterations: 4,
                         baseOffset: -76,
-                        spacing: 76,
+                        // spacing: 76,
                         scrollFactor: 84
                     },
                     tablet: {
                         viewBox: "0 0 250 90",
                         path: "m0,88.5c61.37,0,61.5-68,126.5-68,58,0,51,68,123,68",
-                        textPathIterations: 4,
+                        // textPathIterations: 4,
                         baseOffset: -105,
-                        spacing: 105,
+                        // spacing: 105,
                         scrollFactor: 68
                     },
                     desktop: {
                         viewBox: "0 0 250 90",
                         path: "m0,88.5c61.37,0,61.5-68,126.5-68,58,0,51,68,123,68",
-                        textPathIterations: 8,
+                        // textPathIterations: 1,
                         baseOffset: -27,
-                        spacing: 27,
+                        // spacing: 27,
                         scrollFactor: 18
                     }
                 }
@@ -137,25 +137,25 @@ export const realizations = {
                     mobile: {
                         viewBox: "0 0 320 580",
                         path: "M0,116.12c218.59,0,118.86,347.76,320,347.76",
-                        textPathIterations: 3,
+                        // textPathIterations: 3,
                         baseOffset: -52,
-                        spacing: 52,
+                        // spacing: 52,
                         scrollFactor: 84
                     },
                     tablet: {
                         viewBox: "0 0 250 90",
                         path: "m0,88.5c61.37,0,61.5-68,126.5-68,58,0,51,68,123,68",
-                        textPathIterations: 4,
+                        // textPathIterations: 4,
                         baseOffset: -68,
-                        spacing: 68,
+                        // spacing: 68,
                         scrollFactor: 68
                     },
                     desktop: {
                         viewBox: "0 0 250 90",
                         path: "m0,88.5c61.37,0,61.5-68,126.5-68,58,0,51,68,123,68",
-                        textPathIterations: 8,
+                        // textPathIterations: 8,
                         baseOffset: -18,
-                        spacing: 18,
+                        // spacing: 18,
                         scrollFactor: 18
                     }
                 }
@@ -225,25 +225,25 @@ export const realizations = {
                     mobile: {
                         viewBox: "0 0 320 580",
                         path: "M0,116.12c218.59,0,118.86,347.76,320,347.76",
-                        textPathIterations: 4,
+                        // textPathIterations: 4,
                         baseOffset: -69,
-                        spacing: 69,
+                        // spacing: 69,
                         scrollFactor: 84
                     },
                     tablet: {
                         viewBox: "0 0 250 90",
                         path: "m0,88.5c61.37,0,61.5-68,126.5-68,58,0,51,68,123,68",
-                        textPathIterations: 4,
+                        // textPathIterations: 4,
                         baseOffset: -90,
-                        spacing: 90,
+                        // spacing: 90,
                         scrollFactor: 68
                     },
                     desktop: {
                         viewBox: "0 0 250 90",
                         path: "m0,88.5c61.37,0,61.5-68,126.5-68,58,0,51,68,123,68",
-                        textPathIterations: 8,
+                        // textPathIterations: 8,
                         baseOffset: -18,
-                        spacing: 18,
+                        // spacing: 18,
                         scrollFactor: 18
                     }
                 }
