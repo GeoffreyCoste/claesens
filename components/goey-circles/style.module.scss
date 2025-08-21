@@ -1,0 +1,22 @@
+.goey_circles_container {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .svg {
+        width: 200px;
+        height: 200px;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .goey_circles_container {
+
+        .svg {
+            width: 400px;
+            height: 400px;
+        }
+    }
+}

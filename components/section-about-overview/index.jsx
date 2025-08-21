@@ -129,12 +129,11 @@ const SectionAboutOverview = () => {
                       className={styles.wrapper_content_title}
                       aria-label={`${title.number} ans ${title.text}`}
                     >
-                      <span className={styles.wrapper_content_title_number}>
-                        {title.number}
+                      <span className={styles.wrapper_content_title_years}>
+                        {title.number} ans
                       </span>
                       <span className={styles.wrapper_content_title_text}>
-                        ans
-                        <strong>{title.text}</strong>
+                        {title.text}
                       </span>
                     </h3>
                     {description.map((item, itemIndex) =>

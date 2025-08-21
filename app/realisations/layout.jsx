@@ -1,91 +1,79 @@
 'use client';
 
 import styles from './page.module.scss';
-import {useRef, useEffect} from 'react';
+import {useRef} from 'react';
 import {AnimatePresence} from 'framer-motion';
 import {useSideMenu} from '@/hooks/useSideMenu';
 import useSliderMenu from '@/hooks/useSliderMenu';
+import useMediaQueries from '@/hooks/useMediaQueries';
 import Header from '@/components/header';
-import CursorSticky from '@/components/cursor-sticky';
 import SideMenu from '@/components/side-menu';
-import FooterCustom from '@/components/footer-custom';
 import {SliderMenuProvider} from '@/context/sliderMenuContext';
 import SliderMenu from '@/components/slider-menu';
-import AsideFooterRealization from '@/components/aside-footer-realization';
-import { FooterContentProvider } from '@/context/footerContentContext';
+import {CursorProvider} from '@/context/cursorContext';
+import CursorCustom from '@/components/cursor-custom';
+import CursorMask from '@/components/cursor-mask';
+import AsideFooterRealizationMaskContent from '@/components/aside-footer-realization/aside-footer-realization-mask-content';
+import Footer from '@/components/footer';
+import AsideFooter from '@/components/aside-footer';
+import AsideFooterBody from '@/components/aside-footer/aside-footer-body';
+import {h2FooterAsideRealization} from '@/components/animate-heading/data';
+import SvgEllipsesAnim from '@/components/svg-ellipses-anim';
 
 export default function RealizationsLayout({children}) {
-
-  const stickyElement = useRef(null);
-  const { isSideMenuOpen } = useSideMenu();
-
   return (
     <SliderMenuProvider>
-      {/** Transmettre children à LayoutContent **/}
-      <LayoutContent stickyElement={stickyElement} isSideMenuOpen={isSideMenuOpen}>
-        {children}
-      </LayoutContent>
+      <CursorProvider>
+        <LayoutContent>{children}</LayoutContent>
+      </CursorProvider>
     </SliderMenuProvider>
   );
 }
 
-function LayoutContent({stickyElement, isSideMenuOpen, children}) {
+function LayoutContent({children}) {
+  const {isSideMenuOpen} = useSideMenu();
   const {isSliderMenuOpen} = useSliderMenu();
+  const {desktop} = useMediaQueries();
+
+  const stickyBurgerElement = useRef(null);
+  const maskElement = useRef(null);
+  const stickyRefs = [stickyBurgerElement];
+  const maskRefs = [
+    {
+      ref: maskElement,
+      content: AsideFooterRealizationMaskContent,
+      shouldOverlap: true
+    }
+  ];
 
   return (
     <>
       <AnimatePresence mode="wait">
         {isSideMenuOpen && <SideMenu isOpen={isSideMenuOpen} />}
       </AnimatePresence>
-      <Header ref={stickyElement}></Header>
+      <Header ref={stickyBurgerElement}></Header>
       <main className={styles.main}>
         <SliderMenu />
         {children}
-        <CursorSticky stickyElement={stickyElement} />
+        {desktop && <CursorMask maskElementRefs={maskRefs} />}
+        {desktop && <CursorCustom stickyElementRefs={stickyRefs} />}
       </main>
       {!isSliderMenuOpen && (
-          <FooterContentProvider>
-            <FooterCustom defaultAside={false} variants={['zIndex_9']} bgBlack>
-              <AsideFooterRealization />
-            </FooterCustom>
-          </FooterContentProvider>
-        )
-      }
+        <Footer zIndex="z_index_9">
+          <AsideFooter
+            variant="realization"
+            anim={<SvgEllipsesAnim />}
+            body={
+              <AsideFooterBody
+                headings={h2FooterAsideRealization}
+                paragraph="Une seule connexion suffit !"
+                withRef
+                ref={maskElement}
+              />
+            }
+          ></AsideFooter>
+        </Footer>
+      )}
     </>
-  )
-};
-
-
-
-
-/* export default function RealizationsLayout({children}) {
-  const stickyElement = useRef(null);
-
-  const {isSideMenuOpen} = useSideMenu();
-
-  const {isSliderMenuOpen} = useSliderMenu();
-
-  useEffect(() => {
-    console.log('isOpen (inside layout): ', isSliderMenuOpen);
-  }, [isSliderMenuOpen]);
-
-  return (
-    <SliderMenuProvider>
-      <AnimatePresence mode="wait">
-        {isSideMenuOpen && <SideMenu isOpen={isSideMenuOpen} />}
-      </AnimatePresence>
-      <Header ref={stickyElement}></Header>
-      <main className={styles.main}>
-        <SliderMenu />
-        {children}
-        <CursorSticky stickyElement={stickyElement} />
-      </main>
-      {!isSliderMenuOpen && (
-          <FooterCustom defaultAside={false} className={styles.zIndex_9}>
-            <div style={{color: 'white'}}>CONTENU ADDITIONNEL</div>
-          </FooterCustom>
-        )
-      }
-    </SliderMenuProvider>
   );
-} */
+}

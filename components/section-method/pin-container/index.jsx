@@ -4,7 +4,7 @@ import styles from './style.module.scss';
 import {useLayoutEffect, useRef} from 'react';
 import gsap from 'gsap';
 import {ScrollTrigger} from 'gsap/ScrollTrigger';
-import StaggeredText from '@/components/staggered-text';
+import {useLenis} from '@/hooks/useLenis';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -17,7 +17,9 @@ const PinContainer = () => {
 
   const videoSource = '/videos/work_in_progress.mp4';
 
-  useLayoutEffect(() => {
+  const {lenis} = useLenis();
+
+  /* useLayoutEffect(() => {
     const container = containerRef.current;
     const svg = svgRef.current;
 
@@ -45,7 +47,7 @@ const PinContainer = () => {
     return () => {
       mm.revert(); // Cleanup when component unmounts
     };
-  }, [svgRef, containerRef]);
+  }, [svgRef, containerRef]); */
 
   useLayoutEffect(() => {
     const container = containerRef.current;
@@ -54,68 +56,111 @@ const PinContainer = () => {
     const blackCircle = blackCircleRef.current;
 
     if (!container || !svgContainer || !circles || !blackCircle) return;
+    if (!lenis) return;
 
-    const ctx = gsap.context(() => {
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: container,
-          start: 'top top',
-          end: 'bottom top',
-          scrub: true,
-          pin: svgContainer,
-          pinSpacing: false
-          // markers: true
-        }
-      });
+    const mm = gsap.matchMedia();
 
-      // Animate circles overlay
-      tl.to(circles, {
-        cx: 300,
-        scrollTrigger: {
-          trigger: container,
-          start: 'top top',
-          end: '+=50%',
-          scrub: true
-          // markers: true
-        }
-      });
+    mm.add(
+      {
+        xs: '(max-width: 359px)',
+        sm: '(min-width: 360px) and (max-width: 767px)',
+        md: '(min-width: 768px) and (max-width: 1023px)',
+        lg: '(min-width: 1024px) and (max-width: 1199px)',
+        xl: '(min-width: 1200px) and (max-width: 1439px)',
+        xxl: '(min-width: 1440px)'
+      },
+      (context) => {
+        const {xs, sm, md, lg, xl, xxl} = context.conditions;
 
-      // Animate black circle appearance
-      tl.fromTo(
-        blackCircle,
-        {
-          scale: 0,
-          opacity: 0.8,
-          transformOrigin: 'center'
-        },
-        {
-          scale: 10,
-          opacity: 1,
-          scrollTrigger: {
+        const ctx = gsap.context(() => {
+          const tl = gsap.timeline({
+            scrollTrigger: {
+              trigger: container,
+              start: xs ? 'top top' : sm ? 'center center' : 'center center',
+              // end: 'bottom top',
+              end: xs ? 'bottom center' : sm ? '+=65%' : '+=65%',
+              scrub: true,
+              pin: svgContainer,
+              pinSpacing: xs ? true : false
+              // markers: true
+            }
+          });
+
+          // Animate circles overlay
+          tl.to(circles, {
+            cx: 300,
+            scrollTrigger: {
+              trigger: container,
+              start: 'top top',
+              // end: xs ? '+=50%' : '+=25%',
+              // end: '+=25%',
+              end: '+=15%',
+              scrub: true
+              // markers: true
+            }
+          });
+
+          // Animate black circle appearance
+          tl.fromTo(
+            blackCircle,
+            {
+              scale: 0,
+              opacity: 0.8,
+              transformOrigin: 'center'
+            },
+            {
+              scale: 10,
+              opacity: 1,
+              scrollTrigger: {
+                trigger: container,
+                // start: '+=8%',
+                // start: '+=15%',
+                start: xs
+                  ? 'top+=10% top'
+                  : sm
+                    ? 'top+=75% top'
+                    : 'top+=40% top',
+                end: xs ? '+=15%' : '+=15%',
+                // end: xs ? '+=20%' : '+=10%',
+                scrub: true
+                // markers: true
+              }
+            }
+          );
+
+          // Animate circles opacity
+          /* tl.to(circles, {
+            opacity: 0,
+            scrollTrigger: {
+              trigger: container,
+              start: '+=10%',
+              end: '+=25%',
+              scrub: true
+            }
+          }); */
+
+          ScrollTrigger.create({
             trigger: container,
-            start: '+=8%',
-            end: '+=60%',
-            scrub: true
-          }
-        }
-      );
+            start: 'top top',
+            end: 'bottom top',
+            onEnter: () => (lenis.options.duration = 2.5),
+            onLeave: () => (lenis.options.duration = 1.2),
+            onEnterBack: () => (lenis.options.duration = 2.5),
+            onLeaveBack: () => (lenis.options.duration = 1.2)
+          });
+        });
 
-      // Animate circles opacity
-      tl.to(circles, {
-        opacity: 0,
-        scrollTrigger: {
-          trigger: container,
-          start: '+=10%',
-          end: '+=25%',
-          scrub: true
-        }
-      });
-    });
+        return () => {
+          ctx.revert(); // Cleanup animations and ScrollTrigger effects when component unmounts
+        };
+      }
+    );
 
     return () => {
-      ctx.revert(); // Cleanup animations and ScrollTrigger effects when component unmounts
+      mm.revert();
+      lenis.options.duration = 1.2; // Default value
     };
-  }, []);
+  }, [lenis]);
 
   return (
     <div ref={containerRef} className={styles.pin_container}>
@@ -223,18 +268,6 @@ const PinContainer = () => {
           />
         </svg>
       </div>
-      <section className={styles.section_interlude}>
-        <h2>
-          L&apos;essence du design : <br />
-          une boucle continue.
-        </h2>
-        <p>
-          Chaque étape s&apos;enchaîne harmonieusement, <br />
-          comme un cercle de créativité en perpétuel mouvement.
-        </p>
-
-        <StaggeredText text={'immersion exploration itération réalisation'} />
-      </section>
     </div>
   );
 };

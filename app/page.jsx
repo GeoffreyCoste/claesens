@@ -5,6 +5,7 @@ import {useState, useEffect, useRef} from 'react';
 import {AnimatePresence} from 'framer-motion';
 import {useSideMenu} from '@/hooks/useSideMenu';
 import {useLenis} from '@/hooks/useLenis';
+import useMediaQueries from '@/hooks/useMediaQueries';
 import Header from '@/components/header';
 import Preloader from '@/components/preloader';
 import SectionHero from '@/components/section-hero';
@@ -13,20 +14,24 @@ import SectionSkills from '@/components/section-skills';
 import SectionProcess from '@/components/section-process';
 import InfiniteText from '@/components/infinite-text';
 import SectionRelease from '@/components/section-release';
-import CursorSticky from '@/components/cursor-sticky';
-import Gallery from '@/components/gallery';
+import CursorCustom from '@/components/cursor-custom';
 import ImageParallax from '@/components/image-parallax';
 import SideMenu from '@/components/side-menu';
-import FooterCustom from '@/components/footer-custom';
-import ParallaxGrid from '@/components/parallax-grid';
 import GridParallax from '@/components/grid-parallax';
+import Footer from '@/components/footer';
+import AsideFooter from '@/components/aside-footer';
+import CanvasShaderLens from '@/components/canvas-shader-lens';
+import AsideFooterBody from '@/components/aside-footer/aside-footer-body';
+import {h2FooterAsideHome} from '@/components/animate-heading/data';
 
 export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
   const {stop, start} = useLenis();
   const {isSideMenuOpen} = useSideMenu();
+  const {desktop} = useMediaQueries();
 
-  const stickyElement = useRef(null);
+  const stickyBurgerElement = useRef(null);
+  const stickyRefs = [stickyBurgerElement];
 
   useEffect(() => {
     stop();
@@ -61,21 +66,31 @@ export default function Home() {
       <AnimatePresence mode="wait">
         {isSideMenuOpen && <SideMenu />}
       </AnimatePresence>
-      <Header ref={stickyElement}></Header>
+      <Header ref={stickyBurgerElement}></Header>
       <main className={styles.main}>
         <SectionHero />
         <SectionWho />
         <InfiniteText />
         <GridParallax />
-        {/* <ParallaxGrid /> */}
-        {/* <Gallery /> */}
         <SectionSkills />
         <ImageParallax />
         <SectionProcess />
         <SectionRelease />
-        <CursorSticky stickyElement={stickyElement} />
+        {desktop && <CursorCustom stickyElementRefs={stickyRefs} />}
       </main>
-      <FooterCustom />
+      <Footer>
+        <AsideFooter
+          variant="home"
+          anim={desktop ? <CanvasShaderLens /> : ''}
+          body={
+            <AsideFooterBody
+              headings={h2FooterAsideHome}
+              paragraph="Ensemble, faisons rayonner vos idées !"
+            />
+          }
+          draggable
+        ></AsideFooter>
+      </Footer>
     </>
   );
 }

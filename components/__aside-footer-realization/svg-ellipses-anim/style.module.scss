@@ -1,0 +1,107 @@
+.svg_container {
+    width: 100%;
+    // max-width: 320px;
+    // position: absolute;
+    // top: 50%;
+    // left: 50%;
+    // transform: translate(-50%, -50%);
+    // z-index: 5;
+    position: relative;
+    // margin-top: 5rem;
+    padding: 0 1rem;
+
+    &::before {
+        content: "";
+        width: calc(100% - 2rem);
+        height: calc(100% - 2rem);
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: var(--bg-gray);
+        border-radius: 20px;
+    }
+    
+    svg {
+        opacity: 0;
+        transform: scale(0.6);
+        will-change: transform;
+
+        .star {
+
+            &:nth-of-type(3) {
+                transform: translate(50px, 70px) scale(0.35);
+                /* transform: translate(30px, 30px) scale(0.35); */
+            }
+
+            &:last-of-type {
+                transform: translate(370px, 350px) scale(0.35);
+                /* transform: translate(70px, 400px) scale(0.35); */
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 360px) {
+    .svg_container {
+        width: 100%;
+        // max-width: 320px;
+        // position: absolute;
+        // top: 50%;
+        // left: 50%;
+        // transform: translate(-50%, -50%);
+        // z-index: 5;
+        position: relative;
+        padding: 0 1rem;
+
+        &::before {
+            content: "";
+            width: calc(100% - 2rem);
+            height: 100%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: var(--bg-gray);
+            border-radius: 20px;
+        }
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .svg_container {
+        height: 80%;
+        // margin-top: 0;
+
+        &::before {
+            width: 100%;
+            background: radial-gradient(ellipse at center, #f1f1f1, #f1f1f1 35%, #ffffff 50%, #f1f1f1 60%, transparent);
+        }
+        .svg {
+            opacity: 0;
+            transform: scale(0.6);
+            will-change: transform;
+        }
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .svg_container {
+        width: 80%;
+        padding: 0;
+
+        svg {
+
+            .star {
+
+                &:nth-of-type(3) {
+                    transform: translate(60px, 125px) scale(0.25);
+                }
+
+                &:last-of-type {
+                    transform: translate(370px, 350px) scale(0.25);
+                }
+            }
+        }
+    }
+}

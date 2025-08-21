@@ -3,7 +3,6 @@
 import styles from './style.module.scss';
 import useMediaQueries from '@/hooks/useMediaQueries';
 import HorizontalScroll from './horizontal-scroll';
-import HorizontalMotion from './horizontal-motion';
 import HorizontalSlider from './horizontal-slider';
 
 const SectionMethodProcess = () => {
@@ -17,8 +16,6 @@ const SectionMethodProcess = () => {
 
       {mobile && <HorizontalScroll />}
       {!mobile && <HorizontalSlider />}
-      {/* {tablet && <HorizontalMotion />}
-      {desktop && <HorizontalSlider />} */}
     </section>
   );
 };

@@ -19,10 +19,4 @@
         line-height: 0;
         margin-left: 2px;
     }
-
-    .add_question_mark::after {
-        content: " ?";
-        color: var(--yellow);
-        font-size: inherit;
-    }
 }

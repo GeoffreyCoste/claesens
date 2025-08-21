@@ -6,7 +6,8 @@ export const services = [{
             "Je la révèle dans un univers visuel cohérent qui vous rend reconnaissable et mémorable sur tous vos supports de communication.",
         ],
         image: {
-            src: ["/images/services_img_0.jpg", "/images/services_img_0_222x296.jpg"],
+            src: ["/images/services_img_0_2048x1536.webp", "/images/services_img_0_900x1200.webp"],
+            // src: ["/images/services_img_0.jpg", "/images/services_img_0_222x296.jpg"],
             alt: "Branding"
         },
     },
@@ -18,7 +19,8 @@ export const services = [{
             "Je crée des supports numériques performants qui génèrent du trafic et transforment vos visiteurs en clients.",
         ],
         image: {
-            src: ["/images/services_img_1.jpg", "/images/services_img_1_222x296.jpg"],
+            src: ["/images/services_img_1_2048x1536.webp", "/images/services_img_1_900x1200.webp"],
+            // src: ["/images/services_img_1.jpg", "/images/services_img_1_222x296.jpg"],
             alt: "Digital"
         },
     },
@@ -30,7 +32,8 @@ export const services = [{
             "Je conçois des supports imprimés qui créent une connexion durable avec vos clients.",
         ],
         image: {
-            src: ["/images/services_img_2.jpg", "/images/services_img_2_222x296.jpg"],
+            src: ["/images/services_img_2_2048x1536.webp", "/images/services_img_2_900x1200.webp"],
+            // src: ["/images/services_img_2.jpg", "/images/services_img_2_222x296.jpg"],
             alt: "Print"
         },
     },
@@ -42,7 +45,8 @@ export const services = [{
             "Je réalise des visuels personnalisés qui attirent l'œil et s'adaptent à tous vos besoins.",
         ],
         image: {
-            src: ["/images/services_img_3.jpg", "/images/services_img_3_222x296.jpg"],
+            src: ["/images/services_img_3_2048x1536.webp", "/images/services_img_3_900x1200.webp"],
+            // src: ["/images/services_img_3.jpg", "/images/services_img_3_222x296.jpg"],
             alt: "Illustration"
         },
     },
@@ -54,7 +58,8 @@ export const services = [{
             "Je crée des contenus en mouvement qui transforment vos messages en expériences mémorables.",
         ],
         image: {
-            src: ["/images/services_gif.gif", "/images/services_gif_222x296.gif"],
+            src: ["/images/services_gif_2048x1536.gif", "/images/services_gif_900x1200.gif"],
+            // src: ["/images/services_gif.gif", "/images/services_gif_222x296.gif"],
             alt: "Motion design"
         },
     },

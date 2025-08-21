@@ -48,7 +48,7 @@ const SectionAboutPanorama = () => {
                       l&apos;alimentaire.
                     </p>
                     <p className={styles.text}>
-                      Ce parcours m&apos;a offert une vision 360° des défis et
+                      Ce parcours m&apos;a offert une vision à 360° des défis et
                       des meilleures pratiques liés à la conception et au
                       développement de l&apos;identité de marque.
                     </p>

@@ -1,7 +1,7 @@
-import {SideMenuProvider} from '@/context/sideMenuContext';
-import {LenisProvider} from '@/context/lenisContext';
-import {DM_Sans, Bricolage_Grotesque} from 'next/font/google';
 import './globals.css';
+import {LenisProvider} from '@/context/lenisContext';
+import {SideMenuProvider} from '@/context/sideMenuContext';
+import {DM_Sans, Bricolage_Grotesque} from 'next/font/google';
 
 export const metadata = {
   title: 'claesens',

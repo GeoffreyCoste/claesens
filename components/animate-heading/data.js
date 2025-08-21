@@ -21,7 +21,7 @@ export const h2SectionRelease = [{
 
 export const h2FooterAsideHome = [{
     type: "heading2",
-    text: "Prêt.e.s à redessiner vos contours"
+    text: "Redessinez vos contours."
 }];
 
 /* About page */
@@ -57,7 +57,7 @@ export const h2SectionServicesDetails = [{
 
 export const h2FooterAsideServices = [{
     type: "heading2",
-    text: "Donnez une nouvelle dimension à votre image."
+    text: "Déployez votre univers."
 }];
 
 /* Method page */
@@ -66,9 +66,25 @@ export const h1SectionMethod = [{
     text: "Un cercle vertueux."
 }];
 
+export const h2SectionMethodInterlude = [{
+    type: "heading2",
+    text: "L'essence du design : une boucle continue."
+}];
+
 export const h2FooterAsideMethod = [{
     type: "heading2",
     text: "Tout (re)commence ici."
+}];
+
+/* Realization page */
+export const h2FooterAsideRealization = [{
+    type: "heading2",
+    text: "Restez dans la boucle."
+}];
+
+export const h2FooterAsideRealizationMask = [{
+    type: "heading2",
+    text: "Ou créez votre boucle."
 }];
 
 export const tags = {

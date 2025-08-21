@@ -20,7 +20,7 @@
 
     /* Font size */
     &.size_base { font-size: 0.75rem; }
-    &.size_sm { font-size: var(--font-size-xs); line-height: var(--font-size-xs); }
+    &.size_xs { font-size: calc(var(--font-size-xs) * 0.85); line-height: calc(var(--font-size-xs) * 0.85); }
 
     /* Font weight */
     &.weight_bold { font-weight: 700; }

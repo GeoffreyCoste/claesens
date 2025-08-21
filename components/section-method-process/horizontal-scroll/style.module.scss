@@ -6,21 +6,48 @@
         display: flex;
         background-color: var(--black);
         overflow: hidden;
+    }
 
-        .steps_indicator {
+    .overlay {
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        justify-content: flex-end;
+        position: absolute;
+        left: 0;
+        top: 0;
+        padding: 0 1.45rem;
+        color: white;
+        pointer-events: none;
+
+        .wrapper {
+            width: 100%;
+            height: 480px;
             display: flex;
-            flex-flow: column;
-            justify-content: center;
-            align-items: center;
-            gap: 0.5rem;
+            justify-content: flex-end;
+            align-items: flex-start;
             position: absolute;
-            top: 5.75rem;
-            right: 1rem;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            padding: 0 1.45rem;
+            color: white;
 
-            .steps_indicator_label {
-                color: var(--white);
-                font-size: 0.85rem;
-                font-weight: 200;
+            .steps_indicator {
+                display: flex;
+                flex-flow: column;
+                justify-content: center;
+                align-items: center;
+                gap: 0.5rem;
+                margin-top: 1.5rem;
+
+
+
+                .steps_indicator_label {
+                    color: var(--white);
+                    font-size: 0.85rem;
+                    font-weight: 200;
+                }
             }
         }
     }
@@ -34,35 +61,104 @@
         width: 100vw;
         height: 100vh;
         display: flex;
+        align-items: center;
 
         .step_article {
             width: 100%;
-            height: 100%;
+            height: 420px;
             display: flex;
             flex-direction: column;
             justify-content: flex-start;
             align-items: flex-start;
-            gap: 1rem;
-            padding: 5rem 2rem 0;
+            padding: 0 1rem;
     
             &_img {
-                width: 100px;
-                height: 100px;
+                width: 75px;
+                height: 75px;
                 position: relative;
-                margin-bottom: 1rem;
             }
     
             &_title {
                 color: var(--white);
-                font-size: 2rem;
                 font-weight: 900;
-                line-height: 2.25rem;
+                margin-top: 1rem;
             }
     
             &_description {
                 color: var(--gray-light);
-                font-size: 0.85rem;
+                font-size: var(--font-size-sm);
                 text-align: start;
+                margin: 0.25rem 0 0;
+
+                &:first-of-type {
+                    margin: 0.75rem 0 0;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 360px) {
+    .horizontal_scroll {
+
+        .overlay {
+
+            .wrapper {
+                height: 480px;
+
+                .steps_indicator {
+                    margin-top: 0;
+                }
+            }
+        }
+
+        &_item {
+
+            .step_article {
+                max-width: 360px;
+                height: 480px;
+                margin: 0 auto;
+                padding: 0 2rem;
+
+                &_img {
+                    width: 100px;
+                    height: 100px;
+                }
+
+                &_description {
+                    font-size: var(--font-size-base);
+                }
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 390px) {
+    .horizontal_scroll {
+
+        .overlay {
+
+            .wrapper {
+                height: 550px;
+            }
+        }
+
+        &_item {
+
+            .step_article {
+                height: 550px;
+
+                &_title {
+                    margin-top: 2rem;
+                }
+
+                &_description {
+                    margin: 0.75rem 0 0;
+
+                    &:first-of-type {
+                        margin: 1.25rem 0 0;
+                    }
+                }
             }
         }
     }

@@ -27,7 +27,7 @@
         }
 
         .paragraph {
-            margin: 1rem auto 2rem;
+            margin: 1rem auto 0;
             white-space: pre-wrap;
     
             &:not(:last-of-type) {
@@ -111,7 +111,7 @@
         .text_block {
             max-width: 500px;
             margin: 0 auto;
-            padding: 0;
+            // padding: 0;
         }
 
         .image_wrapper {

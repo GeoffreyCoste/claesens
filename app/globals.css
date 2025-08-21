@@ -16,13 +16,17 @@
   --font-size-h1: clamp(3rem, 10vw, 6rem); /* min 54px, max 108px */
   --font-size-h2: clamp(2.5rem, 8vw, 4rem); /* min 45px, max 72px */
   --font-size-h3: clamp(2rem, 6vw, 3rem);   /* min 36px, max 54px */
-  --font-size-h4: clamp(1.5rem, 4.5vw, 2.25rem); /* min 27px, max 40.5px */
+  --font-size-h4: clamp(1.675rem, 4.5vw, 2.25rem); /* min 27px, max 40.5px */
   --font-size-h5: clamp(1.25rem, 3.5vw, 1.75rem); /* min 22.5px, max 31.5px */
   --font-size-h6: clamp(1rem, 2.5vw, 1.5rem); /* min 18px, max 27px */
 
-  --font-size-base: clamp(1rem, 2.5vw, 1.225rem);
-  --font-size-sm: clamp(0.778rem, 2vw, 1rem);
-  --font-size-xs: clamp(0.625rem, 1.5vw, 0.888rem);
+  --font-size-base: clamp(1rem, 2.65vw, 1.225rem);
+  --font-size-sm: clamp(0.89rem, 2vw, 1rem);
+  --font-size-xs: clamp(0.78rem, 1.5vw, 0.89rem);
+  /* --font-size-sm: clamp(0.778rem, 2vw, 1rem); */
+  /*--font-size-xs: clamp(0.625rem, 1.5vw, 0.888rem); */
+  
+  --text-shadow: 2px 2px 15px rgba(0, 0, 0, 0.8);
 
 
 
@@ -65,8 +69,21 @@
   background: var(--yellow);
 }
 
+::-webkit-scrollbar-track {
+  background: var(--black);
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--yellow);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #ffd600;
+}
+
 html {
   font-size: var(--font-size); /* 1rem = 18px */
+  scrollbar-color: var(--yellow) var(--black);
 }
 
 body {

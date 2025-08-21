@@ -14,7 +14,13 @@ const StepItem = ({index, img, label}) => {
         />
       </div>
       <p className={styles.steps_list_item_index}>{index + 1}</p>
-      <p className={styles.steps_list_item_label}>{label}</p>
+      <p className={styles.steps_list_item_label} aria-label={label}>
+        {label.split(' &').map((str, i) => (
+          <span key={`step-item-label-part-${i}`}>
+            {i === 0 ? str : '&' + str}
+          </span>
+        ))}
+      </p>
     </li>
   );
 };

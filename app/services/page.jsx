@@ -3,45 +3,49 @@
 import {useRef} from 'react';
 import {AnimatePresence} from 'framer-motion';
 import {useSideMenu} from '@/hooks/useSideMenu';
+import useMediaQueries from '@/hooks/useMediaQueries';
 import Header from '@/components/header';
-import CursorSticky from '@/components/cursor-sticky';
-/* import FooterNew from '@/components/footer-new';
-import FooterSticky from '@/components/footer-sticky'; */
+import CursorCustom from '@/components/cursor-custom';
 import SideMenu from '@/components/side-menu';
-import SectionServicesIntro from '@/components/section-services-intro';
-import CurvedTextSvg from '@/components/curved-text-svg';
-/* import Card3d from '@/components/card-3d';
-import Scene from '@/components/3d/scene';
-import ScrollOverlap from '@/components/scroll-overlap'; */
 import SectionServicesDetails from '@/components/section-services-details';
-import FooterCustom from '@/components/footer-custom';
-import AsideFooterServices from '@/components/aside-footer-services';
 import SectionServicesHero from '@/components/section-services-hero';
-import CurvedText from '@/components/section-services-hero/curved-text/__index';
+import Footer from '@/components/footer';
+import AsideFooter from '@/components/aside-footer';
+import GoeyCircles from '@/components/goey-circles';
+import AsideFooterBody from '@/components/aside-footer/aside-footer-body';
+import {h2FooterAsideServices} from '@/components/animate-heading/data';
 
 export default function Services() {
-  const stickyElement = useRef(null);
+  const stickyBurgerElement = useRef(null);
 
   const {isSideMenuOpen} = useSideMenu();
+  const {desktop} = useMediaQueries();
+
+  const stickyRefs = [stickyBurgerElement];
 
   return (
     <>
       <AnimatePresence mode="wait">
         {isSideMenuOpen && <SideMenu isOpen={isSideMenuOpen} />}
       </AnimatePresence>
-      <Header ref={stickyElement}></Header>
+      <Header ref={stickyBurgerElement}></Header>
       <main>
         <SectionServicesHero />
-        {/* <SectionServicesIntro /> */}
-        {/* <CurvedTextSvg /> */}
         <SectionServicesDetails />
-        <CursorSticky stickyElement={stickyElement} />
+        {desktop && <CursorCustom stickyElementRefs={stickyRefs} />}
       </main>
-      {/* <FooterNew /> */}
-      {/* <FooterSticky /> */}
-      <FooterCustom defaultAside={false} variants={['zIndex_9']} bgBlack>
-        <AsideFooterServices />
-      </FooterCustom>
+      <Footer zIndex="z_index_9">
+        <AsideFooter
+          variant="services"
+          anim={<GoeyCircles />}
+          body={
+            <AsideFooterBody
+              headings={h2FooterAsideServices}
+              paragraph="Un message et c'est parti !"
+            />
+          }
+        ></AsideFooter>
+      </Footer>
     </>
   );
 }

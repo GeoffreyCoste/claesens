@@ -3,28 +3,28 @@ const steps = [{
             src: "/images/sphere_0.png",
             alt: "Sticker noir d'un pictogramme représentant un crayon sur une sphère 3D blanche"
         },
-        label: "rencontre & briefing"
+        label: "Rencontre & briefing"
     },
     {
         img: {
             src: "/images/sphere_1.png",
             alt: "Sticker noir d'un pictogramme représentant une baguette magique sur une sphère 3D blanche",
         },
-        label: "réflexion & création"
+        label: "Réflexion & création"
     },
     {
         img: {
             src: "/images/sphere_2.png",
             alt: "Sticker noir d'un pictogramme représentant deux bulles de bande-dessinnée sur une sphère 3D blanche",
         },
-        label: "proposition & échange"
+        label: "Proposition & échange"
     },
     {
         img: {
             src: "/images/sphere_3.png",
             alt: "Sticker noir d'un pictogramme représentant un document numérique sur une sphère 3D blanche",
         },
-        label: "finalisation & livraison"
+        label: "Finalisation & livraison"
     }
 ];
 export default steps;

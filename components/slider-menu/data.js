@@ -120,7 +120,9 @@ export const slides = [{
   }, */
 ];
 export const clipPathValues = {
-  mobile: 'inset(32% 24% round 28vw)',
+  /* xs: 'inset(35% 15% round 28vw)', */
+  xs: 'inset(35% 10% round 28vw)',
+    sm: 'inset(32% 24% round 28vw)',
   tablet: 'inset(28% 28% round 28vw)',
   xl: 'inset(22% 35% round 23vw)',
   xxl: 'inset(22% 39% round 23vw)',

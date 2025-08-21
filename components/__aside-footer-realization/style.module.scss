@@ -1,0 +1,157 @@
+.aside_footer_realization {
+    width: 100%;
+    height: 150vh;
+    position: relative;
+    background-color: var(--white);
+    z-index: 4;
+
+    &::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 3rem;
+        background-image: radial-gradient(circle, var(--bg-gray) 30%, transparent 31%);
+        background-repeat: repeat-x;
+        background-size: 2rem 4rem;
+        background-position: top;
+    }
+
+    @media screen and (min-width: 360px) {
+        height: 120vh;
+    }
+
+    .aside {
+        width: 100%;
+        height: 100%;
+
+        .content {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
+            .anim {
+                width: 100%;
+                flex: 0 0 50%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            .body {
+                width: 100%;
+                // flex: 0 0 50%;
+                display: flex;
+                flex-direction: column;
+                justify-content: flex-start;
+                align-items: center;
+                gap: 2rem;
+                padding: 0 1rem;
+                text-align: center;
+
+                .text {
+                    margin: 1rem 0 -2rem;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .aside_footer_realization {
+        width: 100%;
+        // height: 100%;
+        // position: relative;
+        background-color: var(--bg-gray);
+        height: 100vh;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        padding: 0;
+        z-index: 4;
+
+        &::after {
+            display: none;
+        }
+    
+        .aside {
+
+            .content {
+                gap: 4rem;
+
+                .anim {
+                    width: auto;
+                    flex: 0 0 40%;
+                    align-items: flex-end;
+
+                    @media screen and (min-width: 800px) {
+                        flex: 0 0 50%;
+                    }
+                }
+
+                .body {
+                    flex: 0 0 60%;
+                    gap: 0;
+
+                    @media screen and (min-width: 800px) {
+                        flex: 0 0 50%;
+                    }
+
+                    .text {
+                        font-size: 1.25rem;
+                        margin: 1rem 0 2rem;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .aside_footer_realization {
+
+        .aside {
+
+            .content {
+                max-width: 51.5rem;
+                flex-direction: row;
+                justify-content: center;
+                gap: 0;
+                position: relative;
+                margin: 0 auto;
+
+                @media screen and (min-width: 1200px) {
+                    max-width: 60rem;
+                }
+
+                .anim {
+                    order: 2;
+                    flex: 0 0 50%;
+                    align-items: center;
+                }
+
+                .body {
+                    order: 1;
+                    flex: 0 0 50%;
+                    align-items: flex-start;
+                    text-align: start;
+                    padding: 0;
+
+                    .text {
+                        position: relative;
+                        z-index: 8;
+                    }
+
+                    button {
+                        z-index: 8;
+                    }
+                }
+            }
+        }
+    }
+}
+

@@ -9,8 +9,8 @@ const labels = [
   new Date().getFullYear().toString(),
   'freelance',
   'design',
-  'créativité',
   'vision',
+  'créativité',
   'émotions'
 ];
 

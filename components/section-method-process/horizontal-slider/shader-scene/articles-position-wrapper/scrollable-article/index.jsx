@@ -1,15 +1,23 @@
 'use client'
 
 import styles from './style.module.scss';
-import { useRef, useEffect } from 'react';
+import {useRef, useEffect} from 'react';
+import useMediaQueries from '@/hooks/useMediaQueries';
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const ScrollableArticle = ({datas, activeIndex, isDotNavigationScrolling, shouldFadeOut }) => {
+const ScrollableArticle = ({
+  datas,
+  activeIndex,
+  isDotNavigationScrolling,
+  shouldFadeOut
+}) => {
   const titleRef = useRef([]);
   const bodyRef = useRef(null);
+
+  const {tablet} = useMediaQueries();
 
   useEffect(() => {
     const title = titleRef.current;
@@ -30,7 +38,7 @@ const ScrollableArticle = ({datas, activeIndex, isDotNavigationScrolling, should
         stagger: 0.02,
         duration: 0.3,
         ease: 'power2.in',
-        onComplete: callback,
+        onComplete: callback
       });
     };
 
@@ -56,14 +64,15 @@ const ScrollableArticle = ({datas, activeIndex, isDotNavigationScrolling, should
         opacity: 1,
         stagger: 0.03,
         duration: 0.4,
-        ease: 'power2.out',
+        ease: 'power2.out'
       });
     };
 
     const animateBodyIn = () => {
-      gsap.fromTo(body,
-        { opacity: 0, y: 30 },
-        { opacity: 1, y: 0, duration: 0.5, ease: 'power2.out', delay: 0.2 }
+      gsap.fromTo(
+        body,
+        {opacity: 0, y: 30},
+        {opacity: 1, y: 0, duration: 0.5, ease: 'power2.out', delay: 0.2}
       );
     };
 
@@ -73,12 +82,17 @@ const ScrollableArticle = ({datas, activeIndex, isDotNavigationScrolling, should
         y: 30,
         duration: 0.3,
         ease: 'power2.in',
-        onComplete: callback,
+        onComplete: callback
       });
     };
 
     // Séparer la logique
-    if (!datas || activeIndex === null || activeIndex === undefined || !datas[activeIndex]) {
+    if (
+      !datas ||
+      activeIndex === null ||
+      activeIndex === undefined ||
+      !datas[activeIndex]
+    ) {
       animateTitleOut(); // plus de innerHTML
       animateBodyOut();
     } else if (shouldFadeOut) {
@@ -89,24 +103,39 @@ const ScrollableArticle = ({datas, activeIndex, isDotNavigationScrolling, should
       animateTitleOut(() => animateTitleIn(newTitle));
       animateBodyOut(() => animateBodyIn());
     }
-
   }, [datas, activeIndex, isDotNavigationScrolling, shouldFadeOut]);
+
+  /* useEffect(() => {
+    console.log('Active index: ', activeIndex);
+  }, [activeIndex]);
+
+  useEffect(() => {
+    console.log('🧪 activeIndex:', activeIndex);
+    console.log('🧪 shouldFadeOut:', shouldFadeOut);
+    console.log('🧪 datas[activeIndex]:', datas?.[activeIndex]);
+    console.log('🧪 isTablet:', tablet);
+  }, [datas, activeIndex, shouldFadeOut, tablet]); */
 
   return (
     <article className={styles.article}>
       <h4
         ref={titleRef}
-        className={styles.title}
+        className={`${styles.title} ${
+          tablet && activeIndex === 1 ? styles.title_adjust : ''
+        }`}
       />
       <div ref={bodyRef} className={styles.body}>
-        {!shouldFadeOut && activeIndex !== null && activeIndex !== undefined && datas[activeIndex].description.map((p, i) => (
-          <p key={`article-description-${i}`} className={styles.text}>
-            {p}
-          </p>
-        ))}
+        {!shouldFadeOut &&
+          activeIndex !== null &&
+          activeIndex !== undefined &&
+          datas[activeIndex].description.map((p, i) => (
+            <p key={`article-description-${i}`} className={styles.text}>
+              {p}
+            </p>
+          ))}
       </div>
     </article>
-  )
-}
+  );
+};
 
 export default ScrollableArticle;

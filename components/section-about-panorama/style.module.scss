@@ -59,6 +59,7 @@
                         display: flex;
                         flex-flow: column;
                         justify-content: space-between;
+                        text-shadow: var(--text-shadow);
 
                         > span {
                             flex-basis: 100%;
@@ -95,9 +96,10 @@
 
         &_body {
             width: 100%;
-            max-width: calc(500px + 4rem);
+            // max-width: calc(500px + 4rem);
+            max-width: 530px;
             margin: 0 auto;
-            padding: 0 2rem;
+            padding: 0 1rem;
 
             .body {
                 width: 100%;
@@ -178,6 +180,36 @@
                         max-width: 550px;
                     }
                 }
+            }
+
+            &_body {
+                max-width: 550px;
+
+                .body {
+
+                    &_item {
+    
+                        &_text {
+    
+                            .text {
+                                font-size: var(--font-size-sm);
+                            }
+                        }
+                    }
+                }
+
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 1440px) {
+    .section_about_panorama {
+
+        &_content {
+
+            &_body {
+                max-width: 725px;
             }
         }
     }

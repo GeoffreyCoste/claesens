@@ -1,0 +1,22 @@
+.cursor_mask {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    color: var(--white);
+    background: var(--black);
+    pointer-events: none;
+    mask-image: url('/images/mask.svg');
+    -webkit-mask-image: url('/images/mask.svg');
+    mask-repeat: no-repeat;
+    -webkit-mask-repeat: no-repeat;
+    mask-size: 15px;
+    -webkit-mask-size: 15px;
+    cursor: default;
+    z-index: 10;
+
+    .mask_content {
+        position: absolute;
+    }
+}

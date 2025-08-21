@@ -59,7 +59,7 @@
             padding: 6rem 2rem;
 
             &_text {
-                width: 405px;
+                max-width: 500px;
                 margin-left: auto;
                 margin-right: auto;
             }
@@ -82,8 +82,7 @@
             }
 
             &_text {
-                width: 100%;
-                max-width: none;
+                max-width: 550px;
                 text-align: center;
             }
         }
@@ -91,6 +90,18 @@
         &_item {
             width: 55%;
             max-width: 40rem;
+        }
+    }
+}
+
+@media screen and (min-width: 1440px) {
+    .section_process {
+
+        &_content {
+
+            &_text {
+                max-width: 725px;
+            }
         }
     }
 }

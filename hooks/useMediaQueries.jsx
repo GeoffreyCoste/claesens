@@ -2,16 +2,16 @@ import {useState, useEffect} from 'react';
 
 // Définir les media queries pour les différents types d'appareils
 const MEDIA_QUERIES = {
-  mobile: '(max-width: 768px)',
-  tablet: '(min-width: 768px) and (max-width: 1024px)',
+  mobile: '(max-width: 767px)',
+  tablet: '(min-width: 768px) and (max-width: 1023px)',
   desktop: '(min-width: 1024px)',
-  xs: '(min-width: 320px) and (max-width: 575px)',
-  sm: '(min-width: 576px) and (max-width: 767px)',
+  xs: '(min-width: 320px) and (max-width: 359px)',
+  sm: '(min-width: 360px) and (max-width: 767px)',
   md: '(min-width: 768px) and (max-width: 992px)',
-  lg: '(min-width: 992px) and (max-width: 1024px)',
-  xl: '(min-width: 1024px) and (max-width: 1200px)',
-  xxl: '(min-width: 1200px) and (max-width: 1400px)',
-  xxxl: '(min-width: 1400px) and (max-width: 1600px)',
+  lg: '(min-width: 992px) and (max-width: 1023px)',
+  xl: '(min-width: 1024px) and (max-width: 1199px)',
+  xxl: '(min-width: 1200px) and (max-width: 1399px)',
+  xxxl: '(min-width: 1400px) and (max-width: 1599px)',
   ultra: '(min-width: 1600px)'
 };
 

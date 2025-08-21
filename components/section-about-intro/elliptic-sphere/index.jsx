@@ -5,7 +5,8 @@ const SvgEllipticSphere = () => {
       xmlnsXlink="http://www.w3.org/1999/xlink"
       width="100%"
       height="100%"
-      viewBox="-1.2 -1.2 2.2 2.2"
+      viewBox="-1.1 -1.1 2.2 2.2"
+      // viewBox="-1.2 -1.2 2.2 2.2"
     >
       <g
         fill="hsla(0, 0%, 95%, .01)"

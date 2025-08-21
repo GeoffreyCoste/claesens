@@ -20,7 +20,7 @@ import SpinningBadge from '../spinning-badge';
 
 const SliderMenu = ({datas = defaultSlides}) => {
   /*** States and Refs ***/
-  const {mobile, tablet, desktop, xl, xxl, xxxl, ultra} = useMediaQueries();
+  const {sm, mobile, tablet, desktop, xl, xxl, xxxl, ultra} = useMediaQueries();
   const {
     isSliderMenuOpen,
     toggleIsSliderMenuOpen,
@@ -59,7 +59,9 @@ const SliderMenu = ({datas = defaultSlides}) => {
           ? clipPathValues.xl
           : tablet
             ? clipPathValues.tablet
-            : clipPathValues.mobile;
+            : sm
+              ? clipPathValues.sm
+              : clipPathValues.xs;
 
   const {
     currentIndex,
@@ -257,10 +259,6 @@ const SliderMenu = ({datas = defaultSlides}) => {
   }, [isSliderMenuOpen, showPreview, showSlider]);
 
   useEffect(() => {
-    console.log('isSliderMenuOpen (inside slider): ', isSliderMenuOpen);
-  }, [isSliderMenuOpen]);
-
-  useEffect(() => {
     // Check if slidesRef contains valid references
     if (!slidesRef.current || slidesRef.current.length === 0) return;
 
@@ -355,27 +353,29 @@ const SliderMenu = ({datas = defaultSlides}) => {
 
       {mobile && (
         <div className={clsx(styles.menu_bar, isSliderMenuOpen && styles.show)}>
-          <div className={styles.scroll_snap}>
-            {datas.map((item, index) => (
-              <div
-                key={`snap-item-${index}`}
-                ref={(el) => (snapItemsRef.current[index] = el)}
-                className={clsx(
-                  styles.snap_item,
-                  index === activeSnapIndex && styles.active
-                )}
-                onClick={() => handleSnapItemClick(index)}
-              >
-                <Image
-                  src={item.thumbnail.img}
-                  alt={item.thumbnail.alt}
-                  fill
-                  style={{objectFit: 'cover'}}
-                  loading="lazy"
-                />
-              </div>
-            ))}
-          </div>
+          {sm && (
+            <div className={styles.scroll_snap}>
+              {datas.map((item, index) => (
+                <div
+                  key={`snap-item-${index}`}
+                  ref={(el) => (snapItemsRef.current[index] = el)}
+                  className={clsx(
+                    styles.snap_item,
+                    index === activeSnapIndex && styles.active
+                  )}
+                  onClick={() => handleSnapItemClick(index)}
+                >
+                  <Image
+                    src={item.thumbnail.img}
+                    alt={item.thumbnail.alt}
+                    fill
+                    style={{objectFit: 'cover'}}
+                    loading="lazy"
+                  />
+                </div>
+              ))}
+            </div>
+          )}
         </div>
       )}
 

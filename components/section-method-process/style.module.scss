@@ -10,3 +10,13 @@
         margin-bottom: 4rem;
     }
 }
+
+@media screen and (max-width: 640px) {
+    .section_method_process {
+
+        &_title {
+            max-width: 15ch;
+            margin: 0 auto;
+        }
+    }
+}

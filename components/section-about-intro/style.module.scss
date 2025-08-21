@@ -56,6 +56,7 @@
                             .item_text {
                                 /* font-size: 3rem;
                                 line-height: 2.5rem; */
+                                display: inline-block;
 
                                 .dot {
                                     color: var(--yellow)
@@ -82,7 +83,7 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            padding: 0 2rem;
+            padding: 0 1rem;
 
             & .body {
                 max-width: 530px;
@@ -234,7 +235,7 @@
                 height: 200vh;
 
                 & .body {
-                    max-width: 650px;
+                    max-width: 550px;
                     // font-size: 1.25rem;
                 }
 
@@ -300,6 +301,13 @@
                             }
                         }
                     }
+                }
+            }
+
+            &_body {
+
+                & .body {
+                    max-width: 725px;
                 }
             }
         }

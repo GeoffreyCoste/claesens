@@ -62,6 +62,7 @@ const HorizontalScroll = () => {
               self.scroll(self.start + (progress === 1 ? self.end : 0)); // Ensure the scroll matches the end state
             } */
           }
+          // markers: true
         }
       });
 
@@ -78,6 +79,7 @@ const HorizontalScroll = () => {
         pin: indicator,
         pinSpacing: false,
         scrub: true
+        // markers: true
       });
 
       // Animate images' opacity subject to timeline progress
@@ -137,14 +139,14 @@ const HorizontalScroll = () => {
                     style={{objectFit: 'cover'}}
                   />
                 </div>
-                <h3
+                <h4
                   className={clsx(
                     bricolage_grotesque.className,
                     styles.step_article_title
                   )}
                 >
                   {step.title}
-                </h3>
+                </h4>
                 {step.description.match(/[^.!?]+[.!?]/g).map((p, i) => (
                   <p
                     key={`p-${index}-${i}`}
@@ -157,9 +159,13 @@ const HorizontalScroll = () => {
             </div>
           ))}
         </div>
-        <div ref={indicatorRef} className={styles.steps_indicator}>
-          <span className={styles.steps_indicator_label}>Etape</span>
-          <NumberDisplay index={currentIndex} />
+      </div>
+      <div ref={indicatorRef} className={styles.overlay}>
+        <div className={styles.wrapper}>
+          <div className={styles.steps_indicator}>
+            <span className={styles.steps_indicator_label}>Etape</span>
+            <NumberDisplay index={currentIndex} />
+          </div>
         </div>
       </div>
     </div>

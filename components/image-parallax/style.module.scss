@@ -28,7 +28,8 @@
         z-index: 13;
 
         &_item {
-            background-color: rgba(30, 30, 30, .7);
+            // background-color: rgba(30, 30, 30, .7);
+            text-shadow: var(--text-shadow);
             // text-shadow: 0 0 40px rgba(0, 0, 0, 1),  /* Near shadow */
              // 0 0 20px rgba(255, 255, 255, 0.6),  /* Medium shadow */
              // 0 0 30px rgba(255, 255, 255, 0.4);
@@ -63,13 +64,6 @@
             max-width: inherit;
             font-size: 2rem;
             line-height: 2.5rem;
-
-            &_item {
-                background-color: rgba(30, 30, 30, .7);
-                // text-shadow: 0 0 20px rgba(0, 0, 0, 1),  /* Near shadow */
-                 // 0 0 20px rgba(255, 255, 255, 0.6),  /* Medium shadow */
-                 // 0 0 30px rgba(255, 255, 255, 0.4);
-            }
         }
     }
 }

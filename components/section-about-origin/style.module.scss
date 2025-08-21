@@ -94,11 +94,16 @@
                     h2 {
                         display: flex;
                         flex-flow: row wrap;
+                        text-shadow: var(--text-shadow);
 
                         > span {
 
                             &:first-of-type {
                                 flex-basis: 100%;
+
+                                @media screen and (max-width: 360px) {
+                                    margin-left: 1rem;
+                                }
                             }
 
                             &:nth-of-type(2) {
@@ -266,6 +271,10 @@
                         &_text {
                             max-width: 650px;
                             padding: 3.5rem;
+
+                            .text {
+                                font-size: var(--font-size-sm);
+                            }
                         }
 
                     }

@@ -45,7 +45,19 @@ export const IMAGES = [{
     {
         src: "gallery_img_11.jpg",
         alt: "Template de site internet pour une agence de communication",
-    }
+    }, {
+        src: "gallery_img_0.jpg",
+        alt: "Affiche publicitaire sur la parution d'une nouvelle édition d'un livre avec un aperçu sur la première de couverture et une double page",
+    }, {
+        src: "gallery_img_1.jpg",
+        alt: "Maquette d'un site internet e-commerce spécialisé dans la vente de produits audio haut de gamme",
+    }, {
+        src: "gallery_img_2.jpg",
+        alt: "Extrait de charte graphique relative à un logo d'une marque",
+    }, {
+        src: "gallery_img_3.jpg",
+        alt: "Affiche minimaliste et design comportant un visuel de plage vue de haut, imbriqué dans des cercles",
+    },
 ]
 
 export const COLS = [

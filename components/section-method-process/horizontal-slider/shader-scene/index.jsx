@@ -21,6 +21,7 @@ const ShaderScene = ({ sliderRef, slidesRef, tweenRef, activeIndex, isDotNavigat
   const [ref, bounds] = useMeasure();
   const uRadius1 = useMemo(() => new THREE.Vector2(0.0, 0.0), []);
   const uRadius2 = useMemo(() => new THREE.Vector2(0.0, 0.0), []);
+  const uRadius3 = useMemo(() => new THREE.Vector2(0.0, 0.0), []);
   const uRadius1Static = useMemo(() => new THREE.Vector2(0.5, 0.25), []);
   const uRadius2Static = useMemo(() => new THREE.Vector2(0.2, 0.3), []);
 
@@ -37,28 +38,31 @@ const ShaderScene = ({ sliderRef, slidesRef, tweenRef, activeIndex, isDotNavigat
 
     const ctx = gsap.context(() => {
       // Quand on entre dans slides[0] (début)
-      ScrollTrigger.create({
+      /* ScrollTrigger.create({
         containerAnimation: tween,
         trigger: slides[1],
-        start: "center center",
+        start: 'center center',
         onLeaveBack: ({direction}) => {
+          console.log('On Leave Back');
           if (direction === -1) setShouldFadeOut(true);
-        },
+        }
         // markers: true
-      });
+      }); */
 
       // Quand on entre dans slides[slides.length - 1] (fin)
       ScrollTrigger.create({
         containerAnimation: tween,
         trigger: slides[slides.length - 2],
-        start: "center center",
-        end: "center+=5% center",
-        onLeave: ({ direction }) => {
+        start: 'center center',
+        end: 'center+=5% center',
+        onLeave: ({direction}) => {
+          console.log('On Leave');
           if (direction === 1) setShouldFadeOut(true);
         },
-        onEnterBack: ({ direction }) => {
+        onEnterBack: ({direction}) => {
+          console.log('On Enter Back');
           if (direction === -1) setShouldFadeOut(false);
-        },
+        }
       });
 
       // Remettre à false dès qu'on rentre dans une slide "valide"
@@ -66,10 +70,11 @@ const ShaderScene = ({ sliderRef, slidesRef, tweenRef, activeIndex, isDotNavigat
         ScrollTrigger.create({
           containerAnimation: tween,
           trigger: slides[i],
-          start: "left center",
-          onEnter: ({ direction }) => {
+          start: 'left center',
+          onEnter: ({direction}) => {
+            console.log('On Enter');
             if (direction === 1) setShouldFadeOut(false);
-          },
+          }
           // markers: true
         });
       }
@@ -78,20 +83,43 @@ const ShaderScene = ({ sliderRef, slidesRef, tweenRef, activeIndex, isDotNavigat
     return () => ctx.revert();
   }, [tweenRef, slidesRef]);
 
-  useEffect(() => {
-    console.log('Width: ', bounds.width);
-    console.log('Height: ', bounds.height);
-  }, [bounds]);
-
   return (
     <div className={styles.canvas_container} ref={ref}>
       {ready && bounds.width > 0 && (
-        <Canvas camera={{ position: [0, 0, 15], fov: 50 }} >
+        <Canvas
+          camera={{position: [0, 0, 15], fov: 50}}
+          dpr={typeof window !== 'undefined' ? window.devicePixelRatio : 1}
+        >
           <Environment preset="city" />
           {/* <OrbitControls /> */}
-          <FullscreenPlane width={bounds.width} height={bounds.height} uRadius1={uRadius1} uRadius2={uRadius2} sliderRef={sliderRef} tweenRef={tweenRef} slidesRef={slidesRef} />
-          <ArticlesPositionWrapper bounds={bounds} uRadius1={uRadius1Static} uRadius2={uRadius2Static} activeIndex={activeIndex} isDotNavigationScrolling={isDotNavigationScrolling} shouldFadeOut={shouldFadeOut} />
-          <ModelsPositionWrapper bounds={bounds} uRadius1={uRadius1Static} uRadius2={uRadius2Static} slidesRef={slidesRef} tweenRef={tweenRef} activeIndex={activeIndex} isDotNavigationScrolling={isDotNavigationScrolling} />
+
+          <FullscreenPlane
+            width={bounds.width}
+            height={bounds.height}
+            uRadius1={uRadius1}
+            uRadius2={uRadius2}
+            uRadius3={uRadius3}
+            sliderRef={sliderRef}
+            tweenRef={tweenRef}
+            slidesRef={slidesRef}
+          />
+          <ArticlesPositionWrapper
+            bounds={bounds}
+            uRadius1={uRadius1Static}
+            uRadius2={uRadius2Static}
+            activeIndex={activeIndex}
+            isDotNavigationScrolling={isDotNavigationScrolling}
+            shouldFadeOut={shouldFadeOut}
+          />
+          <ModelsPositionWrapper
+            bounds={bounds}
+            uRadius1={uRadius1Static}
+            uRadius2={uRadius2Static}
+            slidesRef={slidesRef}
+            tweenRef={tweenRef}
+            activeIndex={activeIndex}
+            isDotNavigationScrolling={isDotNavigationScrolling}
+          />
         </Canvas>
       )}
     </div>

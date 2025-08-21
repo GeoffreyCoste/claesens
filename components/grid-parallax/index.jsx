@@ -17,19 +17,22 @@ const GridParallax = () => {
     const gridRef = useRef(null);
     const colsRef = useRef([]);
 
-    const {mobile, tablet} = useMediaQueries();
+    const {mobile, tablet, xl} = useMediaQueries();
 
     useEffect(() => {
       const handleResize = () => {
         if (mobile) {
-            setColumns(2);
-            setImagesPerColumn(6);
+          setColumns(2);
+          setImagesPerColumn(6);
         } else if (tablet) {
-            setColumns(2);
-            setImagesPerColumn(6);
+          setColumns(2);
+          setImagesPerColumn(6);
+        } else if (xl) {
+          setColumns(4);
+          setImagesPerColumn(4);
         } else {
-            setColumns(4);
-            setImagesPerColumn(3);
+          setColumns(4);
+          setImagesPerColumn(3);
         }
       };
 
@@ -37,7 +40,7 @@ const GridParallax = () => {
       handleResize();
 
       return () => window.removeEventListener('resize', handleResize);
-    }, [mobile, tablet]);
+    }, [mobile, tablet, xl]);
 
     useEffect(() => {
         const cols = gsap.utils.toArray(colsRef.current);
