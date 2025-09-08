@@ -48,20 +48,6 @@ const AsideLogos = () => {
     };
   }, []);
 
-  /* const animate = () => {
-    if (xPercent < -100) {
-      xPercent = 0;
-    } else if (xPercent > 0) {
-      xPercent = -100;
-    }
-    if (firstListRef.current && secondListRef.current) {
-      gsap.set(firstListRef.current, {xPercent: xPercent});
-      gsap.set(secondListRef.current, {xPercent: xPercent});
-    }
-    requestAnimationFrame(animate);
-    xPercent += speed * direction;
-  }; */
-
   return (
     <aside className={styles.aside_logos}>
       <div className={styles.logos_container}>
@@ -80,9 +66,6 @@ const AsideLogos = () => {
                   />
                 </li>
                 <span className={styles.logos_separator}></span>
-                {/* {index !== logos.length - 1 && (
-                  <span className={styles.logos_separator}></span>
-                )} */}
               </Fragment>
             ))}
           </ul>
@@ -102,9 +85,6 @@ const AsideLogos = () => {
                   />
                 </li>
                 <span className={styles.logos_separator}></span>
-                {/* {index !== logos.length - 1 && (
-                  <span className={styles.logos_separator}></span>
-                )} */}
               </Fragment>
             ))}
           </ul>

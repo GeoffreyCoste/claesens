@@ -104,7 +104,7 @@ const SliderMenu = ({datas = defaultSlides}) => {
     desktop,
     activeIndex,
     styles,
-    setIsIntroNeeded, // Si vous gérez l'état d'intro via un setter
+    setIsIntroNeeded, // If intro state is managed by a setter
     togglerRef,
     activeLabelRef,
     headingRef
@@ -112,35 +112,35 @@ const SliderMenu = ({datas = defaultSlides}) => {
 
   const handleSnapItemClick = useCallback(
     (index) => {
-      if (!slidesData.length) return; // S'assurer que slidesData existe
-      // Récupère l'indice du triplet actif depuis le slide actif
+      if (!slidesData.length) return; // Ensure that slidesData exists
+      // Get active triplet index from active slide
       const activeTripletIndex = slidesData[activeIndex].tripletIndex;
 
-      // Trouve le triplet correspondant à l'index cliqué en utilisant les triplets fournis par le hook
+      // Find triplet corresponding to clicked index using triplets provided by the hook
       const selectedTriplet = triplets.find((triplet) =>
         triplet.includes(index)
       );
 
       if (!isSliderMenuOpen || isIntroNeeded || !selectedTriplet) return;
 
-      // Calcule la distance entre l'indice actif et chacun des indices du triplet
+      // Calculate distance between active index and every index inside triplets
       const distances = selectedTriplet.map((tripletIndex) =>
         Math.abs(tripletIndex - activeTripletIndex)
       );
 
-      // Sélectionne l'indice le plus proche
+      // Select nearest index
       const closestIndex =
         selectedTriplet[distances.indexOf(Math.min(...distances))];
 
-      // Trouve l'index dans slidesData qui correspond au closestIndex
+      // Find index inside slidesData corresponding to closestIndex
       const newIndex = slidesData.findIndex(
         (slide) => slide.tripletIndex === closestIndex
       );
 
       if (newIndex !== -1) {
-        // Met à jour currentIndex en fonction de la distance entre closestIndex et l'indice actif
+        // Update currentIndex subject to the distance between closestIndex and actove index
         setCurrentIndex((prev) => prev + (closestIndex - activeTripletIndex));
-        setActiveSnapIndex(index); // Met à jour l'index du snap actif
+        setActiveSnapIndex(index); // Update active snap index
       }
 
       if (!isSnapItemClicked) {
@@ -163,14 +163,9 @@ const SliderMenu = ({datas = defaultSlides}) => {
 
     const newPath = `/realisations/${slidesData[activeIndex].path}`;
 
-    // console.log("Current path:", pathname);
-    // console.log("New path:", newPath);
-
     if (pathname === newPath) {
-      // console.log("Navigating to /realisations");
       router.push('/realisations');
     } else {
-      // console.log("Navigating to", newPath);
       router.push(newPath);
     }
   };
@@ -185,7 +180,6 @@ const SliderMenu = ({datas = defaultSlides}) => {
 
   const handleTransition = useCallback(
     (type, index = null, path) => {
-      /* console.log('Type: ', type); */
       switch (type) {
         case 'first_visit_realizations':
           openSliderMenu();
@@ -207,9 +201,6 @@ const SliderMenu = ({datas = defaultSlides}) => {
           router.replace('/realisations');
           break;
         case 'navigating_to_realization':
-          // open();
-          // slideToIndex(5);
-          // close();
           if (path) {
             router.push(`/realisations/${path}`);
             closeSliderMenu();
@@ -244,7 +235,7 @@ const SliderMenu = ({datas = defaultSlides}) => {
       setSlideWidth(newWidth);
     };
 
-    updateWidth(); // Appeler initialement pour définir la largeur lors du premier rendu
+    updateWidth(); // Initial call to define width at first render
     window.addEventListener('resize', updateWidth);
 
     return () => window.removeEventListener('resize', updateWidth);
@@ -290,7 +281,6 @@ const SliderMenu = ({datas = defaultSlides}) => {
         <div className={styles.slides}>
           {slidesData.map((slide, index) => (
             <div
-              // key={`${index + currentIndex}`}
               key={slide.key}
               ref={(el) => (slidesRef.current[index] = el)}
               className={styles.slide}
@@ -300,9 +290,6 @@ const SliderMenu = ({datas = defaultSlides}) => {
                 style={{
                   backgroundImage: `url(${mobile ? slide.cover.images[0] : slide.cover.images[1]})`
                 }}
-                /* style={{
-                  backgroundImage: `url(${mobile ? slide.cover.images[0] : slide.cover.images[1]})`
-                }} */
               ></div>
               <div className={styles.slide_overlay}>
                 <div
@@ -326,22 +313,6 @@ const SliderMenu = ({datas = defaultSlides}) => {
         >
           {slidesData[activeIndex]?.title.text}
         </div>
-        {/* <div
-          onClick={() => {
-            setCurrentIndex((prev) => prev - 1);
-          }}
-          className={`${styles.button} ${styles.prev}`}
-        >
-          {'⏪'}
-        </div>
-        <div
-          onClick={() => {
-            setCurrentIndex((prev) => prev + 1);
-          }}
-          className={`${styles.button} ${styles.next}`}
-        >
-          {'⏩'}
-        </div> */}
       </div>
 
       {isSliderMenuOpen && !hasSwiped && !isSnapItemClicked && !hasScrolled && (

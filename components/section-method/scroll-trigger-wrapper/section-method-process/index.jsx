@@ -2,12 +2,11 @@
 
 import styles from './style.module.scss';
 import useMediaQueries from '@/hooks/useMediaQueries';
-import ScrollTriggerWrapper from '..';
 import HorizontalScroll from '../../horizontal-scroll';
 import HorizontalMotion from '../../horizontal-motion';
 
 const SectionMethodProcess = () => {
-  const {mobile, tablet, desktop} = useMediaQueries();
+  const {mobile, tablet} = useMediaQueries();
 
   return (
     <section className={styles.section_method_process}>
@@ -17,7 +16,6 @@ const SectionMethodProcess = () => {
 
       {mobile && <HorizontalScroll />}
       {tablet && <HorizontalMotion />}
-      {/* {desktop && <ScrollTriggerWrapper />} */}
     </section>
   );
 };

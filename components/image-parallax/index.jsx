@@ -23,21 +23,6 @@ const ImageParallax = () => {
 
   const y = useTransform(scrollYProgress, [0, 1], ['-10%', '10%']);
 
-  const textArray = [
-    'Chaque inspiration est un point',
-    'dans le cercle de la créativité.'
-  ].map((text) =>
-    text
-      .replace(
-        'inspiration',
-        '<span className="' + styles.highlighted + '">inspiration</span>'
-      )
-      .replace(
-        'créativité',
-        '<span className="' + styles.highlighted + '">créativité</span>'
-      )
-  );
-
   const {mobile} = useMediaQueries();
 
   const textVariants = {
@@ -100,17 +85,6 @@ const ImageParallax = () => {
             </motion.div>
           </>
         )}
-        {/* {textArray.map((text, index) => (
-          <motion.div
-            key={`parallax-text-${index}`}
-            className={styles.motion_text_item}
-            initial="hidden"
-            animate={isInView ? 'visible' : 'hidden'}
-            variants={textVariants}
-            transition={{delay: index * 0.2, duration: 1}}
-            dangerouslySetInnerHTML={{__html: text}} // Use of dangerouslySetInnerHTML to inject spans
-          />
-        ))} */}
       </motion.div>
       <div className={styles.parallax_item}>
         <motion.div style={{y}} className={styles.parallax_image}>

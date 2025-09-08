@@ -1,7 +1,7 @@
 'use client';
 
 import {useState, useRef, useEffect} from 'react';
-import {Float, MeshTransmissionMaterial, Sphere} from '@react-three/drei';
+import {Float, Sphere} from '@react-three/drei';
 import gsap from 'gsap';
 
 const Geometry = () => {
@@ -116,24 +116,6 @@ const Geometry = () => {
     };
   }, []);
 
-  /* return (
-    <Sphere
-      ref={sphereRef}
-      castShadow
-      receiveShadow
-      position={[0, yPosition, -3]}
-      args={[1, 64, 64]}
-    >
-      <meshPhysicalMaterial
-        color="#bdbdbd"
-        roughness={0}
-        metalness={0}
-        transmission={1}
-        ior={1}
-      />
-    </Sphere>
-  ); */
-
   return (
     <Float
       speed={floatParams.speed} // Animation speed, defaults to 1
@@ -152,7 +134,6 @@ const Geometry = () => {
         onClick={handleClick}
       >
         <meshPhysicalMaterial
-          // color="#bdbdbd"
           color={hovered ? '#DFCB1B' : '#bdbdbd'}
           roughness={0}
           metalness={0}

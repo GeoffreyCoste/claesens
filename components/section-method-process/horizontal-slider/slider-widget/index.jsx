@@ -26,24 +26,18 @@ const SliderWidget = ({
 
       Draggable.create(widgetRef.current, {
         type: 'x,y',
-        // bounds: widgetRef.current.parentElement, // contraint au parent
         bounds: {
-          // top: 100, // hauteur du header
-          // left: 0,
           top: 0,
           left: 0,
           width: window.innerWidth - scrollbarWidth,
-          height: window.innerHeight /* - 100 */
+          height: window.innerHeight
         },
-        handle: gripRef.current, // déplaçable uniquement via le grip
-        inertia: false // inertie fluide si tu veux (nécessite aussi le plugin InertiaPlugin de GSAP Club)
+        handle: gripRef.current, // movable only with grip
+        inertia: false // for fluid inertia (requires the InertiaPlugin from GSAP)
       });
     }
   }, []);
 
-  /* useEffect(() => {
-        console.log('Active index: ', activeIndex);
-    }, [activeIndex]); */
 
   return (
     <div ref={widgetRef} className={styles.widget}>

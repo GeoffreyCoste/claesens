@@ -2,14 +2,11 @@
 
 import styles from './style.module.scss';
 import {motion} from 'framer-motion';
-/* import {useSideMenu} from '@/hooks/useSideMenu'; */
 import Curve from './curve';
 import Navbar from '../navbar';
 import SocialsList from '../socials-list';
 
 const SideMenu = (isOpen) => {
-  /* const {isSideMenuOpen} = useSideMenu(); */
-
   return (
     <motion.div
       className={styles.side_menu}

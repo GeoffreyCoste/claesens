@@ -31,18 +31,7 @@ const Badge = ({
       ) : (
         <div className={clsx(styles.badge, styles.badge_glass)}>
           <div className={styles.content}>
-            <span
-              className={styles.text}
-              /*  className={clsx(
-                styles.text,
-                styles[`color_${color}`],
-                styles[`size_${fontSize}`],
-                styles[`weight_${fontWeight}`],
-                styles[`padding_${padding}`],
-                styles[`bg_${bg}`],
-                styles[`border_${border}`]
-              )} */
-            >
+            <span className={styles.text}>
               {dot && '●'} {text}
             </span>
           </div>

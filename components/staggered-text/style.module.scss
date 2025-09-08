@@ -27,10 +27,8 @@
         .character {
             width: 1.25rem;
             height: 1.5rem;
-            // font-size: 1.5rem;
             color: var(--white);
             position: relative;
-            // margin: 0 0.25rem;
 
             span {
                 position: absolute;
@@ -49,19 +47,14 @@
         font-size: 2.5rem;
 
         .word {
-            // position: initial;
-            // transform: none;
-            // margin: 0 1rem 0 0;
             margin: 0 2.5rem 0 0;
 
             &:nth-child(1) .character:nth-child(2),
             &:nth-child(1) .character:nth-child(3) {
-                // width: 1.25rem;
                 width: 2.5rem;
             }
 
             .character {
-                // width: 1rem;
                 width: 2rem;
             }
         }
@@ -89,94 +82,3 @@
         }
     }
 }
-
-
-
-
-/***************/
-/* .staggered_text {
-    width: 100%;
-    height: 60vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-    font-size: 1.25rem;
-    color: var(--white);
-
-    .word {
-        display: flex;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-
-        .character {
-            width: 1.25rem;
-            height: 1.5rem;
-            font-size: 1.5rem;
-            color: var(--white);
-            position: relative;
-            // margin: 0 0.25rem;
-
-            span {
-                position: absolute;
-                top: 50%;
-                left: 50%;
-                transform: translate(-50%, -50%);
-                transform-origin: center;
-            }
-        }
-    }
-}
-
-@media screen and (min-width: 768px) {
-    .staggered_text {
-    
-        .line {
-            display: flex;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-        }
-
-        .word {
-            display: flex;
-            position: initial;
-            transform: translate(0, 0);
-            margin: 0 1rem 0 0;
-
-            &:nth-child(1) .character:nth-child(2),
-            &:nth-child(1) .character:nth-child(3) {
-                width: 1.75rem;
-            }
-
-            .character {
-                width: 1.25rem;
-                height: 1.5rem;
-                font-size: 1.5rem;
-                color: var(--white);
-                position: relative;
-
-                span {
-                    position: absolute;
-                    top: 50%;
-                    left: 50%;
-                    transform: translate(-50%, -50%);
-                    transform-origin: center;
-                }
-            }
-        }
-    }
-}
-
-@media screen and (min-width: 1024px) {
-    .staggered_text {
-        font-size: 1.75rem;
-
-        .word {
-            margin: 0 0.5rem;
-        }
-    }
-} */

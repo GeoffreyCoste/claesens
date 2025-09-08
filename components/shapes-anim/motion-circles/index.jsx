@@ -10,22 +10,22 @@ const CENTER_POS = 50;
 const RECT_SIZE = 50;
 const RECT_POS = 25;
 
-// Positions des quarts de cercle (découpes 2x2 au centre)
+// Positions of quarter circles (2x2 center cutouts)
 const quarterCircles = [
-  { id: "motion-clippath-0", x: CENTER_POS - CIRCLE_SIZE, y: CENTER_POS - CIRCLE_SIZE }, // Haut-gauche
-  { id: "motion-clippath-1", x: CENTER_POS, y: CENTER_POS - CIRCLE_SIZE }, // Haut-droite
-  { id: "motion-clippath-2", x: CENTER_POS - CIRCLE_SIZE, y: CENTER_POS }, // Bas-gauche
-  { id: "motion-clippath-3", x: CENTER_POS, y: CENTER_POS }, // Bas-droite
+  { id: "motion-clippath-0", x: CENTER_POS - CIRCLE_SIZE, y: CENTER_POS - CIRCLE_SIZE }, // top left
+  { id: "motion-clippath-1", x: CENTER_POS, y: CENTER_POS - CIRCLE_SIZE }, // top right
+  { id: "motion-clippath-2", x: CENTER_POS - CIRCLE_SIZE, y: CENTER_POS }, // bottom left
+  { id: "motion-clippath-3", x: CENTER_POS, y: CENTER_POS }, // bottom right
 ];
 
-// 4 groupes superposés
+// 4 stacked groups
 const groups = Array.from({ length: 9 }).map((_, i) => ({ id: `group-${i}` }));
 
 const MotionCircles = () => {
   const containerRef = useRef(null);
   const svgRef = useRef(null);
-  const circleGroupsRef = useRef([]); // Références des groupes <g> contenant les quarts
-  const clippedQuartersRef = useRef(groups.map(() => Array(quarterCircles.length).fill(null))); // Références des cercles individuels
+  const circleGroupsRef = useRef([]); // References to groupes <g> containing quarters
+  const clippedQuartersRef = useRef(groups.map(() => Array(quarterCircles.length).fill(null))); // References to individual circles
 
   useEffect(() => {
     const svg = svgRef.current;
@@ -36,7 +36,6 @@ const MotionCircles = () => {
     const ctx = gsap.context(() => {
       const tl = gsap.timeline({
         defaults: { duration: 1.5, ease: 'power2.inOut' },
-        // paused: true,
         repeat: -1,
       });
 
@@ -50,8 +49,6 @@ const MotionCircles = () => {
       }, '<')
       tl.to(svg, {
         scale: 1.25,
-        // rotate: 360,
-        // transformOrigin: 'center',
       }, '<')
       tl.to(circles, {
         x: 0,

@@ -2,7 +2,6 @@
     height: 3rem;
     display: flex;
     flex-flow: row nowrap;
-    // margin-left: 1rem;
     cursor: pointer;
     z-index: 5;
 
@@ -26,9 +25,3 @@
         border-radius: 100%;
     }
 }
-
-/* @media screen and (min-width: 768px) {
-    .brand {
-        margin-left: 2rem;
-    }
-} */

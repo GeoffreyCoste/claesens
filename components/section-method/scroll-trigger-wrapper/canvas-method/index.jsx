@@ -2,7 +2,6 @@
 
 import {useRef, forwardRef, useLayoutEffect, Suspense} from 'react';
 import {Canvas} from '@react-three/fiber';
-/* import SceneMethod from './scene-method'; */
 import {
   Environment,
   Lightformer,
@@ -56,32 +55,24 @@ const Scene = forwardRef(function Scene(props, refs) {
 
     if (circleRef.current) {
       circle = circleRef.current;
-      // ring.material.color = {r: 0, g: 0, b: 0};
-      console.log('Circle: ', circle);
     }
 
     if (ring1Ref.current) {
       ring1 = ring1Ref.current;
-      // ring.material.color = {r: 0, g: 0, b: 0};
-      console.log('Ring1: ', ring1);
     }
 
     if (ring2Ref.current) {
       ring2 = ring2Ref.current;
-      // ring.material.color = {r: 0, g: 0, b: 0};
-      console.log('Ring2: ', ring2);
     }
 
     if (groupRef.current) {
       group = groupRef.current;
-      console.log('Group: ', group);
     }
 
     const xOffsets = [0.4, -0.1, -0.6, 0.9];
 
     if (spheresRef.current) {
       spheres = spheresRef.current;
-      console.log('Spheres: ', spheres);
       spheres.forEach((sphere, index) => {
         const texture = sphere.material.map;
 
@@ -90,20 +81,15 @@ const Scene = forwardRef(function Scene(props, refs) {
         texture.repeat.set(2, 2);
         texture.center.set(0.5, 0.5);
         texture.needsUpdate = true;
-
-        console.log(`Texture ${index}: `, texture);
       });
     }
 
     gsap.registerPlugin(ScrollTrigger);
 
-    const totalScroll = 700; // Total scroll distance (800vh)
-
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: container,
         start: 'top top',
-        /* end: `+=${totalScroll + 100}vh`, */
         end: `+=1100vh`,
         scrub: true,
         pin: canvas,
@@ -126,7 +112,6 @@ const Scene = forwardRef(function Scene(props, refs) {
             scrollTrigger: {
               trigger: container,
               start: 'top+=300vh top',
-              /* start: 'top+=225vh top', */
               end: '+=50vh',
               scrub: true
             }
@@ -147,7 +132,6 @@ const Scene = forwardRef(function Scene(props, refs) {
             scrollTrigger: {
               trigger: container,
               start: 'top+=300vh top',
-              /* start: 'top+=225vh top', */
               end: '+=50vh',
               scrub: true
             }
@@ -287,7 +271,6 @@ const Scene = forwardRef(function Scene(props, refs) {
           x: 0.1,
           y: 0.1,
           z: 0.1,
-          // duration: 1,
           ease: 'slow(0.2,0.9,false)',
           scrollTrigger: {
             trigger: container,
@@ -317,15 +300,8 @@ const Scene = forwardRef(function Scene(props, refs) {
       scrollTrigger: {
         trigger: container,
         start: 'top+=400vh top',
-        /* start: 'top+=300vh top', */
         end: '+=800vh',
-        /* end: `+=${totalScroll - 300}vh`, */
         scrub: true // Synchronize animation with scroll
-        /* snap: {
-          snapTo: 1 / 3, // 3 steps, each quarter of scroll corresponding to 90 degrees (a third of 270 degrees)
-          duration: 0.5, // Animation duration when stopping
-          ease: 'power2.inOut' // Stop easing
-        } */
       }
     });
 
@@ -340,8 +316,6 @@ const Scene = forwardRef(function Scene(props, refs) {
           trigger: container,
           start: 'top+=500vh top', // Start towards the end of the scroll
           end: 'top+=600vh', // Optionally define an end point
-          // start: 'top+=400vh top', // Start towards the end of the scroll
-          // end: 'top+=500vh', // Optionally define an end point
           scrub: true
         }
       }
@@ -410,7 +384,6 @@ const Scene = forwardRef(function Scene(props, refs) {
           <meshBasicMaterial
             attach="material"
             color={'#2c2c2c'}
-            // opacity={0.7}
             transparent
             opacity={0}
           />

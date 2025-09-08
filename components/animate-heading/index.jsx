@@ -27,11 +27,6 @@ const AnimateHeading = ({type, text, isWhite = false, isStacked = false}) => {
     words[i].push('\u00A0');
   }
 
-  // Add a space ("\u00A0") to the end of each word
-  /* words.map((word) => {
-    return word.push('\u00A0');
-  }); */
-
   return (
     <>
       <Tag
@@ -60,13 +55,6 @@ const AnimateHeading = ({type, text, isWhite = false, isStacked = false}) => {
                         [dm_sans.className]: isLastSpan,
                         [bricolage_grotesque.className]: !isLastSpan
                       })}
-                      /*  className={clsx(
-                        isWhite && styles.heading_character_white,
-                        isLastSpan  && styles.heading_dot,
-                        isLastSpan
-                          ? dm_sans.className
-                          : bricolage_grotesque.className
-                      )} */
                       style={{display: 'inline-block'}}
                       variants={!isLastSpan ? charVariants : dotVariants}
                     >

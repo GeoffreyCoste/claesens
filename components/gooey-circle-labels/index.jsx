@@ -5,7 +5,7 @@ import clsx from 'clsx';
 import {dm_sans, bricolage_grotesque} from '@/app/fonts';
 import {labels, circlePositions, blobPositions} from './data';
 
-const GooeyCircles = () => {
+const GooeyCircleLabels = () => {
   const containerRef = useRef(null);
   const circleControls = useAnimation();
   const blobControls = useAnimation();
@@ -111,4 +111,4 @@ const GooeyCircles = () => {
   );
 };
 
-export default GooeyCircles;
+export default GooeyCircleLabels;

@@ -1,6 +1,5 @@
 .menu {
     width: 100%;
-    // height: calc(100vh - 50px);
     height: 100dvh;
 
     &.menu_slider {
@@ -35,10 +34,6 @@
                     justify-content: center;
                     align-items: center;
                     position: absolute;
-                    /* color: white;
-                    font-size: 4.5rem;
-                    font-weight: 900;
-                    text-align: center; */
                     clip-path: inset(35% 10% round 28vw);
                     transform-origin: center;
                     z-index: 8;
@@ -56,21 +51,16 @@
                     }
 
                     &_overlay {
-                        // width: 100%;
                         position: absolute;
                         top: 50%;
                         left: 50%;
                         transform: translate(-50%, -50%) scaleY(0);
 
                         .slide_title {
-                            // max-width: 5ch;
                             color: white;
                             font-size: 4.5rem;
                             font-weight: 900;
                             text-align: center;
-                            // text-overflow: clip;
-                            // white-space: nowrap;
-                            // overflow: hidden;
                         }
                     }
                 }
@@ -80,7 +70,6 @@
                 width: 100%;
                 position: absolute;
                 top: 22%;
-                // top: 15%;
                 left: 50%;
                 transform: translateX(-50%);
                 color: var(--black);
@@ -100,7 +89,6 @@
             bottom: 110px;
             transform: translateX(-50%);
             pointer-events: none;
-            // z-index: 7;
         }
 
         .menu_bar {
@@ -150,10 +138,9 @@
                     scroll-snap-align: end;
                     overflow: hidden;
 
-
                     &.active {
-                        box-shadow: 0 0 0 6px var(--yellow); // Ombre nette, agit comme un contour
-                        outline: 4px solid var(--white); // Espace entre l'élément et l'ombre
+                        box-shadow: 0 0 0 6px var(--yellow); // Sharp shadow, acts like an outline
+                        outline: 4px solid var(--white); // Space between element and shadow
                         border-radius: 50%;
                         transition: box-shadow 0.3s ease-in-out;
                     }
@@ -179,7 +166,6 @@
             height: auto;
             position: absolute;
             top: 15%;
-            // top: 70%;
             left: 0;
             text-align: center;
             transform-origin: center;
@@ -192,10 +178,8 @@
                 width: 100%;
                 display: block;
                 color: var(--white);
-                // font-size: clamp(1rem, 15vw, 20rem); // To be changed
                 font-size: 2.75rem;
                 font-weight: 900;
-                // line-height: 8vw; // To be changed
                 text-align: center;
                 white-space: nowrap;
             }
@@ -270,11 +254,8 @@
 
             .feature_info {
                 width: 25%;
-                // right: initial;
-                // left: 50%;
                 bottom: initial;
-                top: 74%; // 22%
-                // transform: translateX(-50%);
+                top: 74%;
             }
 
             .toggler {
@@ -311,22 +292,6 @@
                     top: 12%;
                     font-size: 2rem;
                 }
-            
-                /* .button {
-                    font-size: 3rem;
-                    position: absolute;
-                    cursor: pointer;
-                }
-            
-                .prev {
-                    top: calc(150px - 1.5rem);
-                    left: -2rem;
-                }
-            
-                .next {
-                    top: calc(150px - 1.5rem);
-                    right: -2rem;
-                } */
             }
 
             .feature_info {
@@ -346,11 +311,6 @@
                 top: initial;
                 bottom: 0;
                 left: 0;
-
-                /* .title {
-                    font-size: clamp(1rem, 15vw, 20rem);
-                    line-height: 8vw;
-                } */
             }
         }
     }

@@ -4,22 +4,16 @@
     justify-content: center;
     align-items: center;
     padding: 6rem 2rem;
-    // padding: 10rem 1rem;
     background-color: var(--black);
 
     .logos_container {
         width: 100%;
         max-width: 350px;
-        /* display: flex;
-        white-space: nowrap;
-        position: relative;
-        padding: 0 1rem; */
         position: relative;
         padding: 16px;
         border-width: 1px 1px 0;
         border-color: var(--black-light);
         border-style: solid;
-        //border: 2px solid var(--black-light);
         border-radius: 50px;
         overflow: hidden;
 
@@ -55,7 +49,6 @@
             padding: 0 1rem;
 
             .logos_list {
-                // width: 100%;
                 display: flex;
                 flex-flow: row nowrap;
                 justify-content: space-between;
@@ -79,24 +72,6 @@
     }
 
 }
-
-/* @media screen and (min-width: 768px) {
-    .aside_logos {
-
-    }
-
-    .logos_aside {
-        padding: 6rem 2rem;
-
-        .logos_list {
-            width: 100%;
-            display: flex;
-            // flex-flow: row nowrap;
-            justify-content: space-between;
-            row-gap: 4rem;
-        }
-    }
-} */
 
 @media screen and (min-width: 1024px) {
     .aside_logos {

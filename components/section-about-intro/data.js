@@ -1,5 +1,5 @@
 export const imgClipData = [{
-        id: "about-intro-img-1", // Identifiant unique pour chaque entrée (utile pour les clés dans les listes)
+        id: "about-intro-img-1", // Unique id for each entry (useful for keys inside lists)
         imgSrc: ["/images/img_be_640x480.jpg", "/images/img_be_768x1024.jpg"],
         filter: {
             type: "matrix",

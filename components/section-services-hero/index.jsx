@@ -23,7 +23,7 @@ const SectionServicesHero = () => {
   const cardIntroRef = useRef(null);
   const cardsGroupRef = useRef(null);
 
-  const { lenis, start, stop } = useLenis();
+  const {lenis, start, stop} = useLenis();
 
   useLayoutEffect(() => {
     const section = sectionRef.current;
@@ -45,7 +45,7 @@ const SectionServicesHero = () => {
     )
       return;
 
-    // Toujours forcer le scroll en haut et bloquer Lenis au démarrage
+    // Always force scroll to top and block lenis at start
     lenis.scrollTo(0, {immediate: true});
     stop();
 
@@ -58,7 +58,7 @@ const SectionServicesHero = () => {
       split0?.revert();
       split1?.revert();
 
-      // Nettoyer les lignes pour enlever les div.span générés
+      // Cleanup lines to remove generated div.span
       linesRef.current[0].innerHTML = linesRef.current[0].textContent;
       linesRef.current[1].innerHTML = linesRef.current[1].textContent;
 
@@ -176,7 +176,7 @@ const SectionServicesHero = () => {
             });
           };
 
-          // Charger les polices et lancer l’intro après
+          // Load fonts first and then start intro
           document.fonts.ready.then(() => {
             createSplit();
 
@@ -188,10 +188,10 @@ const SectionServicesHero = () => {
                   ScrollTrigger.getAll().forEach((t) => t.disable());
                 },
                 onComplete: () => {
-                  // → D'abord créer la scroll timeline
+                  // Create scroll timeline first
                   createScrollTimeline();
 
-                  // → Ensuite on remet tout en marche
+                  // Then put everything back to operation
                   ScrollTrigger.getAll().forEach((t) => t.enable());
                   ScrollTrigger.refresh();
 
@@ -356,237 +356,6 @@ const SectionServicesHero = () => {
       </div>
     </section>
   );
-}
+};
 
 export default SectionServicesHero;
-
-
-
-
-
-/* useLayoutEffect(() => {
-    const section = sectionRef.current;
-    const scrollContainer = scrollContainerRef.current;
-    const heading = headingRef.current;
-    const lines = linesRef.current;
-    const scene = sceneRef.current;
-    const cardIntro = cardIntroRef.current;
-    const cardsGroup = cardsGroupRef.current;
-    if (
-      !lenis ||
-      !section ||
-      !scrollContainer ||
-      !heading ||
-      !lines ||
-      !scene ||
-      !cardIntro ||
-      !cardsGroup
-    )
-      return;
-
-    // Toujours forcer le scroll en haut et bloquer Lenis au démarrage
-    lenis.scrollTo(0, {immediate: true});
-    stop();
-
-    const mm = gsap.matchMedia();
-
-    mm.add(
-      {
-        xs: '(max-width: 359px)',
-        sm: '(min-width: 360px) and (max-width: 767px)',
-        md: '(min-width: 768px) and (max-width: 1023px)',
-        lg: '(min-width: 1024px) and (max-width: 1199px)',
-        xl: '(min-width: 1200px) and (max-width: 1439px)',
-        xxl: '(min-width: 1440px)'
-      },
-      (context) => {
-        const {xs, sm, md, lg, xl, xxl} = context.conditions;
-
-        let scrollCtx;
-
-        const introCtx = gsap.context(() => {
-          let split0, split1;
-
-          const createScrollTimeline = () => {
-            scrollCtx = gsap.context(() => {
-              const scrollTl = gsap.timeline({
-                scrollTrigger: {
-                  trigger: scrollContainer,
-                  start: 'top top',
-                  end: 'bottom bottom',
-                  scrub: true
-                  // markers: true,
-                }
-              });
-
-              scrollTl.to(split0.chars, {
-                autoAlpha: 0,
-                yPercent: 'random([-100, 100])',
-                stagger: {
-                  amount: 0.5,
-                  from: 'random'
-                }
-              });
-
-              scrollTl.to(cardIntro, {
-                scale: 0,
-                transformOrigin: 'center center',
-                duration: 1,
-                ease: 'power2.inOut'
-              });
-
-              scrollTl.to(
-                scene,
-                {
-                  autoAlpha: 0,
-                  ease: 'power3.out'
-                },
-                '<'
-              );
-
-              scrollTl.addLabel('split0-midpoint');
-
-              scrollTl.fromTo(
-                cardsGroup,
-                {
-                  scale: 0.25,
-                  rotateZ: 0
-                },
-                {
-                  scale: 3.5,
-                  rotateZ: '180deg',
-                  duration: 4
-                }
-              );
-
-              scrollTl.fromTo(
-                cardsGroup,
-                {
-                  autoAlpha: 0
-                },
-                {
-                  autoAlpha: 1,
-                  duration: 0.5
-                },
-                '<'
-              );
-
-              scrollTl.fromTo(
-                split1.chars,
-                {
-                  autoAlpha: 0,
-                  yPercent: 'random([-100, 100])'
-                },
-                {
-                  autoAlpha: 1,
-                  yPercent: 0,
-                  duration: 2,
-                  stagger: {
-                    amount: 0.5,
-                    from: 'random'
-                  }
-                },
-                'split0-midpoint'
-              );
-            });
-          };
-
-          // Charger les polices et lancer l’intro après
-          document.fonts.ready.then(() => {
-            split0 = new SplitText(lines[0], {type: 'chars', smartWrap: true});
-            split1 = new SplitText(lines[1], {type: 'chars', smartWrap: true});
-
-            const introTl = gsap.timeline({
-              onStart: () => {
-                stop();
-                ScrollTrigger.getAll().forEach((t) => t.disable());
-              },
-              onComplete: () => {
-                // → D'abord créer la scroll timeline
-                createScrollTimeline();
-
-                // → Ensuite on remet tout en marche
-                ScrollTrigger.getAll().forEach((t) => t.enable());
-                ScrollTrigger.refresh();
-
-                start();
-              }
-            });
-
-            introTl.set([lines[0], lines[1]], {visibility: 'visible'});
-            introTl.set([split0.chars, split1.chars, cardsGroup], {
-              autoAlpha: 0
-            });
-
-            introTl.fromTo(
-              cardIntro,
-              {
-                width: '110vw',
-                height: '110vh'
-              },
-              {
-                width: xxl
-                  ? '900px'
-                  : xl
-                    ? '900px'
-                    : lg
-                      ? '800px'
-                      : md
-                        ? '650px'
-                        : sm
-                          ? '320px'
-                          : '320px',
-                height: xxl
-                  ? '675px'
-                  : xl
-                    ? '506px'
-                    : lg
-                      ? '450px'
-                      : md
-                        ? '867px'
-                        : sm
-                          ? '450px'
-                          : '280px',
-                delay: 0.5,
-                duration: 1,
-                ease: 'power2.inOut'
-              }
-            );
-
-            introTl.fromTo(
-              split0.chars,
-              {
-                autoAlpha: 0,
-                yPercent: 'random([-100, 100])'
-              },
-              {
-                autoAlpha: 1,
-                yPercent: 0,
-                delay: 1,
-                stagger: {
-                  amount: 0.5,
-                  from: 'random'
-                }
-              }
-            );
-          });
-        });
-
-        return () => {
-          introCtx.revert();
-          scrollCtx?.revert();
-        };
-      }
-    );
-
-    const handleResize = () => {
-      ScrollTrigger.refresh();
-    };
-
-    window.addEventListener('resize', handleResize);
-
-    return () => {
-      window.removeEventListener('resize', handleResize);
-      mm.revert();
-    };
-  }, [lenis, start, stop]); */

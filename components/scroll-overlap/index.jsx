@@ -17,18 +17,6 @@ const ScrollOverlap = () => {
     offset: ['start start', 'end end']
   });
 
-  // Not necessary because initiated inside Header component
-  /* useEffect( () => {
-        const lenis = new Lenis()
-    
-        function raf(time) {
-          lenis.raf(time)
-          requestAnimationFrame(raf)
-        }
-    
-        requestAnimationFrame(raf)
-    }); */
-
   return (
     <div ref={containerRef} className={styles.overlap_container}>
       {services.map((service, index) => {

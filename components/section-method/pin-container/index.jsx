@@ -27,36 +27,6 @@ const PinContainer = () => {
     ? '/videos/method_thumbnail_1920x1080.jpg'
     : '/videos/method_thumbnail_1280x720.jpg';
 
-  /* useLayoutEffect(() => {
-    const container = containerRef.current;
-    const svg = svgRef.current;
-
-    if (!container || !svg) return;
-
-    const mm = gsap.matchMedia();
-
-    // Apply animation only when window size is between 768 and 1023px
-    mm.add('(min-width: 768px) and (max-width: 1023px)', () => {
-      gsap.fromTo(
-        svg,
-        {height: '50%'},
-        {
-          height: '100%',
-          duration: 1,
-          scrollTrigger: {
-            trigger: container,
-            start: 'top top',
-            toggleActions: 'play none play reverse'
-          }
-        }
-      );
-    });
-
-    return () => {
-      mm.revert(); // Cleanup when component unmounts
-    };
-  }, [svgRef, containerRef]); */
-
   useLayoutEffect(() => {
     const container = containerRef.current;
     const svgContainer = svgContainerRef.current;
@@ -85,7 +55,6 @@ const PinContainer = () => {
             scrollTrigger: {
               trigger: container,
               start: xs ? 'top top' : sm ? 'center center' : 'center center',
-              // end: 'bottom top',
               end: xs ? 'bottom center' : sm ? '+=65%' : '+=65%',
               scrub: true,
               pin: svgContainer,
@@ -100,8 +69,6 @@ const PinContainer = () => {
             scrollTrigger: {
               trigger: container,
               start: 'top top',
-              // end: xs ? '+=50%' : '+=25%',
-              // end: '+=25%',
               end: '+=15%',
               scrub: true
               // markers: true
@@ -121,31 +88,17 @@ const PinContainer = () => {
               opacity: 1,
               scrollTrigger: {
                 trigger: container,
-                // start: '+=8%',
-                // start: '+=15%',
                 start: xs
                   ? 'top+=10% top'
                   : sm
                     ? 'top+=75% top'
                     : 'top+=40% top',
                 end: xs ? '+=15%' : '+=15%',
-                // end: xs ? '+=20%' : '+=10%',
                 scrub: true
                 // markers: true
               }
             }
           );
-
-          // Animate circles opacity
-          /* tl.to(circles, {
-            opacity: 0,
-            scrollTrigger: {
-              trigger: container,
-              start: '+=10%',
-              end: '+=25%',
-              scrub: true
-            }
-          }); */
 
           ScrollTrigger.create({
             trigger: container,

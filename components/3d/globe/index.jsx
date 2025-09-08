@@ -19,7 +19,6 @@ const Globe = ({props}) => {
           iridescenceThicknessRange={[0, 1400]}
         />
       </mesh>
-      {/* <group ref={ref}>{children}</group> */}
     </group>
   );
 };

@@ -61,12 +61,7 @@ const StaggeredText = ({text}) => {
 
     elements.forEach((item, index) => {
       const characters = gsap.utils.toArray(`.${styles.character}`, item);
-      /* createTimeline(
-        characters,
-        index,
-        mobile ? 1 : 2, // Delay multiplier
-        mobile ? 4 : 2.5 // Duration
-      ); */
+
       createTimeline(
         characters,
         index,

@@ -29,13 +29,6 @@ const generateSpheres = (count, radius) => {
   }));
 };
 
-/* const spheres = Array.from({length: 20}, () => ({
-  position: getRandomPositionInSphere(2.5),
-  scale: 1,
-  speed: MathUtils.randFloat(0.01, 0.75),
-  color: '#fce300'
-})); */
-
 const Spheres = () => {
   const spheresRef = useRef(generateSpheres(15, 2));
 
@@ -64,7 +57,6 @@ const Spheres = () => {
         const distance = Math.sqrt(dx * dx + dy * dy + dz * dz);
 
         if (distance < 0.9) {
-          // 0.45 (radius) * 2 = 0.9
           // Reverse speed
           for (let k = 0; k < 3; k++) {
             const temp = newSpheres[i].velocity[k];
@@ -81,7 +73,6 @@ const Spheres = () => {
   return (
     <Instances limit={20}>
       <sphereGeometry args={[0.45, 64, 64]} />
-      {/* <meshBasicMaterial depthTest={false} color={0xfce300} /> */}
       <meshStandardMaterial
         depthTest={false}
         color={0xfce300}
@@ -97,11 +88,3 @@ const Spheres = () => {
 };
 
 export default Spheres;
-
-/* const spheres = Array.from({length: 50}, () => {
-  factor: MathUtils.randInt(20, 100);
-  speed: MathUtils.randFloat(0.01, 0.75);
-  xFactor: MathUtils.randFloatSpread(40);
-  yFactor: MathUtils.randFloatSpread(10);
-  zFactor: MathUtils.randFloatSpread(10);
-}); */

@@ -4,16 +4,16 @@ import {useCallback} from 'react';
 import gsap from 'gsap';
 
 /**
- * Hook d'animation pour le slider.
+ * Hook animating slider.
  *
  * @param {Object} params
- * @param {Object} params.slidesRef - Une ref contenant les éléments DOM des slides.
- * @param {number} params.activeIndex - L'index du slide actif.
- * @param {string} params.clipPath - La valeur de clipPath à appliquer pour l'animation.
- * @param {boolean} params.isAnimating - État indiquant si une animation est en cours.
- * @param {function} params.setIsAnimating - Setter pour modifier l'état d'animation.
- * @param {Object} params.styles - Les classes CSS à utiliser (exemple pour sélectionner des éléments enfants).
- * @returns {Object} Un objet contenant les fonctions showSlider et showPreview.
+ * @param {Object} params.slidesRef - Ref including slides  DOM elements.
+ * @param {number} params.activeIndex - Active slide index.
+ * @param {string} params.clipPath - ClipPath value to apply for animation.
+ * @param {boolean} params.isAnimating - State indicating if an animation is in progress.
+ * @param {function} params.setIsAnimating - Setter tyo modify animation state.
+ * @param {Object} params.styles - CSS classes to use (for exemple, to select child elements).
+ * @returns {Object} - Object containing functions showSlider and showPreview.
  */
 const useSliderActiveSlideAnimation = ({
   slidesRef,
@@ -24,8 +24,6 @@ const useSliderActiveSlideAnimation = ({
   styles
 }) => {
   const showSlider = useCallback(() => {
-    // if (!slidesRef.current[activeIndex] || isAnimating) return;
-
     setIsAnimating(true);
 
     gsap
@@ -37,9 +35,9 @@ const useSliderActiveSlideAnimation = ({
         onComplete: () => setIsAnimating(false)
       })
       .addLabel('start', 0)
-      // Animation du slide actif
+      // Active slide animation
       .to(slidesRef.current[activeIndex], {clipPath: clipPath}, 'start')
-      // Animation du background des slides
+      // Slides background animation
       .to(
         slidesRef.current.map((slide) =>
           slide.querySelector(`.${styles.slide_bg}`)
@@ -47,7 +45,7 @@ const useSliderActiveSlideAnimation = ({
         {scale: 0.8},
         'start'
       )
-      // Animation de l'overlay (titre, par exemple)
+      // Overlay animation (title, for exemple)
       .to(
         slidesRef.current.map((slide) =>
           slide.querySelector(`.${styles.slide_overlay}`)
@@ -58,14 +56,12 @@ const useSliderActiveSlideAnimation = ({
   }, [
     activeIndex,
     clipPath,
-    /* isAnimating, */ setIsAnimating,
+    setIsAnimating,
     slidesRef,
     styles
   ]);
 
   const showPreview = useCallback(() => {
-    // if (!slidesRef.current[activeIndex] || isAnimating) return;
-
     setIsAnimating(true);
 
     gsap
@@ -117,7 +113,7 @@ const useSliderActiveSlideAnimation = ({
   }, [
     activeIndex,
     clipPath,
-    /* isAnimating, */ setIsAnimating,
+    setIsAnimating,
     slidesRef,
     styles
   ]);

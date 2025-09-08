@@ -33,38 +33,6 @@ const AnimateCirclePath = ({
     };
   }, []);
 
-  /* useEffect(() => {
-    if (!desktop) return;
-
-    gsap.registerPlugin(ScrollTrigger);
-
-    const container = containerRef.current;
-    const circle = circleRef.current;
-
-    const {width, height} = dimensions;
-
-    const animation = gsap.fromTo(
-      circle,
-      {attr: {r: initialR, cx: initialX, cy: initialY}},
-      {
-        attr: {r: Math.max(width, height)}, // Circle size to cover entirely the container
-        scrollTrigger: {
-          trigger: container,
-          start: '35% bottom',
-          end: 'bottom 80%',
-          scrub: true
-        }
-      }
-    );
-
-    return () => {
-      if (animation.scrollTrigger) {
-        animation.scrollTrigger.kill();
-      }
-      animation.kill();
-    };
-  }, [desktop, dimensions, initialX, initialY, initialR]); */
-
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
     const mm = gsap.matchMedia();
@@ -94,7 +62,7 @@ const AnimateCirclePath = ({
       };
     });
 
-    return () => mm.revert(); // Nettoyage à la fin du cycle de vie
+    return () => mm.revert(); // Cleanup
   }, [dimensions, initialX, initialY, initialR]);
 
   return (

@@ -2,22 +2,14 @@
 
 import styles from './style.module.scss';
 import {useState, useRef, useEffect, useCallback} from 'react';
-import useMediaQueries from '@/hooks/useMediaQueries';
 
 const CanvasDots = () => {
   const [width, setWidth] = useState(0);
   const [height, setHeight] = useState(0);
 
-  /* const [canvasSize, setCanvasSize] = useState({
-    width: window.innerWidth,
-    height: window.innerHeight
-  }); */
-
   const containerRef = useRef(null);
   const canvasRef = useRef(null);
   const mousePos = useRef({x: 0, y: 0});
-
-  const {mobile} = useMediaQueries();
 
   const updateDimensions = useCallback(() => {
     const container = containerRef.current;
@@ -78,22 +70,8 @@ const CanvasDots = () => {
     };
   }, [updateDimensions]);
 
-  /* useEffect(() => {
-    const canvas = canvasRef.current;
-    const handleResize = () => {
-      setCanvasSize({
-        width: window.innerWidth,
-        height: window.innerHeight * 0.8
-      });
-    };
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []); */
-
   useEffect(() => {
     const canvas = canvasRef.current;
-    // canvas.width = canvasSize.width;
-    // canvas.height = canvasSize.height;
     canvas.width = width;
     canvas.height = height;
 
@@ -113,38 +91,6 @@ const CanvasDots = () => {
       y: event.clientY - rect.top
     };
   };
-
-  /* useEffect(() => {
-    const canvas = canvasRef.current;
-    const ctx = canvas.getContext('2d');
-
-    // if (!canvas) return;
-
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight * 0.62;
-
-    const handleMouseMove = (event) => {
-      mousePos.current = getMousePos(canvas, event);
-      requestAnimationFrame(drawGrid);
-    };
-
-    const handleResize = () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight * 0.62;
-      requestAnimationFrame(drawGrid);
-    };
-
-    canvas.addEventListener('mousemove', handleMouseMove);
-    window.addEventListener('resize', handleResize);
-
-    drawGrid();
-
-    // Cleanup function to remove event listeners
-    return () => {
-      canvas.removeEventListener('mousemove', handleMouseMove);
-      window.removeEventListener('resize', handleResize);
-    };
-  }, [canvasSize, drawGrid]); */
 
   return (
     <div ref={containerRef} className={styles.canvas_dots}>

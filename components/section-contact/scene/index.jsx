@@ -2,7 +2,7 @@
 
 import {Suspense} from 'react';
 import {Canvas} from '@react-three/fiber';
-import {Environment, OrbitControls} from '@react-three/drei';
+import {Environment} from '@react-three/drei';
 import Geometry from './geometry';
 
 const Scene = () => {
@@ -15,11 +15,7 @@ const Scene = () => {
     >
       <Suspense fallback={null}>
         <Geometry />
-
         <Environment preset="lobby" />
-
-        {/* <OrbitControls /* makeDefault autoRotate autoRotateSpeed={0.1} minPolarAngle={0} maxPolarAngle={Math.PI / 2} *
-          /> */}
       </Suspense>
     </Canvas>
   );

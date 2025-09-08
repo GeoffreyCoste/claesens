@@ -44,7 +44,7 @@ const ScrollableArticle = ({
 
     // Animate title in
     const animateTitleIn = (text) => {
-      // Nettoyer sans innerHTML
+      // Cleanup without innerHTML
       while (title.firstChild) {
         title.removeChild(title.firstChild);
       }
@@ -86,14 +86,14 @@ const ScrollableArticle = ({
       });
     };
 
-    // Séparer la logique
+    // Seperate logic
     if (
       !datas ||
       activeIndex === null ||
       activeIndex === undefined ||
       !datas[activeIndex]
     ) {
-      animateTitleOut(); // plus de innerHTML
+      animateTitleOut(); // without innerHTML
       animateBodyOut();
     } else if (shouldFadeOut) {
       animateTitleOut();
@@ -105,16 +105,6 @@ const ScrollableArticle = ({
     }
   }, [datas, activeIndex, isDotNavigationScrolling, shouldFadeOut]);
 
-  /* useEffect(() => {
-    console.log('Active index: ', activeIndex);
-  }, [activeIndex]);
-
-  useEffect(() => {
-    console.log('🧪 activeIndex:', activeIndex);
-    console.log('🧪 shouldFadeOut:', shouldFadeOut);
-    console.log('🧪 datas[activeIndex]:', datas?.[activeIndex]);
-    console.log('🧪 isTablet:', tablet);
-  }, [datas, activeIndex, shouldFadeOut, tablet]); */
 
   return (
     <article className={styles.article}>

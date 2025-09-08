@@ -69,255 +69,315 @@ const SvgEllipsesAnim = () => {
         let {isMobile, isTablet, isDesktop} = context.conditions;
 
         const ctx = gsap.context(() => {
-            tl1.current = gsap.timeline({
-                paused: true,
-                defaults: {duration: 3, ease: 'none'},
-            });
+          tl1.current = gsap.timeline({
+            paused: true,
+            defaults: {duration: 3, ease: 'none'}
+          });
 
-            tl2.current = gsap.timeline({
-                paused: true,
-                defaults: {duration: 3, ease: 'none', /* repeat: -1 */},
-                onComplete: () => {
-                    tl2.current.seek(0).invalidate(); // Réinitialisation propre
-                    tl2.current.play(); // Relance de l'animation
-                }
-            });
+          tl2.current = gsap.timeline({
+            paused: true,
+            defaults: {duration: 3, ease: 'none'},
+            onComplete: () => {
+              tl2.current.seek(0).invalidate(); // Clean reinitialization
+              tl2.current.play(); // Restart animation
+            }
+          });
 
-            if (isTablet || isDesktop) {
+          if (isTablet || isDesktop) {
+            tl1.current.play();
+            tl2.current.play();
+          }
+
+          if (isMobile) {
+            ScrollTrigger.create({
+              trigger: container,
+              start: 'top bottom',
+              onEnter: () => {
                 tl1.current.play();
                 tl2.current.play();
-            }
+              }
+              // markers: true
+            });
+          }
 
-            if (isMobile) {
-                ScrollTrigger.create({
-                    trigger: container,
-                    start: 'top bottom',
-                    // end: isMobile ? 'top 25%' : 'bottom bottom',
-                    onEnter: () => {
-                        tl1.current.play();
-                        tl2.current.play();
-                    },
-                    /* onLeaveBack: () => {
-                        console.log('Leave back');
-                        tl1.current.reverse();
-                        tl2.current.reverse();
-                    },
-                    onLeave: isMobile ? () => {
-                        tl1.current.pause();
-                        // tl2.current.pause();
-                    } : null,
-                    onEnterBack: isMobile ? () => {
-                        console.log('Enter back');
-                        // tl1.current.resume();
-                        // tl2.current.resume();
-                    }: null, */
-                    // markers: true
-                });
-            }
+          // Animate tl1
+          tl1.current.addLabel('tl1_start');
 
-            // Animate tl1
-            tl1.current.addLabel('tl1_start');
+          tl1.current.to(
+            svg,
+            {
+              opacity: 1,
+              scale: 1,
+              ease: 'power2.inOut'
+            },
+            'tl1_start'
+          );
 
-            tl1.current.to(svg, {
-                opacity: 1,
-                scale: 1,
-                ease: 'power2.inOut'
-            }, 'tl1_start');
+          // Animate tl2
+          tl2.current.clear(); // Cleans up any previous animation to avoid buildup
+          tl2.current.addLabel('tl2_start');
 
-            // Animate tl2
-            tl2.current.clear(); // Nettoie toute animation précédente pour éviter les accumulations
-            tl2.current.addLabel('tl2_start');
+          tl2.current.to(
+            circle1,
+            {
+              motionPath: {
+                path: path1,
+                align: path1,
+                alignOrigin: [0.5, 0.5],
+                autoRotate: true,
+                start: 0,
+                end: 1
+              }
+            },
+            'tl2_start'
+          );
 
-            tl2.current.to(circle1, {
-                motionPath: {
-                    path: path1,
-                    align: path1,
-                    alignOrigin: [0.5, 0.5],
-                    autoRotate: true,
-                    start: 0,
-                    end: 1,
-                }
-            }, 'tl2_start');
+          tl2.current.to(
+            circle2,
+            {
+              motionPath: {
+                path: path2,
+                align: path2,
+                alignOrigin: [0.5, 0.5],
+                autoRotate: true,
+                start: 0,
+                end: 1
+              }
+            },
+            'tl2_start'
+          );
 
-            tl2.current.to(circle2, {
-                motionPath: {
-                    path: path2,
-                    align: path2,
-                    alignOrigin: [0.5, 0.5],
-                    autoRotate: true,
-                    start: 0,
-                    end: 1,
-                }
-            }, 'tl2_start');
+          tl2.current.addLabel('first_half', '>');
 
-            tl2.current.addLabel('first_half', '>');
+          tl2.current.to(
+            group2,
+            {
+              rotate: -10,
+              transformOrigin: 'center',
+              duration: 1.5
+            },
+            'tl2_start+=2'
+          );
 
-            tl2.current.to(group2, {
-                rotate: -10,
-                transformOrigin: "center",
-                duration: 1.5
-            }, 'tl2_start+=2');
+          tl2.current.to(
+            circle1,
+            {
+              motionPath: {
+                path: path2,
+                align: path2,
+                alignOrigin: [0.5, 0.5],
+                autoRotate: true,
+                start: 0,
+                end: 1
+              }
+            },
+            'first_half'
+          );
 
-            tl2.current.to(circle1, {
-                motionPath: {
-                    path: path2,
-                    align: path2,
-                    alignOrigin: [0.5, 0.5],
-                    autoRotate: true,
-                    start: 0,
-                    end: 1,
-                }
-            }, 'first_half');
+          tl2.current.to(
+            circle2,
+            {
+              motionPath: {
+                path: path1,
+                align: path1,
+                alignOrigin: [0.5, 0.5],
+                autoRotate: true,
+                start: 0,
+                end: 1
+              }
+            },
+            'first_half'
+          );
 
-            tl2.current.to(circle2, {
-                motionPath: {
-                    path: path1,
-                    align: path1,
-                    alignOrigin: [0.5, 0.5],
-                    autoRotate: true,
-                    start: 0,
-                    end: 1,
-                }
-            }, 'first_half');
+          tl2.current.addLabel('one_round', '>');
 
-            tl2.current.addLabel('one_round', '>');
+          tl2.current.to(
+            circle1,
+            {
+              motionPath: {
+                path: path3,
+                align: path3,
+                alignOrigin: [0.5, 0.5],
+                autoRotate: true,
+                start: 0,
+                end: 1
+              }
+            },
+            'one_round'
+          );
 
-            tl2.current.to(circle1, {
-                motionPath: {
-                    path: path3,
-                    align: path3,
-                    alignOrigin: [0.5, 0.5],
-                    autoRotate: true,
-                    start: 0,
-                    end: 1,
-                }
-            }, 'one_round');
+          tl2.current.to(
+            circle2,
+            {
+              motionPath: {
+                path: path4,
+                align: path4,
+                alignOrigin: [0.5, 0.5],
+                autoRotate: true,
+                start: 0,
+                end: 1
+              }
+            },
+            'one_round'
+          );
 
-            tl2.current.to(circle2, {
-                motionPath: {
-                    path: path4,
-                    align: path4,
-                    alignOrigin: [0.5, 0.5],
-                    autoRotate: true,
-                    start: 0,
-                    end: 1,
-                }
-            }, 'one_round');
+          tl2.current.addLabel('one_and_a_half', '>');
 
-            tl2.current.addLabel('one_and_a_half', '>');
+          tl2.current.to(
+            group1,
+            {
+              rotate: -10,
+              transformOrigin: 'center',
+              duration: 1.5
+            },
+            'one_round+=1'
+          );
 
-            tl2.current.to(group1, {
-                rotate: -10,
-                transformOrigin: "center",
-                duration: 1.5
-            }, 'one_round+=1');
+          tl2.current.to(
+            circle1,
+            {
+              motionPath: {
+                path: path4,
+                align: path4,
+                alignOrigin: [0.5, 0.5],
+                autoRotate: true,
+                start: 0,
+                end: 1
+              }
+            },
+            'one_and_a_half'
+          );
 
-            tl2.current.to(circle1, {
-                motionPath: {
-                    path: path4,
-                    align: path4,
-                    alignOrigin: [0.5, 0.5],
-                    autoRotate: true,
-                    start: 0,
-                    end: 1,
-                }
-            }, 'one_and_a_half');
+          tl2.current.to(
+            circle2,
+            {
+              motionPath: {
+                path: path3,
+                align: path3,
+                alignOrigin: [0.5, 0.5],
+                autoRotate: true,
+                start: 0,
+                end: 1
+              }
+            },
+            'one_and_a_half'
+          );
 
-            tl2.current.to(circle2, {
-                motionPath: {
-                    path: path3,
-                    align: path3,
-                    alignOrigin: [0.5, 0.5],
-                    autoRotate: true,
-                    start: 0,
-                    end: 1,
-                }
-            }, 'one_and_a_half');
+          tl2.current.addLabel('two_rounds', '>');
 
-            tl2.current.addLabel('two_rounds', '>');
+          tl2.current.to(
+            group1,
+            {
+              rotate: 0,
+              transformOrigin: 'center',
+              duration: 1.5
+            },
+            'two_rounds+=1'
+          );
 
-            tl2.current.to(group1, {
-                rotate: 0,
-                transformOrigin: "center",
-                duration: 1.5
-            }, 'two_rounds+=1');
+          tl2.current.to(
+            circle1,
+            {
+              motionPath: {
+                path: path3,
+                align: path3,
+                alignOrigin: [0.5, 0.5],
+                autoRotate: true,
+                start: 0,
+                end: 1
+              }
+            },
+            'two_rounds'
+          );
 
-            tl2.current.to(circle1, {
-                motionPath: {
-                    path: path3,
-                    align: path3,
-                    alignOrigin: [0.5, 0.5],
-                    autoRotate: true,
-                    start: 0,
-                    end: 1,
-                }
-            }, 'two_rounds');
+          tl2.current.to(
+            circle2,
+            {
+              motionPath: {
+                path: path4,
+                align: path4,
+                alignOrigin: [0.5, 0.5],
+                autoRotate: true,
+                start: 0,
+                end: 1
+              }
+            },
+            'two_rounds'
+          );
 
-            tl2.current.to(circle2, {
-                motionPath: {
-                    path: path4,
-                    align: path4,
-                    alignOrigin: [0.5, 0.5],
-                    autoRotate: true,
-                    start: 0,
-                    end: 1,
-                }
-            }, 'two_rounds');
+          tl2.current.addLabel('two_and_a_half', '>');
 
-            tl2.current.addLabel('two_and_a_half', '>');
+          tl2.current.to(
+            circle1,
+            {
+              motionPath: {
+                path: path1,
+                align: path1,
+                alignOrigin: [0.5, 0.5],
+                autoRotate: true,
+                start: 0,
+                end: 1
+              }
+            },
+            'two_and_a_half'
+          );
 
-            tl2.current.to(circle1, {
-                motionPath: {
-                    path: path1,
-                    align: path1,
-                    alignOrigin: [0.5, 0.5],
-                    autoRotate: true,
-                    start: 0,
-                    end: 1,
-                }
-            }, 'two_and_a_half');
+          tl2.current.to(
+            circle2,
+            {
+              motionPath: {
+                path: path2,
+                align: path2,
+                alignOrigin: [0.5, 0.5],
+                autoRotate: true,
+                start: 0,
+                end: 1
+              }
+            },
+            'two_and_a_half'
+          );
 
-            tl2.current.to(circle2, {
-                motionPath: {
-                    path: path2,
-                    align: path2,
-                    alignOrigin: [0.5, 0.5],
-                    autoRotate: true,
-                    start: 0,
-                    end: 1,
-                }
-            }, 'two_and_a_half');
+          tl2.current.addLabel('three_rounds', '>');
 
-            tl2.current.addLabel('three_rounds', '>');
+          tl2.current.to(
+            group2,
+            {
+              rotate: 0,
+              transformOrigin: 'center',
+              duration: 1.5
+            },
+            'three_rounds'
+          );
 
-            tl2.current.to(group2, {
-                rotate: 0,
-                transformOrigin: "center",
-                duration: 1.5
-            }, 'three_rounds');
+          tl2.current.to(
+            circle1,
+            {
+              motionPath: {
+                path: path2,
+                align: path2,
+                alignOrigin: [0.5, 0.5],
+                autoRotate: true,
+                start: 0,
+                end: 1
+              }
+            },
+            'three_rounds'
+          );
 
-            tl2.current.to(circle1, {
-                motionPath: {
-                    path: path2,
-                    align: path2,
-                    alignOrigin: [0.5, 0.5],
-                    autoRotate: true,
-                    start: 0,
-                    end: 1,
-                }
-            }, 'three_rounds');
-
-            tl2.current.to(circle2, {
-                motionPath: {
-                    path: path1,
-                    align: path1,
-                    alignOrigin: [0.5, 0.5],
-                    autoRotate: true,
-                    start: 0,
-                    end: 1,
-                }
-            }, 'three_rounds');
-
+          tl2.current.to(
+            circle2,
+            {
+              motionPath: {
+                path: path1,
+                align: path1,
+                alignOrigin: [0.5, 0.5],
+                autoRotate: true,
+                start: 0,
+                end: 1
+              }
+            },
+            'three_rounds'
+          );
         });
 
         return () => ctx.revert();

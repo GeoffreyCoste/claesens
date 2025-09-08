@@ -6,15 +6,11 @@ const SvgEllipticSphere = () => {
       width="100%"
       height="100%"
       viewBox="-1.1 -1.1 2.2 2.2"
-      // viewBox="-1.2 -1.2 2.2 2.2"
     >
       <g
         fill="hsla(0, 0%, 95%, .01)"
         stroke="hsla(255, 255%, 255%, 1)"
         strokeWidth="0.01"
-        /* fill="hsla(0, 0%, 95%, .01)"
-        stroke="hsla(0, 0%, 12%, .4)"
-        strokeWidth="0.01" */
       >
         {/* Centered circle acting like a visual guide */}
         <circle r="1" />
@@ -264,8 +260,6 @@ const SvgEllipticSphere = () => {
             />
           </path>
         </g>
-        {/* Duplicating arcs with rotation */}
-        {/* <use xlinkHref="#grid" transform="rotate(90)" /> */}
       </g>
     </svg>
   );

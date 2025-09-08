@@ -1,16 +1,8 @@
 .badge {
     display: inline-flex;
     flex-flow: row nowrap;
-    // color: var(--gray-light);
-    // font-size: 0.75rem;
-    // font-weight: 700;
-    // padding: 0.125em 0.65em 0.25em;
-    // padding: 0.125rem 0.65rem;
-    // border: 1px solid var(--gray-light);
-    // border-radius: calc(var(--border-radius) / 2);
     border-radius: 50px;
     white-space: nowrap; /* Prevent text from splitting into several lines */
-    // align-self: start; /* Prevent vertical extension if used inside flex container */
     z-index: 8;
 
     /* Color variations */
@@ -110,8 +102,6 @@
                 display: block;
                 position: relative;
                 padding: 0.175em 0.875em;
-                // padding-inline: 1.5em;
-                // padding-block: 0.875em;
                 color: rgba(50, 50, 50, 1);
                 font-size: clamp(0.875rem, 4.5vw, 1rem);
                 font-weight: 700;
@@ -138,7 +128,6 @@
                     position: absolute;
                     top: calc(0% + var(--border-width) / 2);
                     left: calc(0% + var(--border-width) / 2);
-                    // z-index: 1;
                     border-radius: 50px;
                     overflow: clip;
                     background: linear-gradient(
@@ -161,8 +150,6 @@
             width: calc(100% + var(--shadow-cuttoff-fix));
             height: calc(100% + var(--shadow-cuttoff-fix));
             position: absolute;
-            // top: calc(0% - var(--shadow-cuttoff-fix) / 2);
-            // left: calc(0% - var(--shadow-cuttoff-fix) / 2);
             top: 4px;
             left: 4px;
             filter: blur(clamp(2px, 0.125em, 12px));
@@ -191,27 +178,4 @@
             }
         }
     }
-
-
-    /* &.black {
-        color: var(--black);
-        background-color: var(--bg-gray);
-        border: 1px solid var(--black);
-    }
-
-    &.font_normal {
-        font-weight: 400;
-    }
-
-    &.small {
-        font-size: 0.625rem;
-        line-height: 0.625rem;
-        padding: 0.15rem 0.375rem;
-    }
-
-    &.gray_light {
-        color: var(--gray);
-        border: 1px solid #161616;
-        background-color: #161616;
-    } */
 }

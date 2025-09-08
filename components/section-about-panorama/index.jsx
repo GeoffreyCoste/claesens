@@ -1,7 +1,6 @@
 'use client';
 
 import styles from './style.module.scss';
-import Image from 'next/image';
 import AnimateStagger from '../animate-stagger';
 import AnimateHeading from '../animate-heading';
 import {h2SectionAboutPanorama} from '../animate-heading/data';
@@ -15,13 +14,6 @@ const SectionAboutPanorama = () => {
         <div className={styles.section_about_panorama_content_heading}>
           <div className={styles.heading}>
             <div className={styles.heading_img}>
-              {/* <Image
-                src="/images/img_about_panorama_640x640.png"
-                alt="Emilie Claesens creative designer freelance - photo noir et blanc avec sphères blanches lumineuses dans les bras"
-                fill
-                priority
-                style={{objectFit: 'cover'}}
-              /> */}
               <SvgCirclesKaleidoscope />
             </div>
             <div className={styles.heading_title}>

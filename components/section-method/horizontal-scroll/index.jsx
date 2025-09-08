@@ -5,13 +5,12 @@ import {useState, useRef, useLayoutEffect} from 'react';
 import Image from 'next/image';
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger';
-/* import ScrollToPlugin from 'gsap/ScrollToPlugin'; */
 import clsx from 'clsx';
 import {bricolage_grotesque} from '@/app/fonts';
 import {STEPS} from '@/components/circular-list/data';
 import NumberDisplay from '../scroll-trigger-wrapper/number-display';
 
-gsap.registerPlugin(ScrollTrigger /* , ScrollToPlugin */);
+gsap.registerPlugin(ScrollTrigger);
 
 const HorizontalScroll = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -56,11 +55,6 @@ const HorizontalScroll = () => {
             const progress = self.progress; // Get scroll progress
             const newIndex = Math.round(progress * (items.length - 1)); // Calculate index based on progress
             setCurrentIndex(newIndex); // Update current index state
-
-            // Check if we are at the end or beginning of the scroll
-            /* if (progress === 0 || progress === 1) {
-              self.scroll(self.start + (progress === 1 ? self.end : 0)); // Ensure the scroll matches the end state
-            } */
           }
         }
       });

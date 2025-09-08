@@ -10,7 +10,6 @@
 	    position: relative;
         border: 4px solid;
 	    border-radius: 35px;
-        // animation: mouseAnim 1s linear infinite alternate;
     }
 
     .ball {
@@ -25,7 +24,6 @@
         border-radius: calc(var(--ball-size) / 2);
         opacity: 0;
         animation: scrollAnim 1s linear infinite alternate 1s;
-        // animation: scroll 2s linear infinite;
     }
 
     @keyframes scrollAnim {
@@ -52,29 +50,4 @@
         }
 
     }
-
-    /* @keyframes ballAnim {
-        0% {
-            width: 10px;
-            height: 10px;
-            top: 15px;
-            border-radius: 5px;
-            opacity: 0;
-        }
-		50% {
-            width: 12px;
-            height: 12px;
-            top: 70px;
-            border-radius: 6px;
-
-            opacity: 1;
-        }
-        100% {
-            width: 8px;
-            height: 8px;
-            border-radius: 4px;
-            opacity: 0;
-            top: 95px;
-        }
-    } */
 }

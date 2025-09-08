@@ -64,46 +64,36 @@ const GoeyCircles = () => {
     }, [circlesData]);
 
     return (
-        <div className={styles.goey_circles_container}>
-            <svg ref={svgRef} className={styles.svg} viewBox="0 0 200 200">
-                {/* <defs>
-                    <filter id="goey" x="-50%" y="-50%" width="200%" height="200%">
-                        <feGaussianBlur in="SourceAlpha" stdDeviation="6" result="blurred" />
-                        <feComponentTransfer in="blurred">
-                            <feFuncA type="table" tableValues="0 1" />
-                        </feComponentTransfer>
-                        <feGaussianBlur in="blurred" stdDeviation="3" result="glow" />
-                        <feBlend in="SourceGraphic" in2="glow" mode="screen" />
-                    </filter>
-                </defs> */}
-                {/* <defs>
-                  <filter id="goey">
-                    <feGaussianBlur
-                      in="SourceGraphic"
-                      stdDeviation="10"
-                      result="blur"
-                    />
-                    <feColorMatrix
-                      in="blur"
-                      mode="matrix"
-                      values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7"
-                      result="goo"
-                    />
-                    <feBlend in="SourceGraphic" in2="goo" />
-                  </filter>
-                </defs> */}
-                <defs>
-                  <filter id="goey">
-                    <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
-                    <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 21 -7" result="goo" />
-                    <feBlend in="SourceGraphic" in2="goo" />
-                	</filter>
-                </defs>
-                {circlesData.map((circle, index) => (
-                    <circle key={index} cx={circle.cx} cy={circle.cy} r={circle.r} fill="#fce300" filter="url(#goey)" />
-                ))}
-            </svg>
-        </div>
+      <div className={styles.goey_circles_container}>
+        <svg ref={svgRef} className={styles.svg} viewBox="0 0 200 200">
+          <defs>
+            <filter id="goey">
+              <feGaussianBlur
+                in="SourceGraphic"
+                stdDeviation="10"
+                result="blur"
+              />
+              <feColorMatrix
+                in="blur"
+                mode="matrix"
+                values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 21 -7"
+                result="goo"
+              />
+              <feBlend in="SourceGraphic" in2="goo" />
+            </filter>
+          </defs>
+          {circlesData.map((circle, index) => (
+            <circle
+              key={index}
+              cx={circle.cx}
+              cy={circle.cy}
+              r={circle.r}
+              fill="#fce300"
+              filter="url(#goey)"
+            />
+          ))}
+        </svg>
+      </div>
     );
 }
 

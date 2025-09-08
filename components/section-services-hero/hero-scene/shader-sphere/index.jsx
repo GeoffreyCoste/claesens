@@ -5,7 +5,7 @@ import { extend, useFrame } from '@react-three/fiber';
 import { shaderMaterial } from '@react-three/drei'
 import * as THREE from 'three';
 
-// Fonctions utilitaires Perlin Noise (communes aux deux shaders)
+// Perlin Noise utilitary function (common to both shaders)
 const perlinNoiseFunctions = `
   vec3 mod289(vec3 x) {
     return x - floor(x * (1.0 / 289.0)) * 289.0;
@@ -150,7 +150,7 @@ const SphereMaterial = shaderMaterial(
   `
 );
 
-// Extension du matériau pour Three.js/R3F
+// Material extension for Three.js/R3F
 extend({ SphereMaterial });
 
 const ShaderSphere = ({ 
@@ -200,7 +200,7 @@ const ShaderSphere = ({
       meshRef.current.rotation.y += options.camera.speedY / 100;
       meshRef.current.rotation.z += options.camera.speedX / 100;
       
-      // Notifier la rotation au parent pour la grille
+      // Notify the rotation to parent for grid
       if (onRotationChange) {
         onRotationChange({
           y: meshRef.current.rotation.y,

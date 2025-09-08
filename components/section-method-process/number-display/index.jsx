@@ -10,26 +10,6 @@ const NumberDisplay = ({index}) => {
     digitPatterns[index] || emptyPattern
   );
 
-  /* useEffect(() => {
-    const newPattern = index !== null ? digitPatterns[index] : emptyPattern;
-
-    setCurrentPattern((prevPattern) =>
-      prevPattern.map((row, i) =>
-        row.map((point, j) => ({
-          visible: point.visible,
-          fadeOut: point.visible && !newPattern[i][j],
-          fadeIn: !point.visible && newPattern[i][j]
-        }))
-      )
-    );
-
-    const timer = setTimeout(() => {
-      setCurrentPattern(newPattern);
-    }, 500);
-
-    return () => clearTimeout(timer);
-  }, [index]); */
-
   useEffect(() => {
     if (index === null) {
       setCurrentPattern(emptyPattern);

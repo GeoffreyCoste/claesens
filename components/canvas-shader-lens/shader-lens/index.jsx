@@ -5,20 +5,20 @@ import * as THREE from 'three';
 import {useFrame, useThree} from '@react-three/fiber';
 
 const ShaderLens = ({dimensions}) => {
-    const vMouseDamp = useMemo(() => new THREE.Vector2(), []);
-    const vResolution = useMemo(() => new THREE.Vector2(), []);
-    const vOffset = useMemo(() => new THREE.Vector2(0.3, 0.3), []);
-    const pixelRatio =
-      typeof window !== 'undefined' ? window.devicePixelRatio : 1;
+  const vMouseDamp = useMemo(() => new THREE.Vector2(), []);
+  const vResolution = useMemo(() => new THREE.Vector2(), []);
+  const vOffset = useMemo(() => new THREE.Vector2(0.3, 0.3), []);
+  const pixelRatio =
+    typeof window !== 'undefined' ? window.devicePixelRatio : 1;
 
-    // Mesh reference
-    const meshRef = useRef(null);
+  // Mesh reference
+  const meshRef = useRef(null);
 
-    // Get camera and render datas as from useThree
-    const {camera, gl} = useThree();
+  // Get camera and render datas as from useThree
+  const {camera, gl} = useThree();
 
   // Declare fragment shader
-    const fragmentShader = `
+  const fragmentShader = `
         precision highp float; // Precision to avoid errors on some devices
 
         varying vec2 vUv;
@@ -26,10 +26,6 @@ const ShaderLens = ({dimensions}) => {
         uniform vec2 u_mouse;
         uniform vec2 u_resolution;
         uniform float u_pixelRatio;
-        /* uniform vec2 u_offset;
-        uniform float u_time;
-        uniform float u_circleSize;
-        uniform float u_sphereRadius; */
 
         /* common constants */
         #ifndef PI
@@ -90,16 +86,6 @@ const ShaderLens = ({dimensions}) => {
             return (pos - sph.xyz) / sph.w;
         }
 
-        /* float intersect (in vec3 ro, in vec3 rd, out float resT) {
-            resT = 1000.0;
-            float id = -1.0;
-            float tsph = intSphere(ro, rd, sph1); // intersect with a sphere
-            if (tsph > 0.0) {
-                id = 1.0;
-                resT = tsph;
-            }
-            return id;
-        } */
 
         /* Main Fragment Shader Logic */
         void main() {
@@ -112,9 +98,6 @@ const ShaderLens = ({dimensions}) => {
             vec3 ro = vec3(0.0, 0.0, -1.0); // Ray origin
             vec3 rd = normalize(vec3(st - vec2(0.5), 1.0)); // Ray direction
 
-            /* intersect ray with 3d scene */
-            /* float t; // scalar distance to intersection point defined by 'intersect'
-            float id = intersect(ro, rd, t); */
 
             /* draw in gray by default */
             vec3 color = vec3(0.9451);
@@ -143,7 +126,6 @@ const ShaderLens = ({dimensions}) => {
             gl_FragColor = vec4(color.rgb, 1.0);
         }
     `;
-    
 
   // Create shader material with uniforms
   const shaderMaterial = useMemo(
@@ -172,94 +154,33 @@ const ShaderLens = ({dimensions}) => {
     [vMouseDamp, vResolution, vOffset, pixelRatio, fragmentShader]
   );
 
-  /* useLayoutEffect(() => {
-    // Gestion des mises à jour, comme la position dynamique
-    const updateOffset = () => {
-      const width = window.innerWidth;
-
-      // Exemple de mise à jour pour repositionner en fonction des dimensions
-      if (width < 768) {
-        // Mobile
-        vOffset.set(0, 0); // En haut-centre
-      } else if (width < 1024) {
-        // Tablet
-        vOffset.set(0.35, 0); // En haut-centre
-      } else if (width < 1440) {
-        // Desktop less than 1440px
-        vOffset.set(0.4, 0); // En haut-centre
-      } else {
-        // Desktop
-        vOffset.set(0.5, 0); // À droite
-      }
-    };
-
-    updateOffset();
-    window.addEventListener('resize', updateOffset);
-
-    return () => window.removeEventListener('resize', updateOffset);
-  }, [vOffset]); */
-
-  /* useLayoutEffect(() => {
-    const updateShaderParams = () => {
-      const width = window.innerWidth;
-      const isTablet = width >= 768 && width < 1024; // Tablets
-
-      // Update shader uniforms subject to resolution
-      shaderMaterial.uniforms.u_circleSize.value = isTablet ? 0.1 : 0.3; // Circle
-      shaderMaterial.uniforms.u_sphereRadius.value = isTablet ? 0.1 : 0.15; // Sphere
-    };
-
-    updateShaderParams();
-    window.addEventListener('resize', updateShaderParams);
-
-    return () => window.removeEventListener('resize', updateShaderParams);
-  }, [shaderMaterial]); */
-
-  /* useLayoutEffect(() => {
-    // Manage mouse events
+  useLayoutEffect(() => {
     const onPointerMove = (e) => {
-      vMouseDamp.set(e.clientX, e.clientY);
+      if (!meshRef.current) return;
+
+      // Get mesh real screen position
+      const rect = gl.domElement.getBoundingClientRect();
+
+      // Coordinates relative to the mesh
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+
+      // Normalization 0-1
+      const normX = x / rect.width;
+      const normY = y / rect.height;
+
+      // Update mouse vector for shader
+      vMouseDamp.set(normX * rect.width, normY * rect.height);
     };
 
-    // Event listeners
     window.addEventListener('mousemove', onPointerMove);
     window.addEventListener('pointermove', onPointerMove);
 
-    // Cleanup
     return () => {
       window.removeEventListener('mousemove', onPointerMove);
       window.removeEventListener('pointermove', onPointerMove);
     };
-  }, [dimensions, vMouseDamp]); */
-
-  useLayoutEffect(() => {
-    const onPointerMove = (e) => {
-        if (!meshRef.current) return;
-
-        // Récupère la position réelle du mesh à l'écran
-        const rect = gl.domElement.getBoundingClientRect();
-
-        // Coordonnées relatives au mesh
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-
-        // Normalisation 0-1
-        const normX = x / rect.width;
-        const normY = y / rect.height;
-
-        // Met à jour le vecteur de la souris pour le shader
-        vMouseDamp.set(normX * rect.width, normY * rect.height);
-    };
-
-    window.addEventListener('mousemove', onPointerMove);
-    window.addEventListener('pointermove', onPointerMove);
-
-    return () => {
-        window.removeEventListener('mousemove', onPointerMove);
-        window.removeEventListener('pointermove', onPointerMove);
-    };
-    }, [gl, vMouseDamp]);
-
+  }, [gl, vMouseDamp]);
 
   // Window size and resolution update
   useLayoutEffect(() => {
@@ -281,7 +202,7 @@ const ShaderLens = ({dimensions}) => {
     }
   }, [dimensions, gl, camera, vResolution]);
 
-  // Animation frame pour lisser la souris
+  // Animation frame to smooth mouse
   useFrame((state, delta) => {
     for (const k in vMouseDamp) {
       if (k === 'x' || k === 'y') {

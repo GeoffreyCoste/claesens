@@ -26,61 +26,38 @@ const ScaleCircles = () => {
         if (!svg || !group1 || !group2) return;
 
         const ctx = gsap.context(() => {
-            let animations = [],
-                targets = gsap.utils.toArray([group1, group2]),
-                duration = 2,
-                stagger = 4,
-                curIndex = -1,
-                paused = true;
+          let animations = [],
+            targets = gsap.utils.toArray([group1, group2]),
+            duration = 2,
+            stagger = 4,
+            curIndex = -1,
+            paused = true;
 
-            // Définir la fonction 'next' avant de l'utiliser
-            const next = () => {
-                autoAdvance.restart(true);
-                curIndex = (curIndex + 1) % targets.length; // Avancer l'index et revenir à 0 quand il atteint la fin
-                let tween = gsap.to(targets[curIndex], {
-                    keyframes: {
-                        scale: [0, 0.8, 2, 8],
-                    },
-                    duration: duration * 3,
-                    onComplete: () => {
-                        animations.splice(animations.indexOf(tween), 1); // Enlever l'animation de l'array
-                    },
-                });
-                animations.push(tween);
-            };
+          // Define 'next' function before using it
+          const next = () => {
+            autoAdvance.restart(true);
+            curIndex = (curIndex + 1) % targets.length; // Move index and go back to start at the end
+            let tween = gsap.to(targets[curIndex], {
+              keyframes: {
+                scale: [0, 0.8, 2, 8]
+              },
+              duration: duration * 3,
+              onComplete: () => {
+                animations.splice(animations.indexOf(tween), 1); // Remove animation from array
+              }
+            });
+            animations.push(tween);
+          };
 
-            // Initialiser l'animation
-            const init = () => {
-                gsap.set(targets, { scale: 0, transformOrigin: 'center' });
-                next();
-            };
+          // Initialize animation
+          const init = () => {
+            gsap.set(targets, {scale: 0, transformOrigin: 'center'});
+            next();
+          };
 
-            let autoAdvance = gsap.delayedCall(stagger, next).pause();
+          let autoAdvance = gsap.delayedCall(stagger, next).pause();
 
-            init();
-
-            // autoAdvance.paused(paused);
-            // animations.forEach(t => t.paused(paused));
-
-            /* ScrollTrigger.create({
-                trigger: svg, // L'élément à déclencher est le groupe de cercles
-                start: 'top+=50px bottom', // Lorsque le haut de l'élément touche le bas du viewport
-                end: 'top+=50px top', // Quand le bas de l'élément touche le haut du viewport
-                // scrub: true, // L'animation suit le défilement
-                // animation: tl, // L'animation à lier avec le ScrollTrigger
-                // toggleActions: 'play reset play reset', // Démarre l'animation quand l'élément entre dans le viewport
-                onEnter: () => autoAdvance.play(), // Joue l'animation lorsque l'élément entre dans le viewport
-                onLeave: () => {
-                    autoAdvance.pause(); // Met en pause l'animation
-                    gsap.set(targets, { scale: 0 }); // Réinitialise les éléments à leur état initial (comme un 'reset')
-                },
-                onEnterBack: () => autoAdvance.play(), // Re-joue l'animation lorsque l'élément revient dans le viewport
-                onLeaveBack: () => {
-                    autoAdvance.pause(); // Met en pause l'animation
-                    gsap.set(targets, { scale: 0 }); // Réinitialise les éléments à leur état initial
-                },
-                // markers: true, // Affiche les marqueurs pour déboguer
-            }); */
+          init();
         });
 
         return () => ctx.revert();

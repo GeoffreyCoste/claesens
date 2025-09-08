@@ -14,33 +14,6 @@
         row-gap: 0.5rem;
         position: relative;
 
-        /* &::before {
-            content: '';
-            width: 80px;
-            height: 80px;
-            position: absolute;
-            background-color: var(--yellow);
-            border-radius: 50px;
-        }
-
-        &:nth-child(1)::before {
-            left: calc(50% - 5px);
-            transform: translateX(-50%);
-        }
-
-        &:nth-child(2)::before {
-            top: -5px;
-        }
-
-        &:nth-child(3)::before {
-            left: calc(50% + 5px);
-            transform: translateX(-50%);
-        }
-
-        &:nth-child(4)::before {
-            top: 5px;
-        } */
-
         &_img {
             width: 100px;
             height: 100px;
@@ -67,8 +40,6 @@
         }
 
         &_label {
-            // width: 55%;
-            
 
             span {
                 display: block;

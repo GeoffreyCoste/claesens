@@ -17,7 +17,7 @@ export const computeUvPosition = ({ bounds, uRadius1, uRadius2, z = 4.5, isDeskt
   const offset =
     isDesktop
       ? position === "right"
-        ? ((totalWidth + leftShift /* + rightShift */) / 2) - w2 / 2
+        ? ((totalWidth + leftShift) / 2) - w2 / 2
         : (totalWidth / 2) - w1 / 2
       : position === "bottom"
         ? (totalHeight / 2) - h2 / 2
@@ -36,37 +36,3 @@ export const computeUvPosition = ({ bounds, uRadius1, uRadius2, z = 4.5, isDeskt
 
   return { u, v, z };
 }
-
-/**********************/
-
-/* export const computeUvPosition = ({
-    bounds,
-    uRadius1,
-    uRadius2,
-    z = 4.5,
-    side = 'right'
-  }) => {
-  const aspect = bounds.width / bounds.height;
-
-  const w1 = uRadius1.x;
-  const w2 = uRadius2.x;
-  const gap = 0.22 * aspect;
-  // const rightShift = 0.06 * aspect;
-  const leftShift = 0.05 * aspect;
-
-  const totalWidth = w1 + w2 + gap;
-
-  const offset =
-    side === 'right'
-      ? ((totalWidth + leftShift /* + rightShift *) / 2) - w2 / 2
-      : (totalWidth / 2) - w1 / 2;
-
-  const u = side === 'right'
-    ? 0.5 * aspect + offset
-    : 0.5 * aspect - offset;
-
-  const v = 0.5;
-
-  return { u, v, z };
-} */
-

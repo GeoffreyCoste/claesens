@@ -31,13 +31,10 @@ const Card = ({
   // Set image scale property subject to scroll progress (i.e. when scroll progress goes from 0 to 1, image scales from 1.2 to 1 )
   const imageScale = useTransform(scrollYProgress, [0, 1], [1.2, 1]);
 
-  // Apparaître/disparaître au centre de l'écran uniquement pour tablette
+  // Appear/disappear at screen center only for tablet
   const cardCenterProgress = useScroll({
     target: articleRef,
     offset: ['start 85%', 'end 15%']
-    // offset: ['start 75%', 'end 25%']
-    // offset: ['start center', 'start start']
-    // offset: ['center center', 'center center']
   });
 
   const tabletOpacity = useTransform(
@@ -45,11 +42,7 @@ const Card = ({
     [0, 0.35, 0.65, 1],
     [0, 1, 1, 0]
   );
-  /* const tabletOpacity = useTransform(
-    cardCenterProgress.scrollYProgress,
-    [0, 0.5, 1],
-    [0, 1, 0]
-  ); */
+
   const tabletScale = useTransform(
     cardCenterProgress.scrollYProgress,
     [0, 0.5, 1],
@@ -79,20 +72,10 @@ const Card = ({
               ? {
                   scale: tabletScale,
                   opacity: tabletOpacity,
-                  // position: 'absolute',
-                  // top: 0,
-                  // left: 0,
-                  // right: 0,
-                  // zIndex: 100 - index,
-                  pointerEvents: 'none' // évite les conflits de clics
+                  pointerEvents: 'none' // Avoid click conflicts
                 }
               : {}
         }
-        /* style={
-          desktop
-            ? {scale: contentScale, top: `calc(-5vh + ${index * 25}px)`}
-            : {}
-        } */
       >
         <div className={styles.card_content_item}>
           <div

@@ -11,15 +11,6 @@ const SectionMethodInterlude = () => {
 
   return (
     <section className={styles.section_method_interlude}>
-      {/* <h2>
-        L&apos;essence du design : <br />
-        une boucle continue.
-      </h2>
-      <p>
-        Chaque étape s&apos;enchaîne harmonieusement, <br />
-        comme un cercle de créativité en perpétuel mouvement.
-      </p> */}
-
       <div className={styles.section_heading}>
         <AnimateStagger>
           {h2SectionMethodInterlude.map((text, index) => (

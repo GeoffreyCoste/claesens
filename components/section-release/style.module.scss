@@ -1,26 +1,13 @@
 .section_release {
     width: 100%;
-    min-height: 220vh;
+    // height: 330vh;
     display: flex;
-    justify-content: center;
-    align-items: flex-end;
     position: relative;
-    background: linear-gradient(to bottom, var(--bg-gray) 50%, var(--black) 75%);
-
-    .svg {
-        position: absolute;
-        top: 0;
-        left: 0;
-    }
+    background-color: var(--bg-gray);
 
     .container {
         width: 100%;
-        min-height: 200vh;
-        display: flex;
-        justify-content: center;
-        align-items: flex-start;
-        position: relative;
-        // background: linear-gradient(to bottom, var(--bg-gray) 50%, var(--black) 75%);
+        height: 100%;
 
         .content {
             width: 100%;
@@ -31,11 +18,7 @@
             justify-content: center;
             position: absolute;
             left: 0;
-            // top: -50%;
-            padding: 6rem 0;
             background: var(--black);
-            // opacity: 0;
-            // visibility: hidden;
             will-change: transform;
     
             &_inner {
@@ -47,14 +30,10 @@
                 justify-content: center;
                 gap: 3rem;
                 padding: 0 1rem;
-                transform: translateY(140vh);
-                will-change: transform;
 
                 .text {
                     width: 100%;
                     color: var(--gray-light);
-                    // font-size: 1.25rem;
-                    // font-weight: 400;
                     margin: 1rem 0 2rem;
         
                     &:not(:last-of-type) {
@@ -64,58 +43,6 @@
                     &::first-letter {
                         text-transform: uppercase;
                     }
-                }
-            }
-        }
-    }
-}
-
-@media screen and (min-width: 768px) {
-    .section_release {
-        min-height: 150vh;
-
-        /* .svg {
-            height: 100%;
-        } */
-
-        .container {
-            height: 150vh;
-            min-height: 150vh;
-            // overflow: hidden;
-
-            .content {
-                height: 150vh;
-                // justify-content: flex-end;
-                top: -50%;
-
-                &_inner {
-                    transform: translateY(120vh);
-                }
-            }
-        }
-    }
-}
-
-@media screen and (min-width: 1024px) {
-    .section_release {
-        min-height: 220vh;
-
-        /* .svg {
-            height: 100%;
-        } */
-
-        .container {
-            height: 200vh;
-            min-height: 200vh;
-            // overflow: hidden;
-
-            .content {
-                height: 200vh;
-                // justify-content: flex-end;
-                top: -50%;
-
-                &_inner {
-                    transform: translateY(60vh);
                 }
             }
         }

@@ -18,14 +18,6 @@
 
     &_content {
         max-width: 32rem;
-        // flex-basis: 100%;
-        // display: flex;
-        // flex-direction: column;
-        // justify-content: center;
-        // align-items: flex-start;
-        // max-width: 500px;
-        // margin: 0 auto;
-        // padding: 6rem 1rem 0 1rem;
         margin: 0 auto;
         padding-top: 6rem;
 
@@ -33,10 +25,6 @@
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-
-            /* a {
-                margin-top: 2rem;
-            } */
         }
 
         &_title {
@@ -49,8 +37,6 @@
         }
 
         &_text {
-            // font-size: 1rem;
-            // font-weight: 400;
             margin: 1rem 0 2rem;
 
             &:not(:last-of-type) {
@@ -61,7 +47,6 @@
                 text-transform: uppercase;
             }
         }
-
     }
 
     &_portrait {
@@ -70,9 +55,7 @@
         justify-content: center;
         align-items: center;
         position: relative;
-        // margin: 0 1rem;
         padding: 6rem 1rem;
-        // background-color: var(--yellow);
     }
 
     &_image {
@@ -93,10 +76,9 @@
 
 @media screen and (min-width: 640px) {
     .section_who {
-    
+
         &_content {
-            // padding: 6rem 1rem;
-            
+
             &_wrapper {
                 align-items: center;
                 justify-content: flex-start;
@@ -108,26 +90,20 @@
 @media screen and (min-width: 768px) {
     .section_who {
         min-height: 100vh;
-        // flex-flow: row nowrap;
 
         &_content {
-            // flex-basis: 50%;
             flex-basis: 100%;
             display: flex;
             justify-content: center;
             align-items: center;
-            // padding: 6rem 1rem 3rem 1rem;
 
             &_wrapper {
                 align-items: flex-start;
-                // flex-basis: 70%;
                 flex-basis: 100%;
             }
         }
     
         &_portrait {
-            // flex-basis: 50%;
-            // padding: 6rem 2rem;
             padding: 3rem 1rem 6rem 1rem;
         }
     }
@@ -136,8 +112,7 @@
 @media screen and (min-width: 1024px) {
     .section_who {
         min-height: 125vh;
-        // flex-flow: row nowrap;
-        
+
         &_body {
             justify-content: space-between;
         }
@@ -145,15 +120,9 @@
         &_content {
             flex-basis: 50%;
             padding-top: 0;
-            // flex-basis: 100%;
-            // display: flex;
-            // justify-content: center;
-            // align-items: center;
-            // padding: 6rem 1rem 3rem 1rem;
 
             &_wrapper {
                 align-items: flex-start;
-                // flex-basis: 70%;
                 flex-basis: 100%;
             }
 
@@ -192,12 +161,10 @@
         }
 
         &_content {
-            // flex-basis: 50%;
             margin: 0;
         }
 
         &_portrait {
-            // flex-basis: 50%;
             justify-content: flex-end;
         }
     }

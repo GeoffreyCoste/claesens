@@ -12,8 +12,8 @@ import SectionHero from '@/components/section-hero';
 import SectionWho from '@/components/section-who';
 import SectionSkills from '@/components/section-skills';
 import SectionProcess from '@/components/section-process';
-import InfiniteText from '@/components/infinite-text';
 import SectionRelease from '@/components/section-release';
+import InfiniteText from '@/components/infinite-text';
 import CursorCustom from '@/components/cursor-custom';
 import ImageParallax from '@/components/image-parallax';
 import SideMenu from '@/components/side-menu';
@@ -23,7 +23,6 @@ import AsideFooter from '@/components/aside-footer';
 import CanvasShaderLens from '@/components/canvas-shader-lens';
 import AsideFooterBody from '@/components/aside-footer/aside-footer-body';
 import {h2FooterAsideHome} from '@/components/animate-heading/data';
-import SectionReleaseNew from '@/components/section-release-new';
 
 export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
@@ -46,19 +45,6 @@ export default function Home() {
     return () => clearTimeout(timeout);
   }, [stop, start]);
 
-  /* useEffect(() => {
-    (async () => {
-      const LocomotiveScroll = (await import('locomotive-scroll')).default;
-      const locomotiveScroll = new LocomotiveScroll();
-
-      setTimeout(() => {
-        setIsLoading(false);
-        document.body.style.cursor = 'default';
-        window.scrollTo(0, 0);
-      }, 2000);
-    })();
-  }, []); */
-
   return (
     <>
       <AnimatePresence mode="wait">
@@ -76,8 +62,7 @@ export default function Home() {
         <SectionSkills />
         <ImageParallax />
         <SectionProcess />
-        {/* <SectionRelease /> */}
-        <SectionReleaseNew />
+        <SectionRelease />
         {desktop && <CursorCustom stickyElementRefs={stickyRefs} />}
       </main>
       <Footer>

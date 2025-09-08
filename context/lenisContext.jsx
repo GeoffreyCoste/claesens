@@ -23,8 +23,8 @@ export const LenisProvider = ({ children }) => {
   // Initialise Lenis
   useEffect(() => {
     const instance = new Lenis({
-      smooth: true,
-      // ... autres options
+      smooth: true
+      // ...other options
     });
 
     setLenis(instance);
@@ -41,7 +41,7 @@ export const LenisProvider = ({ children }) => {
     };
   }, []);
 
-  // stop: incrémente le compteur et stop Lenis si c'est le premier appel
+  // stop: increment count and stop lenis if first call
   const stop = useCallback(() => {
     if (!lenis) return;
 
@@ -52,7 +52,7 @@ export const LenisProvider = ({ children }) => {
     }
   }, [lenis]);
 
-  // start: décrémente le compteur et start Lenis si plus aucun verrou
+  // start: decrement count and start Lenis if no lock
   const start = useCallback(() => {
     if (!lenis) return;
 
@@ -64,7 +64,7 @@ export const LenisProvider = ({ children }) => {
   }, [lenis]);
 
   return (
-    <LenisContext.Provider value={{ lenis, stop, start }}>
+    <LenisContext.Provider value={{lenis, stop, start}}>
       {children}
     </LenisContext.Provider>
   );

@@ -18,7 +18,7 @@ const FullscreenMaterial = shaderMaterial(
     uRadius2: new THREE.Vector2(0.0, 0.0),
     uRadius3: new THREE.Vector2(0.0, 0.0),
     uRotation: 0,
-    uEllipseColor: new THREE.Color(0.0, 0.0, 0.0), // 🆕 couleur personnalisable
+    uEllipseColor: new THREE.Color(0.0, 0.0, 0.0), // Customizable color
     uIsDesktop: true // Boolean used to apply a conditional positioning to the spheres inside the shader
   },
   // Vertex Shader
@@ -72,7 +72,6 @@ const FullscreenMaterial = shaderMaterial(
     float tool = 0.0;
     vec2 defs = vec2(0.0);
     float xGap = 0.22 * aspect;
-    /* float yGap = 0.02 * aspect; */
     vec2 center = vec2(0.0, 0.0);
 
     float yOffset1 = 0.2;
@@ -85,23 +84,13 @@ const FullscreenMaterial = shaderMaterial(
     float xOffset1 = -xCenterDistance / 2.0 + xRad1 / 2.0;
     float xOffset2 = xCenterDistance / 2.0 + xRad2 / 2.0;
 
-    /* float yRad1 = uRadius1.y;
-    float yRad2 = uRadius2.y;
-    float yRad3 = uRadius3.y;
-    float yCenterDistance = yRad1 + yGap + yRad2;
-    float yOffset1 = yCenterDistance / 2.0 + yRad1 / 2.0;
-    float yOffset2 = -yCenterDistance / 2.0 + yRad2 / 2.0;
-    float yOffset3 = 0.0; */
-
     {
       vec2 radius = uRadius1;
-      /* vec2 p = center + vec2(offset1, 0.0); */
       vec2 p;
       if (uIsDesktop) {
         p = center + vec2(xOffset1, 0.0);
       } else {
         p = center + vec2(0.0, yOffset1);
-        /* p = center + vec2(0.0, yOffset1 - 0.17); */
       }
       float d = sdf(p, radius, uv);
       tool += S(d);
@@ -111,13 +100,11 @@ const FullscreenMaterial = shaderMaterial(
 
     {
       vec2 radius = uRadius2;
-      /* vec2 p = center + vec2(offset2, 0.0); */
       vec2 p;
       if (uIsDesktop) {
         p = center + vec2(xOffset2, 0.0);
       } else {
         p = center + vec2(0.0, yOffset2);
-        /* p = center + vec2(0.0, yOffset2 - 0.17); */
       }
       float d = sdf(p, radius, uv);
       tool += S(d);
@@ -161,51 +148,30 @@ const FullscreenPlane = ({
   slidesRef
 }) => {
   const materialRef = useRef(null);
-  const {camera} = useThree(); // Accéder à la caméra via useThree
-  /* const [resolution, setResolution] = useState(() => {
-    const dpr = window.devicePixelRatio || 1;
-    return new THREE.Vector2(window.innerWidth * dpr, window.innerHeight * dpr);
-  }); */
+  const {camera} = useThree();
   const [planeWidth, setPlaneWidth] = useState(1);
   const [planeHeight, setPlaneHeight] = useState(1);
 
   const {desktop, xl} = useMediaQueries();
 
-  // Mettre à jour la résolution à chaque redimensionnement
-  /* useEffect(() => {
-    const handleResize = () => {
-      const dpr = window.devicePixelRatio || 1;
-      setResolution(
-        new THREE.Vector2(window.innerWidth * dpr, window.innerHeight * dpr)
-      );
-    };
-
-    window.addEventListener('resize', handleResize);
-    handleResize(); // Initial call
-
-    return () => window.removeEventListener('resize', handleResize);
-  }, []); */
-
   useEffect(() => {
-    // Le champ de vision de la caméra
-    const fov = camera.fov * (Math.PI / 180); // Conversion en radians
+    // Camera field of view
+    const fov = camera.fov * (Math.PI / 180); // Conversion in radians
     const aspectRatio = width / height;
-    const distance = camera.position.z; // Distance entre la caméra et le plan
+    const distance = camera.position.z; // Distance between camera and plane
 
-    // Calculer la taille du plan en fonction du fov et de la distance
-    const heightInWorld = 2 * Math.tan(fov / 2) * distance; // Hauteur du plan
-    const widthInWorld = heightInWorld * aspectRatio; // Largeur du plan
-
+    // Calculate plane size subject to fov and distance
+    const heightInWorld = 2 * Math.tan(fov / 2) * distance; // Plane height
+    const widthInWorld = heightInWorld * aspectRatio; // Plane width
     setPlaneWidth(widthInWorld);
     setPlaneHeight(heightInWorld);
   }, [width, height, camera]);
 
   useEffect(() => {
     if (materialRef.current) {
-      materialRef.current.uniforms.uIsDesktop.value = desktop; // ✅ Mise à jour du booléen
-      // materialRef.current.uniforms.uResolution.value = resolution; // Mise à jour de la résolution
+      materialRef.current.uniforms.uIsDesktop.value = desktop; // ✅ Boolean update
     }
-  }, [desktop /* , resolution */]);
+  }, [desktop]);
 
   useEffect(() => {
     const slider = sliderRef?.current;
@@ -262,13 +228,13 @@ const FullscreenPlane = ({
             }
           ];
 
-      // Création d'une timeline pour chaque ellipse dans le tableau afin d'animer son radius
+      // Create timeline for each ellipse inside array to animate radius
       ellipses.forEach(({radius, x, y, labelPrefix}) => {
         gsap
           .timeline({
             scrollTrigger: {
               containerAnimation: tween,
-              trigger: slides[0], // On part dès la première slide
+              trigger: slides[0], // From first slide
               start: 'right center',
               endTrigger: slides[slides.length - 1],
               end: 'left center',
@@ -278,37 +244,37 @@ const FullscreenPlane = ({
           })
           .addLabel(`${labelPrefix}_radius_grow`)
           .to(radius.value, {
-            x: x, // Valeur de 'x' que tu veux atteindre
-            y: y, // Valeur de 'y' que tu veux atteindre
+            x: x, // 'x' value to reach
+            y: y, // 'y' value to reach
             duration: 0.2,
             ease: 'power2.out'
           })
           .addLabel(`${labelPrefix}_radius_maintain`)
           .to(radius.value, {
-            x: x, // Valeurs stables pendant l'animation
+            x: x, // Satble Values duringanimation
             y: y,
-            duration: 4 / 6, // Stable pendant slides 2 à 5
+            duration: 4 / 6, // Stable during slides 2 to 5
             ease: 'none'
           })
           .addLabel(`${labelPrefix}_radius_shrink`)
           .to(radius.value, {
-            x: 0, // Retour à la position initiale
-            y: 0, // Retour à la position initiale
+            x: 0, // Return to initial position
+            y: 0, // Return to initial position
             duration: 0.2,
             ease: 'power2.in'
           });
 
         if (labelPrefix === 'ellipse2') {
-          // Animation scroll pour uScroll
+          // Scroll animation for uScroll
           const scrollProxy = {value: 0};
 
           gsap
             .timeline({
               scrollTrigger: {
                 containerAnimation: tween,
-                trigger: slides[1], // Début à slide 2
+                trigger: slides[1], // Starts from slide 2
                 start: 'center center',
-                endTrigger: slides[slides.length - 2], // Fin à slide 5
+                endTrigger: slides[slides.length - 2], // End at slide 5
                 end: 'center center',
                 scrub: true,
                 // markers: true,
@@ -321,7 +287,7 @@ const FullscreenPlane = ({
               }
             })
             .to(scrollProxy, {
-              value: Math.PI * 3, // 1,5 tours
+              value: Math.PI * 3, // 1.5 turns
               ease: 'none',
               duration: 1
             });
@@ -337,13 +303,10 @@ const FullscreenPlane = ({
       <planeGeometry args={[planeWidth, planeHeight]} />
       <fullscreenMaterial
         ref={materialRef}
-        /* uResolution={[width, height]} */
         uResolution={new THREE.Vector2(width, height)}
-        // uResolution={resolution}
         uRadius1={uRadius1}
         uRadius2={uRadius2}
         uRadius3={uRadius3}
-        // uEllipseColor={new THREE.Color(0.1176, 0.1176, 0.1176)}
       />
     </mesh>
   );

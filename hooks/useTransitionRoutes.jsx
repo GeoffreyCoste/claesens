@@ -5,17 +5,15 @@ import { usePathname } from 'next/navigation';
 import usePreviousPathname from './usePreviousPathname';
 
 /**
- * Ce hook déclenche un callback lors d'une transition entre '/realisations' et '/realisations/[nomduprojet]'.
+ * This hook triggers a callback when transitioning from '/realisations' to '/realisations/[projectname]'.
  *
- * @param {function} onTransition - Callback exécuté lors d'un changement de route entre la page liste et la page détail.
+ * @param {function} onTransition - Callback executed while route is changing between list page and detail page.
  */
 const useTransitionRoutes = ({ slug, slidesData, activeIndex, onTransition }) => {
   const pathname = usePathname();
   const prevPathname = usePreviousPathname();
 
   const handleTransitionRoutes = useCallback(() => {
-    // if (!prevPathname || prevPathname === pathname) return;
-
     if (!prevPathname && pathname === '/realisations') {
       onTransition && onTransition('first_visit_realizations');
       return;
@@ -42,12 +40,8 @@ const useTransitionRoutes = ({ slug, slidesData, activeIndex, onTransition }) =>
 
     if (
       pathname.startsWith('/realisations/') &&
-      /* prevPathName? && */
       prevPathname?.startsWith('/realisations/') &&
-      prevPathname !== pathname /* &&
-      slidesData[activeIndex] &&
-      slidesData[activeIndex].path !== slug &&
-      slidesData.some(slide => slide.path === slug) */
+      prevPathname !== pathname
     ) {
       const path = slug;
       onTransition && onTransition('navigating_to_realization', path);
@@ -92,11 +86,6 @@ const useTransitionRoutes = ({ slug, slidesData, activeIndex, onTransition }) =>
     handleTransitionRoutes();
   }, [pathname, prevPathname, handleTransitionRoutes]);
 
-  /* useEffect(() => {
-    console.log('prevPathname: ', prevPathname);
-    console.log('pathname: ', pathname);
-    console.log('Slug: ', slug);
-  }, [prevPathname, pathname, slug]); */
 };
 
 export default useTransitionRoutes;

@@ -53,7 +53,6 @@ const ScrollTriggerWrapper = () => {
     <div ref={containerRef} className={styles.container_triggered}>
       <div ref={pinnedElementRef} className={styles.pinned_element}>
         <CircularMotion ref={{containerRef, scrollTriggerRef}} />
-        {/* <CanvasMethod ref={containerRef} /> */}
       </div>
     </div>
   );

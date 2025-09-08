@@ -37,19 +37,7 @@ const ShaderScene = ({ sliderRef, slidesRef, tweenRef, activeIndex, isDotNavigat
     if (!tween || !slides.length) return;
 
     const ctx = gsap.context(() => {
-      // Quand on entre dans slides[0] (début)
-      /* ScrollTrigger.create({
-        containerAnimation: tween,
-        trigger: slides[1],
-        start: 'center center',
-        onLeaveBack: ({direction}) => {
-          console.log('On Leave Back');
-          if (direction === -1) setShouldFadeOut(true);
-        }
-        // markers: true
-      }); */
-
-      // Quand on entre dans slides[slides.length - 1] (fin)
+      // When entering slides[slides.length - 1] (end)
       ScrollTrigger.create({
         containerAnimation: tween,
         trigger: slides[slides.length - 2],
@@ -65,7 +53,7 @@ const ShaderScene = ({ sliderRef, slidesRef, tweenRef, activeIndex, isDotNavigat
         }
       });
 
-      // Remettre à false dès qu'on rentre dans une slide "valide"
+      // Reset to false as soon as you enter a "valid" slide
       for (let i = 1; i < slides.length - 2; i++) {
         ScrollTrigger.create({
           containerAnimation: tween,
@@ -91,7 +79,6 @@ const ShaderScene = ({ sliderRef, slidesRef, tweenRef, activeIndex, isDotNavigat
           dpr={typeof window !== 'undefined' ? window.devicePixelRatio : 1}
         >
           <Environment preset="city" />
-          {/* <OrbitControls /> */}
 
           <FullscreenPlane
             width={bounds.width}

@@ -24,7 +24,6 @@ const SvgCirclesKaleidoscope = () => {
           trigger: svg,
           start: 'top 60%',
           end: 'top 40%'
-          // scrub: true
           // markers: true
         }
       });
@@ -204,15 +203,6 @@ const SvgCirclesKaleidoscope = () => {
         clipPath="url(#clip-circle-28.28)"
         filter="url(#inner-shadow)"
       />
-      {/* <image
-        ref={(el) => imagesRef.current.push(el)}
-        href="/images/img_about_perspective_640x640.jpg"
-        x="-37.71"
-        y="-37.71"
-        width="84.42"
-        height="84.42"
-        clipPath="url(#clip-circle-28.28)"
-      /> */}
     </svg>
   );
 };
