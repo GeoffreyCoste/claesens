@@ -3,6 +3,7 @@
 import styles from './style.module.scss';
 import {useState, useRef, useEffect} from 'react';
 import {bricolage_grotesque} from '@/app/fonts';
+import useMediaQueries from '@/hooks/useMediaQueries';
 import clsx from 'clsx';
 import gsap from 'gsap';
 import TextPlugin from 'gsap/TextPlugin';
@@ -24,6 +25,8 @@ const SectionContact = () => {
   const [currentWordIndex, setCurrentWordIndex] = useState(0);
   const textRef = useRef(null);
   const dotsRef = useRef([]);
+
+  const {xs} = useMediaQueries();
 
   // Function to change words every 3 seconds
   useEffect(() => {
@@ -73,7 +76,7 @@ const SectionContact = () => {
             className={clsx(bricolage_grotesque.className, styles.heading)}
             aria-label="Envie d'échanger autour d'un projet / une idée / un besoin / une envie / une question / un bonjour ?"
           >
-            Envie d&apos;échanger autour
+            {xs ? 'Discutons autour' : "Envie d'échanger autour"}
             <div className={styles.badge}>
               <div ref={textRef} className={styles.badge_label}>
                 d&apos;un projet

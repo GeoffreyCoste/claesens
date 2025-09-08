@@ -8,7 +8,8 @@
 
     &_overlay {
         width: 100%;
-        height: calc(100vh - 50px);
+        // height: calc(100vh - 50px);
+        height: 100vh;
         max-width: 107rem;
         display: flex;
         flex-direction: column;
@@ -32,12 +33,13 @@
     &_subheading {
         width: 100%;
         max-width: 1200px;
-        flex: 0 0 50%;
+        // flex: 0 0 50%;
         text-align: center;
     }
 
     &_heading {
         display: flex;
+        flex: 0 0 60%;
         justify-content: center;
         align-items: center;
 
@@ -90,11 +92,12 @@
 
     &_subheading {
         display: flex;
+        flex: 0 0 40%;
         flex-direction: column;
         justify-content: flex-end;
         align-items: center;
         position: relative;
-        padding-bottom: 2rem;
+        // padding-bottom: 2rem; //
         pointer-events: none;
         z-index: 3;
 
@@ -103,7 +106,7 @@
             flex-direction: column;
             position: absolute;
             // top: 20%;
-            top: 5%;
+            top: 15%;
 
             .dot {
                 width: 6px;
@@ -121,6 +124,7 @@
         .subheading {
             width: 100%;
             max-width: 350px;
+            display: none;
             // font-size: 2rem;
             font-weight: 400;
             // line-height: 2rem;
@@ -129,6 +133,43 @@
 
         .button_custom {
             pointer-events: auto;
+        }
+    }
+}
+
+@media screen and (min-width: 360px) {
+    .section_contact {
+
+        &_overlay {
+            height: calc(100vh - 50px);
+        }
+
+        &_heading,
+        &_subheading {
+            flex: 0 0 50%;
+        }
+
+        &_subheading {
+            padding-bottom: 2rem;
+
+            .dots_pulse {
+                top: 5%;
+            }
+
+            .subheading {
+                display: block;
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 414px) {
+    .section_contact {
+        height: 100vh;
+
+        &_subheading {
+            justify-content: center;
+            padding-bottom: 0;
         }
     }
 }
@@ -174,14 +215,14 @@
         &_subheading {
             align-items: flex-end;
             position: relative;
-            margin-top: 30vh;
+            margin-top: 20vh;
             padding-bottom: 0;
             text-align: right;
 
             .dots_pulse {
                 flex-direction: row;
                 top: 10%;
-                left: 10%;
+                left: -15%;
 
                 .dot {
                     width: 10px;
@@ -200,7 +241,8 @@
             .button_custom {
                 margin-left: auto;
                 position: absolute;
-                top: 7rem;
+                // top: 11rem;
+                top: 95%;
                 // left: -4.5rem;
                 transform: rotate(5deg);
             }
@@ -222,21 +264,21 @@
             // padding-right: 300px;
 
             .heading {
-                max-width: 500px;
-                // max-width: 500px;
-                // font-size: 3rem;
-                // line-height: 3.5rem;
+                max-width: 700px;
+                font-size: var(--font-size-h2);
 
                 .badge {
-                    width: 450px;
-                    // width: 470px;
-                    // bottom: -2rem;
-                    // left: 80%;
+                    width: 460px;
                     left: 0;
                     bottom: -6rem;
                     transform: translateX(0) rotate(-5deg);
-                    padding: 1.5rem 2rem;
-                    font-size: 2.75rem;
+                    // padding: 1.5rem 2rem;
+                    font-size: var(--font-size-h3);
+
+                    &_label {
+                        font-size: var(--font-size-h3);
+                        font-weight: 700;
+                    }
                 }
             }
         }
@@ -245,13 +287,10 @@
             justify-content: flex-start;
             align-items: flex-end;
             margin-top: 0;
-            // padding-left: 300px;
 
             .dots_pulse {
-                left: 75%;
+                left: 55%;
                 top: 10%;
-                // left: 5%;
-                // top: 7%;
 
                 .dot {
                     width: 6px;
@@ -262,19 +301,19 @@
 
             .subheading {
                 max-width: 500px;
-                // font-size: 3.5rem;
-                // line-height: 4rem;
+                font-size: var(--font-size-h3);
             }
 
             .button_custom {
                 margin-left: auto;
                 position: absolute;
-                // top: 7rem;
-                // top: unset;
-                // bottom: 1.5rem;
-                // top: 19rem;
+                top: 55%;
                 left: unset;
                 transform: rotate(5deg);
+
+                button > p {
+                    font-size: var(--font-size-h4) !important;
+                }
             }
         }
     }
@@ -288,14 +327,14 @@
             align-items: flex-end;
 
             .heading {
-                max-width: 300px;
+                max-width: 400px;
                 // font-size: 3.5rem;
                 // line-height: 4rem;
                 // padding-right: 100px;
 
                 .badge {
-                    width: 500px;
-                    bottom: -5.25rem;
+                    // width: 500px;
+                    bottom: -50%;
                     // left: 47%;
                     font-size: 3rem;
                 }
@@ -309,6 +348,10 @@
             // padding-top: 2rem;
             // padding-left: 650px;
 
+            .dots_pulse {
+                left: 50%;
+            }
+
             .subheading {
                 max-width: 500px;
                 // font-size: 2.75rem;
@@ -318,7 +361,7 @@
             }
 
             .button_custom {
-                top: 7rem;
+                top: 50%;
                 // top: 8rem;
                 // left: unset;
                 // right: 5%;
@@ -327,17 +370,17 @@
     }
 }
 
-/* @media screen and (min-width: 1440px) {
+@media screen and (min-width: 1440px) {
     .section_contact {
 
         &_subheading {
 
             .button_custom {
-                right: 14%;
+                top: 45%;
             }
         }
     }
-} */
+}
 
 @media screen and (max-width: 1024px) and (orientation: landscape) {
     .section_contact {

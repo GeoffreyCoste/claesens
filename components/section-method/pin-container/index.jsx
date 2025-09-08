@@ -2,6 +2,7 @@
 
 import styles from './style.module.scss';
 import {useLayoutEffect, useRef} from 'react';
+import useMediaQueries from '@/hooks/useMediaQueries';
 import gsap from 'gsap';
 import {ScrollTrigger} from 'gsap/ScrollTrigger';
 import {useLenis} from '@/hooks/useLenis';
@@ -15,9 +16,16 @@ const PinContainer = () => {
   const circlesRef = useRef([]);
   const blackCircleRef = useRef(null);
 
-  const videoSource = '/videos/work_in_progress.mp4';
-
   const {lenis} = useLenis();
+
+  const {desktop} = useMediaQueries();
+
+  const videoSource = desktop
+    ? '/videos/method_video_1920x1080.mp4'
+    : '/videos/method_video_1280x720.mp4';
+  const videoThumbnail = desktop
+    ? '/videos/method_thumbnail_1920x1080.jpg'
+    : '/videos/method_thumbnail_1280x720.jpg';
 
   /* useLayoutEffect(() => {
     const container = containerRef.current;
@@ -251,8 +259,13 @@ const PinContainer = () => {
               autoPlay
               loop
               muted
+              playsInline
+              preload="metadata" // Avoid to download the entire video right away
+              poster={videoThumbnail}
               style={{display: 'block', filter: 'url(#grayscale)'}}
             >
+              {/* A INTEGRER */}
+              {/* <source src={videoSource.replace('.mp4', '.webm')} type="video/webm" /> */}
               <source src={videoSource} type="video/mp4" />
               Your browser does not support the video tag.
             </video>

@@ -9,8 +9,6 @@ import Header from '@/components/header';
 import CursorCustom from '@/components/cursor-custom';
 import SideMenu from '@/components/side-menu';
 import SectionMethod from '@/components/section-method';
-import FooterCustom from '@/components/footer-custom';
-import AsideFooterMethod from '@/components/aside-footer-method';
 import SectionMethodProcess from '@/components/section-method-process';
 import SectionMethodInterlude from '@/components/section-method-interlude';
 import Footer from '@/components/footer';

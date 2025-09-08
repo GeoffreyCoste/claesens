@@ -1,0 +1,31 @@
+.mask {
+    width: 100%;
+    // height: 550vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    // background-color: var(--bg-gray); // Fond beige comme dans vos images
+    position: relative;
+    // margin-top: -220vh; //
+
+    &_content {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: var(--black); // Le contenu révélé est noir comme dans vos images
+        position: sticky;
+        top: 0;
+        
+        // Propriétés de masque
+        // mask-repeat: no-repeat;
+        // -webkit-mask-repeat: no-repeat;
+        // mask-position: top center; // center
+        // -webkit-mask-position: top center; // center
+
+        .body {
+            width: 100%;
+        }
+    }
+}

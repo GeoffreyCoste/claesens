@@ -13,7 +13,7 @@ import SliderMenu from '@/components/slider-menu';
 import {CursorProvider} from '@/context/cursorContext';
 import CursorCustom from '@/components/cursor-custom';
 import CursorMask from '@/components/cursor-mask';
-import AsideFooterRealizationMaskContent from '@/components/aside-footer-realization/aside-footer-realization-mask-content';
+import AsideFooterRealizationMaskContent from '@/components/aside-footer-realization-mask-content';
 import Footer from '@/components/footer';
 import AsideFooter from '@/components/aside-footer';
 import AsideFooterBody from '@/components/aside-footer/aside-footer-body';

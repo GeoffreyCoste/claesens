@@ -23,6 +23,7 @@ import AsideFooter from '@/components/aside-footer';
 import CanvasShaderLens from '@/components/canvas-shader-lens';
 import AsideFooterBody from '@/components/aside-footer/aside-footer-body';
 import {h2FooterAsideHome} from '@/components/animate-heading/data';
+import SectionReleaseNew from '@/components/section-release-new';
 
 export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
@@ -75,7 +76,8 @@ export default function Home() {
         <SectionSkills />
         <ImageParallax />
         <SectionProcess />
-        <SectionRelease />
+        {/* <SectionRelease /> */}
+        <SectionReleaseNew />
         {desktop && <CursorCustom stickyElementRefs={stickyRefs} />}
       </main>
       <Footer>

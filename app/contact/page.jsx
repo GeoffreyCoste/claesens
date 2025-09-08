@@ -7,9 +7,7 @@ import {useSideMenu} from '@/hooks/useSideMenu';
 import useMediaQueries from '@/hooks/useMediaQueries';
 import Header from '@/components/header';
 import CursorCustom from '@/components/cursor-custom';
-/* import FooterSticky from '@/components/footer-sticky'; */
 import SideMenu from '@/components/side-menu';
-import FooterCustom from '@/components/footer-custom';
 import SectionContact from '@/components/section-contact';
 import Footer from '@/components/footer';
 
@@ -31,8 +29,6 @@ export default function Contact() {
         <SectionContact />
         {desktop && <CursorCustom stickyElementRefs={stickyRefs} />}
       </main>
-      {/* <FooterSticky /> */}
-      {/* <FooterCustom bgBlack includeAside={false} /> */}
       <Footer />
     </>
   );

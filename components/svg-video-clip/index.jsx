@@ -122,8 +122,13 @@ const SVGVideoClip = ({videoSource}) => {
           autoPlay
           loop
           muted
+          playsInline
+          preload="metadata"
+          /* poster="/thumbnails/video-placeholder.jpg" */ // A activer
           style={{display: 'block', filter: 'url(#grayscale)'}}
         >
+          {/* A ACTIVER */}
+          {/* <source src={videoSource.replace('.mp4', '.webm')} type="video/webm" /> */}
           <source src={videoSource} type="video/mp4" />
           Your browser does not support the video tag.
         </video>

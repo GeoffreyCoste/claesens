@@ -49,7 +49,7 @@ export const StickyBlocks = [{
         description: [
             "Piloter la création de concepts visuels impactants, adaptés au public cible et aux objectifs business.",
             "Gérer une équipe créative, en développant les talents, optimisant les projets et respectant les délais.",
-            "Améliorer en continue le site de la marque avec un design tendance, enrichissant l'expérience et favorisant l’engagement."
+            "Améliorer en continu le site de la marque avec un design tendance, enrichissant l'expérience et favorisant l’engagement."
         ],
         image: {
             src: "/images/sphere_textured_3.png",
