@@ -5,7 +5,10 @@ import {DM_Sans, Bricolage_Grotesque} from 'next/font/google';
 
 export const metadata = {
   title: 'claesens',
-  description: 'Emilie Claesens, Designer basée à Paris.'
+  description: 'Emilie Claesens, Designer basée à Paris.',
+  icons: {
+    icon: '/favicon.ico'
+  }
 };
 
 const dm_sans = DM_Sans({
