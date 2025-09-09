@@ -28,6 +28,9 @@ yarn-error.log*
 # local env files
 .env*.local
 
+# Ignorer tout le contenu du dossier public
+/public/*
+
 # vercel
 .vercel
 
