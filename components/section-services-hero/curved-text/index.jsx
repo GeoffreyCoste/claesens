@@ -31,57 +31,37 @@ const CurvedText = () => {
       const texts = textsRef.current;
       if (!svg || paths.length === 0 || texts.length === 0) return;
 
-      const mm = gsap.matchMedia();
+      const ctx = gsap.context(() => {
+        const tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: svg,
+            start: 'top bottom',
+            end: '+=70%',
+            scrub: true
+            // markers: true
+          }
+        });
 
-      mm.add(
-        {
-          isMobile: '(max-width: 767px)',
-          isTablet: '(min-width: 768px) and (max-width: 1023px)',
-          isDesktop: '(min-width: 1024px)'
-        },
-        (context) => {
-          const {isMobile, isTablet, isDesktop} = context.conditions;
+        texts.forEach((text, index) => {
+          const path = paths[index];
 
-          console.log('Media match fired', {isMobile, isTablet, isDesktop});
+          tl.fromTo(
+            [text, path],
+            {
+              transformOrigin: 'center center',
+              rotation: 0,
+              delay: index * 0.2
+            },
+            {
+              rotation: 180 * (index % 2 === 0 ? -1 : 1),
+              ease: 'circ.out'
+            },
+            0
+          );
+        });
+      });
 
-          // ScrollTrigger.refresh();
-
-          const ctx = gsap.context(() => {
-            const tl = gsap.timeline({
-              scrollTrigger: {
-                trigger: svg,
-                start: 'top bottom',
-                // start: isMobile ? 'top+=200% bottom' : isTablet ? 'top+=200% bottom' : 'top+=310% bottom',
-                end: '+=70%',
-                scrub: true
-                // markers: true
-              }
-            });
-
-            texts.forEach((text, index) => {
-              const path = paths[index];
-
-              tl.fromTo(
-                [text, path],
-                {
-                  transformOrigin: 'center center',
-                  rotation: 0,
-                  delay: index * 0.2
-                },
-                {
-                  rotation: 180 * (index % 2 === 0 ? -1 : 1),
-                  ease: 'circ.out'
-                },
-                0
-              );
-            });
-          });
-
-          return () => ctx.revert();
-        }
-      );
-
-      return () => mm.revert();
+      return () => ctx.revert();
     }, []);
 
   return (

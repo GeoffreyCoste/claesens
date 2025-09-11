@@ -2,12 +2,13 @@
 
 import styles from './style.module.scss';
 import {useRef, useEffect, useCallback} from 'react';
-import useMediaQueries from '@/hooks/useMediaQueries';
+import {useMedia} from '@/hooks/useMedia';
 import gsap from 'gsap';
 
 const StaggeredText = ({text}) => {
   const refsArray = useRef([]);
-  const {mobile, desktop} = useMediaQueries();
+  const {isHydrated, matches} = useMedia();
+  const {mobile, desktop} = matches;
 
   const wordsArray = text
     .split(' ')
@@ -55,6 +56,8 @@ const StaggeredText = ({text}) => {
   );
 
   useEffect(() => {
+    if (!isHydrated) return;
+
     const elements = refsArray.current;
 
     if (!elements.length) return;
@@ -69,7 +72,7 @@ const StaggeredText = ({text}) => {
         !desktop ? 4 : 2.5 // Duration
       );
     });
-  }, [mobile, desktop, createTimeline]);
+  }, [isHydrated, mobile, desktop, createTimeline]);
 
   // Line or word render function with empty character(s) management
   const renderWord = (word, shouldAddEmptyCharacters) => (
@@ -94,35 +97,31 @@ const StaggeredText = ({text}) => {
 
   return (
     <div className={styles.staggered_text}>
-      {!desktop
-        ? wordsArray.map((word, index) => {
-            const shouldAddEmptyCharacters = word.length === 9; // Mobile specific logic
-            return (
+      {!isHydrated
+        ? null
+        : !desktop
+          ? wordsArray.map((word, index) => (
               <div
                 key={`word-${index}`}
                 className={styles.word}
                 ref={(el) => (refsArray.current[index] = el)}
               >
-                {renderWord(word, shouldAddEmptyCharacters)}
+                {renderWord(word, word.length === 9)}
               </div>
-            );
-          })
-        : [...Array(5)].map((_, lineIndex) => (
-            <div
-              key={`line-${lineIndex}`}
-              className={styles.line}
-              ref={(el) => (refsArray.current[lineIndex] = el)}
-            >
-              {wordsArray.map((word, wordIndex) => (
-                <div key={`word-${wordIndex}`} className={styles.word}>
-                  {renderWord(
-                    word,
-                    false /* No need for empty character(s) on desktop */
-                  )}
-                </div>
-              ))}
-            </div>
-          ))}
+            ))
+          : [...Array(5)].map((_, lineIndex) => (
+              <div
+                key={`line-${lineIndex}`}
+                className={styles.line}
+                ref={(el) => (refsArray.current[lineIndex] = el)}
+              >
+                {wordsArray.map((word, wordIndex) => (
+                  <div key={`word-${wordIndex}`} className={styles.word}>
+                    {renderWord(word, false)}
+                  </div>
+                ))}
+              </div>
+            ))}
     </div>
   );
 };

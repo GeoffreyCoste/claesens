@@ -4,7 +4,6 @@ import styles from './page.module.scss';
 import {useRef} from 'react';
 import {AnimatePresence} from 'framer-motion';
 import {useSideMenu} from '@/hooks/useSideMenu';
-import useMediaQueries from '@/hooks/useMediaQueries';
 import Header from '@/components/header';
 import CursorCustom from '@/components/cursor-custom';
 import SideMenu from '@/components/side-menu';
@@ -21,16 +20,14 @@ export default function Method() {
   const stickyBurgerElement = useRef(null);
 
   const {isSideMenuOpen} = useSideMenu();
-  const {xs, desktop} = useMediaQueries();
 
   const stickyRefs = [stickyBurgerElement];
 
-  const headings = xs
-    ? h2FooterAsideMethod.map((item) => ({
-        ...item,
-        text: item.text.split('(re)').join('')
-      }))
-    : h2FooterAsideMethod;
+  const headings = h2FooterAsideMethod.map((item) => ({
+    ...item,
+    split: true,
+    separator: '(re)'
+  }));
 
   return (
     <>
@@ -42,7 +39,7 @@ export default function Method() {
         <SectionMethod />
         <SectionMethodInterlude />
         <SectionMethodProcess />
-        {desktop && <CursorCustom stickyElementRefs={stickyRefs} />}
+        <CursorCustom stickyElementRefs={stickyRefs} />
       </main>
       <Footer zIndex="z_index_9">
         <AsideFooter

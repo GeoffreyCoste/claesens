@@ -4,7 +4,6 @@ import styles from './page.module.scss';
 import {useRef} from 'react';
 import {AnimatePresence} from 'framer-motion';
 import {useSideMenu} from '@/hooks/useSideMenu';
-import useMediaQueries from '@/hooks/useMediaQueries';
 import Header from '@/components/header';
 import CursorCustom from '@/components/cursor-custom';
 import SideMenu from '@/components/side-menu';
@@ -24,7 +23,6 @@ export default function About() {
   const stickyBurgerElement = useRef(null);
 
   const {isSideMenuOpen} = useSideMenu();
-  const {desktop} = useMediaQueries();
 
   const stickyRefs = [stickyBurgerElement];
 
@@ -41,12 +39,12 @@ export default function About() {
         <SectionAboutPanorama />
         <AsideLogos />
         <SectionAboutOverview />
-        {desktop && <CursorCustom stickyElementRefs={stickyRefs} />}
+        <CursorCustom stickyElementRefs={stickyRefs} />
       </main>
       <Footer>
         <AsideFooter
           variant="home"
-          anim={desktop ? <CanvasShaderLens /> : ''}
+          anim={<CanvasShaderLens />}
           body={
             <AsideFooterBody
               headings={h2FooterAsideHome}

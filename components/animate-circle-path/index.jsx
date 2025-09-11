@@ -4,7 +4,7 @@ import styles from './style.module.scss';
 import {useState, useEffect, useRef} from 'react';
 import gsap from 'gsap';
 import {ScrollTrigger} from 'gsap/all';
-import useMediaQueries from '@/hooks/useMediaQueries';
+import {useMedia} from '@/hooks/useMedia';
 
 const AnimateCirclePath = ({
   initialX = '50%',
@@ -13,27 +13,29 @@ const AnimateCirclePath = ({
   children
 }) => {
   const [dimensions, setDimensions] = useState({
-    width: window.innerWidth,
-    height: window.innerHeight
+    width: 0,
+    height: 0
   });
 
   const containerRef = useRef(null);
   const circleRef = useRef(null);
 
-  const {desktop} = useMediaQueries();
+  const {isHydrated, matches} = useMedia();
+  const {desktop} = matches;
 
   useEffect(() => {
+    if (!isHydrated || !desktop) return;
+
     const handleResize = () => {
       setDimensions({width: window.innerWidth, height: window.innerHeight});
     };
 
-    window.addEventListener('resize', handleResize);
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
-  }, []);
+    // Initial dimensions
+    handleResize();
 
-  useEffect(() => {
+    window.addEventListener('resize', handleResize);
+
+    // GSAP animation
     gsap.registerPlugin(ScrollTrigger);
     const mm = gsap.matchMedia();
 
@@ -62,8 +64,12 @@ const AnimateCirclePath = ({
       };
     });
 
-    return () => mm.revert(); // Cleanup
-  }, [dimensions, initialX, initialY, initialR]);
+    // Cleanup
+    return () => {
+      mm.revert();
+      window.removeEventListener('resize', handleResize);
+    };
+  }, [isHydrated, desktop, dimensions, initialX, initialY, initialR]);
 
   return (
     <div ref={containerRef} className={styles.animate_container}>
@@ -79,7 +85,7 @@ const AnimateCirclePath = ({
       </svg>
       <div
         className={styles.animate_content}
-        style={desktop ? {clipPath: 'url(#circleClipPath)'} : {}}
+        style={isHydrated && desktop ? {clipPath: 'url(#circleClipPath)'} : {}}
       >
         <div className={styles.animate_content_inner}>{children}</div>
       </div>

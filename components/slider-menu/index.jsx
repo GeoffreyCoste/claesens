@@ -6,7 +6,7 @@ import {useState, useRef, useEffect, useCallback} from 'react';
 import Image from 'next/image';
 import {usePathname, useRouter} from 'next/navigation';
 import useSliderMenu from '@/hooks/useSliderMenu';
-import useMediaQueries from '@/hooks/useMediaQueries';
+import {useMedia} from '@/hooks/useMedia';
 import useSliderData from '@/hooks/useSliderData';
 import useSliderNavigation from '@/hooks/useSliderNavigation';
 import useSliderActiveSlideAnimation from '@/hooks/useSliderActiveSlideAnimation';
@@ -20,7 +20,8 @@ import SpinningBadge from '../spinning-badge';
 
 const SliderMenu = ({datas = defaultSlides}) => {
   /*** States and Refs ***/
-  const {sm, mobile, tablet, desktop, xl, xxl, xxxl, ultra} = useMediaQueries();
+  const {isHydrated, matches} = useMedia();
+  const {sm, mobile, tablet, desktop, xl, xxl, xxxl, ultra} = matches;
   const {
     isSliderMenuOpen,
     toggleIsSliderMenuOpen,
@@ -29,9 +30,10 @@ const SliderMenu = ({datas = defaultSlides}) => {
   } = useSliderMenu();
   const router = useRouter();
   const pathname = usePathname();
-  const [slideWidth, setSlideWidth] = useState(
+  const [slideWidth, setSlideWidth] = useState(320);
+  /* const [slideWidth, setSlideWidth] = useState(
     ultra || xxxl || xxl ? window.innerWidth / 4.25 : 320
-  );
+  ); */
   const [minSlides, setMinSlides] = useState(5);
   const [activeIndex, setActiveIndex] = useState(0);
   const [activeSnapIndex, setActiveSnapIndex] = useState(null);
@@ -230,6 +232,8 @@ const SliderMenu = ({datas = defaultSlides}) => {
   }, []);
 
   useEffect(() => {
+    if (!isHydrated) return;
+
     const updateWidth = () => {
       const newWidth = ultra || xxxl || xxl ? window.innerWidth / 4.25 : 320;
       setSlideWidth(newWidth);
@@ -239,11 +243,13 @@ const SliderMenu = ({datas = defaultSlides}) => {
     window.addEventListener('resize', updateWidth);
 
     return () => window.removeEventListener('resize', updateWidth);
-  }, [ultra, xxxl, xxl]);
+  }, [isHydrated, ultra, xxxl, xxl]);
 
   useEffect(() => {
+    if (!isHydrated) return;
+
     setMinSlides(desktop ? 5 : 3);
-  }, [desktop]);
+  }, [isHydrated, desktop]);
 
   useEffect(() => {
     isSliderMenuOpen ? showSlider() : showPreview();
@@ -317,8 +323,8 @@ const SliderMenu = ({datas = defaultSlides}) => {
 
       {isSliderMenuOpen && !hasSwiped && !isSnapItemClicked && !hasScrolled && (
         <div className={styles.feature_info}>
-          {!desktop && <SwipeIndicator />}
-          {desktop && <SpinningBadge defaultText={false} />}
+          {isHydrated && !desktop && <SwipeIndicator />}
+          {isHydrated && desktop && <SpinningBadge defaultText={false} />}
         </div>
       )}
 

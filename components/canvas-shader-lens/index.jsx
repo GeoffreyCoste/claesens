@@ -2,9 +2,13 @@
 
 import styles from './style.module.scss';
 import {useState, useRef, useEffect, Suspense} from 'react';
+import dynamic from 'next/dynamic';
 import {Canvas} from '@react-three/fiber';
 import {Environment} from '@react-three/drei';
-import ShaderLens from './shader-lens';
+
+const DynamicShaderLens = dynamic(() => import('./shader-lens'), {
+  ssr: false
+});
 
 const CanvasShaderLens = () => {
   const [dimensions, setDimensions] = useState({width: 0, height: 0});
@@ -34,7 +38,7 @@ const CanvasShaderLens = () => {
         <Suspense fallback={null}>
           <ambientLight intensity={0.5} />
 
-          <ShaderLens dimensions={dimensions} />
+          <DynamicShaderLens dimensions={dimensions} />
           <Environment background={false} preset="warehouse" />
         </Suspense>
       </Canvas>

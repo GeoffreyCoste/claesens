@@ -1,26 +1,32 @@
+'use client';
+
 import styles from './style.module.scss';
 import Image from 'next/image';
-import useMediaQueries from '@/hooks/useMediaQueries';
+import {useMedia} from '@/hooks/useMedia';
 import clsx from 'clsx';
 import {bricolage_grotesque} from '@/app/fonts';
 import Badge from '../badge';
 import ArrowRight from '../icons/arrow-right';
 
 const FlipCard = ({index, name, badges, images, alt}) => {
-  const {desktop} = useMediaQueries();
+  const {isHydrated, matches} = useMedia();
+  const {desktop} = matches;
+
+  const imageSrc = isHydrated ? (desktop ? images[1] : images[0]) : null;
 
   return (
     <div className={styles.card}>
       <div className={styles.card_inner}>
         <div className={styles.card_front}>
-          <Image
-            src={desktop ? images[1] : images[0]}
-            alt={alt}
-            fill
-            style={{objectFit: 'cover'}}
-            loading="lazy"
-            quality={100}
-          />
+          {imageSrc && (
+            <Image
+              src={imageSrc}
+              alt={alt}
+              fill
+              style={{objectFit: 'cover'}}
+              loading="lazy"
+            />
+          )}
           <div className={styles.card_content}>
             <div className={styles.card_header}>
               <span className={styles.card_header_item}>

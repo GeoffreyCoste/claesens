@@ -3,7 +3,7 @@
 import styles from './style.module.scss';
 import {useState, useRef, useEffect} from 'react';
 import {bricolage_grotesque} from '@/app/fonts';
-import useMediaQueries from '@/hooks/useMediaQueries';
+import {useMedia} from '@/hooks/useMedia';
 import clsx from 'clsx';
 import gsap from 'gsap';
 import TextPlugin from 'gsap/TextPlugin';
@@ -26,19 +26,24 @@ const SectionContact = () => {
   const textRef = useRef(null);
   const dotsRef = useRef([]);
 
-  const {xs} = useMediaQueries();
+  const {isHydrated, matches} = useMedia();
+  const {xs} = matches;
 
   // Function to change words every 3 seconds
   useEffect(() => {
+    if (!isHydrated) return;
+
     const interval = setInterval(() => {
       setCurrentWordIndex((prev) => (prev + 1) % words.length); // Move to next word
     }, 3000); // Change every 3 seconds
 
     return () => clearInterval(interval); // Clean interval
-  }, []);
+  }, [isHydrated]);
 
   // Animation for each letter
   useEffect(() => {
+    if (!isHydrated) return;
+
     const dots = dotsRef.current;
 
     if (textRef.current) {
@@ -66,7 +71,7 @@ const SectionContact = () => {
         }
       });
     }
-  }, [currentWordIndex]);
+  }, [isHydrated, currentWordIndex]);
 
   return (
     <section className={styles.section_contact}>

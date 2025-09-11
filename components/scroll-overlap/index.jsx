@@ -3,14 +3,15 @@
 import styles from './style.module.scss';
 import {useRef} from 'react';
 import {useScroll} from 'framer-motion';
-import useMediaQueries from '@/hooks/useMediaQueries';
+import {useMedia} from '@/hooks/useMedia';
 import {services} from '../section-services-intro/data';
 import Card from '../card';
 
 const ScrollOverlap = () => {
   const containerRef = useRef(null);
 
-  const {desktop} = useMediaQueries();
+  const {isHydrated, matches} = useMedia();
+  const {desktop} = matches;
 
   const {scrollYProgress} = useScroll({
     target: containerRef,
@@ -26,7 +27,7 @@ const ScrollOverlap = () => {
             key={`s_${index}`}
             index={index}
             {...service}
-            progress={desktop ? scrollYProgress : null}
+            progress={isHydrated && desktop ? scrollYProgress : null}
             range={desktop ? [index * 0.25, 1] : [0, 1]}
             targetScale={desktop ? targetScale : 1}
           />

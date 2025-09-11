@@ -6,7 +6,7 @@ import Image from 'next/image';
 import clsx from 'clsx';
 import {useTransform, motion, useScroll, useMotionValue} from 'framer-motion';
 import {bricolage_grotesque} from '@/app/fonts';
-import useMediaQueries from '@/hooks/useMediaQueries';
+import {useMedia} from '@/hooks/useMedia';
 import Badge from '../badge';
 
 const Card = ({
@@ -20,6 +20,9 @@ const Card = ({
   targetScale = 1
 }) => {
   const articleRef = useRef(null);
+
+  const {isHydrated, matches} = useMedia();
+  const {tablet, desktop, md} = matches;
 
   // Check <article> scroll progress between 0 and 1
   // (i.e. 0 meaning that element start is at window bottom and 1 at window start)
@@ -55,28 +58,26 @@ const Card = ({
   const safeProgress = progress || defaultContentScale;
   const contentScale = useTransform(safeProgress, range, [1, targetScale]);
 
-  const {tablet, desktop, md} = useMediaQueries();
+  const motionStyle = isHydrated
+    ? desktop
+      ? {
+          scale: contentScale,
+          top: `calc(-5vh + ${index * 25}px)`,
+          position: 'relative'
+        }
+      : tablet
+        ? {scale: tabletScale, opacity: tabletOpacity, pointerEvents: 'none'}
+        : {}
+    : {}; // avant hydratation, pas de style
+
+  const imageSrc = isHydrated && md ? image.src[1] : image.src[0];
+  const imageWidth = md ? 222 : 512;
+  const imageHeight = md ? 296 : 384;
+  const imageHeightStyle = md ? '296px' : 'auto';
 
   return (
     <article ref={articleRef} className={styles.card_container}>
-      <motion.div
-        className={styles.card_content}
-        style={
-          desktop
-            ? {
-                scale: contentScale,
-                top: `calc(-5vh + ${index * 25}px)`,
-                position: 'relative'
-              }
-            : tablet
-              ? {
-                  scale: tabletScale,
-                  opacity: tabletOpacity,
-                  pointerEvents: 'none' // Avoid click conflicts
-                }
-              : {}
-        }
-      >
+      <motion.div className={styles.card_content} style={motionStyle}>
         <div className={styles.card_content_item}>
           <div
             className={clsx(
@@ -86,17 +87,17 @@ const Card = ({
           >
             <motion.div
               style={{
-                height: `${md ? '296px' : 'auto'}`,
+                height: imageHeightStyle,
                 display: 'flex',
                 scale: imageScale
               }}
             >
               <Image
-                src={md ? image.src[1] : image.src[0]}
+                src={imageSrc}
                 alt={image.alt}
                 loading="lazy"
-                width={md ? 222 : 512}
-                height={md ? 296 : 384}
+                width={imageWidth}
+                height={imageHeight}
               />
             </motion.div>
           </div>

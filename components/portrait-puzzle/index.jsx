@@ -3,7 +3,7 @@
 import styles from './style.module.scss';
 import {useState, useEffect, useRef} from 'react';
 import Image from 'next/image';
-import useMediaQueries from '@/hooks/useMediaQueries';
+import {useMedia} from '@/hooks/useMedia';
 import clsx from 'clsx';
 import SlidingPuzzle from './puzzle-game';
 
@@ -12,9 +12,12 @@ const PortraitPuzzle = () => {
   const [gameWidth, setGameWidth] = useState(0);
   const containerRef = useRef(null);
 
-  const {mobile, tablet, xxxl} = useMediaQueries();
+  const {isHydrated, matches} = useMedia();
+  const {mobile, tablet, xxxl} = matches;
 
   useEffect(() => {
+    if (!isHydrated) return;
+
     const updateWidth = () => {
       if (containerRef.current) {
         const width = containerRef.current.offsetWidth;
@@ -32,7 +35,7 @@ const PortraitPuzzle = () => {
     return () => {
       window.removeEventListener('resize', updateWidth);
     };
-  }, []);
+  }, [isHydrated]);
 
   return (
     <div className={styles.puzzle_container}>
@@ -45,7 +48,6 @@ const PortraitPuzzle = () => {
             cx="50"
             cy="50"
             r={mobile ? '47' : tablet ? '39' : xxxl ? '28' : '38'}
-            // r={xxxl ? '28' : '38'}
             stroke={'#fce300'}
             strokeWidth="1"
             fill="none"
@@ -70,7 +72,9 @@ const PortraitPuzzle = () => {
           />
         </div>
         <div ref={containerRef} className={styles.puzzle_background_overlay}>
-          <SlidingPuzzle sizeBasis={gameWidth} onWin={setIsGameSolved} />
+          {isHydrated && gameWidth !== null && (
+            <SlidingPuzzle sizeBasis={gameWidth} onWin={setIsGameSolved} />
+          )}
         </div>
       </div>
     </div>

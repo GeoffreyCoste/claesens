@@ -3,7 +3,7 @@
 import styles from './style.module.scss';
 import {bricolage_grotesque} from '@/app/fonts';
 import clsx from 'clsx';
-import useMediaQueries from '@/hooks/useMediaQueries';
+import {useMedia} from '@/hooks/useMedia';
 import SvgBackground from './svg-background';
 import {imgClipData} from './data';
 import SvgImgClip from '../svg-img-clip';
@@ -12,7 +12,8 @@ import AnimateStagger from '../animate-stagger';
 import SvgEllipticSphere from './elliptic-sphere';
 
 const SectionAboutIntro = () => {
-  const {mobile} = useMediaQueries();
+  const {isHydrated, matches} = useMedia();
+  const {mobile} = matches;
 
   const [img1, img2] = imgClipData;
 
@@ -37,12 +38,14 @@ const SectionAboutIntro = () => {
                 </div>
                 <div className={styles.title_item}>
                   <div className={styles.item_img}>
-                    <SvgImgClip
-                      imgSrc={mobile ? img1.imgSrc[0] : img1.imgSrc[1]}
-                      filter={img1.filter}
-                      clipPathId={img1.clipPathId}
-                      clipPathData={img1.clipPathData}
-                    />
+                    {isHydrated && (
+                      <SvgImgClip
+                        imgSrc={mobile ? img1.imgSrc[0] : img1.imgSrc[1]}
+                        filter={img1.filter}
+                        clipPathId={img1.clipPathId}
+                        clipPathData={img1.clipPathData}
+                      />
+                    )}
                   </div>
                 </div>
                 <div className={styles.title_item}>
@@ -63,12 +66,14 @@ const SectionAboutIntro = () => {
                 </div>
                 <div className={styles.title_item}>
                   <div className={styles.item_img}>
-                    <SvgImgClip
-                      imgSrc={mobile ? img2.imgSrc[0] : img2.imgSrc[1]}
-                      filter={img2.filter}
-                      clipPathId={img2.clipPathId}
-                      clipPathData={img2.clipPathData}
-                    />
+                    {isHydrated && (
+                      <SvgImgClip
+                        imgSrc={mobile ? img2.imgSrc[0] : img2.imgSrc[1]}
+                        filter={img2.filter}
+                        clipPathId={img2.clipPathId}
+                        clipPathData={img2.clipPathData}
+                      />
+                    )}
                   </div>
                 </div>
               </div>

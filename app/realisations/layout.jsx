@@ -5,7 +5,6 @@ import {useRef} from 'react';
 import {AnimatePresence} from 'framer-motion';
 import {useSideMenu} from '@/hooks/useSideMenu';
 import useSliderMenu from '@/hooks/useSliderMenu';
-import useMediaQueries from '@/hooks/useMediaQueries';
 import Header from '@/components/header';
 import SideMenu from '@/components/side-menu';
 import {SliderMenuProvider} from '@/context/sliderMenuContext';
@@ -33,7 +32,6 @@ export default function RealizationsLayout({children}) {
 function LayoutContent({children}) {
   const {isSideMenuOpen} = useSideMenu();
   const {isSliderMenuOpen} = useSliderMenu();
-  const {desktop} = useMediaQueries();
 
   const stickyBurgerElement = useRef(null);
   const maskElement = useRef(null);
@@ -55,8 +53,8 @@ function LayoutContent({children}) {
       <main className={styles.main}>
         <SliderMenu />
         {children}
-        {desktop && <CursorMask maskElementRefs={maskRefs} />}
-        {desktop && <CursorCustom stickyElementRefs={stickyRefs} />}
+        <CursorMask maskElementRefs={maskRefs} />
+        <CursorCustom stickyElementRefs={stickyRefs} />
       </main>
       {!isSliderMenuOpen && (
         <Footer zIndex="z_index_9">

@@ -1,12 +1,22 @@
 'use client';
 
 import styles from './style.module.scss';
-import useMediaQueries from '@/hooks/useMediaQueries';
+import {useMedia} from '@/hooks/useMedia';
 import HorizontalScroll from './horizontal-scroll';
 import HorizontalSlider from './horizontal-slider';
 
 const SectionMethodProcess = () => {
-  const {mobile, tablet, desktop} = useMediaQueries();
+  const {isHydrated, matches} = useMedia();
+  const {mobile, tablet, desktop} = matches;
+
+  let Component = null;
+  if (isHydrated) {
+    if (mobile) {
+      Component = HorizontalScroll;
+    } else if (tablet || desktop) {
+      Component = HorizontalSlider;
+    }
+  }
 
   return (
     <section className={styles.section_method_process}>
@@ -14,8 +24,7 @@ const SectionMethodProcess = () => {
         Créons le mouvement ...
       </h3>
 
-      {mobile && <HorizontalScroll />}
-      {!mobile && <HorizontalSlider />}
+      {Component && <Component />}
     </section>
   );
 };

@@ -9,7 +9,7 @@ import {
   useLayoutEffect,
   useMemo
 } from 'react';
-import useMediaQueries from '@/hooks/useMediaQueries';
+import {useMedia} from '@/hooks/useMedia';
 import {Canvas, useThree, useFrame} from '@react-three/fiber';
 import {PerformanceMonitor, Points, PointMaterial} from '@react-three/drei';
 import gsap from 'gsap';
@@ -22,6 +22,11 @@ const ParticlesScene3d = () => {
 
   const canvasContainerRef = useRef(null);
   const sphereContainerRef = useRef(null);
+
+  const {isHydrated, matches} = useMedia();
+  const {mobile, tablet} = matches;
+
+  if (!isHydrated) return null;
 
   return (
     <div className={styles.scene} ref={canvasContainerRef}>
@@ -36,7 +41,7 @@ const ParticlesScene3d = () => {
           position={[0, -0.5, 0]}
           rotation={[0, -0.75, 0]}
         >
-          <Scene />
+          <Scene mobile={mobile} tablet={tablet} />
         </group>
         <ZoomOnScroll ref={{canvasContainerRef, sphereContainerRef}} />
       </Canvas>
@@ -88,11 +93,11 @@ const ZoomOnScroll = forwardRef(function ZoomOnScroll(
       ctx.revert();
     };
   }, [camera, canvasContainerRef, sphereContainerRef]);
+
+  return null;
 });
 
-const Scene = () => {
-  const {mobile, tablet} = useMediaQueries();
-
+const Scene = ({mobile, tablet}) => {
   const sphereRef = useRef(null);
   const pointsRef = useRef(null);
 

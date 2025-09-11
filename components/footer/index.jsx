@@ -1,28 +1,30 @@
 'use client';
 
 import styles from './style.module.scss';
-import useMediaQueries from '@/hooks/useMediaQueries';
+import {useMedia} from '@/hooks/useMedia';
 import clsx from 'clsx';
 import SocialsList from '../socials-list';
 
 const Footer = ({zIndex = 'default', children}) => {
-  const {mobile} = useMediaQueries();
+  const {isHydrated, matches} = useMedia();
+  const {mobile} = matches;
+
+  const mobileBreakpoint = isHydrated ? mobile : false;
+
+  const clipPathStyle =
+    children || mobileBreakpoint
+      ? {clipPath: 'polygon(0% 0, 100% 0%, 100% 100%, 0 100%)'}
+      : {};
 
   return (
     <footer
       className={clsx(styles.footer, {
         [styles.z_index_9]: zIndex === 'z_index_9',
         [styles.h_300vh]: !!children,
-        [styles.h_100vh]: !children && mobile,
-        [styles.h_auto]: !children && !mobile
+        [styles.h_100vh]: !children && mobileBreakpoint,
+        [styles.h_auto]: !children && !mobileBreakpoint
       })}
-      style={
-        children
-          ? {clipPath: 'polygon(0% 0, 100% 0%, 100% 100%, 0 100%)'}
-          : mobile
-            ? {clipPath: 'polygon(0% 0, 100% 0%, 100% 100%, 0 100%)'}
-            : {}
-      }
+      style={clipPathStyle}
     >
       {children}
 

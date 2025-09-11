@@ -3,10 +3,10 @@
 import styles from './style.module.scss';
 import Image from 'next/image';
 import { useState, useRef, useEffect } from 'react';
-import useMediaQueries from '@/hooks/useMediaQueries';
+import {useMedia} from '@/hooks/useMedia';
 import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { IMAGES } from './data';
+import {ScrollTrigger} from 'gsap/ScrollTrigger';
+import {IMAGES} from './data';
 import {prepareColumns} from '@/utils/prepareColumns';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -18,34 +18,35 @@ const GridParallax = () => {
   const gridRef = useRef(null);
   const colsRef = useRef([]);
 
-  const {mobile, tablet, xl} = useMediaQueries();
+  const {isHydrated, matches} = useMedia();
+  const {mobile, tablet, xl} = matches;
 
   // Gérer la configuration responsive
   useEffect(() => {
+    if (!isHydrated) return; // SSR-safe
+
     const handleResize = () => {
-      if (mobile) {
-        setColumns(2);
-        setImagesPerColumn(6);
-      } else if (tablet) {
-        setColumns(2);
-        setImagesPerColumn(6);
-      } else if (xl) {
-        setColumns(4);
-        setImagesPerColumn(4);
-      } else {
-        setColumns(4);
-        setImagesPerColumn(3);
-      }
+      const config =
+        mobile || tablet
+          ? {columns: 2, imagesPerColumn: 6}
+          : xl
+            ? {columns: 4, imagesPerColumn: 4}
+            : {columns: 4, imagesPerColumn: 3};
+
+      setColumns(config.columns);
+      setImagesPerColumn(config.imagesPerColumn);
     };
 
     window.addEventListener('resize', handleResize);
     handleResize();
 
     return () => window.removeEventListener('resize', handleResize);
-  }, [mobile, tablet, xl]);
+  }, [isHydrated, mobile, tablet, xl]);
 
   // Animation GSAP
   useEffect(() => {
+    if (!isHydrated) return; // SSR safe
+
     const cols = gsap.utils.toArray(colsRef.current);
     if (!cols) return;
 
@@ -109,7 +110,7 @@ const GridParallax = () => {
     });
 
     return () => mm.revert();
-  }, [columns, imagesPerColumn]);
+  }, [isHydrated, columns, imagesPerColumn]);
 
   // Préparer les images avec la fonction utilitaire
   const preparedCols = prepareColumns(IMAGES, columns, imagesPerColumn);

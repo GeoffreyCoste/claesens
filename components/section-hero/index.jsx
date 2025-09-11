@@ -1,17 +1,21 @@
 'use client';
 
 import styles from './style.module.scss';
+import dynamic from 'next/dynamic';
 import clsx from 'clsx';
 import {bricolage_grotesque} from '@/app/fonts';
-import Sphere3D from '../sphere3D';
 import SpinningBadge from '../spinning-badge';
 import SocialsList from '../socials-list';
+
+const DynamicSphere3D = dynamic(() => import('@/components/sphere3D'), {
+  ssr: false
+});
 
 export default function SectionHero() {
   return (
     <section className={styles.section_hero}>
       <div className={styles.section_hero_canvas}>
-        <Sphere3D />
+        <DynamicSphere3D />
       </div>
       <div className={styles.section_hero_content}>
         <div className={styles.section_hero_main}>

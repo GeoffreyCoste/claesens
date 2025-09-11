@@ -2,7 +2,7 @@
 
 import styles from './style.module.scss';
 import {useState, useRef, useLayoutEffect} from 'react';
-import useMediaQueries from '@/hooks/useMediaQueries';
+import {useMedia} from '@/hooks/useMedia';
 import AnimateStagger from '../animate-stagger';
 import AnimateHeading from '../animate-heading';
 import AnimateFade from '../animate-fade';
@@ -22,9 +22,12 @@ const SectionRelease = () => {
 
   const contentRef = useRef(null);
 
-  const {mobile, tablet} = useMediaQueries();
+  const {isHydrated, matches} = useMedia();
+  const {mobile, tablet} = matches;
 
   useLayoutEffect(() => {
+    if (!isHydrated) return;
+
     const content = contentRef.current;
     if (!content) return;
 
@@ -45,7 +48,7 @@ const SectionRelease = () => {
       maskMarginTop
     });
     setSectionHeight(sectionHeight);
-  }, [mobile, tablet]);
+  }, [isHydrated, mobile, tablet]);
 
   return (
     <section className={styles.section_release} style={{height: sectionHeight}}>

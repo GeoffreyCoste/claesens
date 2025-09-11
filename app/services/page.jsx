@@ -3,7 +3,6 @@
 import {useRef} from 'react';
 import {AnimatePresence} from 'framer-motion';
 import {useSideMenu} from '@/hooks/useSideMenu';
-import useMediaQueries from '@/hooks/useMediaQueries';
 import Header from '@/components/header';
 import CursorCustom from '@/components/cursor-custom';
 import SideMenu from '@/components/side-menu';
@@ -19,7 +18,6 @@ export default function Services() {
   const stickyBurgerElement = useRef(null);
 
   const {isSideMenuOpen} = useSideMenu();
-  const {desktop} = useMediaQueries();
 
   const stickyRefs = [stickyBurgerElement];
 
@@ -32,7 +30,7 @@ export default function Services() {
       <main>
         <SectionServicesHero />
         <SectionServicesDetails />
-        {desktop && <CursorCustom stickyElementRefs={stickyRefs} />}
+        <CursorCustom stickyElementRefs={stickyRefs} />
       </main>
       <Footer zIndex="z_index_9">
         <AsideFooter

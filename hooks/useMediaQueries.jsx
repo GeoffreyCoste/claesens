@@ -18,39 +18,29 @@ const MEDIA_QUERIES = {
 const useMediaQueries = () => {
   const getMatches = () => {
     // Prevents SSR issues
-    if (typeof window !== undefined || !window.matchMedia) {
-      return {
-        mobile: window.matchMedia(MEDIA_QUERIES.mobile).matches,
-        tablet: window.matchMedia(MEDIA_QUERIES.tablet).matches,
-        desktop: window.matchMedia(MEDIA_QUERIES.desktop).matches,
-        xs: window.matchMedia(MEDIA_QUERIES.xs).matches,
-        sm: window.matchMedia(MEDIA_QUERIES.sm).matches,
-        md: window.matchMedia(MEDIA_QUERIES.md).matches,
-        lg: window.matchMedia(MEDIA_QUERIES.lg).matches,
-        xl: window.matchMedia(MEDIA_QUERIES.xl).matches,
-        xxl: window.matchMedia(MEDIA_QUERIES.xxl).matches,
-        xxxl: window.matchMedia(MEDIA_QUERIES.xxxl).matches,
-        ultra: window.matchMedia(MEDIA_QUERIES.ultra).matches
-      };
+    if (typeof window === 'undefined' || !window.matchMedia) {
+      return null;
     }
     return {
-      mobile: false,
-      tablet: false,
-      desktop: false,
-      xs: false,
-      sm: false,
-      md: false,
-      lg: false,
-      xl: false,
-      xxl: false,
-      xxxl: false,
-      ultra: false
+      mobile: window.matchMedia(MEDIA_QUERIES.mobile).matches,
+      tablet: window.matchMedia(MEDIA_QUERIES.tablet).matches,
+      desktop: window.matchMedia(MEDIA_QUERIES.desktop).matches,
+      xs: window.matchMedia(MEDIA_QUERIES.xs).matches,
+      sm: window.matchMedia(MEDIA_QUERIES.sm).matches,
+      md: window.matchMedia(MEDIA_QUERIES.md).matches,
+      lg: window.matchMedia(MEDIA_QUERIES.lg).matches,
+      xl: window.matchMedia(MEDIA_QUERIES.xl).matches,
+      xxl: window.matchMedia(MEDIA_QUERIES.xxl).matches,
+      xxxl: window.matchMedia(MEDIA_QUERIES.xxxl).matches,
+      ultra: window.matchMedia(MEDIA_QUERIES.ultra).matches
     };
   };
 
   const [matches, setMatches] = useState(getMatches());
 
   useEffect(() => {
+    if (typeof window === 'undefined' || !window.matchMedia) return;
+
     const mediaQueryLists = Object.values(MEDIA_QUERIES).map((query) =>
       window.matchMedia(query)
     );
@@ -58,6 +48,8 @@ const useMediaQueries = () => {
 
     // Ajouter les listeners
     mediaQueryLists.forEach((mql) => mql.addEventListener('change', listener));
+
+    handleChange();
 
     // Nettoyer les listeners au démontage du composant
     return () => {

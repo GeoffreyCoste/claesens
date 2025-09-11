@@ -6,7 +6,7 @@ import { shaderMaterial } from '@react-three/drei';
 import * as THREE from 'three';
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger';
-import useMediaQueries from '@/hooks/useMediaQueries';
+import {useMedia} from '@/hooks/useMedia';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -152,7 +152,8 @@ const FullscreenPlane = ({
   const [planeWidth, setPlaneWidth] = useState(1);
   const [planeHeight, setPlaneHeight] = useState(1);
 
-  const {desktop, xl} = useMediaQueries();
+  const {isHydrated, matches} = useMedia();
+  const {desktop, xl} = matches;
 
   useEffect(() => {
     // Camera field of view
@@ -168,12 +169,16 @@ const FullscreenPlane = ({
   }, [width, height, camera]);
 
   useEffect(() => {
+    if (!isHydrated) return;
+
     if (materialRef.current) {
       materialRef.current.uniforms.uIsDesktop.value = desktop; // ✅ Boolean update
     }
-  }, [desktop]);
+  }, [isHydrated, desktop]);
 
   useEffect(() => {
+    if (!isHydrated) return;
+
     const slider = sliderRef?.current;
     const tween = tweenRef?.current;
     const slides = slidesRef?.current;
@@ -296,7 +301,7 @@ const FullscreenPlane = ({
     });
 
     return () => ctx.revert();
-  }, [desktop, xl, width, sliderRef, tweenRef, slidesRef]);
+  }, [isHydrated, desktop, xl, width, sliderRef, tweenRef, slidesRef]);
 
   return (
     <mesh position={[0, 0, 0]}>

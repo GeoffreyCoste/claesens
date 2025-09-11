@@ -3,14 +3,15 @@
 import styles from './style.module.scss';
 import { useRef, useEffect } from 'react';
 import {motion, useScroll, useTransform} from 'framer-motion';
-import useMediaQueries from '@/hooks/useMediaQueries';
+import {useMedia} from '@/hooks/useMedia';
 
 const MaskReveal = ({children, maskValues}) => {
   const containerRef = useRef(null);
 
   const {maskRadius, maskHeight, maskMarginTop} = maskValues;
 
-  const {mobile} = useMediaQueries();
+  const {isHydrated, matches} = useMedia();
+  const {mobile} = matches;
 
   // Framer Motion Hook to follow scroll relative to container
   const {scrollYProgress} = useScroll({
@@ -34,20 +35,11 @@ const MaskReveal = ({children, maskValues}) => {
     maskGradientArray
   );
 
-  useEffect(() => {
-    const unsub1 = scrollYProgress.on('change', (latest) => {
-      console.log('progress:', latest.toFixed(3));
-    });
-
-    const unsub2 = maskSize.on('change', (latest) => {
-      console.log('maskSize (radius):', latest);
-    });
-
-    return () => {
-      unsub1();
-      unsub2();
-    };
-  }, [scrollYProgress, maskSize]);
+  const maskImage = useTransform(
+    maskSize,
+    (size) =>
+      `radial-gradient(circle at center, black ${size}, transparent ${size})`
+  );
 
   return (
     <div
@@ -55,23 +47,19 @@ const MaskReveal = ({children, maskValues}) => {
       className={styles.mask}
       style={{height: maskHeight, marginTop: maskMarginTop}}
     >
-      <motion.div
-        className={styles.mask_content}
-        style={{
-          WebkitMaskImage: useTransform(
-            maskSize,
-            (size) =>
-              `radial-gradient(circle at center, black ${size}, transparent ${size})`
-          ),
-          maskImage: useTransform(
-            maskSize,
-            (size) =>
-              `radial-gradient(circle at center, black ${size}, transparent ${size})`
-          )
-        }}
-      >
+      {isHydrated ? (
+        <motion.div
+          className={styles.mask_content}
+          style={{
+            WebkitMaskImage: maskImage,
+            maskImage: maskImage
+          }}
+        >
+          <div className={styles.body}>{children}</div>
+        </motion.div>
+      ) : (
         <div className={styles.body}>{children}</div>
-      </motion.div>
+      )}
     </div>
   );
 };

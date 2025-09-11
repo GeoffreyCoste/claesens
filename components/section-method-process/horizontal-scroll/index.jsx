@@ -7,7 +7,7 @@ import gsap from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger';
 import clsx from 'clsx';
 import {bricolage_grotesque} from '@/app/fonts';
-import {STEPS} from '@/components/circular-list/data';
+import {STEPS} from '../data';
 import NumberDisplay from '../number-display';
 
 gsap.registerPlugin(ScrollTrigger);

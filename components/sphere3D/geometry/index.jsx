@@ -1,3 +1,5 @@
+'use client';
+
 const Geometry = ({scale}) => {
   return (
     <mesh scale={scale} castShadow receiveShadow>

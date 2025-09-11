@@ -1,13 +1,13 @@
 'use client'
 
-import { useThree } from "@react-three/fiber";
-import { Html } from "@react-three/drei";
-import useMediaQueries from "@/hooks/useMediaQueries";
-import { computeUvPosition } from "@/utils/computeUvPosition";
-import { uvToWorld } from "@/utils/uvToWorld";
-import ScrollableArticle from "./scrollable-article";
-import { STAGES } from "./data";
-import {useEffect} from 'react';
+import {useMemo} from 'react';
+import {useThree} from '@react-three/fiber';
+import {Html} from '@react-three/drei';
+import {useMedia} from '@/hooks/useMedia';
+import {computeUvPosition} from '@/utils/computeUvPosition';
+import {uvToWorld} from '@/utils/uvToWorld';
+import ScrollableArticle from './scrollable-article';
+import {STAGES} from './data';
 
 const ArticlesPositionWrapper = ({
   bounds,
@@ -19,16 +19,21 @@ const ArticlesPositionWrapper = ({
 }) => {
   const {camera} = useThree();
 
-  const {desktop} = useMediaQueries();
+  const {isHydrated, matches} = useMedia();
+  const {desktop} = matches;
 
-  const {u, v, z} = computeUvPosition({
-    bounds,
-    uRadius1,
-    uRadius2,
-    position: desktop ? 'left' : 'top',
-    isDesktop: desktop
-  });
-  const articlePos = uvToWorld(u, v, z, camera, bounds.width, bounds.height);
+  const articlePos = useMemo(() => {
+    const {u, v, z} = computeUvPosition({
+      bounds,
+      uRadius1,
+      uRadius2,
+      position: desktop ? 'left' : 'top',
+      isDesktop: desktop
+    });
+    return uvToWorld(u, v, z, camera, bounds.width, bounds.height);
+  }, [bounds, uRadius1, uRadius2, desktop, camera]);
+
+  if (!isHydrated) return null;
 
   return (
     <Html position={articlePos} center zIndexRange={[10, 0]}>

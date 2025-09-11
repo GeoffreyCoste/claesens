@@ -1,17 +1,34 @@
 'use client'
 
 import { useThree } from "@react-three/fiber";
-import useMediaQueries from "@/hooks/useMediaQueries";
-import ModelsManager from "./models-manager";
-import { computeUvPosition } from "@/utils/computeUvPosition";
-import { uvToWorld } from "@/utils/uvToWorld";
+import {useMedia} from '@/hooks/useMedia';
+import ModelsManager from './models-manager';
+import {computeUvPosition} from '@/utils/computeUvPosition';
+import {uvToWorld} from '@/utils/uvToWorld';
 
-const ModelsPositionWrapper = ({ bounds, uRadius1, uRadius2, slidesRef, tweenRef, activeIndex, isDotNavigationScrolling  }) => {
-  const { camera } = useThree();
+const ModelsPositionWrapper = ({
+  bounds,
+  uRadius1,
+  uRadius2,
+  slidesRef,
+  tweenRef,
+  activeIndex,
+  isDotNavigationScrolling
+}) => {
+  const {camera} = useThree();
 
-  const {desktop} = useMediaQueries();
+  const {isHydrated, matches} = useMedia();
+  const {desktop} = matches;
 
-  const { u, v, z } = computeUvPosition({ bounds, uRadius1, uRadius2, position: desktop ? 'right' : 'bottom', isDesktop: desktop });
+  if (!isHydrated || !camera || !desktop) return null;
+
+  const {u, v, z} = computeUvPosition({
+    bounds,
+    uRadius1,
+    uRadius2,
+    position: desktop ? 'right' : 'bottom',
+    isDesktop: desktop
+  });
   const modelPos = uvToWorld(u, v, z, camera, bounds.width, bounds.height);
 
   return (

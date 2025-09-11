@@ -44,11 +44,9 @@ const ShaderScene = ({ sliderRef, slidesRef, tweenRef, activeIndex, isDotNavigat
         start: 'center center',
         end: 'center+=5% center',
         onLeave: ({direction}) => {
-          console.log('On Leave');
           if (direction === 1) setShouldFadeOut(true);
         },
         onEnterBack: ({direction}) => {
-          console.log('On Enter Back');
           if (direction === -1) setShouldFadeOut(false);
         }
       });

@@ -1,3 +1,5 @@
+'use client';
+
 import styles from './style.module.scss';
 import {Suspense} from 'react';
 import {Canvas} from '@react-three/fiber';

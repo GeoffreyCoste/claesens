@@ -2,7 +2,7 @@
 
 import styles from './style.module.scss';
 import {useLayoutEffect, useRef} from 'react';
-import useMediaQueries from '@/hooks/useMediaQueries';
+import {useMedia} from '@/hooks/useMedia';
 import gsap from 'gsap';
 import {ScrollTrigger} from 'gsap/ScrollTrigger';
 import {useLenis} from '@/hooks/useLenis';
@@ -18,7 +18,8 @@ const PinContainer = () => {
 
   const {lenis} = useLenis();
 
-  const {desktop} = useMediaQueries();
+  const {isHydrated, matches} = useMedia();
+  const {desktop} = matches;
 
   const videoSource = desktop
     ? '/videos/method_video_1920x1080.mp4'
@@ -120,6 +121,7 @@ const PinContainer = () => {
     return () => {
       mm.revert();
       lenis.options.duration = 1.2; // Default value
+      circlesRef.current = [];
     };
   }, [lenis]);
 
@@ -151,41 +153,16 @@ const PinContainer = () => {
               <rect x="300" y="0" width="380" height="400" />
             </clipPath>
             <clipPath id="combinedClip">
-              <circle
-                ref={(el) => circlesRef.current.push(el)}
-                cx="170"
-                cy="200"
-                r="150"
-                clipPath="url(#clip1)"
-              />
-              <circle
-                ref={(el) => circlesRef.current.push(el)}
-                cx="200"
-                cy="200"
-                r="150"
-                clipPath="url(#clip2)"
-              />
-              <circle
-                ref={(el) => circlesRef.current.push(el)}
-                cx="255"
-                cy="200"
-                r="150"
-                clipPath="url(#clip3)"
-              />
-              <circle
-                ref={(el) => circlesRef.current.push(el)}
-                cx="330"
-                cy="200"
-                r="150"
-                clipPath="url(#clip4)"
-              />
-              <circle
-                ref={(el) => circlesRef.current.push(el)}
-                cx="430"
-                cy="200"
-                r="150"
-                clipPath="url(#clip5)"
-              />
+              {[0, 1, 2, 3, 4].map((_, i) => (
+                <circle
+                  key={`circle-${i}`}
+                  ref={(el) => (circlesRef.current[i] = el)}
+                  cx={[170, 200, 255, 330, 430][i]}
+                  cy={200}
+                  r={150}
+                  clipPath={`url(#clip${i + 1})`}
+                />
+              ))}
             </clipPath>
 
             <filter id="grayscale">
@@ -217,8 +194,10 @@ const PinContainer = () => {
               poster={videoThumbnail}
               style={{display: 'block', filter: 'url(#grayscale)'}}
             >
-              {/* A INTEGRER */}
-              {/* <source src={videoSource.replace('.mp4', '.webm')} type="video/webm" /> */}
+              <source
+                src={videoSource.replace('.mp4', '.webm')}
+                type="video/webm"
+              />
               <source src={videoSource} type="video/mp4" />
               Your browser does not support the video tag.
             </video>

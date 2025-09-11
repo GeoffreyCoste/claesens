@@ -2,19 +2,27 @@
 
 import styles from './style.module.scss';
 import {useRef} from 'react';
+import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import {bricolage_grotesque} from '@/app/fonts';
 import clsx from 'clsx';
-import useMediaQueries from '@/hooks/useMediaQueries';
+import {useMedia} from '@/hooks/useMedia';
 import {useScroll, useTransform, motion, useInView} from 'framer-motion';
 import ImgDots from '../../public/images/img_dots.png';
-import ParticlesScene3d from './particles-scene-3d';
+
+const DynamicParticlesScene3d = dynamic(() => import('./particles-scene-3d'), {
+  ssr: false
+});
 
 const ImageParallax = () => {
   const containerRef = useRef(null);
   const textContainerRef = useRef(null);
 
-  const isInView = useInView(textContainerRef, {amount: 'all'});
+  const {isHydrated, matches} = useMedia();
+  const {mobile} = matches;
+
+  const inView = useInView(textContainerRef, {amount: 'all'});
+  const isInView = isHydrated ? inView : false;
 
   const {scrollYProgress} = useScroll({
     target: containerRef,
@@ -22,8 +30,6 @@ const ImageParallax = () => {
   });
 
   const y = useTransform(scrollYProgress, [0, 1], ['-10%', '10%']);
-
-  const {mobile} = useMediaQueries();
 
   const textVariants = {
     hidden: {
@@ -42,13 +48,13 @@ const ImageParallax = () => {
       className={styles.parallax_container}
       style={{clipPath: 'polygon(0% 0, 100% 0%, 100% 100%, 0 100%)'}}
     >
-      <ParticlesScene3d />
+      {isHydrated && <DynamicParticlesScene3d />}
       <motion.div
         className={clsx(bricolage_grotesque.className, styles.motion_text)}
         ref={textContainerRef}
         aria-label="Chaque inspiration est un point dans le cercle de la créativité"
       >
-        {mobile ? (
+        {isHydrated && mobile ? (
           <motion.div
             className={styles.motion_text_item}
             initial="hidden"
@@ -87,7 +93,10 @@ const ImageParallax = () => {
         )}
       </motion.div>
       <div className={styles.parallax_item}>
-        <motion.div style={{y}} className={styles.parallax_image}>
+        <motion.div
+          style={{y: isHydrated ? y : '0%'}}
+          className={styles.parallax_image}
+        >
           <Image
             src={ImgDots}
             fill

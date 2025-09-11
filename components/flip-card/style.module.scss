@@ -1,3 +1,5 @@
+@use "sass:math";
+
 // setup:
 
 $width: 860px;
@@ -140,16 +142,16 @@ $height: 150px;
             justify-content: center;
             align-items: center;
             background-color: var(--black);
-            transform: rotateX(0deg) translateZ($height / 2);
+            transform: rotateX(0deg) translateZ(math.div($height, 2));
         }
 
         &:hover {
            .card_front {
-              transform: rotateX(0deg) translateZ( $height / 2 );
+              transform: rotateX(0deg) translateZ(math.div($height, 2));
            }
      
            .card_back {
-              transform: rotateX(90deg) translateZ( $height / 2 );
+              transform: rotateX(90deg) translateZ(math.div($height, 2));
            }
         }
      

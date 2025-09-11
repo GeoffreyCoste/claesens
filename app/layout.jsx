@@ -1,5 +1,6 @@
 import './globals.css';
 import {LenisProvider} from '@/context/lenisContext';
+import {MediaProvider} from '@/context/mediaContext';
 import {SideMenuProvider} from '@/context/sideMenuContext';
 import {DM_Sans, Bricolage_Grotesque} from 'next/font/google';
 
@@ -31,7 +32,9 @@ export default function RootLayout({children}) {
     >
       <body>
         <LenisProvider>
-          <SideMenuProvider>{children}</SideMenuProvider>
+          <MediaProvider>
+            <SideMenuProvider>{children}</SideMenuProvider>
+          </MediaProvider>
         </LenisProvider>
       </body>
     </html>
