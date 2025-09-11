@@ -1,4 +1,49 @@
-'use client';
+import HomeWrapper from '@/components/home-wrapper';
+import PageLayout from '@/components/page-layout';
+import SectionHero from '@/components/section-hero';
+import SectionWho from '@/components/section-who';
+import SectionSkills from '@/components/section-skills';
+import ImageParallax from '@/components/image-parallax';
+import SectionProcess from '@/components/section-process';
+import SectionRelease from '@/components/section-release';
+import InfiniteText from '@/components/infinite-text';
+import AsideFooterBody from '@/components/aside-footer/aside-footer-body';
+import {h2FooterAsideHome} from '@/components/animate-heading/data';
+import CanvasShaderLens from '@/components/canvas-shader-lens';
+import GridParallax from '@/components/grid-parallax';
+
+export default function Home() {
+  return (
+    <HomeWrapper>
+      {(home) => (
+        <PageLayout
+          data={home}
+          showPreloader={true}
+          asideFooterVariant={'home'}
+          asideFooterAnim={<CanvasShaderLens />}
+          asideFooterBody={
+            <AsideFooterBody
+              headings={h2FooterAsideHome}
+              paragraph="Ensemble, faisons rayonner vos idées !"
+            />
+          }
+          asideFooterDraggable={true}
+        >
+          <SectionHero />
+          <SectionWho />
+          <InfiniteText />
+          <GridParallax />
+          <SectionSkills />
+          <ImageParallax />
+          <SectionProcess />
+          <SectionRelease />
+        </PageLayout>
+      )}
+    </HomeWrapper>
+  );
+}
+
+/* 'use client';
 
 import styles from './page.module.scss';
 import {useState, useEffect, useRef} from 'react';
@@ -85,4 +130,4 @@ export default function Home() {
       </Footer>
     </>
   );
-}
+} */

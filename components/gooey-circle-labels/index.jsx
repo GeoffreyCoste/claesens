@@ -1,3 +1,5 @@
+'use client';
+
 import styles from './style.module.scss';
 import {useEffect, useRef} from 'react';
 import {motion, useAnimation, useInView} from 'framer-motion';

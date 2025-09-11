@@ -120,14 +120,14 @@ const SectionAboutOrigin = () => {
             <div className={styles.images_wrapper}>
               <Image
                 ref={imgDigitalRef}
-                src="/images/img_digital_2560x3400.jpg"
+                src="/images/img_digital_2560x3400.webp"
                 alt="Texture numérique en noir et blanc avec des ondulations et reflets fluides évoquant un rendu abstrait et futuriste"
                 fill
                 loading="lazy"
                 // layout="responsive"
                 // width={2560}
                 // height={3400}
-                quality={100}
+                /* quality={100} */
                 style={{
                   objectFit: 'cover',
                   position: 'absolute',
@@ -137,14 +137,14 @@ const SectionAboutOrigin = () => {
               />
               <Image
                 ref={imgPaperRef}
-                src="/images/img_paper_2560x3400.jpg"
+                src="/images/img_paper_2560x3400.webp"
                 alt="Accumulation ondulée de feuilles de papier sur la tranche"
                 fill
                 loading="lazy"
                 // layout="responsive"
                 // width={2560}
                 // height={3400}
-                quality={100}
+                /* quality={100} */
                 style={{
                   objectFit: 'cover',
                   position: 'absolute',
